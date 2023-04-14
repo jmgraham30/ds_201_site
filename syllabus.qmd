@@ -32,3 +32,9 @@ library(kableExtra)
 * Hands-On Programming with R by Garrett Grolemund, freely available online [here](https://rstudio-education.github.io/hopr/).
 
 * R for Data Science by Hadley Wickham & Garrett Grolemund, freely available online [here](https://r4ds.had.co.nz/index.html).
+
+* Statistical Inference via Data Science A ModernDive into R and the Tidyverse by Chester Ismay & Albert Y. Kim, freely available online [here](https://moderndive.com/).
+
+* An Introduction to Statistical Learning 2nd Ed. by James, Witten, Hastie, and Tibshirani, freely available online [here](https://www.statlearning.com/).
+
+* Tree-Based Methods for Statistical Learning by Brandon M. Greenwell, freely available online [here](https://bgreenwell.github.io/treebook/).
