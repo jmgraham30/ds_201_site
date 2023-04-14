@@ -1,0 +1,34 @@
+---
+title: "Syllabus"
+---
+
+```{r}
+#| label: package-loads
+#| include: false
+#| message: false
+library(kableExtra)
+```
+
+# DS 201 Introduction to Data Science
+
+
+# Instructor Information
+
+* **Instructor:** Dr. Jason M. Graham
+
+* **Office:** LSC 319A 
+    + **Office Hours:** TBD You may also make an appointment to meet with us outside of scheduled office hours. Appointments are not necessary for regularly scheduled office hours.
+
+* **Email:** <jason.graham@scranton.edu>
+
+* **Phone:** (570) 941-7491
+
+* **Course Page:** [link](https://intro-ds.netlify.app/)
+
+# Course Materials
+
+## Required Readings
+
+* Hands-On Programming with R by Garrett Grolemund, freely available online [here](https://rstudio-education.github.io/hopr/).
+
+* R for Data Science by Hadley Wickham & Garrett Grolemund, freely available online [here](https://r4ds.had.co.nz/index.html).
