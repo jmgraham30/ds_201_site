@@ -25,6 +25,20 @@
     "href": "syllabus.html#required-readings",
     "title": "Syllabus",
     "section": "Required Readings",
-    "text": "Required Readings\n\nHands-On Programming with R by Garrett Grolemund, freely available online here.\nR for Data Science by Hadley Wickham & Garrett Grolemund, freely available online here.\nStatistical Inference via Data Science A ModernDive into R and the Tidyverse by Chester Ismay & Albert Y. Kim, freely available online here.\nAn Introduction to Statistical Learning 2nd Ed. by James, Witten, Hastie, and Tibshirani, freely available online here.\nTree-Based Methods for Statistical Learning by Brandon M. Greenwell, freely available online here."
+    "text": "Required Readings\n\nHands-On Programming with R by Garrett Grolemund, freely available online here.\nR for Data Science by Hadley Wickham & Garrett Grolemund, freely available online here.\nStatistical Inference via Data Science A ModernDive into R and the Tidyverse by Chester Ismay & Albert Y. Kim, freely available online here."
+  },
+  {
+    "objectID": "syllabus.html#additional-references",
+    "href": "syllabus.html#additional-references",
+    "title": "Syllabus",
+    "section": "Additional References",
+    "text": "Additional References\n\nAn Introduction to Statistical Learning 2nd Ed. by James, Witten, Hastie, and Tibshirani, freely available online here.\nTree-Based Methods for Statistical Learning by Brandon M. Greenwell, freely available online here."
+  },
+  {
+    "objectID": "syllabus.html#recommended-readings",
+    "href": "syllabus.html#recommended-readings",
+    "title": "Syllabus",
+    "section": "Recommended Readings",
+    "text": "Recommended Readings\n\nAn Introduction to Statistical Learning 2nd Ed. by James, Witten, Hastie, and Tibshirani, freely available online here.\nTree-Based Methods for Statistical Learning by Brandon M. Greenwell, freely available online here."
   }
 ]
