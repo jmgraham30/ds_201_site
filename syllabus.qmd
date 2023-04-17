@@ -33,6 +33,8 @@ library(kableExtra)
 
 * R for Data Science by Hadley Wickham & Garrett Grolemund, freely available online [here](https://r4ds.had.co.nz/index.html).
 
+* Telling Stories with Data by Rohan Alexander, freely available online [here](https://tellingstorieswithdata.com/).
+
 * Statistical Inference via Data Science A ModernDive into R and the Tidyverse by Chester Ismay & Albert Y. Kim, freely available online [here](https://moderndive.com/).
 
 ## Recommended Readings 
