@@ -33,9 +33,10 @@ library(kableExtra)
 
 * R for Data Science by Hadley Wickham & Garrett Grolemund, freely available online [here](https://r4ds.had.co.nz/index.html).
 
+* Data Science: A First Introduction by Tiffany Timbers, Trevor Campbell, and Melissa Lee, freely available online [here](https://datasciencebook.ca/).
+
 * Telling Stories with Data by Rohan Alexander, freely available online [here](https://tellingstorieswithdata.com/).
 
-* Data Science: A First Introduction by Tiffany Timbers, Trevor Campbell, and Melissa Lee, freely available online [here](https://datasciencebook.ca/).
 
 
 ## Recommended Readings 
@@ -45,3 +46,7 @@ library(kableExtra)
 * An Introduction to Statistical Learning 2nd Ed. by James, Witten, Hastie, and Tibshirani, freely available online [here](https://www.statlearning.com/).
 
 * Tree-Based Methods for Statistical Learning by Brandon M. Greenwell, freely available online [here](https://bgreenwell.github.io/treebook/).
+
+* Advanced R by Wickham, freely available online [here](https://adv-r.hadley.nz/).
+
+* R Packages by Wickham, freely available online [here](https://r-pkgs.org/).
