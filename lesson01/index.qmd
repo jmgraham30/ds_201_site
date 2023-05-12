@@ -13,7 +13,10 @@ bibliography: lesson01.bib
 
 ```{r}
 #| echo: true
+#| message: false
+#| warning: false
 
+# load packages used in document
 library(tidyverse)
 ```
 
