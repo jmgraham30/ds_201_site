@@ -2,6 +2,15 @@
 title: "Links"
 ---
 
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+
+library(tidyverse)
+```
+
 ## Websites
 
 * Tidy Tuesday data repository, link [here](https://github.com/rfordatascience/tidytuesday/tree/master).
@@ -23,4 +32,15 @@ title: "Links"
 * Outstanding User Interfaces with Shiny textbook available [here](https://unleash-shiny.rinterface.com/).
 
 * Crime by the Numbers: A Criminologist’s Guide to R textbook available [here](https://crimebythenumbers.com/).
+
+## Videos
+
+*  Getting started with Quarto YouTube video, link [here](https://youtu.be/YK6IjJkjkiI).
+  
+```{r}
+#| echo: false
+
+vembedr::embed_youtube(id="_f3latmOhew",height=450) %>%
+  vembedr::use_align("center")
+```
 

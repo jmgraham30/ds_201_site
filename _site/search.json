@@ -96,5 +96,12 @@
     "title": "Lesson 1",
     "section": "Learning Objectives",
     "text": "Learning Objectives"
+  },
+  {
+    "objectID": "links.html#videos",
+    "href": "links.html#videos",
+    "title": "Links",
+    "section": "Videos",
+    "text": "Videos\n\nGetting started with Quarto YouTube video, link here."
   }
 ]
