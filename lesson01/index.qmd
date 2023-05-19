@@ -23,7 +23,33 @@ library(tidyverse)
 
 ## Learning Objectives
 
-* 
+After this lesson, students will be able to: 
+
+* Give an general definition of **data science**.
+
+* Explain what is meant by **reproducible** and **auditable** workflows.
+
+* Use the [Gapminder](https://www.gapminder.org/) online tools (link [here](https://www.gapminder.org/)) to explore data on certain social and economic issues.
+
+* Explain and give examples of **numerical** and **categorical** data types.  
+
+* Do basic arithmetic with R. 
+
+
+## What is Data Science?
+
+
+
+## Exploring Data: An Introduction Through Gapminder 
+
+
+
+## Classification of Basic Data Types
+
+
+
+## A Tiny Bit of R
+
 
 
 ## Readings, etc.
