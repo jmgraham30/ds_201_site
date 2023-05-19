@@ -50,7 +50,7 @@ After this lesson, students will be able to:
 
 ## A Tiny Bit of R
 
-
+![R](https://github.com/allisonhorst/stats-illustrations/blob/main/rstats-artwork/exploder.gif)
 
 ## Readings, etc.
 
