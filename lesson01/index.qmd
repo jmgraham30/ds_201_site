@@ -23,12 +23,14 @@ library(tidyverse)
 
 ## Learning Objectives
 
-
+* 
 
 
 ## Readings, etc.
 
-[@TT]
+* Read the preface of *Data Science: A First Introduction* by Tiffany Timbers, Trevor Campbell, and Melissa Lee [@timbers2022data]. This textbook is available online [here](https://datasciencebook.ca/).
+
+* Throughout the semester, we will use example data from the [Tidy Tuesday data repository](https://github.com/rfordatascience/tidytuesday) [@TT]. Click [link here](https://github.com/rfordatascience/tidytuesday) to go to the Tidy Tuesday data repository.
 
 
 
