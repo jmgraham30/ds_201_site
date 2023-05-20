@@ -38,7 +38,7 @@ After this lesson, students will be able to:
 
 ## What is Data Science?
 
-[![ ](https://github.com/allisonhorst/stats-illustrations/blob/main/rstats-artwork/reproducibility_court.png?raw=1)](https://allisonhorst.com/)
+[![Artwork by Allison Horst](https://github.com/allisonhorst/stats-illustrations/blob/main/rstats-artwork/reproducibility_court.png?raw=1){fig-alt="An illustration of the concept of reproducibility."}](https://allisonhorst.com/)
 
 ## Exploring Data: An Introduction Through Gapminder 
 
@@ -46,14 +46,14 @@ After this lesson, students will be able to:
 
 ## Classification of Basic Data Types
 
-[![ ](https://github.com/allisonhorst/stats-illustrations/blob/main/other-stats-artwork/continuous_discrete.png?raw=1)](https://allisonhorst.com/)
+[![Artwork by Allison Horst](https://github.com/allisonhorst/stats-illustrations/blob/main/other-stats-artwork/continuous_discrete.png?raw=1){fig-alt="An illustration of the distinction between a continuous numerical variable and a discrete numerical variable."}](https://allisonhorst.com/)
 
 
-[![ ](https://github.com/allisonhorst/stats-illustrations/blob/main/other-stats-artwork/nominal_ordinal_binary.png?raw=1)](https://allisonhorst.com/)
+[![Artwork by Allison Horst](https://github.com/allisonhorst/stats-illustrations/blob/main/other-stats-artwork/nominal_ordinal_binary.png?raw=1){fig-alt="An illustration of the distinction between nominal, ordinal, and binary categorical variables."}](https://allisonhorst.com/)
 
 ## A Tiny Bit of R
 
-[![ ](https://github.com/allisonhorst/stats-illustrations/blob/main/rstats-artwork/exploder.gif?raw=1)](https://allisonhorst.com/)
+[![Artwork by Allison Horst](https://github.com/allisonhorst/stats-illustrations/blob/main/rstats-artwork/exploder.gif?raw=1){fig-alt="A gif showing the logo for the R language for statistical computing."}](https://allisonhorst.com/)
 
 ## Readings, etc.
 
