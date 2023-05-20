@@ -85,6 +85,115 @@ As the course progresses, we will learn a lot of R. For this lesson, we will sta
 
 ### Calculations with R
 
+In R, it is easy to perform basic arithmetic operations such as addition, subtraction, multiplication, division, exponentiation, and modular division. Each of these is illustrated in the following code blocks:
+
+```{r}
+#| code-fold: false
+
+
+# any line starting with # is a comment and is not run
+# addition
+1.6 + 2.31
+```
+
+
+```{r}
+#| code-fold: false
+
+
+# subtraction
+4.87 - 2.31
+```
+
+
+
+```{r}
+#| code-fold: false
+
+
+# multiplication
+1.6 * 2.31
+```
+
+
+```{r}
+#| code-fold: false
+
+
+# division
+6.0 / 2.31
+```
+
+
+```{r}
+#| code-fold: false
+
+
+# exponentiation
+2^3
+```
+
+
+```{r}
+#| code-fold: false
+
+
+# modular division, a %% b returns the remainder after
+# dividing a by b
+
+7 %% 2
+```
+
+
+You have to be careful with the order of operations, use parentheses to be precise about intended order of operations. For example,
+
+```{r}
+#| code-fold: false
+
+(6 / 3) - 1
+```
+
+divides 6 by three and then subtracts 1, while
+
+```{r}
+#| code-fold: false
+
+6 / (3 - 1)
+```
+
+subtracts 1 from 3 and divides 6 by the result. While the following code runs and has a specific meaning to the computer, it is ambiguous to the human reader and should be modified appropriately with parentheses:
+
+```{r}
+#| code-fold: false
+
+6 / 3 - 1
+```
+
+
+### Variables and Assignment
+
+In R programming, a variable is a name given to a R object such as a numeric value that can be used to store, reuse, or modify that object. In R, variable assignments are made use the assignment operator `<-`. For example, 
+
+```{r}
+#| code-fold: false
+
+my_variable <- 2.5
+```
+
+assigns the numeric value 2.5 to the variable `my_variable`. Now, we can peform operations to `my_variable`, for example, 
+
+```{r}
+#| code-fold: false
+
+(2 * my_variable)
+
+(my_variable^3)
+
+```
+
+Many programming languages use `=` for assignment. While it is valid to use `=` in R, best practices dictate using `<-`.   
+
+See the 
 
 If you want to engage further with R programming, we highly recommend the [swirl](https://swirlstats.com/) package [@swirl2020] for learning R in R. To install, load, and use swirl, run the following commands in the R console:
 
@@ -93,7 +202,6 @@ If you want to engage further with R programming, we highly recommend the [swirl
 #| code-fold: false
 #| eval: false
 
-# this is a comment and is not run
 # install swirl
 install.packages("swirl") # only need to run once
 # load swirl 
@@ -138,5 +246,5 @@ pkg_sesh
 :::
 
 
-
+[![](http://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png?raw=1){fig-align="left" width=15%}](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode)
 
