@@ -193,7 +193,7 @@ assigns the numeric value 2.5 to the variable `my_variable`. Now, we can peform 
 
 Many programming languages use `=` for assignment. While it is valid to use `=` in R, best practices dictate using `<-`.   
 
-See the 
+See the tidyverse style guide [here](https://style.tidyverse.org/syntax.html) for best practices in naming objects in R. 
 
 If you want to engage further with R programming, we highly recommend the [swirl](https://swirlstats.com/) package [@swirl2020] for learning R in R. To install, load, and use swirl, run the following commands in the R console:
 
