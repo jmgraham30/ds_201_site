@@ -38,7 +38,9 @@ After this lesson, students will be able to:
 
 ## What is Data Science?
 
-[![Artwork by Allison Horst](https://github.com/allisonhorst/stats-illustrations/blob/main/rstats-artwork/reproducibility_court.png?raw=1){fig-alt="An illustration of the concept of reproducibility."}](https://allisonhorst.com/)
+@fig-reproducible illustrates the concept of reproducibility. 
+
+[![Artwork by Allison Horst](https://github.com/allisonhorst/stats-illustrations/blob/main/rstats-artwork/reproducibility_court.png?raw=1){#fig-reproducible fig-alt="An illustration of the concept of reproducibility."}](https://allisonhorst.com/)
 
 ## Exploring Data: An Introduction Through Gapminder 
 
@@ -46,10 +48,10 @@ After this lesson, students will be able to:
 
 ## Classification of Basic Data Types
 
-[![Artwork by Allison Horst](https://github.com/allisonhorst/stats-illustrations/blob/main/other-stats-artwork/continuous_discrete.png?raw=1){fig-alt="An illustration of the distinction between a continuous numerical variable and a discrete numerical variable."}](https://allisonhorst.com/)
+[![Artwork by Allison Horst](https://github.com/allisonhorst/stats-illustrations/blob/main/other-stats-artwork/continuous_discrete.png?raw=1){#fig-numericals fig-alt="An illustration of the distinction between a continuous numerical variable and a discrete numerical variable."}](https://allisonhorst.com/)
 
 
-[![Artwork by Allison Horst](https://github.com/allisonhorst/stats-illustrations/blob/main/other-stats-artwork/nominal_ordinal_binary.png?raw=1){fig-alt="An illustration of the distinction between nominal, ordinal, and binary categorical variables."}](https://allisonhorst.com/)
+[![Artwork by Allison Horst](https://github.com/allisonhorst/stats-illustrations/blob/main/other-stats-artwork/nominal_ordinal_binary.png?raw=1){#fig-categoricals fig-alt="An illustration of the distinction between nominal, ordinal, and binary categorical variables."}](https://allisonhorst.com/)
 
 ## A Tiny Bit of R
 

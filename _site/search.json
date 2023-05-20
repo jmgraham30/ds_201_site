@@ -193,7 +193,7 @@
     "href": "lesson01/index.html#what-is-data-science",
     "title": "Lesson 1",
     "section": "What is Data Science?",
-    "text": "What is Data Science?\n\n\n\nArtwork by Allison Horst"
+    "text": "What is Data Science?\nFigure 1 illustrates the concept of reproducibility.\n\n\n\nFigure 1: Artwork by Allison Horst"
   },
   {
     "objectID": "lesson01/index.html#exploring-data-an-introduction-through-gapminder",
@@ -207,7 +207,7 @@
     "href": "lesson01/index.html#classification-of-basic-data-types",
     "title": "Lesson 1",
     "section": "Classification of Basic Data Types",
-    "text": "Classification of Basic Data Types\n\n\n\nArtwork by Allison Horst\n\n\n\n\n\nArtwork by Allison Horst"
+    "text": "Classification of Basic Data Types\n\n\n\nFigure 2: Artwork by Allison Horst\n\n\n\n\n\nFigure 3: Artwork by Allison Horst"
   },
   {
     "objectID": "lesson01/index.html#a-tiny-bit-of-r",
