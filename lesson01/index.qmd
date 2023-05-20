@@ -25,7 +25,7 @@ library(tidyverse)
 
 After this lesson, students will be able to: 
 
-* Give an general definition of **data science**.
+* Give a general definition of **data science**.
 
 * Explain what is meant by **reproducible** and **auditable** workflows.
 
@@ -80,7 +80,7 @@ The [R language](https://www.r-project.org/) [@r2023] for statistical computing 
 
 * a strong and collaborative user community, see R Community Explorer website [here](https://r-community.org/usergroups/). 
 
-As the course progresses, we will learn a lot of R. For this less, we will start with something very simple, that is, doing basic calculations with R. 
+As the course progresses, we will learn a lot of R. For this lesson, we will start with something very simple, that is, doing basic calculations with R. 
 
 ### Calculations with R
 
