@@ -172,11 +172,16 @@ div.csl-indent {
    
   <ul>
   <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives">Learning Objectives</a></li>
+  <li><a href="#readings-etc." id="toc-readings-etc." class="nav-link" data-scroll-target="#readings-etc.">Readings, etc.</a></li>
   <li><a href="#what-is-data-science" id="toc-what-is-data-science" class="nav-link" data-scroll-target="#what-is-data-science">What is Data Science?</a></li>
   <li><a href="#exploring-data-an-introduction-through-gapminder" id="toc-exploring-data-an-introduction-through-gapminder" class="nav-link" data-scroll-target="#exploring-data-an-introduction-through-gapminder">Exploring Data: An Introduction Through Gapminder</a></li>
   <li><a href="#classification-of-basic-data-types" id="toc-classification-of-basic-data-types" class="nav-link" data-scroll-target="#classification-of-basic-data-types">Classification of Basic Data Types</a></li>
-  <li><a href="#a-tiny-bit-of-r" id="toc-a-tiny-bit-of-r" class="nav-link" data-scroll-target="#a-tiny-bit-of-r">A Tiny Bit of R</a></li>
-  <li><a href="#readings-etc." id="toc-readings-etc." class="nav-link" data-scroll-target="#readings-etc.">Readings, etc.</a></li>
+  <li><a href="#a-tiny-bit-of-r" id="toc-a-tiny-bit-of-r" class="nav-link" data-scroll-target="#a-tiny-bit-of-r">A Tiny Bit of R</a>
+  <ul class="collapse">
+  <li><a href="#why-r" id="toc-why-r" class="nav-link" data-scroll-target="#why-r">Why R?</a></li>
+  <li><a href="#calculations-with-r" id="toc-calculations-with-r" class="nav-link" data-scroll-target="#calculations-with-r">Calculations with R</a></li>
+  </ul></li>
+  <li><a href="#preparation-for-the-next-lesson" id="toc-preparation-for-the-next-lesson" class="nav-link" data-scroll-target="#preparation-for-the-next-lesson">Preparation for the next lesson</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </nav>
@@ -230,6 +235,14 @@ div.csl-indent {
 <li><p>Do basic arithmetic with R.</p></li>
 </ul>
 </section>
+<section id="readings-etc." class="level2">
+<h2 class="anchored" data-anchor-id="readings-etc.">Readings, etc.</h2>
+<p>For this lesson, refer to the following readings, etc.:</p>
+<ul>
+<li><p>Read the preface of <em>Data Science: A First Introduction</em> by Tiffany Timbers, Trevor Campbell, and Melissa Lee <span class="citation" data-cites="timbers2022data">(<a href="#ref-timbers2022data" role="doc-biblioref">Timbers, Campbell, and Lee 2022</a>)</span>. This textbook is available online <a href="https://datasciencebook.ca/">here</a>.</p></li>
+<li><p>Skim the README for the <a href="https://github.com/rfordatascience/tidytuesday">Tidy Tuesday data repository</a> <span class="citation" data-cites="TT">(<a href="#ref-TT" role="doc-biblioref">Mock 2018</a>)</span>. Click <a href="https://github.com/rfordatascience/tidytuesday">link here</a> to go to the Tidy Tuesday data repository. Throughout the semester, we will use example data from the Tidy Tuesday data repository.</p></li>
+</ul>
+</section>
 <section id="what-is-data-science" class="level2">
 <h2 class="anchored" data-anchor-id="what-is-data-science">What is Data Science?</h2>
 <p><a href="#fig-reproducible">Figure&nbsp;1</a> illustrates the concept of reproducibility.</p>
@@ -266,22 +279,52 @@ div.csl-indent {
 <figcaption class="figure-caption">Artwork by Allison Horst</figcaption>
 </figure>
 </div>
-</section>
-<section id="readings-etc." class="level2">
-<h2 class="anchored" data-anchor-id="readings-etc.">Readings, etc.</h2>
+<section id="why-r" class="level3">
+<h3 class="anchored" data-anchor-id="why-r">Why R?</h3>
+<p>The <a href="https://www.r-project.org/">R language</a> <span class="citation" data-cites="r2023">(<a href="#ref-r2023" role="doc-biblioref">R Core Team 2023</a>)</span> for statistical computing is one of the most popular computing tools for data science, among the other <a href="https://www.datacamp.com/blog/top-programming-languages-for-data-scientists-in-2022">most popular</a> are <a href="https://www.python.org/">Python</a> and <a href="https://julialang.org/">Julia</a>. Some of the strengths of R include</p>
 <ul>
-<li><p>Read the preface of <em>Data Science: A First Introduction</em> by Tiffany Timbers, Trevor Campbell, and Melissa Lee <span class="citation" data-cites="timbers2022data">(<a href="#ref-timbers2022data" role="doc-biblioref">Timbers, Campbell, and Lee 2022</a>)</span>. This textbook is available online <a href="https://datasciencebook.ca/">here</a>.</p></li>
-<li><p>Throughout the semester, we will use example data from the <a href="https://github.com/rfordatascience/tidytuesday">Tidy Tuesday data repository</a> <span class="citation" data-cites="TT">(<a href="#ref-TT" role="doc-biblioref">Mock 2018</a>)</span>. Click <a href="https://github.com/rfordatascience/tidytuesday">link here</a> to go to the Tidy Tuesday data repository.</p></li>
+<li><p>free and open source which facilitates reproducibility and auditability,</p></li>
+<li><p>ecosystem of packages that greatly extend the functionality of R,</p></li>
+<li><p><a href="https://rmarkdown.rstudio.com/">rmarkdown</a> <span class="citation" data-cites="rmarkdown2020">(<a href="#ref-rmarkdown2020" role="doc-biblioref">Xie, Dervieux, and Riederer 2020</a>)</span> and <a href="https://quarto.org/">Quarto</a> frameworks for <a href="https://en.wikipedia.org/wiki/Literate_programming">literate programming</a> enable presentation and communication of data analyses and facilitate reproducibility and auditability,</p></li>
+<li><p><a href="https://posit.co/download/rstudio-desktop/">RStudio</a> <a href="https://en.wikipedia.org/wiki/Integrated_development_environment">integrated development environment</a> (IDE) by <a href="https://posit.co/">Posit</a> enhances programming, RStudio also supports other languages like Python and Julia making it possible to work across different languages,</p></li>
+<li><p>a strong and collaborative user community, see R Community Explorer website <a href="https://r-community.org/usergroups/">here</a>.</p></li>
 </ul>
+<p>As the course progresses, we will learn a lot of R. For this less, we will start with something very simple, that is, doing basic calculations with R.</p>
+</section>
+<section id="calculations-with-r" class="level3">
+<h3 class="anchored" data-anchor-id="calculations-with-r">Calculations with R</h3>
+<p>If you want to engage further with R programming, we highly recommend the <a href="https://swirlstats.com/">swirl</a> package <span class="citation" data-cites="swirl2020">(<a href="#ref-swirl2020" role="doc-biblioref">Kross et al. 2020</a>)</span> for learning R in R. To install, load, and use swirl, run the following commands in the R console:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># this is a comment and is not run</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># install swirl</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"swirl"</span>) <span class="co"># only need to run once</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># load swirl </span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(swirl) <span class="co"># must run in every new R session</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># start swirl</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">swirl</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="preparation-for-the-next-lesson" class="level2">
+<h2 class="anchored" data-anchor-id="preparation-for-the-next-lesson">Preparation for the next lesson</h2>
 </section>
 <section id="references" class="level2">
 <h2 class="anchored" data-anchor-id="references">References</h2>
 <div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-swirl2020" class="csl-entry" role="listitem">
+Kross, Sean, Nick Carchedi, Bill Bauer, and Gina Grdina. 2020. <em>Swirl: Learn r, in r</em>. <a href="https://CRAN.R-project.org/package=swirl">https://CRAN.R-project.org/package=swirl</a>.
+</div>
 <div id="ref-TT" class="csl-entry" role="listitem">
 Mock, J. Thomas. 2018. <span>“Tidy Tuesday.”</span> <em>GitHub Repository</em>. <a href="https://github.com/rfordatascience/tidytuesday" class="uri">https://github.com/rfordatascience/tidytuesday</a>; GitHub.
 </div>
+<div id="ref-r2023" class="csl-entry" role="listitem">
+R Core Team. 2023. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>.
+</div>
 <div id="ref-timbers2022data" class="csl-entry" role="listitem">
 Timbers, Tiffany, Trevor Campbell, and Melissa Lee. 2022. <em>Data Science: A First Introduction</em>. CRC Press.
+</div>
+<div id="ref-rmarkdown2020" class="csl-entry" role="listitem">
+Xie, Yihui, Christophe Dervieux, and Emily Riederer. 2020. <em>R Markdown Cookbook</em>. Boca Raton, Florida: Chapman; Hall/CRC. <a href="https://bookdown.org/yihui/rmarkdown-cookbook">https://bookdown.org/yihui/rmarkdown-cookbook</a>.
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">

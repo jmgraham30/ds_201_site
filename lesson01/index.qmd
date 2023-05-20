@@ -35,6 +35,15 @@ After this lesson, students will be able to:
 
 * Do basic arithmetic with R. 
 
+## Readings, etc.
+
+
+For this lesson, refer to the following readings, etc.:
+
+* Read the preface of *Data Science: A First Introduction* by Tiffany Timbers, Trevor Campbell, and Melissa Lee [@timbers2022data]. This textbook is available online [here](https://datasciencebook.ca/).
+
+* Skim the README for the [Tidy Tuesday data repository](https://github.com/rfordatascience/tidytuesday) [@TT]. Click [link here](https://github.com/rfordatascience/tidytuesday) to go to the Tidy Tuesday data repository. Throughout the semester, we will use example data from the Tidy Tuesday data repository.
+
 
 ## What is Data Science?
 
@@ -57,12 +66,42 @@ After this lesson, students will be able to:
 
 [![Artwork by Allison Horst](https://github.com/allisonhorst/stats-illustrations/blob/main/rstats-artwork/exploder.gif?raw=1){fig-alt="A gif showing the logo for the R language for statistical computing."}](https://allisonhorst.com/)
 
-## Readings, etc.
+### Why R?
 
-* Read the preface of *Data Science: A First Introduction* by Tiffany Timbers, Trevor Campbell, and Melissa Lee [@timbers2022data]. This textbook is available online [here](https://datasciencebook.ca/).
+The [R language](https://www.r-project.org/) [@r2023] for statistical computing is one of the most popular computing tools for data science, among the other [most popular](https://www.datacamp.com/blog/top-programming-languages-for-data-scientists-in-2022) are [Python](https://www.python.org/) and [Julia](https://julialang.org/). Some of the strengths of R include
 
-* Throughout the semester, we will use example data from the [Tidy Tuesday data repository](https://github.com/rfordatascience/tidytuesday) [@TT]. Click [link here](https://github.com/rfordatascience/tidytuesday) to go to the Tidy Tuesday data repository.
+* free and open source which facilitates reproducibility and auditability, 
 
+* ecosystem of packages that greatly extend the functionality of R,
+
+* [rmarkdown](https://rmarkdown.rstudio.com/) [@rmarkdown2020] and [Quarto](https://quarto.org/) frameworks for [literate programming](https://en.wikipedia.org/wiki/Literate_programming) enable presentation and communication of data analyses and facilitate reproducibility and auditability, 
+
+* [RStudio](https://posit.co/download/rstudio-desktop/) [integrated development environment](https://en.wikipedia.org/wiki/Integrated_development_environment) (IDE) by [Posit](https://posit.co/) enhances programming, RStudio also supports other languages like Python and Julia making it possible to work across different languages, 
+
+* a strong and collaborative user community, see R Community Explorer website [here](https://r-community.org/usergroups/). 
+
+As the course progresses, we will learn a lot of R. For this less, we will start with something very simple, that is, doing basic calculations with R. 
+
+### Calculations with R
+
+
+If you want to engage further with R programming, we highly recommend the [swirl](https://swirlstats.com/) package [@swirl2020] for learning R in R. To install, load, and use swirl, run the following commands in the R console:
+
+```{r}
+#| echo: true
+#| code-fold: false
+#| eval: false
+
+# this is a comment and is not run
+# install swirl
+install.packages("swirl") # only need to run once
+# load swirl 
+library(swirl) # must run in every new R session
+# start swirl
+swirl()
+```
+
+## Preparation for the next lesson
 
 
 ## References

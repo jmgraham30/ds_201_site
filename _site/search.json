@@ -74,14 +74,14 @@
     "href": "lesson01/index.html#readings-etc.",
     "title": "Lesson 1",
     "section": "Readings, etc.",
-    "text": "Readings, etc.\n\nRead the preface of Data Science: A First Introduction by Tiffany Timbers, Trevor Campbell, and Melissa Lee (Timbers, Campbell, and Lee 2022). This textbook is available online here.\nThroughout the semester, we will use example data from the Tidy Tuesday data repository (Mock 2018). Click link here to go to the Tidy Tuesday data repository."
+    "text": "Readings, etc.\nFor this lesson, refer to the following readings, etc.:\n\nRead the preface of Data Science: A First Introduction by Tiffany Timbers, Trevor Campbell, and Melissa Lee (Timbers, Campbell, and Lee 2022). This textbook is available online here.\nSkim the README for the Tidy Tuesday data repository (Mock 2018). Click link here to go to the Tidy Tuesday data repository. Throughout the semester, we will use example data from the Tidy Tuesday data repository."
   },
   {
     "objectID": "lesson01/index.html#references",
     "href": "lesson01/index.html#references",
     "title": "Lesson 1",
     "section": "References",
-    "text": "References\n\n\nMock, J. Thomas. 2018. “Tidy Tuesday.” GitHub Repository. https://github.com/rfordatascience/tidytuesday; GitHub.\n\n\nTimbers, Tiffany, Trevor Campbell, and Melissa Lee. 2022. Data Science: A First Introduction. CRC Press.\n\n\n\n\n\n\n\n\nExpand for Session Info\n\n\n\n\n\n\n\n─ Session info ───────────────────────────────────────────────────────────────\n setting  value\n version  R version 4.3.0 (2023-04-21)\n os       macOS Ventura 13.3.1\n system   aarch64, darwin20\n ui       X11\n language (EN)\n collate  en_US.UTF-8\n ctype    en_US.UTF-8\n tz       America/New_York\n date     2023-05-20\n pandoc   2.19.2 @ /Applications/RStudio.app/Contents/Resources/app/quarto/bin/tools/ (via rmarkdown)\n quarto   1.3.353 @ /usr/local/bin/quarto\n\n─ Packages ───────────────────────────────────────────────────────────────────\n package     * version date (UTC) lib source\n dplyr       * 1.1.2   2023-04-20 [1] CRAN (R 4.3.0)\n forcats     * 1.0.0   2023-01-29 [1] CRAN (R 4.3.0)\n ggplot2     * 3.4.2   2023-04-03 [1] CRAN (R 4.3.0)\n lubridate   * 1.9.2   2023-02-10 [1] CRAN (R 4.3.0)\n purrr       * 1.0.1   2023-01-10 [1] CRAN (R 4.3.0)\n readr       * 2.1.4   2023-02-10 [1] CRAN (R 4.3.0)\n sessioninfo * 1.2.2   2021-12-06 [1] CRAN (R 4.3.0)\n stringr     * 1.5.0   2022-12-02 [1] CRAN (R 4.3.0)\n tibble      * 3.2.1   2023-03-20 [1] CRAN (R 4.3.0)\n tidyr       * 1.3.0   2023-01-24 [1] CRAN (R 4.3.0)\n tidyverse   * 2.0.0   2023-02-22 [1] CRAN (R 4.3.0)\n\n [1] /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library\n\n──────────────────────────────────────────────────────────────────────────────"
+    "text": "References\n\n\nKross, Sean, Nick Carchedi, Bill Bauer, and Gina Grdina. 2020. Swirl: Learn r, in r. https://CRAN.R-project.org/package=swirl.\n\n\nMock, J. Thomas. 2018. “Tidy Tuesday.” GitHub Repository. https://github.com/rfordatascience/tidytuesday; GitHub.\n\n\nR Core Team. 2023. R: A Language and Environment for Statistical Computing. Vienna, Austria: R Foundation for Statistical Computing. https://www.R-project.org/.\n\n\nTimbers, Tiffany, Trevor Campbell, and Melissa Lee. 2022. Data Science: A First Introduction. CRC Press.\n\n\nXie, Yihui, Christophe Dervieux, and Emily Riederer. 2020. R Markdown Cookbook. Boca Raton, Florida: Chapman; Hall/CRC. https://bookdown.org/yihui/rmarkdown-cookbook.\n\n\n\n\n\n\n\n\nExpand for Session Info\n\n\n\n\n\n\n\n─ Session info ───────────────────────────────────────────────────────────────\n setting  value\n version  R version 4.3.0 (2023-04-21)\n os       macOS Ventura 13.3.1\n system   aarch64, darwin20\n ui       X11\n language (EN)\n collate  en_US.UTF-8\n ctype    en_US.UTF-8\n tz       America/New_York\n date     2023-05-20\n pandoc   2.19.2 @ /Applications/RStudio.app/Contents/Resources/app/quarto/bin/tools/ (via rmarkdown)\n quarto   1.3.353 @ /usr/local/bin/quarto\n\n─ Packages ───────────────────────────────────────────────────────────────────\n package     * version date (UTC) lib source\n dplyr       * 1.1.2   2023-04-20 [1] CRAN (R 4.3.0)\n forcats     * 1.0.0   2023-01-29 [1] CRAN (R 4.3.0)\n ggplot2     * 3.4.2   2023-04-03 [1] CRAN (R 4.3.0)\n lubridate   * 1.9.2   2023-02-10 [1] CRAN (R 4.3.0)\n purrr       * 1.0.1   2023-01-10 [1] CRAN (R 4.3.0)\n readr       * 2.1.4   2023-02-10 [1] CRAN (R 4.3.0)\n sessioninfo * 1.2.2   2021-12-06 [1] CRAN (R 4.3.0)\n stringr     * 1.5.0   2022-12-02 [1] CRAN (R 4.3.0)\n tibble      * 3.2.1   2023-03-20 [1] CRAN (R 4.3.0)\n tidyr       * 1.3.0   2023-01-24 [1] CRAN (R 4.3.0)\n tidyverse   * 2.0.0   2023-02-22 [1] CRAN (R 4.3.0)\n\n [1] /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library\n\n──────────────────────────────────────────────────────────────────────────────"
   },
   {
     "objectID": "lesson01/index.html",
@@ -214,6 +214,20 @@
     "href": "lesson01/index.html#a-tiny-bit-of-r",
     "title": "Lesson 1",
     "section": "A Tiny Bit of R",
-    "text": "A Tiny Bit of R\n\n\n\nArtwork by Allison Horst"
+    "text": "A Tiny Bit of R\n\n\n\nArtwork by Allison Horst\n\n\n\nWhy R?\nThe R language (R Core Team 2023) for statistical computing is one of the most popular computing tools for data science, among the other most popular are Python and Julia. Some of the strengths of R include\n\nfree and open source which facilitates reproducibility and auditability,\necosystem of packages that greatly extend the functionality of R,\nrmarkdown (Xie, Dervieux, and Riederer 2020) and Quarto frameworks for literate programming enable presentation and communication of data analyses and facilitate reproducibility and auditability,\nRStudio integrated development environment (IDE) by Posit enhances programming, RStudio also supports other languages like Python and Julia making it possible to work across different languages,\na strong and collaborative user community, see R Community Explorer website here.\n\nAs the course progresses, we will learn a lot of R. For this less, we will start with something very simple, that is, doing basic calculations with R.\n\n\nCalculations with R\nIf you want to engage further with R programming, we highly recommend the swirl package (Kross et al. 2020) for learning R in R. To install, load, and use swirl, run the following commands in the R console:\n\n# this is a comment and is not run\n# install swirl\ninstall.packages(\"swirl\") # only need to run once\n# load swirl \nlibrary(swirl) # must run in every new R session\n# start swirl\nswirl()"
+  },
+  {
+    "objectID": "lesson01/index.html#readings-etc.-1",
+    "href": "lesson01/index.html#readings-etc.-1",
+    "title": "Lesson 1",
+    "section": "Readings, etc.",
+    "text": "Readings, etc.\n\nRead the preface of Data Science: A First Introduction by Tiffany Timbers, Trevor Campbell, and Melissa Lee (Timbers, Campbell, and Lee 2022). This textbook is available online here.\nThroughout the semester, we will use example data from the Tidy Tuesday data repository (Mock 2018). Click link here to go to the Tidy Tuesday data repository."
+  },
+  {
+    "objectID": "lesson01/index.html#preparation-for-the-next-lesson",
+    "href": "lesson01/index.html#preparation-for-the-next-lesson",
+    "title": "Lesson 1",
+    "section": "Preparation for the next lesson",
+    "text": "Preparation for the next lesson"
   }
 ]
