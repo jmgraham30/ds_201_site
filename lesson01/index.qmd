@@ -63,7 +63,7 @@ For this lesson, refer to the following readings, etc.:
 
 [![Artwork by Allison Horst](https://github.com/allisonhorst/stats-illustrations/blob/main/other-stats-artwork/nominal_ordinal_binary.png?raw=1){#fig-categoricals fig-alt="An illustration of the distinction between nominal, ordinal, and binary categorical variables."}](https://allisonhorst.com/)
 
-## A Tiny Bit of R
+## A Tiny Bit of `r icons::icon_style(icons::fontawesome("r-project"),scale=2,fill="steelblue")`
 
 [![Artwork by Allison Horst](https://github.com/allisonhorst/stats-illustrations/blob/main/rstats-artwork/exploder.gif?raw=1){fig-alt="A gif showing the logo for the R language for statistical computing."}](https://allisonhorst.com/)
 
