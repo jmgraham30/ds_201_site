@@ -109,7 +109,7 @@
     "href": "syllabus.html#course-description",
     "title": "Syllabus",
     "section": "Course Description",
-    "text": "Course Description\n\nPrerequisites"
+    "text": "Course Description\n\nAn introduction to basic data science workflow following current best practices. This course will introduce students to computational or algorithmic ways to think about and learn from data. Emphasis will be placed on data visualization, exploratory data analysis, and foundational modeling principles and techniques implemented using an appropriate programming language.\n\n\nPrerequisites\n\nMath Placement PT score of 14 or higher, or ALEKS score of 76 or higher, or MATH 114, or permission of instructor"
   },
   {
     "objectID": "syllabus.html#student-learning-objectives-and-assessment",
@@ -130,7 +130,7 @@
     "href": "syllabus.html#weekly-schedule",
     "title": "Syllabus",
     "section": "Weekly Schedule",
-    "text": "Weekly Schedule\n\nWeek 1:\nWeek 2:\nWeek 3:\nWeek 4:\nWeek 5:\nWeek 6:\nWeek 7:\nWeek 8:\nWeek 9:\nWeek 10:\nWeek 11:\nWeek 12:\nWeek 13:\nWeek 14:\nWeek 15:"
+    "text": "Weekly Schedule\n\nWeek 1: Introduction to data\nWeek 2: Basic programming for data science\nWeek 3: Data wrangling; Project component 1 due\nWeek 4: Creating data packages\nWeek 5: Data visualization\nWeek 6: Exploratory data analysis; Project component 2 due\nWeek 7: Intermediate programming for data science\nWeek 8: Introduction to probability for data science\nWeek 9: Introduction to statistics for data science; Project component 3 due\nWeek 10: Classification\nWeek 11: Regression\nWeek 12: Clustering; Project component 4 due\nWeek 13: Introduction to machine learning\nWeek 14: Ethical considerations in data science\nWeek 15: Putting everything together; Project final version due"
   },
   {
     "objectID": "syllabus.html#important-dates",
@@ -236,5 +236,12 @@
     "title": "Lesson 1",
     "section": "A Tiny Bit of  ",
     "text": "A Tiny Bit of  \n\n\n\nArtwork by Allison Horst\n\n\n\nWhy R?\nThe R language (R Core Team 2023) for statistical computing is one of the most popular computing tools for data science, among the other most popular are Python and Julia. Some of the strengths of R include\n\nfree and open source which facilitates reproducibility and auditability,\necosystem of packages that greatly extend the functionality of R,\nrmarkdown (Xie, Dervieux, and Riederer 2020) and Quarto frameworks for literate programming enable presentation and communication of data analyses and facilitate reproducibility and auditability,\nRStudio integrated development environment (IDE) by Posit enhances programming, RStudio also supports other languages like Python and Julia making it possible to work across different languages,\na strong and collaborative user community, see R Community Explorer website here.\n\nAs the course progresses, we will learn a lot of R. For this lesson, we will start with something very simple, that is, doing basic calculations with R.\n\n\nCalculations with R\nIn R, it is easy to perform basic arithmetic operations such as addition, subtraction, multiplication, division, exponentiation, and modular division. Each of these is illustrated in the following code blocks:\n\n# any line starting with # is a comment and is not run\n# addition\n1.6 + 2.31\n\n[1] 3.91\n\n\n\n# subtraction\n4.87 - 2.31\n\n[1] 2.56\n\n\n\n# multiplication\n1.6 * 2.31\n\n[1] 3.696\n\n\n\n# division\n6.0 / 2.31\n\n[1] 2.597403\n\n\n\n# exponentiation\n2^3\n\n[1] 8\n\n\n\n# modular division, a %% b returns the remainder after\n# dividing a by b\n\n7 %% 2\n\n[1] 1\n\n\nYou have to be careful with the order of operations, use parentheses to be precise about intended order of operations. For example,\n\n(6 / 3) - 1\n\n[1] 1\n\n\ndivides 6 by three and then subtracts 1, while\n\n6 / (3 - 1)\n\n[1] 3\n\n\nsubtracts 1 from 3 and divides 6 by the result. While the following code runs and has a specific meaning to the computer, it is ambiguous to the human reader and should be modified appropriately with parentheses:\n\n6 / 3 - 1\n\n[1] 1\n\n\n\n\nVariables and Assignment\nIn R programming, a variable is a name given to a R object such as a numeric value that can be used to store, reuse, or modify that object. In R, variable assignments are made use the assignment operator &lt;-. For example,\n\nmy_variable &lt;- 2.5\n\nassigns the numeric value 2.5 to the variable my_variable. Now, we can peform operations to my_variable, for example,\n\n(2 * my_variable)\n\n[1] 5\n\n(my_variable^3)\n\n[1] 15.625\n\n\nMany programming languages use = for assignment. While it is valid to use = in R, best practices dictate using &lt;-.\nSee the tidyverse style guide here for best practices in naming objects in R.\nIf you want to engage further with R programming, we highly recommend the swirl package (Kross et al. 2020) for learning R in R. To install, load, and use swirl, run the following commands in the R console:\n\n# install swirl\ninstall.packages(\"swirl\") # only need to run once\n# load swirl \nlibrary(swirl) # must run in every new R session\n# start swirl\nswirl()"
+  },
+  {
+    "objectID": "syllabus.html#use-of-ai",
+    "href": "syllabus.html#use-of-ai",
+    "title": "Syllabus",
+    "section": "Use of AI",
+    "text": "Use of AI"
   }
 ]
