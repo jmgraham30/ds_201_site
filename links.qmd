@@ -44,3 +44,12 @@ vembedr::embed_youtube(id="_f3latmOhew",height=450) %>%
   vembedr::use_align("center")
 ```
 
+*  Datasheets for Datasets video, link [here](https://youtu.be/R7s7_T4yXak).
+  
+```{r}
+#| echo: false
+
+vembedr::embed_youtube(id="R7s7_T4yXak",height=450) %>%
+  vembedr::use_align("center")
+```
+
