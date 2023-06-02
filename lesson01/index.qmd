@@ -52,6 +52,8 @@ For this lesson, refer to the following readings, etc.:
 
 [![Artwork by Allison Horst](https://github.com/allisonhorst/stats-illustrations/blob/main/rstats-artwork/reproducibility_court.png?raw=1){#fig-reproducible fig-alt="An illustration of the concept of reproducibility."}](https://allisonhorst.com/)
 
+See [Table 1.1](https://datasciencebook.ca/intro.html#tab:questions-table) from [@timbers2022data], link to table [here](https://datasciencebook.ca/intro.html#tab:questions-table). 
+
 ## Exploring Data: An Introduction Through Gapminder 
 
 
