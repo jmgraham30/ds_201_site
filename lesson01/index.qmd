@@ -38,13 +38,19 @@ After this lesson, students will be able to:
 
 ## Readings, etc.
 
-
 For this lesson, refer to the following readings, etc.:
 
 * Read the preface of *Data Science: A First Introduction* by Tiffany Timbers, Trevor Campbell, and Melissa Lee [@timbers2022data]. This textbook is available online [here](https://datasciencebook.ca/).
 
 * Skim the README for the [Tidy Tuesday data repository](https://github.com/rfordatascience/tidytuesday) [@TT]. Click [link here](https://github.com/rfordatascience/tidytuesday) to go to the Tidy Tuesday data repository. Throughout the semester, we will use example data from the Tidy Tuesday data repository.
 
+## Course Overview
+
+This course provides an introduction to data science. Broadly, we will cover concepts, skills, and methods for gaining insight from data. The things you learn in the class will be applicable in a variety of different areas, professions, and even other classes. 
+
+There is a website for the course, link [here](https://intro-ds.netlify.app/). For course logistics, see the official course syllabus available [here](https://intro-ds.netlify.app/syllabus.html). Assignments and other information specific to the course in a given semester will be posted on the course learning management system. The course website provides links to many additional resources available [here](https://intro-ds.netlify.app/links.html).
+
+While we will refer often to several texts (most of which have been published online as open access materials) throughout the course, most of the content will be delivered via ``notebooks'' that intermix text, mathematical notation, figures, programming language code, and web links. In some cases, you will be asked to go through the notebooks on your own and some times we will go through the notebooks together. Either way, anytime you encounter code in a notebook, it is expected that you will take the time to run any code (mostly by copying and pasting) for yourself. The only way to master the material is through active participation.    
 
 ## What is Data Science?
 
