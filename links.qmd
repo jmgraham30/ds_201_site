@@ -19,6 +19,8 @@ library(tidyverse)
 
 * From Data to Viz website on visualizing data, link [here](https://www.data-to-viz.com/#explore).
 
+* [Julia Silge's](https://juliasilge.com/) blog posts (mostly) on TidyTuesday data analyses, link [here](https://juliasilge.com/blog/). 
+
 ## Texts
 
 * Spatial Data Science with applications in R available [here](https://r-spatial.org/book/).
