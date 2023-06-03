@@ -175,7 +175,10 @@ div.csl-indent {
   <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives">Learning Objectives</a></li>
   <li><a href="#readings-etc." id="toc-readings-etc." class="nav-link" data-scroll-target="#readings-etc.">Readings, etc.</a></li>
   <li><a href="#course-overview" id="toc-course-overview" class="nav-link" data-scroll-target="#course-overview">Course Overview</a></li>
-  <li><a href="#what-is-data-science" id="toc-what-is-data-science" class="nav-link" data-scroll-target="#what-is-data-science">What is Data Science?</a></li>
+  <li><a href="#what-is-data-science" id="toc-what-is-data-science" class="nav-link" data-scroll-target="#what-is-data-science">What is Data Science?</a>
+  <ul class="collapse">
+  <li><a href="#data-science-workflow" id="toc-data-science-workflow" class="nav-link" data-scroll-target="#data-science-workflow">Data Science Workflow</a></li>
+  </ul></li>
   <li><a href="#exploring-data-an-introduction-through-gapminder" id="toc-exploring-data-an-introduction-through-gapminder" class="nav-link" data-scroll-target="#exploring-data-an-introduction-through-gapminder">Exploring Data: An Introduction Through Gapminder</a></li>
   <li><a href="#classification-of-basic-data-types" id="toc-classification-of-basic-data-types" class="nav-link" data-scroll-target="#classification-of-basic-data-types">Classification of Basic Data Types</a></li>
   <li><a href="#a-tiny-bit-of" id="toc-a-tiny-bit-of" class="nav-link" data-scroll-target="#a-tiny-bit-of">A Tiny Bit of <svg viewbox="0 0 581 512" style="position:relative;display:inline-block;top:.1em;fill:steelblue;height:2em;" xmlns="http://www.w3.org/2000/svg"> <path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"></path></svg></a>
@@ -254,14 +257,25 @@ div.csl-indent {
 </section>
 <section id="what-is-data-science" class="level2">
 <h2 class="anchored" data-anchor-id="what-is-data-science">What is Data Science?</h2>
-<p><a href="#fig-reproducible">Figure&nbsp;1</a> illustrates the concept of reproducibility.</p>
+<p>For this course, we think of <strong>data science</strong> as a methodology for gaining insight from data. Data can be pretty much any type of organized information. In this course, data will often be organized in a tabular format such as is common with spreadsheets. However, text, images, videos, and sound are other types of data that data scientists often work with. Further, data may have a temporal or spatial component.</p>
+<p>It is important to note that data science is an interdisciplinary endeavor. Data science brings together mathematics and statistics, computer science and machine learning, and a domain of application or expertise. This is illustrated by <a href="#fig-ds">Figure&nbsp;1</a>.</p>
+<div id="fig-ds" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><a href="https://www.google.com/url?sa=i&amp;url=https%3A%2F%2Fmedium.com%2Fanalytics-vidhya%2Fintroduction-to-data-science-28deb32878e7&amp;psig=AOvVaw1btLUApoKBhzFSVMGvfq1p&amp;ust=1685887947873000&amp;source=images&amp;cd=vfe&amp;ved=0CBAQjRxqFwoTCMiQ8ZOkp_8CFQAAAAAdAAAAABAE"><img src="https://miro.medium.com/v2/resize:fit:730/0*POjH5vv_7t8s8loG?raw=1.png" class="img-fluid figure-img" alt="Figure showing data science as an interdisciplinary field at the intersection of mathematics, computer science, and domain expertise."></a></p>
+<figcaption class="figure-caption">Figure&nbsp;1: Data science is an inherently interdisciplinary field.</figcaption>
+</figure>
+</div>
+<section id="data-science-workflow" class="level3">
+<h3 class="anchored" data-anchor-id="data-science-workflow">Data Science Workflow</h3>
+<p>It is important the our data science workflow be <strong>reproducible</strong> and <strong>auditable</strong>. That is, each step in a data analysis should be accessible and understandable to others (auditability) and anyone with access to your analysis should be able to re-run the analysis from start to finish and get the same result you did (reproducibility). <a href="#fig-reproducible">Figure&nbsp;2</a> illustrates the concept of reproducibility.</p>
 <div id="fig-reproducible" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><a href="https://allisonhorst.com/"><img src="https://github.com/allisonhorst/stats-illustrations/blob/main/rstats-artwork/reproducibility_court.png?raw=1" class="img-fluid figure-img" alt="An illustration of the concept of reproducibility."></a></p>
-<figcaption class="figure-caption">Figure&nbsp;1: Artwork by Allison Horst</figcaption>
+<figcaption class="figure-caption">Figure&nbsp;2: Artwork by Allison Horst</figcaption>
 </figure>
 </div>
 <p>See <a href="https://datasciencebook.ca/intro.html#tab:questions-table">Table 1.1</a> from <span class="citation" data-cites="timbers2022data">(<a href="#ref-timbers2022data" role="doc-biblioref">Timbers, Campbell, and Lee 2022</a>)</span>, link to table <a href="https://datasciencebook.ca/intro.html#tab:questions-table">here</a>.</p>
+</section>
 </section>
 <section id="exploring-data-an-introduction-through-gapminder" class="level2">
 <h2 class="anchored" data-anchor-id="exploring-data-an-introduction-through-gapminder">Exploring Data: An Introduction Through Gapminder</h2>
@@ -271,13 +285,13 @@ div.csl-indent {
 <div id="fig-numericals" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><a href="https://allisonhorst.com/"><img src="https://github.com/allisonhorst/stats-illustrations/blob/main/other-stats-artwork/continuous_discrete.png?raw=1" class="img-fluid figure-img" alt="An illustration of the distinction between a continuous numerical variable and a discrete numerical variable."></a></p>
-<figcaption class="figure-caption">Figure&nbsp;2: Artwork by Allison Horst</figcaption>
+<figcaption class="figure-caption">Figure&nbsp;3: Artwork by Allison Horst</figcaption>
 </figure>
 </div>
 <div id="fig-categoricals" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><a href="https://allisonhorst.com/"><img src="https://github.com/allisonhorst/stats-illustrations/blob/main/other-stats-artwork/nominal_ordinal_binary.png?raw=1" class="img-fluid figure-img" alt="An illustration of the distinction between nominal, ordinal, and binary categorical variables."></a></p>
-<figcaption class="figure-caption">Figure&nbsp;3: Artwork by Allison Horst</figcaption>
+<figcaption class="figure-caption">Figure&nbsp;4: Artwork by Allison Horst</figcaption>
 </figure>
 </div>
 </section>
@@ -447,7 +461,7 @@ Expand for Session Info
  collate  en_US.UTF-8
  ctype    en_US.UTF-8
  tz       America/New_York
- date     2023-06-02
+ date     2023-06-03
  pandoc   2.19.2 @ /Applications/RStudio.app/Contents/Resources/app/quarto/bin/tools/ (via rmarkdown)
  quarto   1.3.361 @ /usr/local/bin/quarto
 
