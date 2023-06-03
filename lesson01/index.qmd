@@ -62,13 +62,34 @@ It is important to note that data science is an interdisciplinary endeavor. Data
 
 [![Data science is an inherently interdisciplinary field.](https://miro.medium.com/v2/resize:fit:730/0*POjH5vv_7t8s8loG?raw=1){#fig-ds fig-alt="Figure showing data science as an interdisciplinary field at the intersection of mathematics, computer science, and domain expertise."}](https://www.google.com/url?sa=i&url=https%3A%2F%2Fmedium.com%2Fanalytics-vidhya%2Fintroduction-to-data-science-28deb32878e7&psig=AOvVaw1btLUApoKBhzFSVMGvfq1p&ust=1685887947873000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCMiQ8ZOkp_8CFQAAAAAdAAAAABAE)
 
+
 ### Data Science Workflow
+
+In this course, we emphasize a certain workflow for typical data science tasks. Generally, the steps in the workflow are:
+
+1) Gather data with the goal of using it to gain insight for answering questions in a specific domain of application. 
+
+2) Document the data and data collection process. It is important to think carefully about the type of data that is collected and how the data is generated and collected. Data is often generated or collected in such a way that it will contain or reflect biases, misinformation, incomplete information, or other problematic features. When you use data or models to make a decision, the problematic features of the data may influence the decision made with unforeseen negative consequences. See *The Alignment Problem* by Brian Christian for a thoughtful discussion on the issues related to these types of considerations [@christian2020alignment].  
+
+3) Import the data for analysis. 
+
+4) Explore and clean the data. Data visualization is essential at this step. 
+
+5) Generate initial insight or more detailed questions. 
+
+6) Decide what type(s) of analysis or analyses are to be performed. Make sure to clearly state what the goals of an analysis are. There are several different types of analyses of data that are common to conduct. See [Table 1.1](https://datasciencebook.ca/intro.html#tab:questions-table) from [@timbers2022data] for a list of these typical analysis types with corresponding examples of questions appropriate for a particular type of analysis, link to table [here](https://datasciencebook.ca/intro.html#tab:questions-table).
+
+7) Assess the analysis. 
+
+8) At this stage, it may be necessary to repeat steps 1) - 7).
+
+9) Report your findings/results documenting each step in the analysis, and state your conclusions in the context of the question, problem, or application that motivated your analysis. 
+
 
 It is important the our data science workflow be **reproducible** and **auditable**. That is, each step in a data analysis should be accessible and understandable to others (auditability) and anyone with access to your analysis should be able to re-run the analysis from start to finish and get the same result you did (reproducibility).  @fig-reproducible illustrates the concept of reproducibility. 
 
 [![Artwork by Allison Horst](https://github.com/allisonhorst/stats-illustrations/blob/main/rstats-artwork/reproducibility_court.png?raw=1){#fig-reproducible fig-alt="An illustration of the concept of reproducibility."}](https://allisonhorst.com/)
 
-See [Table 1.1](https://datasciencebook.ca/intro.html#tab:questions-table) from [@timbers2022data], link to table [here](https://datasciencebook.ca/intro.html#tab:questions-table). 
 
 ## Exploring Data: An Introduction Through Gapminder 
 

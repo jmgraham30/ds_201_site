@@ -267,6 +267,18 @@ div.csl-indent {
 </div>
 <section id="data-science-workflow" class="level3">
 <h3 class="anchored" data-anchor-id="data-science-workflow">Data Science Workflow</h3>
+<p>In this course, we emphasize a certain workflow for typical data science tasks. Generally, the steps in the workflow are:</p>
+<ol type="1">
+<li><p>Gather data with the goal of using it to gain insight for answering questions in a specific domain of application.</p></li>
+<li><p>Document the data and data collection process. It is important to think carefully about the type of data that is collected and how the data is generated and collected. Data is often generated or collected in such a way that it will contain or reflect biases, misinformation, incomplete information, or other problematic features. When you use data or models to make a decision, the problematic features of the data may influence the decision made with unforeseen negative consequences. See <em>The Alignment Problem</em> by Brian Christian for a thoughtful discussion on the issues related to these types of considerations <span class="citation" data-cites="christian2020alignment">(<a href="#ref-christian2020alignment" role="doc-biblioref">Christian 2020</a>)</span>.</p></li>
+<li><p>Import the data for analysis.</p></li>
+<li><p>Explore and clean the data. Data visualization is essential at this step.</p></li>
+<li><p>Generate initial insight or more detailed questions.</p></li>
+<li><p>Decide what type(s) of analysis or analyses are to be performed. Make sure to clearly state what the goals of an analysis are. There are several different types of analyses of data that are common to conduct. See <a href="https://datasciencebook.ca/intro.html#tab:questions-table">Table 1.1</a> from <span class="citation" data-cites="timbers2022data">(<a href="#ref-timbers2022data" role="doc-biblioref">Timbers, Campbell, and Lee 2022</a>)</span> for a list of these typical analysis types with corresponding examples of questions appropriate for a particular type of analysis, link to table <a href="https://datasciencebook.ca/intro.html#tab:questions-table">here</a>.</p></li>
+<li><p>Assess the analysis.</p></li>
+<li><p>At this stage, it may be necessary to repeat steps 1) - 7).</p></li>
+<li><p>Report your findings/results documenting each step in the analysis, and state your conclusions in the context of the question, problem, or application that motivated your analysis.</p></li>
+</ol>
 <p>It is important the our data science workflow be <strong>reproducible</strong> and <strong>auditable</strong>. That is, each step in a data analysis should be accessible and understandable to others (auditability) and anyone with access to your analysis should be able to re-run the analysis from start to finish and get the same result you did (reproducibility). <a href="#fig-reproducible">Figure&nbsp;2</a> illustrates the concept of reproducibility.</p>
 <div id="fig-reproducible" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
@@ -274,7 +286,6 @@ div.csl-indent {
 <figcaption class="figure-caption">Figure&nbsp;2: Artwork by Allison Horst</figcaption>
 </figure>
 </div>
-<p>See <a href="https://datasciencebook.ca/intro.html#tab:questions-table">Table 1.1</a> from <span class="citation" data-cites="timbers2022data">(<a href="#ref-timbers2022data" role="doc-biblioref">Timbers, Campbell, and Lee 2022</a>)</span>, link to table <a href="https://datasciencebook.ca/intro.html#tab:questions-table">here</a>.</p>
 </section>
 </section>
 <section id="exploring-data-an-introduction-through-gapminder" class="level2">
@@ -421,6 +432,9 @@ div.csl-indent {
 <section id="references" class="level2">
 <h2 class="anchored" data-anchor-id="references">References</h2>
 <div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-christian2020alignment" class="csl-entry" role="listitem">
+Christian, Brian. 2020. <em>The Alignment Problem: Machine Learning and Human Values</em>. WW Norton &amp; Company.
+</div>
 <div id="ref-swirl2020" class="csl-entry" role="listitem">
 Kross, Sean, Nick Carchedi, Bill Bauer, and Gina Grdina. 2020. <em>Swirl: Learn r, in r</em>. <a href="https://CRAN.R-project.org/package=swirl">https://CRAN.R-project.org/package=swirl</a>.
 </div>
