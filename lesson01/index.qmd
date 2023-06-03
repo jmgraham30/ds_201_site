@@ -19,6 +19,8 @@ license: "CC BY-NC-SA 4.0"
 
 # load packages used in document
 library(tidyverse)
+library(gapminder)
+library(kableExtra)
 ```
 
 
@@ -46,17 +48,17 @@ For this lesson, refer to the following readings, etc.:
 
 ## Course Overview
 
-This course provides an introduction to data science. Broadly, we will cover concepts, skills, and methods for gaining insight from data. The things you learn in the class will be applicable in a variety of different areas, professions, and even other classes. 
+This course provides an introduction to data science. Broadly, we will cover concepts, skills, and methods for gaining insight from data. The things you learn in the class will be applicable in a variety of different areas, professions, and even other courses. 
 
-There is a website for the course, link [here](https://intro-ds.netlify.app/). For course logistics, see the official course syllabus available [here](https://intro-ds.netlify.app/syllabus.html). Assignments and other information specific to the course in a given semester will be posted on the course learning management system. The course website provides links to many additional resources available [here](https://intro-ds.netlify.app/links.html).
+There is a website for the course, link [here](https://intro-ds.netlify.app/). For course logistics, see the official course syllabus available [here](https://intro-ds.netlify.app/syllabus.html). Assignments and other information specific to the course in a given semester will be posted on the course learning management system (LMS). The course website provides links to many additional resources, see link [here](https://intro-ds.netlify.app/links.html).
 
-While we will refer often to several texts (most of which have been published online as open access materials) throughout the course, most of the content will be delivered via ``notebooks'' like the one you're reading now[^1] that intermix text, mathematical notation, figures, programming language code, and web links. In some cases, you will be asked to go through the notebooks on your own and some times we will go through the notebooks together. Either way, anytime you encounter code in a notebook, it is expected that you will take the time to run any code (mostly by copying and pasting) for yourself. The only way to master the material is through active participation.  
+While we will regularly refer to several texts (most of which have been published online as open access materials) throughout the course, most of the content will be delivered via "notebooks" like the one you're reading now[^1] that intermix text, mathematical notation, figures, media, programming language code, and web links. In some cases, you will be asked to go through the notebooks on your own and sometimes we will go through the notebooks together during class. Either way, any time you encounter code in a notebook, it is expected that you will take the time to run any code (mostly by copying and pasting) for yourself. The only way to master the material is through active participation.  
 
 [^1]: The notebooks are created using [Quarto](https://quarto.org/) and [R markdown](https://rmarkdown.rstudio.com/), topics that we will cover in more detail later. 
 
 ## What is Data Science?
 
-For this course, we think of **data science** as a methodology for gaining insight from data. Data can be pretty much any type of organized information. In this course, data will often be organized in a tabular format such as is common with spreadsheets. However, text, images, videos, and sound are other types of data that data scientists often work with. Further, data may have a temporal or spatial component. 
+For this course, we think of **data science** as a methodology or set of methodologies for gaining insight from data. Data can be pretty much any type of organized information. In this course, data will often be organized in a tabular format such as is common with spreadsheets. However, text, images, videos, and sound are other types of data that data scientists often work with. Further, data may have a temporal or spatial component. 
 
 It is important to note that data science is an interdisciplinary endeavor. Data science brings together mathematics and statistics, computer science and machine learning, and a domain of application or expertise. This is illustrated by @fig-ds. 
 
@@ -67,9 +69,11 @@ It is important to note that data science is an interdisciplinary endeavor. Data
 
 In this course, we emphasize a certain workflow for typical data science tasks. Generally, the steps in the workflow are:
 
-1) Gather data with the goal of using it to gain insight for answering questions in a specific domain of application. 
+1) Gather data with the goal of using it to gain insight to answer questions or address problems in a specific domain of application. 
 
-2) Document the data and data collection process. It is important to think carefully about the type of data that is collected and how the data is generated and collected. Data is often generated or collected in such a way that it will contain or reflect biases, misinformation, incomplete information, or other problematic features. When you use data or models to make a decision, the problematic features of the data may influence the decision made with unforeseen negative consequences. See *The Alignment Problem* by Brian Christian for a thoughtful discussion on the issues related to these types of considerations [@christian2020alignment].  
+2) Document the data and data collection process. 
+
+    * It is important to think carefully about the type of data that is collected and how the data is generated and collected. Data is often generated or collected in such a way that it will contain or reflect biases, misinformation, incomplete information, or other problematic features. When you use data or models to make a decision, the problematic features of the data may influence the decision made with unforeseen negative consequences. See *The Alignment Problem* by Brian Christian for a thoughtful discussion on the issues related to these types of considerations [@christian2020alignment].  
 
 3) Import the data for analysis. 
 
@@ -77,29 +81,91 @@ In this course, we emphasize a certain workflow for typical data science tasks. 
 
 5) Generate initial insight or more detailed questions. 
 
-6) Decide what type(s) of analysis or analyses are to be performed. Make sure to clearly state what the goals of an analysis are. There are several different types of analyses of data that are common to conduct. See [Table 1.1](https://datasciencebook.ca/intro.html#tab:questions-table) from [@timbers2022data] for a list of these typical analysis types with corresponding examples of questions appropriate for a particular type of analysis, link to table [here](https://datasciencebook.ca/intro.html#tab:questions-table).
+6) Decide what type(s) of analysis or analyses are to be performed. 
+
+    * Make sure to clearly state what the goals of an analysis are. There are several different types of analyses of data that are common to conduct. See [Table 1.1](https://datasciencebook.ca/intro.html#tab:questions-table) from [@timbers2022data] for a list of these typical analysis types with corresponding examples of questions appropriate for a particular type of analysis, link to table [here](https://datasciencebook.ca/intro.html#tab:questions-table).
 
 7) Assess the analysis. 
 
-8) At this stage, it may be necessary to repeat steps 1) - 7).
+8) At this stage, it may be necessary to repeat steps 1 - 7.
 
 9) Report your findings/results documenting each step in the analysis, and state your conclusions in the context of the question, problem, or application that motivated your analysis. 
 
 
-It is important the our data science workflow be **reproducible** and **auditable**. That is, each step in a data analysis should be accessible and understandable to others (auditability) and anyone with access to your analysis should be able to re-run the analysis from start to finish and get the same result you did (reproducibility).  @fig-reproducible illustrates the concept of reproducibility. 
+It is essential the our data science workflow be **reproducible** and **auditable**. That is, each step in a data analysis should be accessible and understandable to others (auditability) and anyone with access to your analysis should be able to re-run the analysis from start to finish and get the same result you did (reproducibility).  @fig-reproducible illustrates the concept of reproducibility. 
 
 [![Artwork by Allison Horst](https://github.com/allisonhorst/stats-illustrations/blob/main/rstats-artwork/reproducibility_court.png?raw=1){#fig-reproducible fig-alt="An illustration of the concept of reproducibility."}](https://allisonhorst.com/)
 
 
 ## Exploring Data: An Introduction Through Gapminder 
 
+Let's begin our adventure in data science by engaging with some of the interactive tools on the [Gapminder](https://www.gapminder.org/) website. The link to Gapminder is available [here](https://www.gapminder.org/). The Gapminder organization is a non-profit entity that seeks to use data to educate people about large-scale social issues. Gapminder has a particular focus on addressing certain types of common misconceptions about the world. 
+
+
+
+Follow [this link](https://www.gapminder.org/tools/#$chart-type=bubbles&url=v1) to the interactive data tools by Gapminder.
+
+**Question:** What information is conveyed by the visualization shown at [this link](https://www.gapminder.org/tools/#$chart-type=bubbles&url=v1)? How are colors used in the visualization? 
+
+**Question** What is the relationship between income and life expectancy based on the . How do income and life expectancy each  change over time? Does the relationship between income and life expectancy change over time? 
+
+**Question:** Do you think the visualizations on the Gapminder sight are useful and effective? If so, what makes them useful or effective. If not, what changes would you make to make them more useful or effective? 
 
 ## Classification of Basic Data Types
 
-[![Artwork by Allison Horst](https://github.com/allisonhorst/stats-illustrations/blob/main/other-stats-artwork/continuous_discrete.png?raw=1){#fig-numericals fig-alt="An illustration of the distinction between a continuous numerical variable and a discrete numerical variable."}](https://allisonhorst.com/)
+A small portion of the data available form Gapminder is shown in @tbl-gp below: [^2]
+
+```{r}
+#| label: tbl-gp
+#| tbl-cap: Portion of the Gapminder data set
+#| echo: false
+
+head(gapminder) %>%
+  kable()
+```
+
+[^2]: This data is made available in R through the `gapminder` package. In order to access this data in R, is it necessary to install and load the `gapminder` package. We will discuss installing and loading R packages in detail soon. 
+
+There are several useful things to note about this data:
+
+1. Each row corresponds to a unique observation.
+
+2. Each column is a unique feature or variable. 
+
+3. Every cell contains a single value.
+
+4. Some of the information in the data set is quantitative while other information is qualitative. 
+
+A data set that satisfies properties 1 - 3 is said to by **tidy** or in tidy format. We will often find it very useful to work with data that conforms to the tidy format. 
+
+We refer to variables made up of quantitative information as **numerical** and variables made up of qualitative information as **categorical**. For example, in the Gapminder data, the country and continent variables are categorical while the year, life expectancy, population, and per capita GDP are all numerical variables. The type of variable(s) often influences the type of visualization or analysis that is used to explore and model data. 
+
+We can further classify the type of a variable by the following classifications:
+
+1. Numerical (quantitative):
+
+    * Continuous:  Can take on any value and any value between two values. Typically will involve decimal values. Physical measurements are common types of continuous numerical data. 
+    
+    * Discrete: Any numerical type that is not continuous. Often whole numbers. Counts are a common type of discrete numerical data.
+    
+2. Categorical (qualitative):
+
+    * Nominal: Lacks any particular ordering. For example, eyecolor would be nominal categorical data. 
+    
+    * Ordinal: Possesses a particular ordering. For example, the place (first, second, third, etc.) that a sports team comes in at the end of a competition or tournament. 
+    
+    * Binary: A categorical variable with only two possible outcomes. Think yes/no, true/false, etc. 
+    
+@fig-numericals illustrates numerical variables and the distinction between continuous and discrete numerical variables, while @fig-categoricals illustrates categorical variables and the distinction between nominal, ordinal, and binary categorical variables.  
+
+One thing to be careful about is that numbers can and often are used to label the outcomes for a categorical variable. For example, suppose we collect data about students living in a particular dormitory. We may use 1 to denote that a student is enrolled as a first-year student, 2 to denote that a student is enrolled as a second-year student, etc. Even though we've used number, the year a student is enrolled as is really a categorical variable.     
+
+Sometimes, there may even be an ambiguity in the type for a variable. For example, suppose we are collecting data on commercial buildings in a particular city and for each building in the data set, we record (among other things) the number of stories of the building using 1 to denote a building with one story, 2 to denote a building with two stories, etc. On the one hand, we could view our stories variable as a count and hence a discrete numerical variable. On the other hand, it might be better to think of the stories variable as a ordinal categorical variable. One way to decide which is more appropriate is to think about if it makes sense or is desirable to take a average or not. If you want to take a average, then the variable must be numerical.     
+
+[![Numerical variables and the distinction between a continuous numerical variable and a discrete numerical variable. Artwork by Allison Horst](https://github.com/allisonhorst/stats-illustrations/blob/main/other-stats-artwork/continuous_discrete.png?raw=1){#fig-numericals fig-alt="An illustration of the distinction between a continuous numerical variable and a discrete numerical variable."}](https://allisonhorst.com/)
 
 
-[![Artwork by Allison Horst](https://github.com/allisonhorst/stats-illustrations/blob/main/other-stats-artwork/nominal_ordinal_binary.png?raw=1){#fig-categoricals fig-alt="An illustration of the distinction between nominal, ordinal, and binary categorical variables."}](https://allisonhorst.com/)
+[![ Categorical variables and the distinction between nominal, ordinal, and binary categorical variables. Artwork by Allison Horst](https://github.com/allisonhorst/stats-illustrations/blob/main/other-stats-artwork/nominal_ordinal_binary.png?raw=1){#fig-categoricals fig-alt="An illustration of the distinction between nominal, ordinal, and binary categorical variables."}](https://allisonhorst.com/)
 
 ## A Tiny Bit of `r icons::icon_style(icons::fontawesome("r-project"),scale=2,fill="steelblue")`
 
@@ -250,6 +316,7 @@ swirl()
 
 ## Preparation for the next lesson
 
+Prior to starting the next lesson, please read [Chapter 1](https://datasciencebook.ca/intro.html) of [@timbers2022data], link [here](https://datasciencebook.ca/intro.html). It is also recommended that you read the section on [reproducible workflows](https://tellingstorieswithdata.com/03-workflow.html) from [@alexandertelling], link [here](https://tellingstorieswithdata.com/03-workflow.html)
 
 ## References
 
