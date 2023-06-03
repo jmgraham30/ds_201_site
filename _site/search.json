@@ -88,14 +88,14 @@
     "href": "lesson01/index.html",
     "title": "Lesson 1",
     "section": "",
-    "text": "Code\n# load packages used in document\nlibrary(tidyverse)\nlibrary(gapminder)\nlibrary(kableExtra)"
+    "text": "After this lesson, students will be able to:\n\nGive a general definition of data science.\nExplain what is meant by reproducible and auditable workflows.\nUse the Gapminder online tools (link here) to explore data on certain social and economic issues.\nExplain and give examples of numerical and categorical data types.\nDo basic arithmetic with R."
   },
   {
     "objectID": "lesson01/index.html#learning-objectives",
     "href": "lesson01/index.html#learning-objectives",
     "title": "Lesson 1",
-    "section": "Learning Objectives",
-    "text": "Learning Objectives\nAfter this lesson, students will be able to:\n\nGive a general definition of data science.\nExplain what is meant by reproducible and auditable workflows.\nUse the Gapminder online tools (link here) to explore data on certain social and economic issues.\nExplain and give examples of numerical and categorical data types.\nDo basic arithmetic with R."
+    "section": "",
+    "text": "After this lesson, students will be able to:\n\nGive a general definition of data science.\nExplain what is meant by reproducible and auditable workflows.\nUse the Gapminder online tools (link here) to explore data on certain social and economic issues.\nExplain and give examples of numerical and categorical data types.\nDo basic arithmetic with R."
   },
   {
     "objectID": "links.html#videos",
