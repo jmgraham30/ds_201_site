@@ -13,31 +13,31 @@ library(tidyverse)
 
 ## Websites
 
-* Tidy Tuesday data repository, link [here](https://github.com/rfordatascience/tidytuesday/tree/master).
+* Tidy Tuesday data repository, [view the repository](https://github.com/rfordatascience/tidytuesday/tree/master).
 
-* The R Graph Gallery, link [here](https://r-graph-gallery.com/index.html).
+* The R Graph Gallery, [view the website](https://r-graph-gallery.com/index.html).
 
-* From Data to Viz website on visualizing data, link [here](https://www.data-to-viz.com/#explore).
+* From Data to Viz website on visualizing data, [view the website](https://www.data-to-viz.com/#explore).
 
-* [Julia Silge's](https://juliasilge.com/) blog posts (mostly) on TidyTuesday data analyses, link [here](https://juliasilge.com/blog/). 
+* [Julia Silge's](https://juliasilge.com/) blog posts (mostly) on TidyTuesday data analyses, [view the website](https://juliasilge.com/blog/). 
 
 ## Texts
 
-* Spatial Data Science with applications in R available [here](https://r-spatial.org/book/).
+* Spatial Data Science with applications in R, [view the free online version of the text](https://r-spatial.org/book/).
 
-* Deep Learning and Scientific Computing with R torch available [here](https://skeydan.github.io/Deep-Learning-and-Scientific-Computing-with-R-torch/).
+* Deep Learning and Scientific Computing with R torch, [view the free online version of the text](https://skeydan.github.io/Deep-Learning-and-Scientific-Computing-with-R-torch/).
 
-* Analyzing US Census Data: Methods, Maps, and Models in R textbook available [here](https://walker-data.com/census-r/).
+* Analyzing US Census Data: Methods, Maps, and Models in R textbook, [view the free online version of the text](https://walker-data.com/census-r/).
 
-* Tidy Finance with R available [here](https://www.tidy-finance.org/).
+* Tidy Finance with R, [view the free online version of the text](https://www.tidy-finance.org/).
 
-* Outstanding User Interfaces with Shiny textbook available [here](https://unleash-shiny.rinterface.com/).
+* Outstanding User Interfaces with Shiny textbook, [view the free online version of the text](https://unleash-shiny.rinterface.com/).
 
-* Crime by the Numbers: A Criminologist’s Guide to R textbook available [here](https://crimebythenumbers.com/).
+* Crime by the Numbers: A Criminologist’s Guide to R textbook, [view the free online version of the text](https://crimebythenumbers.com/).
 
 ## Videos
 
-*  Getting started with Quarto YouTube video, link [here](https://youtu.be/YK6IjJkjkiI).
+*  Getting started with Quarto YouTube video, [view the video](https://youtu.be/YK6IjJkjkiI).
   
 ```{r}
 #| echo: false
@@ -46,7 +46,7 @@ vembedr::embed_youtube(id="_f3latmOhew",height=450) %>%
   vembedr::use_align("center")
 ```
 
-*  Datasheets for Datasets video, link [here](https://youtu.be/R7s7_T4yXak).
+*  Datasheets for Datasets video, [view the video](https://youtu.be/R7s7_T4yXak).
   
 ```{r}
 #| echo: false

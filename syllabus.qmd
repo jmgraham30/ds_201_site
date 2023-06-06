@@ -26,35 +26,35 @@ library(kableExtra)
 
 * **Phone:** (570) 941-7491
 
-* **Course Page:** [link](https://intro-ds.netlify.app/)
+* **Course Page:** [View course page](https://intro-ds.netlify.app/)
 
 # Course Materials
 
 ## Required Readings
 
-* Hands-On Programming with R by Garrett Grolemund, freely available online [here](https://rstudio-education.github.io/hopr/).
+* Hands-On Programming with R by Garrett Grolemund, [view the free online version of the text](https://rstudio-education.github.io/hopr/).
 
-* R for Data Science by Hadley Wickham & Garrett Grolemund, freely available online [here](https://r4ds.had.co.nz/index.html).
+* R for Data Science by Hadley Wickham & Garrett Grolemund, [view the free online version of the text](https://r4ds.had.co.nz/index.html).
 
-* Data Science: A First Introduction by Tiffany Timbers, Trevor Campbell, and Melissa Lee, freely available online [here](https://datasciencebook.ca/).
+* Data Science: A First Introduction by Tiffany Timbers, Trevor Campbell, and Melissa Lee, [view the free online version of the text](https://datasciencebook.ca/).
 
-* Telling Stories with Data by Rohan Alexander, freely available online [here](https://tellingstorieswithdata.com/).
+* Telling Stories with Data by Rohan Alexander,  [view the free online version of the text](https://tellingstorieswithdata.com/).
 
 
 
 ## Recommended Readings 
 
-*  Data Visualization A Practical Introduction by Healy, freely available online [here](https://socviz.co/index.html#preface).
+*  Data Visualization A Practical Introduction by Healy,  [view the free online version of the text](https://socviz.co/index.html#preface).
 
-* Statistical Inference via Data Science A ModernDive into R and the Tidyverse by Chester Ismay & Albert Y. Kim, freely available online [here](https://moderndive.com/).
+* Statistical Inference via Data Science A ModernDive into R and the Tidyverse by Chester Ismay & Albert Y. Kim,  [view the free online version of the text](https://moderndive.com/).
 
-* An Introduction to Statistical Learning 2nd Ed. by James, Witten, Hastie, and Tibshirani, freely available online [here](https://www.statlearning.com/).
+* An Introduction to Statistical Learning 2nd Ed. by James, Witten, Hastie, and Tibshirani,  [view the free online version of the text](https://www.statlearning.com/).
 
-* Tree-Based Methods for Statistical Learning by Brandon M. Greenwell, freely available online [here](https://bgreenwell.github.io/treebook/).
+* Tree-Based Methods for Statistical Learning by Brandon M. Greenwell,  [view the free online version of the text](https://bgreenwell.github.io/treebook/).
 
-* Advanced R by Wickham, freely available online [here](https://adv-r.hadley.nz/).
+* Advanced R by Wickham, [view the free online version of the text](https://adv-r.hadley.nz/).
 
-* R Packages by Wickham, freely available online [here](https://r-pkgs.org/).
+* R Packages by Wickham,  [view the free online version of the text](https://r-pkgs.org/).
 
 
 # Course Information
