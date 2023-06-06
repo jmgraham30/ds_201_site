@@ -37,7 +37,7 @@ library(tidyverse)
 
 ## Videos
 
-*  Getting started with Quarto YouTube video, [view the video](https://youtu.be/YK6IjJkjkiI).
+*  Getting started with Quarto YouTube video, [watch the video on YouTube](https://youtu.be/YK6IjJkjkiI).
   
 ```{r}
 #| echo: false
@@ -46,7 +46,7 @@ vembedr::embed_youtube(id="_f3latmOhew",height=450) %>%
   vembedr::use_align("center")
 ```
 
-*  Datasheets for Datasets video, [view the video](https://youtu.be/R7s7_T4yXak).
+*  Datasheets for Datasets video, [watch the video on YouTube](https://youtu.be/R7s7_T4yXak).
   
 ```{r}
 #| echo: false
