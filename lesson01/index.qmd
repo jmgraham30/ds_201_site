@@ -314,6 +314,21 @@ library(swirl) # must run in every new R session
 swirl()
 ```
 
+
+## Some Data Resources
+
+For future reference, we list some resources that might be useful for finding data sets to work with throughout the course. 
+
+* [Gapminder](https://www.gapminder.org/) and the `gapminder` R package.
+
+* [UCI machine learning repository](https://archive.ics.uci.edu/)
+
+* [Kaggle](https://www.kaggle.com/)
+
+* [Tidy Tuesday data repository](https://github.com/rfordatascience/tidytuesday)
+
+* [Appendix B](https://tellingstorieswithdata.com/21-datasets.html) of [*Telling Stories with Data*](https://tellingstorieswithdata.com/) [@alexandertelling] lists a large number of data resources
+
 ## Preparation for the next lesson
 
 Prior to starting the next lesson, please read [Chapter 1](https://datasciencebook.ca/intro.html) of [@timbers2022data], link [here](https://datasciencebook.ca/intro.html). It is also recommended that you read the section on [reproducible workflows](https://tellingstorieswithdata.com/03-workflow.html) from [@alexandertelling], link [here](https://tellingstorieswithdata.com/03-workflow.html)
