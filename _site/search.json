@@ -39,7 +39,7 @@
     "href": "syllabus.html#recommended-readings",
     "title": "Syllabus",
     "section": "Recommended Readings",
-    "text": "Recommended Readings\n\nHands-On Programming with R by Garrett Grolemund, view the free online version of the text.\nTelling Stories with Data by Rohan Alexander, view the free online version of the text.\nData Visualization A Practical Introduction by Healy, view the free online version of the text.\nStatistical Inference via Data Science A ModernDive into R and the Tidyverse by Chester Ismay & Albert Y. Kim, view the free online version of the text.\nAn Introduction to Statistical Learning 2nd Ed. by James, Witten, Hastie, and Tibshirani, view the free online version of the text."
+    "text": "Recommended Readings\n\nHands-On Programming with R by Garrett Grolemund, view the free online version of the text.\nTelling Stories with Data by Rohan Alexander, view the free online version of the text.\nData Visualization A Practical Introduction by Healy, view the free online version of the text.\nStatistical Inference via Data Science A ModernDive into R and the Tidyverse by Chester Ismay & Albert Y. Kim, view the free online version of the text."
   },
   {
     "objectID": "links.html",
@@ -264,5 +264,12 @@
     "title": "Lesson 1",
     "section": "Some Data Resources",
     "text": "Some Data Resources\nFor future reference, we list some resources that might be useful for finding data sets to work with throughout the course.\n\nGapminder and the gapminder R package.\nUCI machine learning repository\nKaggle\nTidy Tuesday data repository\nAppendix B of Telling Stories with Data (Alexander, n.d.) lists a large number of data resources"
+  },
+  {
+    "objectID": "syllabus.html#further-reading",
+    "href": "syllabus.html#further-reading",
+    "title": "Syllabus",
+    "section": "Further Reading",
+    "text": "Further Reading\n\nAn Introduction to Statistical Learning 2nd Ed. by James, Witten, Hastie, and Tibshirani, view the free online version of the text."
   }
 ]

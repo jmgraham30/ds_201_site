@@ -47,6 +47,8 @@ library(kableExtra)
 
 * Statistical Inference via Data Science A ModernDive into R and the Tidyverse by Chester Ismay & Albert Y. Kim,  [view the free online version of the text](https://moderndive.com/).
 
+## Further Reading
+
 * An Introduction to Statistical Learning 2nd Ed. by James, Witten, Hastie, and Tibshirani,  [view the free online version of the text](https://www.statlearning.com/).
 
 
