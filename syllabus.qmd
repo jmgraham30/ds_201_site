@@ -51,6 +51,8 @@ library(kableExtra)
 
 * An Introduction to Statistical Learning 2nd Ed. by James, Witten, Hastie, and Tibshirani,  [view the free online version of the text](https://www.statlearning.com/).
 
+* Hands-On Machine Learning with R, [view the free online version of the text](https://bradleyboehmke.github.io/HOML/).
+
 
 # Course Information
 
