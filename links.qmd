@@ -25,6 +25,8 @@ library(tidyverse)
 
 ## Texts
 
+* ggplot2: Elegant Graphics for Data Analysis (3e), [view the free online version of the text](https://ggplot2-book.org/)
+
 * Spatial Data Science with applications in R, [view the free online version of the text](https://r-spatial.org/book/).
 
 * Deep Learning and Scientific Computing with R torch, [view the free online version of the text](https://skeydan.github.io/Deep-Learning-and-Scientific-Computing-with-R-torch/).
