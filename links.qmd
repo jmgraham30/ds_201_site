@@ -25,6 +25,8 @@ library(tidyverse)
 
 ## Texts
 
+### R Related
+
 * ggplot2: Elegant Graphics for Data Analysis (3e), [view the free online version of the text](https://ggplot2-book.org/)
 
 * Spatial Data Science with applications in R, [view the free online version of the text](https://r-spatial.org/book/).
@@ -36,6 +38,8 @@ library(tidyverse)
 * Outstanding User Interfaces with Shiny textbook, [view the free online version of the text](https://unleash-shiny.rinterface.com/).
 
 * Crime by the Numbers: A Criminologist’s Guide to R textbook, [view the free online version of the text](https://crimebythenumbers.com/).
+
+### Python Related
 
 * Python for Data Analysis, 3E, [view the free online version of the text](https://wesmckinney.com/book/)
 
