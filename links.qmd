@@ -29,8 +29,6 @@ library(tidyverse)
 
 * Spatial Data Science with applications in R, [view the free online version of the text](https://r-spatial.org/book/).
 
-* Deep Learning and Scientific Computing with R torch, [view the free online version of the text](https://skeydan.github.io/Deep-Learning-and-Scientific-Computing-with-R-torch/).
-
 * Analyzing US Census Data: Methods, Maps, and Models in R textbook, [view the free online version of the text](https://walker-data.com/census-r/).
 
 * Tidy Finance with R, [view the free online version of the text](https://www.tidy-finance.org/).
@@ -38,6 +36,8 @@ library(tidyverse)
 * Outstanding User Interfaces with Shiny textbook, [view the free online version of the text](https://unleash-shiny.rinterface.com/).
 
 * Crime by the Numbers: A Criminologist’s Guide to R textbook, [view the free online version of the text](https://crimebythenumbers.com/).
+
+* Python for Data Analysis, 3E, [view the free online version of the text](https://wesmckinney.com/book/)
 
 ## Videos
 
