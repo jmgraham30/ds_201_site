@@ -123,7 +123,7 @@
     "href": "syllabus.html#grading",
     "title": "Syllabus",
     "section": "Grading",
-    "text": "Grading\n\nGrade Policy\n\n\nGrade Scale\nLetter grades will be assigned based on the following scale:\n\n\n\n\nTable 2: Letter grade scale.\n\n\nGrade Range\nLetter Grade\n\n\n\n\n94-100\nA\n\n\n90-93\nA-\n\n\n87-89\nB+\n\n\n83-86\nB\n\n\n80-82\nB-\n\n\n76-79\nC+\n\n\n72-75\nC\n\n\n69-71\nC-\n\n\n65-68\nD+\n\n\n60-64\nD\n\n\n&lt;60\nF"
+    "text": "Grading\n\nGrade Policy\nThe overall course grade will be based on (roughly twelve) weekly homework assignment totaling 30% of the overall course grade, a data package assignment totaling 20% of the overall course grade, and a semester project totaling 50% of the overall course grade.\n\n\nGrade Scale\nLetter grades will be assigned based on the following scale:\n\n\n\n\nTable 2: Letter grade scale.\n\n\nGrade Range\nLetter Grade\n\n\n\n\n94-100\nA\n\n\n90-93\nA-\n\n\n87-89\nB+\n\n\n83-86\nB\n\n\n80-82\nB-\n\n\n76-79\nC+\n\n\n72-75\nC\n\n\n69-71\nC-\n\n\n65-68\nD+\n\n\n60-64\nD\n\n\n&lt;60\nF"
   },
   {
     "objectID": "syllabus.html#weekly-schedule",
@@ -270,6 +270,27 @@
     "href": "syllabus.html#further-reading",
     "title": "Syllabus",
     "section": "Further Reading",
-    "text": "Further Reading\n\nAn Introduction to Statistical Learning 2nd Ed. by James, Witten, Hastie, and Tibshirani, view the free online version of the text.\nHands-On Machine Learning with R, view the free online version of the text."
+    "text": "Further Reading\n\nAn Introduction to Statistical Learning 2nd Ed. by James, Witten, Hastie, and Tibshirani, view the free online version of the text.\nHands-On Machine Learning with R, view the free online version of the text.\nLinks to additional resources related to the course material will be posted on the course website. View the resources link."
+  },
+  {
+    "objectID": "syllabus.html#homework-assignments",
+    "href": "syllabus.html#homework-assignments",
+    "title": "Syllabus",
+    "section": "Homework Assignments",
+    "text": "Homework Assignments\nThere will be roughly 12 weekly homework assignments throughout the semester. These assignments with due dates will be posted to the course learning management system. Homework problems will be a mix of hand-written and computer assignments and the problems will relate to the material covered in lectures and readings."
+  },
+  {
+    "objectID": "syllabus.html#data-package-assignment",
+    "href": "syllabus.html#data-package-assignment",
+    "title": "Syllabus",
+    "section": "Data Package Assignment",
+    "text": "Data Package Assignment"
+  },
+  {
+    "objectID": "syllabus.html#semester-project",
+    "href": "syllabus.html#semester-project",
+    "title": "Syllabus",
+    "section": "Semester Project",
+    "text": "Semester Project"
   }
 ]

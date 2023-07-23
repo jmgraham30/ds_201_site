@@ -53,6 +53,8 @@ library(kableExtra)
 
 * Hands-On Machine Learning with R, [view the free online version of the text](https://bradleyboehmke.github.io/HOML/).
 
+* Links to additional resources related to the course material will be posted on the course website. [View the resources link.](https://intro-ds.netlify.app/links.html)
+
 
 # Course Information
 
@@ -97,6 +99,7 @@ kbl(slos_assess) %>%
 
 ### Grade Policy
 
+The overall course grade will be based on (roughly twelve) weekly homework assignment totaling 30% of the overall course grade, a data package assignment totaling 20% of the overall course grade, and a semester project totaling 50% of the overall course grade. 
 
 ### Grade Scale
 
@@ -131,6 +134,19 @@ In particular, it is expected that students will be able to explain independentl
 If you have any doubts about your use of AI, then either ask the instructor if your use of AI is acceptable or just don't use AI. 
 
 # Assignments
+
+## Homework Assignments
+
+There will be roughly 12 weekly homework assignments throughout the semester. These assignments with due dates will be posted to the course learning management system. Homework problems will be a mix of hand-written and computer assignments and the problems will relate to the material covered in lectures and readings.   
+
+## Data Package Assignment
+
+
+
+
+## Semester Project
+
+
 
 # Course Timeline
 
