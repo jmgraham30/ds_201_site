@@ -141,7 +141,15 @@ There will be roughly 12 weekly homework assignments throughout the semester. Th
 
 ## Data Package Assignment
 
+The data package assignment, making up 20% of the course grade asks students to curate a data set according the best practices for reproducible data analyses. A complete data package assignment should consist of
 
+- An appropriate raw data set(s) with original source fully documented.
+
+- An appropriately cleaned and processed version of the original raw data set. All code or other files used to clean and process the raw data must be included as part of the final data package submission.
+
+- An appropriate data sheet to  accompany the data package.
+
+- A public folder, repository, R package, or other container that can be used to make your data set and associated files and documentation available to others.   
 
 Further details on the semester project such as the parameters of the assignment and a grade rubric will be posted on the course learning management system.
 
