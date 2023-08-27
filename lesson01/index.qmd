@@ -113,7 +113,7 @@ Let's begin our adventure in data science by engaging with some of the interacti
 
 ## Classification of Basic Data Types
 
-A small portion of the data available form Gapminder is shown in @tbl-gp below: [^2]
+A small portion of the data available from Gapminder is shown in @tbl-gp below: [^2]
 
 ```{r}
 #| label: tbl-gp
@@ -136,7 +136,7 @@ There are several useful things to note about this data:
 
 4. Some of the information in the data set is quantitative while other information is qualitative. 
 
-A data set that satisfies properties 1 - 3 is said to by **tidy** or in tidy format. We will often find it very useful to work with data that conforms to the tidy format. 
+A data set that satisfies properties 1 - 3 is said to be **tidy** or in tidy format. We will often find it very useful to work with data that conforms to the tidy format. 
 
 We refer to variables made up of quantitative information as **numerical** and variables made up of qualitative information as **categorical**. For example, in the Gapminder data, the country and continent variables are categorical while the year, life expectancy, population, and per capita GDP are all numerical variables. The type of variable(s) often influences the type of visualization or analysis that is used to explore and model data. 
 
@@ -144,7 +144,7 @@ We can further classify the type of a variable by the following classifications:
 
 1. Numerical (quantitative):
 
-    * Continuous:  Can take on any value and any value between two values. Typically will involve decimal values. Physical measurements are common types of continuous numerical data. 
+    * Continuous:  Can take on any value (possibly over a specific range) and any value between two values. Typically will involve decimal values. Physical measurements are common types of continuous numerical data. 
     
     * Discrete: Any numerical type that is not continuous. Often whole numbers. Counts are a common type of discrete numerical data.
     
@@ -158,14 +158,14 @@ We can further classify the type of a variable by the following classifications:
     
 @fig-numericals illustrates numerical variables and the distinction between continuous and discrete numerical variables, while @fig-categoricals illustrates categorical variables and the distinction between nominal, ordinal, and binary categorical variables.  
 
-One thing to be careful about is that numbers can and often are used to label the outcomes for a categorical variable. For example, suppose we collect data about students living in a particular dormitory. We may use 1 to denote that a student is enrolled as a first-year student, 2 to denote that a student is enrolled as a second-year student, etc. Even though we've used number, the year a student is enrolled as is really a categorical variable.     
-
-Sometimes, there may even be an ambiguity in the type for a variable. For example, suppose we are collecting data on commercial buildings in a particular city and for each building in the data set, we record (among other things) the number of stories of the building using 1 to denote a building with one story, 2 to denote a building with two stories, etc. On the one hand, we could view our stories variable as a count and hence a discrete numerical variable. On the other hand, it might be better to think of the stories variable as a ordinal categorical variable. One way to decide which is more appropriate is to think about if it makes sense or is desirable to take a average or not. If you want to take a average, then the variable must be numerical.     
-
 [![Numerical variables and the distinction between a continuous numerical variable and a discrete numerical variable. Artwork by Allison Horst](https://github.com/allisonhorst/stats-illustrations/blob/main/other-stats-artwork/continuous_discrete.png?raw=1){#fig-numericals fig-alt="An illustration of the distinction between a continuous numerical variable and a discrete numerical variable."}](https://allisonhorst.com/)
 
 
 [![ Categorical variables and the distinction between nominal, ordinal, and binary categorical variables. Artwork by Allison Horst](https://github.com/allisonhorst/stats-illustrations/blob/main/other-stats-artwork/nominal_ordinal_binary.png?raw=1){#fig-categoricals fig-alt="An illustration of the distinction between nominal, ordinal, and binary categorical variables."}](https://allisonhorst.com/)
+
+One thing to be careful about is that numbers can and often are used to label the outcomes for a categorical variable. For example, suppose we collect data about students living in a particular dormitory. We may use 1 to denote that a student is enrolled as a first-year student, 2 to denote that a student is enrolled as a second-year student, etc. Even though we've used number, the year a student is enrolled as is really a categorical variable.     
+
+Sometimes, there may even be an ambiguity in the type for a variable. For example, suppose we are collecting data on commercial buildings in a particular city and for each building in the data set, we record (among other things) the number of stories of the building using 1 to denote a building with one story, 2 to denote a building with two stories, etc. On the one hand, we could view our stories variable as a count and hence a discrete numerical variable. On the other hand, it might be better to think of the stories variable as a ordinal categorical variable. One way to decide which is more appropriate is to think about if it makes sense or is desirable to take a average or not. If you want to take a average, then the variable must be numerical.     
 
 ## A Tiny Bit of `r icons::icon_style(icons::fontawesome("r-project"),scale=2,fill="steelblue")`
 

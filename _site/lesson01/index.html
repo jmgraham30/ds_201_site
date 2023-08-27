@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.361">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -90,11 +90,11 @@ div.csl-indent {
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -298,7 +298,7 @@ div.csl-indent {
 </section>
 <section id="classification-of-basic-data-types" class="level2">
 <h2 class="anchored" data-anchor-id="classification-of-basic-data-types">Classification of Basic Data Types</h2>
-<p>A small portion of the data available form Gapminder is shown in <a href="#tbl-gp">Table&nbsp;1</a> below: <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+<p>A small portion of the data available from Gapminder is shown in <a href="#tbl-gp">Table&nbsp;1</a> below: <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="tbl-gp" class="anchored">
@@ -377,13 +377,13 @@ div.csl-indent {
 <li><p>Every cell contains a single value.</p></li>
 <li><p>Some of the information in the data set is quantitative while other information is qualitative.</p></li>
 </ol>
-<p>A data set that satisfies properties 1 - 3 is said to by <strong>tidy</strong> or in tidy format. We will often find it very useful to work with data that conforms to the tidy format.</p>
+<p>A data set that satisfies properties 1 - 3 is said to be <strong>tidy</strong> or in tidy format. We will often find it very useful to work with data that conforms to the tidy format.</p>
 <p>We refer to variables made up of quantitative information as <strong>numerical</strong> and variables made up of qualitative information as <strong>categorical</strong>. For example, in the Gapminder data, the country and continent variables are categorical while the year, life expectancy, population, and per capita GDP are all numerical variables. The type of variable(s) often influences the type of visualization or analysis that is used to explore and model data.</p>
 <p>We can further classify the type of a variable by the following classifications:</p>
 <ol type="1">
 <li><p>Numerical (quantitative):</p>
 <ul>
-<li><p>Continuous: Can take on any value and any value between two values. Typically will involve decimal values. Physical measurements are common types of continuous numerical data.</p></li>
+<li><p>Continuous: Can take on any value (possibly over a specific range) and any value between two values. Typically will involve decimal values. Physical measurements are common types of continuous numerical data.</p></li>
 <li><p>Discrete: Any numerical type that is not continuous. Often whole numbers. Counts are a common type of discrete numerical data.</p></li>
 </ul></li>
 <li><p>Categorical (qualitative):</p>
@@ -394,8 +394,6 @@ div.csl-indent {
 </ul></li>
 </ol>
 <p><a href="#fig-numericals">Figure&nbsp;3</a> illustrates numerical variables and the distinction between continuous and discrete numerical variables, while <a href="#fig-categoricals">Figure&nbsp;4</a> illustrates categorical variables and the distinction between nominal, ordinal, and binary categorical variables.</p>
-<p>One thing to be careful about is that numbers can and often are used to label the outcomes for a categorical variable. For example, suppose we collect data about students living in a particular dormitory. We may use 1 to denote that a student is enrolled as a first-year student, 2 to denote that a student is enrolled as a second-year student, etc. Even though we’ve used number, the year a student is enrolled as is really a categorical variable.</p>
-<p>Sometimes, there may even be an ambiguity in the type for a variable. For example, suppose we are collecting data on commercial buildings in a particular city and for each building in the data set, we record (among other things) the number of stories of the building using 1 to denote a building with one story, 2 to denote a building with two stories, etc. On the one hand, we could view our stories variable as a count and hence a discrete numerical variable. On the other hand, it might be better to think of the stories variable as a ordinal categorical variable. One way to decide which is more appropriate is to think about if it makes sense or is desirable to take a average or not. If you want to take a average, then the variable must be numerical.</p>
 <div id="fig-numericals" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><a href="https://allisonhorst.com/"><img src="https://github.com/allisonhorst/stats-illustrations/blob/main/other-stats-artwork/continuous_discrete.png?raw=1" class="img-fluid figure-img" alt="An illustration of the distinction between a continuous numerical variable and a discrete numerical variable."></a></p>
@@ -408,6 +406,8 @@ div.csl-indent {
 <figcaption class="figure-caption">Figure&nbsp;4: Categorical variables and the distinction between nominal, ordinal, and binary categorical variables. Artwork by Allison Horst</figcaption>
 </figure>
 </div>
+<p>One thing to be careful about is that numbers can and often are used to label the outcomes for a categorical variable. For example, suppose we collect data about students living in a particular dormitory. We may use 1 to denote that a student is enrolled as a first-year student, 2 to denote that a student is enrolled as a second-year student, etc. Even though we’ve used number, the year a student is enrolled as is really a categorical variable.</p>
+<p>Sometimes, there may even be an ambiguity in the type for a variable. For example, suppose we are collecting data on commercial buildings in a particular city and for each building in the data set, we record (among other things) the number of stories of the building using 1 to denote a building with one story, 2 to denote a building with two stories, etc. On the one hand, we could view our stories variable as a count and hence a discrete numerical variable. On the other hand, it might be better to think of the stories variable as a ordinal categorical variable. One way to decide which is more appropriate is to think about if it makes sense or is desirable to take a average or not. If you want to take a average, then the variable must be numerical.</p>
 </section>
 <section id="a-tiny-bit-of" class="level2">
 <h2 class="anchored" data-anchor-id="a-tiny-bit-of">A Tiny Bit of <svg viewbox="0 0 581 512" style="position:relative;display:inline-block;top:.1em;fill:steelblue;height:2em;" xmlns="http://www.w3.org/2000/svg"> <path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"></path></svg></h2>
@@ -585,27 +585,27 @@ Expand for Session Info
 <div class="cell-output cell-output-stdout">
 <pre><code>─ Session info ───────────────────────────────────────────────────────────────
  setting  value
- version  R version 4.3.0 (2023-04-21)
- os       macOS Ventura 13.4
+ version  R version 4.3.1 (2023-06-16)
+ os       macOS Ventura 13.5.1
  system   aarch64, darwin20
  ui       X11
  language (EN)
  collate  en_US.UTF-8
  ctype    en_US.UTF-8
  tz       America/New_York
- date     2023-06-13
+ date     2023-08-27
  pandoc   3.1.1 @ /Applications/RStudio.app/Contents/Resources/app/quarto/bin/tools/ (via rmarkdown)
- quarto   1.3.361 @ /usr/local/bin/quarto
+ quarto   1.3.450 @ /usr/local/bin/quarto
 
 ─ Packages ───────────────────────────────────────────────────────────────────
  package     * version date (UTC) lib source
  dplyr       * 1.1.2   2023-04-20 [1] CRAN (R 4.3.0)
  forcats     * 1.0.0   2023-01-29 [1] CRAN (R 4.3.0)
  gapminder   * 1.0.0   2023-03-10 [1] CRAN (R 4.3.0)
- ggplot2     * 3.4.2   2023-04-03 [1] CRAN (R 4.3.0)
+ ggplot2     * 3.4.3   2023-08-14 [1] CRAN (R 4.3.0)
  kableExtra  * 1.3.4   2021-02-20 [1] CRAN (R 4.3.0)
  lubridate   * 1.9.2   2023-02-10 [1] CRAN (R 4.3.0)
- purrr       * 1.0.1   2023-01-10 [1] CRAN (R 4.3.0)
+ purrr       * 1.0.2   2023-08-10 [1] CRAN (R 4.3.0)
  readr       * 2.1.4   2023-02-10 [1] CRAN (R 4.3.0)
  sessioninfo * 1.2.2   2021-12-06 [1] CRAN (R 4.3.0)
  stringr     * 1.5.0   2022-12-02 [1] CRAN (R 4.3.0)
@@ -747,7 +747,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return localAlternateSentinel;
     }
   }
-  let localAlternateSentinel = 'alternate';
+  let localAlternateSentinel = 'default';
   // Dark / light mode switch
   window.quartoToggleColorScheme = () => {
     // Read the current dark / light value 
