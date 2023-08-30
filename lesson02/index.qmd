@@ -1,0 +1,53 @@
+---
+title: "Lesson 2"
+subtitle: "Loading Data"
+author: "JMG"
+format:
+  html:
+    code-fold: true
+    code-summary: "Show the code"
+    toc: true
+    toc-location: left
+bibliography: lesson02.bib
+license: "CC BY-NC-SA 4.0"
+---
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+# load packages used in document
+library(tidyverse)
+library(gapminder)
+library(kableExtra)
+```
+
+
+## Learning Objectives
+
+After this lesson, students will be able to: 
+
+* Set up an RStudio project.
+
+* Work in a Quarto document.
+
+* Read into R tabular data.
+
+* Use the `glimpse` command and other R functions to examine data read into R.  
+
+## Readings, etc.
+
+For this lesson, refer to the following readings, etc.:
+
+* Chapter 2 of *Data Science: A First Introduction* by Tiffany Timbers, Trevor Campbell, and Melissa Lee [@timbers2022data]. [View the free online version of the text.](https://datasciencebook.ca/).
+
+
+## RStudio Projects
+
+
+## Quarto Documents
+
+
+## Reading Data into R
+
