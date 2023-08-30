@@ -53,3 +53,44 @@ For this lesson, refer to the following readings, etc.:
 
 ## Reading Data into R
 
+
+## Preparation for the next lesson
+
+Prior to starting the next lesson, please read [Chapter 3](https://datasciencebook.ca/intro.html) of [@timbers2022data], link [here](https://datasciencebook.ca/intro.html). 
+
+## References
+
+::: {#refs}
+:::
+
+
+:::{.callout-tip collapse="true"}
+## Expand for Session Info
+```{r}
+#| echo: false
+
+
+library(sessioninfo)
+# save the session info as an object
+pkg_sesh <- session_info(pkgs = "attached")
+
+# get the quarto version
+quarto_version <- system("quarto --version", intern = TRUE)
+
+# inject the quarto info
+pkg_sesh$platform$quarto <- paste(
+  system("quarto --version", intern = TRUE), 
+  "@", 
+  quarto::quarto_path()
+  )
+
+# print it out
+pkg_sesh
+```
+
+:::
+
+
+[![](http://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png?raw=1){fig-align="left" width=15%}](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode)
+
+
