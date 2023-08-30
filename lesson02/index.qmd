@@ -42,6 +42,8 @@ For this lesson, refer to the following readings, etc.:
 
 * Chapter 2 of *Data Science: A First Introduction* by Tiffany Timbers, Trevor Campbell, and Melissa Lee [@timbers2022data]. [View the free online version of the text.](https://datasciencebook.ca/).
 
+* The TidyTuesday data repository [@TT].
+
 
 ## RStudio Projects
 
