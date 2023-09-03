@@ -333,7 +333,7 @@
     "href": "lesson02/index.html#reading-data-into-r",
     "title": "Lesson 2",
     "section": "Reading Data into R",
-    "text": "Reading Data into R"
+    "text": "Reading Data into R\nThe main focus of this lesson is to show different common ways to read tabular data into R. Recall that tabular data is data that corresponds to a spreadsheet in which data is arranged into columns and rows. There are three basic things you need to know to read data into R:\n\nThe data format and file type.\n\nFor data to be tabular in structure, one must use some method to distinguish entries that belong to different columns and rows. The two most common ways are to separate entries using either a comma or a tab. Tabular data formatted using comma-separated values are saved as .csv files while tabular data formatted using tab-separated values are save as .tsv files. The other very common way to format and save tabular data is using Excel spreadsheets.\n\nWhere the data is saved and will be read in from.\n\nThere are two basic locations in which one may save and store a data file: locally on a computer, remotely.\n\nThe appropriate R function to use depending on the 1. and 2.\n\nThe readr package included as part of the tidyverse family of R packages contains functions read_csv and read_tsv for reading in .csv or .tsv files, respectively. The readxl package contains functions that can be used to read in tabular data formatted and saved as Excel spreadsheets."
   },
   {
     "objectID": "lesson02/index.html#preparation-for-the-next-lesson",
