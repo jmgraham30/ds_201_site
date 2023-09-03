@@ -212,7 +212,7 @@ summary(happiness_report_csv)
 skimr::skim(happiness_report_csv)
 ```
 
-
+**Question:** What useful information is provided by the output from each of these commands?
 
 **Exercise:** Run all these commands on the data that you read in from the Excel spreadsheet.  
 
