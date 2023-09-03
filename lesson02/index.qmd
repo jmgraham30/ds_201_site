@@ -47,8 +47,29 @@ For this lesson, refer to the following readings, etc.:
 
 ## RStudio Projects
 
+A RStudio project is simply a folder or directory on a computer that contains a `.Rproj` file. A project makes it so that your work has its own working directory, workspace, history, and source documents. Using a project facilitates reproducible and auditable analyses because it keeps all the relevant files for a specific analysis together in one place making it easier to share. A RStudio project should correspond to a single project that you are working on. For example, you should use a RStudio project for your semester project for the course. 
+
+The instructions for how to create a project are given in the online Posit support documents, [view the projects webpage](https://support.posit.co/hc/en-us/articles/200526207-Using-RStudio-Projects#:~:text=To%20create%20a\%20new%20project,extension%29%20within%20the%20project%20directory.). Alternatively, [view this video](https://youtu.be/WyrJmJWgPiU?si=qSgJRZD4YCKy3pHL):
+
+```{r}
+#| echo: false
+
+vembedr::embed_youtube(id="WyrJmJWgPiU?si=qSgJRZD4YCKy3pHL",height=450) %>%
+  vembedr::use_align("center")
+```
+
+
+
+### Some Project Tips and Tricks
+
+1. When you create a project, the name of you project and the name of the corresponding folder will be the same. So, using good naming conventions for projects. In particular, avoid the use of spaces or symbols. Make sure the name is descriptive and easy to remember but not too long. 
+
+2. If there is data for your project, it is useful to create a subfolder of your package folder called `data` where you should save all the data files relevant to your project. 
+
+3. If your project involves a lot of coding in R, its a good idea to create a subfolder of your package folder called `R` where you should save all the R script files relevant to your project. 
 
 ## Quarto Documents
+
 
 
 ## Reading Data into R
