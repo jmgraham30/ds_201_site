@@ -103,6 +103,8 @@ There are two basic locations in which one may save and store a data file: local
 
 The `readr` package included as part of the `tidyverse` family of R packages contains functions `read_csv` and `read_tsv` for reading in `.csv` or `.tsv` files, respectively. The `readxl` package contains functions that can be used to read in tabular data formatted and saved as Excel spreadsheets. 
 
+**Note:** There are also many other data structures, file types, and R packages or functions for reading in data. We can't possibly cover all the possible variations in class but once you know how to read in one data type into R, it is usually straightforward to figure out how to do it with some other data or file type. 
+
 ### Examples
 
 The following examples assume that you are working in an active RStudio project that contains a subfolder titled `data` and that you have downloaded and saved the files `happiness_report.csv` and `happiness_report.xlsx` to the data folder. These are all data files for tabular data that ranks countries on happiness based on rationalized factors like economic growth, social support, etc. The data was released by the United Nations at an event celebrating International Day of Happiness. 
