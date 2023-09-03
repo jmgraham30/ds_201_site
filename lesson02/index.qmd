@@ -87,6 +87,10 @@ vembedr::embed_youtube(id="_f3latmOhew",height=450) %>%
 
 
 
+## `r icons::icon_style(icons::fontawesome("r-project"),scale=2,fill="steelblue")` Vectors, Lists, and Data Frames
+
+
+
 ## Preparation for the next lesson
 
 Prior to starting the next lesson, please read [Chapter 3](https://datasciencebook.ca/intro.html) of [@timbers2022data], link [here](https://datasciencebook.ca/intro.html). 
