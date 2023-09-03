@@ -219,6 +219,10 @@ skimr::skim(happiness_report_csv)
 We end this section by noting that the data file `happiness_report.csv` is also stored in a remote repository, [view the repository](https://github.com/UBC-DSCI/data-science-a-first-intro-worksheets/blob/main/worksheet_reading/data/happiness_report.csv). Since this repository has a corresponding url address, we can read the data in directly from the web:
 
 ```{r}
+#| message: false
+#| warning: false
+#| code-fold: false
+
 happiness_report_csv_url <- read_csv("https://raw.githubusercontent.com/UBC-DSCI/data-science-a-first-intro-worksheets/main/worksheet_reading/data/happiness_report.csv")
 ```
 
@@ -228,7 +232,7 @@ happiness_report_csv_url <- read_csv("https://raw.githubusercontent.com/UBC-DSCI
 
 ## Some Data Sources
 
-Appendix B of the online textbook contains a very helpful list of data sources [@alexandertelling]. [View appendix B](https://tellingstorieswithdata.com/21-datasets.html). Two other very interesting and useful sources of data are the [Tidy Tuesday](https://github.com/rfordatascience/tidytuesday) data repositories and [Kaggle](https://www.kaggle.com/). There are also many R packages that either include data or that can be used to download data. The ROpenSci project is a godo resource for finding R packages that can be used to obtain data, [view the project](https://ropensci.org/).
+One thing students often struggle with is finding and picking a good data set for their projects. Appendix B of the online textbook contains a very helpful list of data sources [@alexandertelling]. [View appendix B](https://tellingstorieswithdata.com/21-datasets.html). Two other very interesting and useful sources of data are the [Tidy Tuesday](https://github.com/rfordatascience/tidytuesday) data repositories and [Kaggle](https://www.kaggle.com/). There are also many R packages that either include data or that can be used to download data. The ROpenSci project is a godo resource for finding R packages that can be used to obtain data, [view the project](https://ropensci.org/).
 
 ## `r icons::icon_style(icons::fontawesome("r-project"),scale=2,fill="steelblue")` Vectors, Lists, and Data Frames
 

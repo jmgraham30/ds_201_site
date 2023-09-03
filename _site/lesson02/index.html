@@ -727,20 +727,7 @@ freedom
 <p><strong>Exercise:</strong> Run all these commands on the data that you read in from the Excel spreadsheet.</p>
 <p>We end this section by noting that the data file <code>happiness_report.csv</code> is also stored in a remote repository, <a href="https://github.com/UBC-DSCI/data-science-a-first-intro-worksheets/blob/main/worksheet_reading/data/happiness_report.csv">view the repository</a>. Since this repository has a corresponding url address, we can read the data in directly from the web:</p>
 <div class="cell">
-<details>
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>happiness_report_csv_url <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://raw.githubusercontent.com/UBC-DSCI/data-science-a-first-intro-worksheets/main/worksheet_reading/data/happiness_report.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stderr">
-<pre><code>Rows: 155 Columns: 5
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: ","
-chr (1): country
-dbl (4): happiness_score, GDP_per_capita, life_expectancy, freedom
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-</div>
 </div>
 <p><strong>Warning:</strong> There is one thing you have to be careful about when reading in remote data. You need to make sure you are reading in from the link corresponding to the <strong>raw</strong> data file and not the one that has been rendered for visual display.</p>
 <p><strong>Exercise:</strong> Use one or more of the commands we have covered to make sure that this has read in the data you want.</p>
@@ -748,7 +735,7 @@ dbl (4): happiness_score, GDP_per_capita, life_expectancy, freedom
 </section>
 <section id="some-data-sources" class="level2">
 <h2 class="anchored" data-anchor-id="some-data-sources">Some Data Sources</h2>
-<p>Appendix B of the online textbook contains a very helpful list of data sources <span class="citation" data-cites="alexandertelling">(<a href="#ref-alexandertelling" role="doc-biblioref">Alexander, n.d.</a>)</span>. <a href="https://tellingstorieswithdata.com/21-datasets.html">View appendix B</a>. Two other very interesting and useful sources of data are the <a href="https://github.com/rfordatascience/tidytuesday">Tidy Tuesday</a> data repositories and <a href="https://www.kaggle.com/">Kaggle</a>. There are also many R packages that either include data or that can be used to download data. The ROpenSci project is a godo resource for finding R packages that can be used to obtain data, <a href="https://ropensci.org/">view the project</a>.</p>
+<p>One thing students often struggle with is finding and picking a good data set for their projects. Appendix B of the online textbook contains a very helpful list of data sources <span class="citation" data-cites="alexandertelling">(<a href="#ref-alexandertelling" role="doc-biblioref">Alexander, n.d.</a>)</span>. <a href="https://tellingstorieswithdata.com/21-datasets.html">View appendix B</a>. Two other very interesting and useful sources of data are the <a href="https://github.com/rfordatascience/tidytuesday">Tidy Tuesday</a> data repositories and <a href="https://www.kaggle.com/">Kaggle</a>. There are also many R packages that either include data or that can be used to download data. The ROpenSci project is a godo resource for finding R packages that can be used to obtain data, <a href="https://ropensci.org/">view the project</a>.</p>
 </section>
 <section id="vectors-lists-and-data-frames" class="level2">
 <h2 class="anchored" data-anchor-id="vectors-lists-and-data-frames"><svg viewbox="0 0 581 512" style="position:relative;display:inline-block;top:.1em;fill:steelblue;height:2em;" xmlns="http://www.w3.org/2000/svg"> <path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"></path></svg> Vectors, Lists, and Data Frames</h2>
