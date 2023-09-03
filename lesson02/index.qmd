@@ -267,7 +267,7 @@ but we **cannot** create a vector that contains two numbers and one character. T
 ```{r}
 #| code-fold: false
 
-(my_chr_vect <- c(3.14,"cat","bird"))
+(my_mix_vect <- c(3.14,"cat","bird"))
 ```
 
 
@@ -286,6 +286,31 @@ While vectors are obviously useful for storing certain types of data, they are l
 
 ### Lists in R
 
+Lists are another type of R object that do allow us to mix data types. For example
+
+```{r}
+#| code-fold: false
+
+(my_mix_list <- list(3.14,"cat","bird"))
+```
+
+There is no type conversion unlike what we saw happen when we tried to create a vector of mixed types. Let's see what happens if we request the type for the elements in this list.
+
+```{r}
+#| code-fold: false
+
+typeof(my_mix_list)
+```
+
+This just tells us that we have a list which we already knew. To determine the type of each list element, we can use a command such as
+
+```{r}
+#| code-fold: false
+
+map_chr(my_mix_list,typeof)
+```
+
+Don't worry if you don't understand the last command. Later we will look at `map` type functions.   
 
 ### Data Frames in R
 
