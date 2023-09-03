@@ -355,9 +355,15 @@ The point of all this is just to explain that we functions like `read_csv` are u
 
 ## Version Control and Remote Repositories
 
-
+Version control systems track changes to a project over its lifespan, allow sharing and editing of code across a collaborative team, and make it easier to distribute the finished project to its intended audience. [Chapter 12](https://datasciencebook.ca/version-control.html) of [@timbers2022data] covers version control in detail. [View the chapter](https://datasciencebook.ca/version-control.html).
 
 ## Preparation for the next lesson
+
+For the next lesson or two, we will look at some things that one commonly does with data very soon after reading it into R. That is, 
+
+1. Manipulate or wrangle the data. 
+
+2. Conduct an exploratory data analysis (EDA). 
 
 Prior to starting the next lesson, please read [section 2.8](https://datasciencebook.ca/reading.html#obtaining-data-from-the-web) and [Chapter 3](https://datasciencebook.ca/intro.html) of [@timbers2022data], link [here](https://datasciencebook.ca/intro.html). 
 

@@ -340,7 +340,7 @@
     "href": "lesson02/index.html#preparation-for-the-next-lesson",
     "title": "Lesson 2",
     "section": "Preparation for the next lesson",
-    "text": "Preparation for the next lesson\nPrior to starting the next lesson, please read section 2.8 and Chapter 3 of (Timbers, Campbell, and Lee 2022), link here."
+    "text": "Preparation for the next lesson\nFor the next lesson or two, we will look at some things that one commonly does with data very soon after reading it into R. That is,\n\nManipulate or wrangle the data.\nConduct an exploratory data analysis (EDA).\n\nPrior to starting the next lesson, please read section 2.8 and Chapter 3 of (Timbers, Campbell, and Lee 2022), link here."
   },
   {
     "objectID": "lesson02/index.html#references",
@@ -368,6 +368,6 @@
     "href": "lesson02/index.html#version-control-and-remote-repositories",
     "title": "Lesson 2",
     "section": "Version Control and Remote Repositories",
-    "text": "Version Control and Remote Repositories"
+    "text": "Version Control and Remote Repositories\nVersion control systems track changes to a project over its lifespan, allow sharing and editing of code across a collaborative team, and make it easier to distribute the finished project to its intended audience. Chapter 12 of (Timbers, Campbell, and Lee 2022) covers version control in detail. View the chapter."
   }
 ]
