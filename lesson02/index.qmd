@@ -131,6 +131,7 @@ Now, let's read in the data saved in the files `happiness_report.csv` and `happi
 
 ```{r}
 #| eval: false
+#| code-fold: false
 
 # read in data files
 happiness_report_csv <- read_csv("data/happiness_report.csv")
@@ -152,6 +153,68 @@ It is important to confirm that we have read in what we actually wanted. There a
 5. The `summary` function in base R will provide a descriptive summary of each column in a data set. 
 
 6. The `skim` function from the `skimr` package quickly provides a broad overview of a data set. It's basically a souped-up version of `summary`.
+
+Here are the results of each of these commands (except View) run on the data read in from the `.csv` file:
+
+```{r}
+#| echo: true
+#| code-fold: false
+
+dim(happiness_report_csv)
+```
+
+
+```{r}
+#| echo: true
+#| code-fold: false
+
+glimpse(happiness_report_csv)
+```
+
+
+```{r}
+#| echo: true
+#| code-fold: false
+
+head(happiness_report_csv)
+```
+
+
+```{r}
+#| echo: true
+#| code-fold: false
+
+tail(happiness_report_csv)
+```
+
+
+```{r}
+#| echo: true
+#| code-fold: false
+#| eval: false
+
+View(happiness_report_csv)
+```
+
+
+```{r}
+#| echo: true
+#| code-fold: false
+
+summary(happiness_report_csv)
+```
+
+
+```{r}
+#| echo: true
+#| code-fold: false
+
+skimr::skim(happiness_report_csv)
+```
+
+
+
+**Exercise:** Run all these commands on the data that you read in from the Excel spreadsheet.  
 
 ## Some Data Sources
 
