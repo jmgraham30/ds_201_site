@@ -236,7 +236,7 @@ One thing students often struggle with is finding and picking a good data set fo
 
 ## `r icons::icon_style(icons::fontawesome("r-project"),scale=2,fill="steelblue")` Vectors, Lists, and Data Frames
 
-
+When tabular data is read into R from a file such as a `.csv` or an Excel spreadsheet it is represented in R by a particular data type. Specifically, tabular data in R is represented by a `data frame` or `tibble`. While we don't want to spend too much time on the technicalities of R objects, it is useful to have a brief introduction to the vector, list, and data frame objects in R. If you want to see more details then we present here, see [Chapter 5](https://rstudio-education.github.io/hopr/r-objects.html) of [@grolemund2014hands], which is freely available online. [View Chapter 5](https://rstudio-education.github.io/hopr/r-objects.html). 
 
 ## Version Control and Remote Repositories
 
