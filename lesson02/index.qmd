@@ -19,8 +19,13 @@ license: "CC BY-NC-SA 4.0"
 
 # load packages used in document
 library(tidyverse)
+library(readxl)
 library(gapminder)
 library(kableExtra)
+
+# read in data files
+happiness_report_csv <- read_csv("https://raw.githubusercontent.com/UBC-DSCI/data-science-a-first-intro-worksheets/main/worksheet_reading/data/happiness_report.csv")
+happiness_report_xl <- read_xlsx("/Users/jasongraham/Library/CloudStorage/Dropbox/WorkDocuments/Teaching/Falls/Fall2023/DS 201/happiness_report.xlsx")
 ```
 
 
@@ -112,8 +117,7 @@ The following examples assume that you are working in an active RStudio project 
 Before we can read these data files into R, we need to make sure that we install and load `readr` and `readxl`. Remember that `readr` is part of the `tidyverse` which we have already installed so you probably only need to install `readxl`. Once you have done this, you can create and run an R code chunk with the following:
 
 ```{r}
-#| warning: false
-#| message: false
+#| eval: false
 #| echo: true
 #| code-fold: false
 
@@ -123,9 +127,31 @@ library(tidyverse)
 library(readxl)
 ```
 
+Now, let's read in the data saved in the files `happiness_report.csv` and `happiness_report.xlsx`.
 
+```{r}
+#| eval: false
+
+# read in data files
+happiness_report_csv <- read_csv("data/happiness_report.csv")
+happiness_report_xl <- read_xlsx("data/happiness_report.xlsx")
+```
 
 Notice that we have assigned our data to a variable after having read it in. 
+
+It is important to confirm that we have read in what we actually wanted. There are a number of ways to confirm that the data read into R makes sense:
+
+1. The `dim` command will tell us the number of rows and columns for the data set we read in. 
+
+2. The `glimpse` command from the `dplyr`  package (included with `tidyverse`) will show a glimpse of what is in the data. Specifically, `glimpse` displays a transposed version of you tabular data along with the number of rows and columns. This command even tells you valuable information about what type of data you have in each column. This is an extremely useful function and it is recommended that you use it immediately after reading in data. 
+
+3. The `head` (`tail`) commands will display the first (last) few rows of a data set.
+
+4. The `View` command will bring up a full view of you data in a new tab in R studio. This is basically like pulling up an Excel spreadsheet in RStudio. You probably want to avoid using this function on anything other than small or maybe moderately sized data sets. 
+
+5. The `summary` function in base R will provide a descriptive summary of each column in a data set. 
+
+6. The `skim` function from the `skimr` package quickly provides a broad overview of a data set. It's basically a souped-up version of `summary`.
 
 ## Some Data Sources
 

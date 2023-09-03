@@ -310,7 +310,25 @@ div.csl-indent {
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Now, let’s read in the data saved in the files <code>happiness_report.csv</code> and <code>happiness_report.xlsx</code>.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read in data files</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>happiness_report_csv <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/happiness_report.csv"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>happiness_report_xl <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"data/happiness_report.xlsx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 <p>Notice that we have assigned our data to a variable after having read it in.</p>
+<p>It is important to confirm that we have read in what we actually wanted. There are a number of ways to confirm that the data read into R makes sense:</p>
+<ol type="1">
+<li><p>The <code>dim</code> command will tell us the number of rows and columns for the data set we read in.</p></li>
+<li><p>The <code>glimpse</code> command from the <code>dplyr</code> package (included with <code>tidyverse</code>) will show a glimpse of what is in the data. Specifically, <code>glimpse</code> displays a transposed version of you tabular data along with the number of rows and columns. This command even tells you valuable information about what type of data you have in each column. This is an extremely useful function and it is recommended that you use it immediately after reading in data.</p></li>
+<li><p>The <code>head</code> (<code>tail</code>) commands will display the first (last) few rows of a data set.</p></li>
+<li><p>The <code>View</code> command will bring up a full view of you data in a new tab in R studio. This is basically like pulling up an Excel spreadsheet in RStudio. You probably want to avoid using this function on anything other than small or maybe moderately sized data sets.</p></li>
+<li><p>The <code>summary</code> function in base R will provide a descriptive summary of each column in a data set.</p></li>
+<li><p>The <code>skim</code> function from the <code>skimr</code> package quickly provides a broad overview of a data set. It’s basically a souped-up version of <code>summary</code>.</p></li>
+</ol>
 </section>
 </section>
 <section id="some-data-sources" class="level2">
