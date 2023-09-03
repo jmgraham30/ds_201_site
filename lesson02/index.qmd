@@ -62,7 +62,7 @@ vembedr::embed_youtube(id="WyrJmJWgPiU?si=qSgJRZD4YCKy3pHL",height=450) %>%
 
 ### Some Project Tips and Tricks
 
-1. When you create a project, the name of you project and the name of the corresponding folder will be the same. So, using good naming conventions for projects. In particular, avoid the use of spaces or symbols. Make sure the name is descriptive and easy to remember but not too long. 
+1. When you create a project, the name of your project and the name of the corresponding folder will be the same so, use good naming conventions for projects. In particular, avoid the use of spaces or symbols. Make sure the name is descriptive and easy to remember but not too long. 
 
 2. If there is data for your project, it is useful to create a subfolder of your package folder called `data` where you should save all the data files relevant to your project. 
 
@@ -83,7 +83,7 @@ vembedr::embed_youtube(id="_f3latmOhew",height=450) %>%
   vembedr::use_align("center")
 ```
 
-
+In class, we will go through the steps of creating a RStudio project and a Quarto document together. 
 
 ## Reading Data into R
 
@@ -105,12 +105,29 @@ The `readr` package included as part of the `tidyverse` family of R packages con
 
 ### Examples
 
+The following examples assume that you are working in an active RStudio project that contains a subfolder titled `data` and that you have downloaded and saved the files `happiness_report.csv` and `happiness_report.xlsx` to the data folder. These are all data files for tabular data that ranks countries on happiness based on rationalized factors like economic growth, social support, etc. The data was released by the United Nations at an event celebrating International Day of Happiness. 
 
+Before we can read these data files into R, we need to make sure that we install and load `readr` and `readxl`. Remember that `readr` is part of the `tidyverse` which we have already installed so you probably only need to install `readxl`. Once you have done this, you can create and run an R code chunk with the following:
+
+```{r}
+# load necessary packages
+library(tidyverse)
+library(readxl)
+```
+
+
+
+Notice that we have assigned our data to a variable after having read it in. 
 
 ## Some Data Sources
 
+Appendix B of the online textbook contains a very helpful list of data sources [@alexandertelling]. [View appendix B](https://tellingstorieswithdata.com/21-datasets.html). Two other very interesting and useful sources of data are the [Tidy Tuesday](https://github.com/rfordatascience/tidytuesday) data repositories and [Kaggle](https://www.kaggle.com/). There are also many R packages that either include data or that can be used to download data. The ROpenSci project is a godo resource for finding R packages that can be used to obtain data, [view the project](https://ropensci.org/).
 
 ## `r icons::icon_style(icons::fontawesome("r-project"),scale=2,fill="steelblue")` Vectors, Lists, and Data Frames
+
+
+
+## Version Control and Remote Repositories
 
 
 
