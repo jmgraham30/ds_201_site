@@ -307,14 +307,51 @@ This just tells us that we have a list which we already knew. To determine the t
 ```{r}
 #| code-fold: false
 
-map_chr(my_mix_list,typeof)
+map(my_mix_list,typeof)
 ```
 
 Don't worry if you don't understand the last command. Later we will look at `map` type functions which belong to the package `purrr`.   
 
+Lists are extremely useful and many functions such as the function `map` we just used actually return a list. Two things we can do with lists are will be very useful for us in this course are:
+
+1. Give names to the elements of a list.
+
+2. Store vectors (and even more complicated objects) as the elements in a list. 
+
+For example:
+
+```{r}
+#| code-fold: false
+
+(my_vector_list <- list(my_num_vect = c(1.2,6.8,-13.9),
+                       my_chr_vect = c("dog","cat","bird")))
+```
+
+Then we can access the elements in the list `my_vector_list` using the accessor operator denoted by `$`. For example
+
+```{r}
+#| code-fold: false
+
+(my_vector_list$my_num_vect)
+
+(my_vector_list$my_chr_vect)
+
+```
+
 ### Data Frames in R
 
+A data frame in R is nothing other than a list where each element of the list is a vector such that all the vectors in the list have the same length. We can create a date frame is much the same way that we just created the list that contains two vectors:
 
+```{r}
+#| code-fold: false
+
+(my_df <- data.frame(col_a = c(1.2,6.8,-13.9),
+                       col_b = c("dog","cat","bird")))
+```
+
+Notice that `my_df` contains exactly the same information that `my_vector_list` does. The only real difference is the way in which the results are displayed. 
+
+The point of all this is just to explain that we functions like `read_csv` are used to read in tabular data, R stores the result as a data frame. Actually, since `read_csv` belongs to the `tidyverse` it reads in the data as something called a `tibble`. For our purposes, we can think of data frames and tibbles as being more or less the same things. If you want to know more about tibbles, see section 3.6 from [@wickham2019advanced], [view the section](https://adv-r.hadley.nz/vectors-chap.html#tibble). 
 
 ## Version Control and Remote Repositories
 

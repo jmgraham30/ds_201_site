@@ -808,15 +808,63 @@ freedom
 </div>
 <p>This just tells us that we have a list which we already knew. To determine the type of each list element, we can use a command such as</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">map_chr</span>(my_mix_list,typeof)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span>(my_mix_list,typeof)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "double"    "character" "character"</code></pre>
+<pre><code>[[1]]
+[1] "double"
+
+[[2]]
+[1] "character"
+
+[[3]]
+[1] "character"</code></pre>
 </div>
 </div>
 <p>Don’t worry if you don’t understand the last command. Later we will look at <code>map</code> type functions which belong to the package <code>purrr</code>.</p>
+<p>Lists are extremely useful and many functions such as the function <code>map</code> we just used actually return a list. Two things we can do with lists are will be very useful for us in this course are:</p>
+<ol type="1">
+<li><p>Give names to the elements of a list.</p></li>
+<li><p>Store vectors (and even more complicated objects) as the elements in a list.</p></li>
+</ol>
+<p>For example:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>(my_vector_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">my_num_vect =</span> <span class="fu">c</span>(<span class="fl">1.2</span>,<span class="fl">6.8</span>,<span class="sc">-</span><span class="fl">13.9</span>),</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">my_chr_vect =</span> <span class="fu">c</span>(<span class="st">"dog"</span>,<span class="st">"cat"</span>,<span class="st">"bird"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$my_num_vect
+[1]   1.2   6.8 -13.9
+
+$my_chr_vect
+[1] "dog"  "cat"  "bird"</code></pre>
+</div>
+</div>
+<p>Then we can access the elements in the list <code>my_vector_list</code> using the accessor operator denoted by <code>$</code>. For example</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>(my_vector_list<span class="sc">$</span>my_num_vect)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]   1.2   6.8 -13.9</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>(my_vector_list<span class="sc">$</span>my_chr_vect)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "dog"  "cat"  "bird"</code></pre>
+</div>
+</div>
 </section>
 <section id="data-frames-in-r" class="level3">
 <h3 class="anchored" data-anchor-id="data-frames-in-r">Data Frames in R</h3>
+<p>A data frame in R is nothing other than a list where each element of the list is a vector such that all the vectors in the list have the same length. We can create a date frame is much the same way that we just created the list that contains two vectors:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>(my_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">col_a =</span> <span class="fu">c</span>(<span class="fl">1.2</span>,<span class="fl">6.8</span>,<span class="sc">-</span><span class="fl">13.9</span>),</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">col_b =</span> <span class="fu">c</span>(<span class="st">"dog"</span>,<span class="st">"cat"</span>,<span class="st">"bird"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  col_a col_b
+1   1.2   dog
+2   6.8   cat
+3 -13.9  bird</code></pre>
+</div>
+</div>
+<p>Notice that <code>my_df</code> contains exactly the same information that <code>my_vector_list</code> does. The only real difference is the way in which the results are displayed.</p>
+<p>The point of all this is just to explain that we functions like <code>read_csv</code> are used to read in tabular data, R stores the result as a data frame. Actually, since <code>read_csv</code> belongs to the <code>tidyverse</code> it reads in the data as something called a <code>tibble</code>. For our purposes, we can think of data frames and tibbles as being more or less the same things. If you want to know more about tibbles, see section 3.6 from <span class="citation" data-cites="wickham2019advanced">(<a href="#ref-wickham2019advanced" role="doc-biblioref">Wickham 2019</a>)</span>, <a href="https://adv-r.hadley.nz/vectors-chap.html#tibble">view the section</a>.</p>
 </section>
 </section>
 <section id="version-control-and-remote-repositories" class="level2">
@@ -840,6 +888,9 @@ Mock, J. Thomas. 2018. <span>“Tidy Tuesday.”</span> <em>GitHub Repository</e
 </div>
 <div id="ref-timbers2022data" class="csl-entry" role="listitem">
 Timbers, Tiffany, Trevor Campbell, and Melissa Lee. 2022. <em>Data Science: A First Introduction</em>. CRC Press.
+</div>
+<div id="ref-wickham2019advanced" class="csl-entry" role="listitem">
+Wickham, Hadley. 2019. <em>Advanced r</em>. CRC press.
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
