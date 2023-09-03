@@ -32,7 +32,7 @@ After this lesson, students will be able to:
 
 * Work in a Quarto document.
 
-* Read into R tabular data.
+* Read tabular data into R.
 
 * Use the `glimpse` command and other R functions to examine data read into R.  
 
