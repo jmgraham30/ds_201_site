@@ -310,7 +310,7 @@ This just tells us that we have a list which we already knew. To determine the t
 map_chr(my_mix_list,typeof)
 ```
 
-Don't worry if you don't understand the last command. Later we will look at `map` type functions.   
+Don't worry if you don't understand the last command. Later we will look at `map` type functions which belong to the package `purrr`.   
 
 ### Data Frames in R
 
