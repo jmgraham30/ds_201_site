@@ -725,6 +725,25 @@ freedom
 </div>
 <p><strong>Question:</strong> What useful information is provided by the output from each of these commands?</p>
 <p><strong>Exercise:</strong> Run all these commands on the data that you read in from the Excel spreadsheet.</p>
+<p>We end this section by noting that the data file <code>happiness_report.csv</code> is also stored in a remote repository, <a href="https://github.com/UBC-DSCI/data-science-a-first-intro-worksheets/blob/main/worksheet_reading/data/happiness_report.csv">view the repository</a>. Since this repository has a corresponding url address, we can read the data in directly from the web:</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>happiness_report_csv_url <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://raw.githubusercontent.com/UBC-DSCI/data-science-a-first-intro-worksheets/main/worksheet_reading/data/happiness_report.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 155 Columns: 5
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (1): country
+dbl (4): happiness_score, GDP_per_capita, life_expectancy, freedom
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+</div>
+<p><strong>Warning:</strong> There is one thing you have to be careful about when reading in remote data. You need to make sure you are reading in from the link corresponding to the <strong>raw</strong> data file and not the one that has been rendered for visual display.</p>
+<p><strong>Exercise:</strong> Use one or more of the commands we have covered to make sure that this has read in the data you want.</p>
 </section>
 </section>
 <section id="some-data-sources" class="level2">
@@ -739,7 +758,7 @@ freedom
 </section>
 <section id="preparation-for-the-next-lesson" class="level2">
 <h2 class="anchored" data-anchor-id="preparation-for-the-next-lesson">Preparation for the next lesson</h2>
-<p>Prior to starting the next lesson, please read <a href="https://datasciencebook.ca/intro.html">Chapter 3</a> of <span class="citation" data-cites="timbers2022data">(<a href="#ref-timbers2022data" role="doc-biblioref">Timbers, Campbell, and Lee 2022</a>)</span>, link <a href="https://datasciencebook.ca/intro.html">here</a>.</p>
+<p>Prior to starting the next lesson, please read <a href="https://datasciencebook.ca/reading.html#obtaining-data-from-the-web">section 2.8</a> and <a href="https://datasciencebook.ca/intro.html">Chapter 3</a> of <span class="citation" data-cites="timbers2022data">(<a href="#ref-timbers2022data" role="doc-biblioref">Timbers, Campbell, and Lee 2022</a>)</span>, link <a href="https://datasciencebook.ca/intro.html">here</a>.</p>
 </section>
 <section id="references" class="level2">
 <h2 class="anchored" data-anchor-id="references">References</h2>

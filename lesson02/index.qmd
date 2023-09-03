@@ -216,6 +216,16 @@ skimr::skim(happiness_report_csv)
 
 **Exercise:** Run all these commands on the data that you read in from the Excel spreadsheet.  
 
+We end this section by noting that the data file `happiness_report.csv` is also stored in a remote repository, [view the repository](https://github.com/UBC-DSCI/data-science-a-first-intro-worksheets/blob/main/worksheet_reading/data/happiness_report.csv). Since this repository has a corresponding url address, we can read the data in directly from the web:
+
+```{r}
+happiness_report_csv_url <- read_csv("https://raw.githubusercontent.com/UBC-DSCI/data-science-a-first-intro-worksheets/main/worksheet_reading/data/happiness_report.csv")
+```
+
+**Warning:** There is one thing you have to be careful about when reading in remote data. You need to make sure you are reading in from the link corresponding to the **raw** data file and not the one that has been rendered for visual display. 
+
+**Exercise:** Use one or more of the commands we have covered to make sure that this has read in the data you want. 
+
 ## Some Data Sources
 
 Appendix B of the online textbook contains a very helpful list of data sources [@alexandertelling]. [View appendix B](https://tellingstorieswithdata.com/21-datasets.html). Two other very interesting and useful sources of data are the [Tidy Tuesday](https://github.com/rfordatascience/tidytuesday) data repositories and [Kaggle](https://www.kaggle.com/). There are also many R packages that either include data or that can be used to download data. The ROpenSci project is a godo resource for finding R packages that can be used to obtain data, [view the project](https://ropensci.org/).
@@ -230,7 +240,7 @@ Appendix B of the online textbook contains a very helpful list of data sources [
 
 ## Preparation for the next lesson
 
-Prior to starting the next lesson, please read [Chapter 3](https://datasciencebook.ca/intro.html) of [@timbers2022data], link [here](https://datasciencebook.ca/intro.html). 
+Prior to starting the next lesson, please read [section 2.8](https://datasciencebook.ca/reading.html#obtaining-data-from-the-web) and [Chapter 3](https://datasciencebook.ca/intro.html) of [@timbers2022data], link [here](https://datasciencebook.ca/intro.html). 
 
 ## References
 
