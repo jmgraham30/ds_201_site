@@ -112,6 +112,12 @@ The following examples assume that you are working in an active RStudio project 
 Before we can read these data files into R, we need to make sure that we install and load `readr` and `readxl`. Remember that `readr` is part of the `tidyverse` which we have already installed so you probably only need to install `readxl`. Once you have done this, you can create and run an R code chunk with the following:
 
 ```{r}
+#| warning: false
+#| message: false
+#| echo: true
+#| code-fold: false
+
+
 # load necessary packages
 library(tidyverse)
 library(readxl)
