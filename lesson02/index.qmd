@@ -238,6 +238,59 @@ One thing students often struggle with is finding and picking a good data set fo
 
 When tabular data is read into R from a file such as a `.csv` or an Excel spreadsheet it is represented in R by a particular data type. Specifically, tabular data in R is represented by a `data frame` or `tibble`. While we don't want to spend too much time on the technicalities of R objects, it is useful to have a brief introduction to the vector, list, and data frame objects in R. If you want to see more details then we present here, see [Chapter 5](https://rstudio-education.github.io/hopr/r-objects.html) of [@grolemund2014hands], which is freely available online. [View Chapter 5](https://rstudio-education.github.io/hopr/r-objects.html). 
 
+### Vectors in R
+
+In our last class, we were exposed to vectors in R through the first lesson in the *R Programming* swirl available through the `swirl` package. The most important thing to remember about vectors in R is
+
+1. How to create them.
+
+2. That a vector can only hold values of the same type. 
+
+For example, we can create a vector with three numeric values and store it as a variable `my_num_vect` using
+
+```{r}
+#| code-fold: false
+
+(my_num_vect <- c(1.2,6.8,-13.9))
+```
+
+We can create a vector with three character values and store it as a variable `my_chr_vect` using
+
+```{r}
+#| code-fold: false
+
+(my_chr_vect <- c("dog","cat","bird"))
+```
+
+but we **cannot** create a vector that contains two numbers and one character. That is, we can't mix types in a vector. Let's see what happens if we try it:
+
+```{r}
+#| code-fold: false
+
+(my_chr_vect <- c(3.14,"cat","bird"))
+```
+
+
+**Exercise:** Examine the output from the last command and explain what happened.
+
+Note that you can determine the type for elements of a vector using the `typeof` command. For example,
+
+```{r}
+#| code-fold: false
+
+typeof(my_num_vect)
+```
+
+
+While vectors are obviously useful for storing certain types of data, they are limited for most purposes because data sets like the tabular data sets we've loaded into R are made up of a mixture of different types of values. 
+
+### Lists in R
+
+
+### Data Frames in R
+
+
+
 ## Version Control and Remote Repositories
 
 
