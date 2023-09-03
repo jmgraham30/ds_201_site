@@ -298,14 +298,14 @@
     "href": "lesson02/index.html",
     "title": "Lesson 2",
     "section": "",
-    "text": "After this lesson, students will be able to:\n\nSet up an RStudio project.\nWork in a Quarto document.\nRead tabular data into R.\nUse the glimpse command and other R functions to examine data read into R."
+    "text": "After this lesson, students will be able to:\n\nSet up an RStudio project.\nWork in a Quarto document.\nRead tabular data into R.\nUse the glimpse command and other R functions to examine data read into R.\nDescribe what version control is and why data analysis projects can benefit from it."
   },
   {
     "objectID": "lesson02/index.html#learning-objectives",
     "href": "lesson02/index.html#learning-objectives",
     "title": "Lesson 2",
     "section": "",
-    "text": "After this lesson, students will be able to:\n\nSet up an RStudio project.\nWork in a Quarto document.\nRead tabular data into R.\nUse the glimpse command and other R functions to examine data read into R."
+    "text": "After this lesson, students will be able to:\n\nSet up an RStudio project.\nWork in a Quarto document.\nRead tabular data into R.\nUse the glimpse command and other R functions to examine data read into R.\nDescribe what version control is and why data analysis projects can benefit from it."
   },
   {
     "objectID": "lesson02/index.html#readings-etc.",
@@ -368,6 +368,6 @@
     "href": "lesson02/index.html#version-control-and-remote-repositories",
     "title": "Lesson 2",
     "section": "Version Control and Remote Repositories",
-    "text": "Version Control and Remote Repositories\nVersion control systems track changes to a project over its lifespan, allow sharing and editing of code across a collaborative team, and make it easier to distribute the finished project to its intended audience. Chapter 12 of (Timbers, Campbell, and Lee 2022) covers version control in detail. View the chapter."
+    "text": "Version Control and Remote Repositories\nVersion control systems track changes to a project over its lifespan, allow sharing and editing of code across a collaborative team, and make it easier to distribute the finished project to its intended audience. Chapter 12 of (Timbers, Campbell, and Lee 2022) covers version control in detail. Let’s examine this chapter."
   }
 ]

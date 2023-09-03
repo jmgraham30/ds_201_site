@@ -39,7 +39,9 @@ After this lesson, students will be able to:
 
 * Read tabular data into R.
 
-* Use the `glimpse` command and other R functions to examine data read into R.  
+* Use the `glimpse` command and other R functions to examine data read into R.
+
+* Describe what version control is and why data analysis projects can benefit from it.
 
 ## Readings, etc.
 
@@ -355,7 +357,7 @@ The point of all this is just to explain that we functions like `read_csv` are u
 
 ## Version Control and Remote Repositories
 
-Version control systems track changes to a project over its lifespan, allow sharing and editing of code across a collaborative team, and make it easier to distribute the finished project to its intended audience. [Chapter 12](https://datasciencebook.ca/version-control.html) of [@timbers2022data] covers version control in detail. [View the chapter](https://datasciencebook.ca/version-control.html).
+Version control systems track changes to a project over its lifespan, allow sharing and editing of code across a collaborative team, and make it easier to distribute the finished project to its intended audience. [Chapter 12](https://datasciencebook.ca/version-control.html) of [@timbers2022data] covers version control in detail. [Let's examine this chapter](https://datasciencebook.ca/version-control.html).
 
 ## Preparation for the next lesson
 
