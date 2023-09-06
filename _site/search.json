@@ -369,5 +369,40 @@
     "title": "Lesson 2",
     "section": "Version Control and Remote Repositories",
     "text": "Version Control and Remote Repositories\nVersion control systems track changes to a project over its lifespan, allow sharing and editing of code across a collaborative team, and make it easier to distribute the finished project to its intended audience. Chapter 12 of (Timbers, Campbell, and Lee 2022) covers version control in detail. Let’s examine this chapter."
+  },
+  {
+    "objectID": "lesson03/index.html",
+    "href": "lesson03/index.html",
+    "title": "Lesson 3",
+    "section": "",
+    "text": "After this lesson, students will be able to:"
+  },
+  {
+    "objectID": "lesson03/index.html#learning-objectives",
+    "href": "lesson03/index.html#learning-objectives",
+    "title": "Lesson 3",
+    "section": "",
+    "text": "After this lesson, students will be able to:"
+  },
+  {
+    "objectID": "lesson03/index.html#readings-etc.",
+    "href": "lesson03/index.html#readings-etc.",
+    "title": "Lesson 3",
+    "section": "Readings, etc.",
+    "text": "Readings, etc.\nFor this lesson, refer to the following readings, etc.:\n\nChapter 3 of Data Science: A First Introduction by Tiffany Timbers, Trevor Campbell, and Melissa Lee (Timbers, Campbell, and Lee 2022). View the free online version of the text..\nThe TidyTuesday data repository (Mock 2018)."
+  },
+  {
+    "objectID": "lesson03/index.html#preparation-for-the-next-lesson",
+    "href": "lesson03/index.html#preparation-for-the-next-lesson",
+    "title": "Lesson 3",
+    "section": "Preparation for the next lesson",
+    "text": "Preparation for the next lesson\nFor the next lesson we will begin discussing the exploratory data analysis (EDA) process starting with some data visualization.\nPrior to starting the next lesson, please read Chapter 4 of (Timbers, Campbell, and Lee 2022), link here."
+  },
+  {
+    "objectID": "lesson03/index.html#references",
+    "href": "lesson03/index.html#references",
+    "title": "Lesson 3",
+    "section": "References",
+    "text": "References\n\n\nMock, J. Thomas. 2018. “Tidy Tuesday.” GitHub Repository. https://github.com/rfordatascience/tidytuesday; GitHub.\n\n\nTimbers, Tiffany, Trevor Campbell, and Melissa Lee. 2022. Data Science: A First Introduction. CRC Press.\n\n\n\n\n\n\n\n\nExpand for Session Info\n\n\n\n\n\n\n\n─ Session info ───────────────────────────────────────────────────────────────\n setting  value\n version  R version 4.3.1 (2023-06-16)\n os       macOS Ventura 13.5.1\n system   aarch64, darwin20\n ui       X11\n language (EN)\n collate  en_US.UTF-8\n ctype    en_US.UTF-8\n tz       America/New_York\n date     2023-09-06\n pandoc   3.1.1 @ /Applications/RStudio.app/Contents/Resources/app/quarto/bin/tools/ (via rmarkdown)\n quarto   1.3.450 @ /usr/local/bin/quarto\n\n─ Packages ───────────────────────────────────────────────────────────────────\n package     * version date (UTC) lib source\n dplyr       * 1.1.3   2023-09-03 [1] CRAN (R 4.3.0)\n forcats     * 1.0.0   2023-01-29 [1] CRAN (R 4.3.0)\n gapminder   * 1.0.0   2023-03-10 [1] CRAN (R 4.3.0)\n ggplot2     * 3.4.3   2023-08-14 [1] CRAN (R 4.3.0)\n kableExtra  * 1.3.4   2021-02-20 [1] CRAN (R 4.3.0)\n lubridate   * 1.9.2   2023-02-10 [1] CRAN (R 4.3.0)\n purrr       * 1.0.2   2023-08-10 [1] CRAN (R 4.3.0)\n readr       * 2.1.4   2023-02-10 [1] CRAN (R 4.3.0)\n readxl      * 1.4.3   2023-07-06 [1] CRAN (R 4.3.0)\n sessioninfo * 1.2.2   2021-12-06 [1] CRAN (R 4.3.0)\n stringr     * 1.5.0   2022-12-02 [1] CRAN (R 4.3.0)\n tibble      * 3.2.1   2023-03-20 [1] CRAN (R 4.3.0)\n tidyr       * 1.3.0   2023-01-24 [1] CRAN (R 4.3.0)\n tidyverse   * 2.0.0   2023-02-22 [1] CRAN (R 4.3.0)\n\n [1] /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library\n\n──────────────────────────────────────────────────────────────────────────────"
   }
 ]

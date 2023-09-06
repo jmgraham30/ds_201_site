@@ -1,0 +1,90 @@
+---
+title: "Lesson 3"
+subtitle: "Data Wrangling"
+author: "JMG"
+format:
+  html:
+    code-fold: true
+    code-summary: "Show the code"
+    toc: true
+    toc-location: left
+bibliography: lesson03.bib
+license: "CC BY-NC-SA 4.0"
+---
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+# load packages used in document
+library(tidyverse)
+library(readxl)
+library(gapminder)
+library(kableExtra)
+
+# read in data files
+happiness_report_csv <- read_csv("https://raw.githubusercontent.com/UBC-DSCI/data-science-a-first-intro-worksheets/main/worksheet_reading/data/happiness_report.csv")
+happiness_report_xl <- read_xlsx("/Users/jasongraham/Library/CloudStorage/Dropbox/WorkDocuments/Teaching/Falls/Fall2023/DS 201/happiness_report.xlsx")
+```
+
+
+## Learning Objectives
+
+After this lesson, students will be able to: 
+
+* 
+
+## Readings, etc.
+
+For this lesson, refer to the following readings, etc.:
+
+* Chapter 3 of *Data Science: A First Introduction* by Tiffany Timbers, Trevor Campbell, and Melissa Lee [@timbers2022data]. [View the free online version of the text.](https://datasciencebook.ca/).
+
+* The TidyTuesday data repository [@TT].
+
+
+
+
+## Preparation for the next lesson
+
+For the next lesson we will begin discussing the exploratory data analysis (EDA) process starting with some data visualization. 
+
+Prior to starting the next lesson, please read [Chapter 4](https://datasciencebook.ca/intro.html) of [@timbers2022data], link [here](https://datasciencebook.ca/intro.html). 
+
+## References
+
+::: {#refs}
+:::
+
+
+:::{.callout-tip collapse="true"}
+## Expand for Session Info
+```{r}
+#| echo: false
+
+
+library(sessioninfo)
+# save the session info as an object
+pkg_sesh <- session_info(pkgs = "attached")
+
+# get the quarto version
+quarto_version <- system("quarto --version", intern = TRUE)
+
+# inject the quarto info
+pkg_sesh$platform$quarto <- paste(
+  system("quarto --version", intern = TRUE), 
+  "@", 
+  quarto::quarto_path()
+  )
+
+# print it out
+pkg_sesh
+```
+
+:::
+
+
+[![](http://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png?raw=1){fig-align="left" width=15%}](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode)
+
+
