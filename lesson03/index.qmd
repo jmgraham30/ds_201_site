@@ -33,7 +33,13 @@ happiness_report_xl <- read_xlsx("/Users/jasongraham/Library/CloudStorage/Dropbo
 
 After this lesson, students will be able to: 
 
-* 
+* Use the `dplyr` functions  `select` and `filter` to manipulate rows and columns of a data frame. 
+
+* Use the `mutate` function to add new columns to a data frame. 
+
+* Use `group_by` to group observations in one or more columns of a data frame by a grouping variable.
+
+* Use `pivot_longer` and `pivot_wider` functions to perform certain types of reorganizations of a data frame. 
 
 ## Readings, etc.
 
