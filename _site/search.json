@@ -375,14 +375,14 @@
     "href": "lesson03/index.html",
     "title": "Lesson 3",
     "section": "",
-    "text": "After this lesson, students will be able to:\n\nUse the dplyr functions select and filter to manipulate rows and columns of a data frame.\nUse the mutate function to add new columns to a data frame.\nUse group_by to group observations in one or more columns of a data frame by a grouping variable.\nUse pivot_longer and pivot_wider functions to perform certain types of reorganizations of a data frame."
+    "text": "After this lesson, students will be able to:\n\nUse the dplyr functions select and filter to manipulate rows and columns of a data frame.\nUse the mutate function to add new columns to a data frame.\nUse group_by to group observations in one or more columns of a data frame by a grouping variable.\nUse the summarize function with the group_by function to compute grouped summaries.\nUse pivot_longer and pivot_wider functions to perform certain types of reorganizations of a data frame."
   },
   {
     "objectID": "lesson03/index.html#learning-objectives",
     "href": "lesson03/index.html#learning-objectives",
     "title": "Lesson 3",
     "section": "",
-    "text": "After this lesson, students will be able to:\n\nUse the dplyr functions select and filter to manipulate rows and columns of a data frame.\nUse the mutate function to add new columns to a data frame.\nUse group_by to group observations in one or more columns of a data frame by a grouping variable.\nUse pivot_longer and pivot_wider functions to perform certain types of reorganizations of a data frame."
+    "text": "After this lesson, students will be able to:\n\nUse the dplyr functions select and filter to manipulate rows and columns of a data frame.\nUse the mutate function to add new columns to a data frame.\nUse group_by to group observations in one or more columns of a data frame by a grouping variable.\nUse the summarize function with the group_by function to compute grouped summaries.\nUse pivot_longer and pivot_wider functions to perform certain types of reorganizations of a data frame."
   },
   {
     "objectID": "lesson03/index.html#readings-etc.",
