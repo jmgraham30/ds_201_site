@@ -49,6 +49,8 @@ For this lesson, refer to the following readings, etc.:
 
 * Chapter 3 of *Data Science: A First Introduction* by Tiffany Timbers, Trevor Campbell, and Melissa Lee [@timbers2022data]. [View the free online version of the text.](https://datasciencebook.ca/).
 
+* Chapter 5 of *R for Data Science* by Wickham and Grolemund [@wickham2023r]. [View the chapter online](https://r4ds.had.co.nz/transform.html)
+
 * The TidyTuesday data repository [@TT].
 
 
