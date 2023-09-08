@@ -410,6 +410,13 @@
     "href": "lesson03/index.html#overview",
     "title": "Lesson 3",
     "section": "Overview",
-    "text": "Overview\nReal world data rarely comes in exactly the right form for the analysis you want to do. This has led to the implementation of methods that facilitate manipulating data in a way that allows us to more easily address some of the common problems with data sets."
+    "text": "Overview\nReal world data rarely comes in exactly the right form for the analysis you want to do. This has led to the implementation of methods that facilitate manipulating data in a way that allows us to more easily address some of the common problems with data sets. In this lesson, we will introduce such methods which include but are not limited to\n\nselecting certain rows or columns of tabular data\ncreating new variables or column, often by transforming existing ones\ngrouping or arranging observations\nreshaping parts of the data\njoining multiple tabular data sets\n\nA particularly common application of these methods is to get data into an appropriate shape required for a particular type of plot, visualization, or summary.\nThe R package dplyr which belongs to the tidyverse family of packages is one of the available implementations of the common data manipulation methods. The dplyr package is robust, well-documented, easy-to-use, and efficient so we will explore it in this lesson. It is worth it to take a moment to visit the ‘dplyr’ website as it contains helpful information and resources, view the webpage."
+  },
+  {
+    "objectID": "lesson03/index.html#data-for-the-lesson",
+    "href": "lesson03/index.html#data-for-the-lesson",
+    "title": "Lesson 3",
+    "section": "Data For the Lesson",
+    "text": "Data For the Lesson\nIn this lesson, we will make use of a few data sets. This includes:\n\nThe Gapminder data set which is available in R through the gapminder package. To refresh our memories, let’s examine the first few rows of the Gapminder data:\n\n\n\nCode\ngapminder %&gt;%\n  head() %&gt;%\n  kable()\n\n\n\n\n\ncountry\ncontinent\nyear\nlifeExp\npop\ngdpPercap\n\n\n\n\nAfghanistan\nAsia\n1952\n28.801\n8425333\n779.4453\n\n\nAfghanistan\nAsia\n1957\n30.332\n9240934\n820.8530\n\n\nAfghanistan\nAsia\n1962\n31.997\n10267083\n853.1007\n\n\nAfghanistan\nAsia\n1967\n34.020\n11537966\n836.1971\n\n\nAfghanistan\nAsia\n1972\n36.088\n13079460\n739.9811\n\n\nAfghanistan\nAsia\n1977\n38.438\n14880372\n786.1134"
   }
 ]

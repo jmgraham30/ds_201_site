@@ -21,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 /* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
@@ -141,6 +175,7 @@ div.csl-indent {
   <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives">Learning Objectives</a></li>
   <li><a href="#readings-etc." id="toc-readings-etc." class="nav-link" data-scroll-target="#readings-etc.">Readings, etc.</a></li>
   <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#data-for-the-lesson" id="toc-data-for-the-lesson" class="nav-link" data-scroll-target="#data-for-the-lesson">Data For the Lesson</a></li>
   <li><a href="#preparation-for-the-next-lesson" id="toc-preparation-for-the-next-lesson" class="nav-link" data-scroll-target="#preparation-for-the-next-lesson">Preparation for the next lesson</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
@@ -200,7 +235,97 @@ div.csl-indent {
 </section>
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>Real world data rarely comes in exactly the right form for the analysis you want to do. This has led to the implementation of methods that facilitate manipulating data in a way that allows us to more easily address some of the common problems with data sets.</p>
+<p>Real world data rarely comes in exactly the right form for the analysis you want to do. This has led to the implementation of methods that facilitate manipulating data in a way that allows us to more easily address some of the common problems with data sets. In this lesson, we will introduce such methods which include but are not limited to</p>
+<ul>
+<li><p>selecting certain rows or columns of tabular data</p></li>
+<li><p>creating new variables or column, often by transforming existing ones</p></li>
+<li><p>grouping or arranging observations</p></li>
+<li><p>reshaping parts of the data</p></li>
+<li><p>joining multiple tabular data sets</p></li>
+</ul>
+<p>A particularly common application of these methods is to get data into an appropriate shape required for a particular type of plot, visualization, or summary.</p>
+<p>The R package <code>dplyr</code> which belongs to the <code>tidyverse</code> family of packages is one of the available implementations of the common data manipulation methods. The <code>dplyr</code> package is robust, well-documented, easy-to-use, and efficient so we will explore it in this lesson. It is worth it to take a moment to visit the <a href="https://dplyr.tidyverse.org/">‘dplyr’ website</a> as it contains helpful information and resources, <a href="https://dplyr.tidyverse.org/">view the webpage</a>.</p>
+</section>
+<section id="data-for-the-lesson" class="level2">
+<h2 class="anchored" data-anchor-id="data-for-the-lesson">Data For the Lesson</h2>
+<p>In this lesson, we will make use of a few data sets. This includes:</p>
+<ul>
+<li>The Gapminder data set which is available in R through the <code>gapminder</code> package. To refresh our memories, let’s examine the first few rows of the Gapminder data:</li>
+</ul>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">%&gt;%</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">country</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">continent</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">year</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">lifeExp</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">pop</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">gdpPercap</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: left;">Asia</td>
+<td style="text-align: right;">1952</td>
+<td style="text-align: right;">28.801</td>
+<td style="text-align: right;">8425333</td>
+<td style="text-align: right;">779.4453</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: left;">Asia</td>
+<td style="text-align: right;">1957</td>
+<td style="text-align: right;">30.332</td>
+<td style="text-align: right;">9240934</td>
+<td style="text-align: right;">820.8530</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: left;">Asia</td>
+<td style="text-align: right;">1962</td>
+<td style="text-align: right;">31.997</td>
+<td style="text-align: right;">10267083</td>
+<td style="text-align: right;">853.1007</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: left;">Asia</td>
+<td style="text-align: right;">1967</td>
+<td style="text-align: right;">34.020</td>
+<td style="text-align: right;">11537966</td>
+<td style="text-align: right;">836.1971</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: left;">Asia</td>
+<td style="text-align: right;">1972</td>
+<td style="text-align: right;">36.088</td>
+<td style="text-align: right;">13079460</td>
+<td style="text-align: right;">739.9811</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: left;">Asia</td>
+<td style="text-align: right;">1977</td>
+<td style="text-align: right;">38.438</td>
+<td style="text-align: right;">14880372</td>
+<td style="text-align: right;">786.1134</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
 </section>
 <section id="preparation-for-the-next-lesson" class="level2">
 <h2 class="anchored" data-anchor-id="preparation-for-the-next-lesson">Preparation for the next lesson</h2>
