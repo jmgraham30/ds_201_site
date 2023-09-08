@@ -43,6 +43,8 @@ After this lesson, students will be able to:
 
 * Use `pivot_longer` and `pivot_wider` functions to perform certain types of reorganizations of a data frame. 
 
+* Use the `join` family of functions to combine separate data sets into one. 
+
 ## Readings, etc.
 
 For this lesson, refer to the following readings, etc.:
@@ -53,6 +55,9 @@ For this lesson, refer to the following readings, etc.:
 
 * The TidyTuesday data repository [@TT].
 
+## Overview
+
+Real world data rarely comes in exactly the right form for the analysis you want to do. This has led to the implementation of methods that facilitate manipulating data in a way that allows us to more easily address some of the common problems with data sets.   
 
 
 
