@@ -4,7 +4,8 @@ subtitle: "Data Wrangling"
 author: "JMG"
 format:
   html:
-    code-fold: true
+    echo: true
+    code-fold: false
     code-summary: "Show the code"
     toc: true
     toc-location: left
@@ -73,7 +74,7 @@ Real world data rarely comes in exactly the right form for the analysis you want
 
 A particularly common application of these methods is to get data into an appropriate shape required for a particular type of plot, visualization, or summary. 
 
-The R package `dplyr` which belongs to the `tidyverse` family of packages is one of the available implementations of the common data manipulation methods. The `dplyr` package is robust, well-documented, easy-to-use, and efficient so we will explore it in this lesson. It is worth it to take a moment to visit the ['dplyr' website](https://dplyr.tidyverse.org/) as it contains helpful information and resources, [view the webpage](https://dplyr.tidyverse.org/). 
+The R package `dplyr` which belongs to the `tidyverse` family of packages is one of the available implementations of the common data manipulation methods [@dplyr]. The `dplyr` package is robust, well-documented, easy-to-use, and efficient so we will explore it in this lesson. It is worth it to take a moment to visit the ['dplyr' website](https://dplyr.tidyverse.org/) as it contains helpful information and resources, [view the webpage](https://dplyr.tidyverse.org/). 
 
 ## Data For the Lesson
 
@@ -82,6 +83,9 @@ In this lesson, we will make use of a few data sets. This includes:
 * The Gapminder data set which is available in R through the `gapminder` package. To refresh our memories, let's examine the first few rows of the Gapminder data:
 
 ```{r}
+#| echo: false
+
+
 gapminder %>%
   head() %>%
   kable()
@@ -118,11 +122,26 @@ which produces a table with the following information:
 For example, the `flights` data has first few rows
 
 ```{r}
+#| echo: false
+
 flights %>%
   head() %>%
   kable()
 ```
 
+## `r icons::icon_style(icons::fontawesome("r-project"),scale=2,fill="steelblue")` The `dplyr` Package
+
+The [`dplyr` package](https://dplyr.tidyverse.org/) consists of a set of functions that help you solve the most common data manipulation challenges [@dplyr]. Before discussing the individual functions, it’s worth listing what they have in common:
+
+1. The first argument is always a data frame.
+
+2. The subsequent arguments typically describe which columns to operate on, using the variable names (without quotes).
+
+3. The output is always a new data frame.
+
+Now we will give examples of the typical use for the common `dplyr` functions:
+
+### Selecting Columns
 
 
 ```{r}
@@ -138,6 +157,19 @@ gapminder %>%
 ```
 
 
+**Exercise:**
+
+
+### Filtering Rows
+
+
+
+
+**Exercise:**
+
+
+### Grouping
+
 
 ```{r}
 gapminder %>%
@@ -151,6 +183,8 @@ gapminder %>%
   summarise(mean_lifeEx = mean(lifeExp))
 ```
 
+
+**Exercise:**
 
 ```{r}
 gapminder %>%
@@ -189,6 +223,11 @@ a_grouped_summary %>%
   geom_line()
 ```
 
+
+**Exercise:**
+
+
+### Reshaping
 
 ```{r}
 gapminder %>%
