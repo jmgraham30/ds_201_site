@@ -23,6 +23,8 @@ library(readxl)
 library(gapminder)
 library(kableExtra)
 
+theme_set(theme_minimal(base_size=12))
+
 # read in data files
 happiness_report_csv <- read_csv("https://raw.githubusercontent.com/UBC-DSCI/data-science-a-first-intro-worksheets/main/worksheet_reading/data/happiness_report.csv")
 happiness_report_xl <- read_xlsx("/Users/jasongraham/Library/CloudStorage/Dropbox/WorkDocuments/Teaching/Falls/Fall2023/DS 201/happiness_report.xlsx")
@@ -83,6 +85,115 @@ In this lesson, we will make use of a few data sets. This includes:
 gapminder %>%
   head() %>%
   kable()
+```
+
+
+* Data from the `nycflights13` package which we load (make sure the package is installed) using
+
+```{r}
+#| code-fold: false
+
+library(nycflights13)
+```
+
+We can see a list of the data available in the `nycflights13` package with the command
+
+```{r}
+#| eval: false
+#| code-fold: false
+
+data(package="nycflights13")
+```
+
+which produces a table with the following information:
+
+| Name of Data Set | Information.  |
+|------------------|:--------------|
+| `airlines`       | Airline names |
+| `airports`       | Airport metadata |
+| `flights`        | Flights data |
+| `planes`         | Plane metadata |
+| `weather`        | Hourly weather data |
+
+For example, the `flights` data has first few rows
+
+```{r}
+flights %>%
+  head() %>%
+  kable()
+```
+
+
+
+```{r}
+gapminder %>%
+  select(country,year,lifeExp)
+```
+
+
+
+```{r}
+gapminder %>%
+  select(-continent)
+```
+
+
+
+```{r}
+gapminder %>%
+  group_by(year)
+```
+
+
+```{r}
+gapminder %>%
+  group_by(year) %>%
+  summarise(mean_lifeEx = mean(lifeExp))
+```
+
+
+```{r}
+gapminder %>%
+  group_by(continent) %>%
+  summarise(continent_count = n())
+```
+
+
+```{r}
+gapminder %>%
+  group_by(year,continent) %>%
+  summarise(continent_count = n())
+```
+
+
+```{r}
+gapminder %>%
+  group_by(year,continent) %>%
+  summarise(continent_count = n(),
+            mean_lifeExp = mean(lifeExp))
+```
+
+
+```{r}
+a_grouped_summary <- gapminder %>%
+  group_by(year,continent) %>%
+  summarise(continent_count = n(),
+            mean_lifeExp = mean(lifeExp))
+```
+
+
+```{r}
+a_grouped_summary %>%
+  ggplot(aes(x=year,y=mean_lifeExp,color=continent)) + 
+  geom_point() + 
+  geom_line()
+```
+
+
+```{r}
+gapminder %>%
+  select(country,year,lifeExp) %>%
+  pivot_wider(names_from = "year",values_from = lifeExp)
 ```
 
 
