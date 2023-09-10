@@ -27,8 +27,8 @@ library(kableExtra)
 theme_set(theme_minimal(base_size=12))
 
 # read in data files
-happiness_report_csv <- read_csv("https://raw.githubusercontent.com/UBC-DSCI/data-science-a-first-intro-worksheets/main/worksheet_reading/data/happiness_report.csv")
-happiness_report_xl <- read_xlsx("/Users/jasongraham/Library/CloudStorage/Dropbox/WorkDocuments/Teaching/Falls/Fall2023/DS 201/happiness_report.xlsx")
+#happiness_report_csv <- read_csv("https://raw.githubusercontent.com/UBC-DSCI/data-science-a-first-intro-worksheets/main/worksheet_reading/data/happiness_report.csv")
+#happiness_report_xl <- read_xlsx("/Users/jasongraham/Library/CloudStorage/Dropbox/WorkDocuments/Teaching/Falls/Fall2023/DS 201/happiness_report.xlsx")
 ```
 
 
@@ -56,25 +56,24 @@ For this lesson, refer to the following readings, etc.:
 
 * Chapter 5 of *R for Data Science* by Wickham and Grolemund [@wickham2023r]. [View the chapter online](https://r4ds.had.co.nz/transform.html)
 
-* The TidyTuesday data repository [@TT].
 
 ## Overview
 
 Real world data rarely comes in exactly the right form for the analysis you want to do. This has led to the implementation of methods that facilitate manipulating data in a way that allows us to more easily address some of the common problems with data sets. In this lesson, we will introduce such methods which include but are not limited to 
 
-* selecting certain rows or columns of tabular data
+* selecting certain rows or columns of tabular data,
 
-* creating new variables or column, often by transforming existing ones
+* creating new variables or columns, often by transforming existing ones,
 
-* grouping or arranging observations
+* grouping or arranging observations,
 
-* reshaping parts of the data
+* reshaping parts of the data,
 
-* joining multiple tabular data sets 
+* joining multiple tabular data sets.
 
 A particularly common application of these methods is to get data into an appropriate shape required for a particular type of plot, visualization, or summary. 
 
-The R package `dplyr` which belongs to the `tidyverse` family of packages is one of the available implementations of the common data manipulation methods [@dplyr]. The `dplyr` package is robust, well-documented, easy-to-use, and efficient so we will explore it in this lesson. It is worth it to take a moment to visit the ['dplyr' website](https://dplyr.tidyverse.org/) as it contains helpful information and resources, [view the webpage](https://dplyr.tidyverse.org/). 
+The R package `dplyr` which belongs to the `tidyverse` family of packages is one of the available implementations of the common data manipulation methods [@dplyr]. The `dplyr` package is robust, well-documented, easy-to-use, and efficient so we will explore it in this lesson. It is worth while to take a moment to visit the ['dplyr' website](https://dplyr.tidyverse.org/) as it contains helpful information and resources, [view the webpage](https://dplyr.tidyverse.org/). 
 
 ## Data For the Lesson
 
@@ -111,7 +110,7 @@ data(package="nycflights13")
 
 which produces a table with the following information:
 
-| Name of Data Set | Information.  |
+| Name of Data Set | Information  |
 |------------------|:--------------|
 | `airlines`       | Airline names |
 | `airports`       | Airport metadata |
@@ -143,13 +142,14 @@ Now we will give examples of the typical use for the common `dplyr` functions:
 
 ### Selecting Columns
 
+The `select` function extracts specified columns from a data frame:
 
 ```{r}
 gapminder %>%
   select(country,year,lifeExp)
 ```
 
-
+You can also specify which columns you don't want:
 
 ```{r}
 gapminder %>%
@@ -157,18 +157,45 @@ gapminder %>%
 ```
 
 
-**Exercise:**
+**Exercise:** Select the columns `dep_delay` and `carrier` from the `flights` data set. Select all the columns in the `flights` data set except `year`, `month`, and `day`.
 
 
 ### Filtering Rows
 
+The `filter` function retains all rows of a data frame according to some specified condition(s).
+
+```{r}
+gapminder %>%
+  filter(country == "Spain")
+```
+
+Notice that to specify equality for a condition in `filter` one must use the double equals `==`. 
+
+Here are some other variations using `filter`:
+
+```{r}
+gapminder %>%
+  filter(country == "Spain" | country == "Portugal")
+```
+
+```{r}
+gapminder %>%
+  filter(year >= 1979)
+```
+
+```{r}
+gapminder %>%
+  filter(year >= 1979 & country == "Spain")
+```
 
 
 
-**Exercise:**
+**Exercise:** Use `filter` to select those observations in the `flights` data that had a departure from JFK airport. Use `filter` to select those observations in the `flights` data that had a departure from JFK airport and the airline (carrier) is United Airlines (UA). Use `filter` to extract those observations where there was a departure delay that was an hour or more. 
 
 
 ### Grouping
+
+The `group_by` function allows us to group observations in a data frame by one or more grouping variables. The syntax for `group_by` is:
 
 
 ```{r}
@@ -176,6 +203,14 @@ gapminder %>%
   group_by(year)
 ```
 
+or for more than one variable:
+
+```{r}
+gapminder %>%
+  group_by(country,year)
+```
+
+By itself, `group_by` isn't very useful. However, used with other functions it can be extremely useful. For example, we can combine `group_by` and `summarise` to create grouped summaries:
 
 ```{r}
 gapminder %>%
@@ -183,8 +218,37 @@ gapminder %>%
   summarise(mean_lifeEx = mean(lifeExp))
 ```
 
+Here is another example:
 
-**Exercise:**
+```{r}
+flights %>%
+  filter(dep_delay >= 1) %>%
+  group_by(carrier) %>%
+  summarise(n_carrier = n())
+```
+
+This tells us the number of times each carrier has a departure delay of at least an hour. We can add the `arrange` function to put these in order:
+
+```{r}
+flights %>%
+  filter(dep_delay >= 1) %>%
+  group_by(carrier) %>%
+  summarise(n_carrier = n()) %>%
+  arrange(n_carrier)
+```
+
+or if we want the opposite order:
+
+```{r}
+flights %>%
+  filter(dep_delay >= 1) %>%
+  group_by(carrier) %>%
+  summarise(n_carrier = n()) %>%
+  arrange(desc(n_carrier))
+```
+
+
+**Exercise:** 
 
 ```{r}
 gapminder %>%
