@@ -248,13 +248,10 @@ flights %>%
 ```
 
 
-**Exercise:** 
+**Exercise:** Use `group_by` and `summarise` to compute the average departure delay by carrier. Use `group_by` and `summarise` to find the number of times each airport has had departure delays of an hour or more, use `arrange` to place the airports with the most departure delays at the top. 
 
-```{r}
-gapminder %>%
-  group_by(continent) %>%
-  summarise(continent_count = n())
-```
+
+We can group by more than one variable:
 
 
 ```{r}
@@ -263,6 +260,7 @@ gapminder %>%
   summarise(continent_count = n())
 ```
 
+and also summarise more than one variable after grouping. 
 
 ```{r}
 gapminder %>%
@@ -270,6 +268,8 @@ gapminder %>%
   summarise(continent_count = n(),
             mean_lifeExp = mean(lifeExp))
 ```
+
+We will spend a lot of time later talking about plots and visualizations. Just to see what is possible, let's make a plot using the results of a grouped summary: 
 
 
 ```{r}
@@ -277,10 +277,7 @@ a_grouped_summary <- gapminder %>%
   group_by(year,continent) %>%
   summarise(continent_count = n(),
             mean_lifeExp = mean(lifeExp))
-```
 
-
-```{r}
 a_grouped_summary %>%
   ggplot(aes(x=year,y=mean_lifeExp,color=continent)) + 
   geom_point() + 
