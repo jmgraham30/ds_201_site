@@ -371,6 +371,8 @@ gapminder %>%
   pivot_longer(cols=-c("country"),names_to = "year", values_to = "lifeExp")
 ```
 
+Pivoting is covered in more detail in Chapter 6 of [@wickham2023r].
+
 ## Preparation for the next lesson
 
 For the next lesson we will begin discussing the exploratory data analysis (EDA) process starting with some data visualization. 
