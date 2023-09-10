@@ -319,12 +319,24 @@ knitr::include_graphics("https://www.dropbox.com/scl/fi/rpmts436umhwm2wqvqxsi/ti
 
 Often, getting data into tidy format requires reshaping the data. But there maybe reasons to reshape the data from tidy format to another format. The `pivot_longer` and `pivot_wider` functions facilitate these types of reshaping. 
 
+For example, suppose that for some reason we want to view the life expectancy for each country in the Gapminder data so that the values for each year are in their own column. This can be achieved with `pivot_wider`:
+
 ```{r}
 gapminder %>%
   select(country,year,lifeExp) %>%
   pivot_wider(names_from = "year",values_from = lifeExp)
 ```
 
+As an application, we can use such data to make a table like the following one:
+
+```{r}
+gapminder %>%
+  select(country,year,lifeExp) %>%
+  pivot_wider(names_from = "year",values_from = lifeExp) %>%
+  select(country,`1952`,`2007`) %>%
+  filter(country %in% c("Spain","Portugal")) %>%
+  kable()
+```
 
 
 ## Preparation for the next lesson
