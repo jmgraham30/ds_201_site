@@ -293,6 +293,31 @@ a_grouped_summary %>%
 
 ### Reshaping
 
+Typically, we want our data to be in **tidy** format. This means
+
+1.  Each variable is a column; each column is a variable.
+2.  Each observation is a row; each row is an observation.
+3.  Each value is a cell; each cell is a single value.
+
+@fig-tidy-structure shows the rules visually.
+
+```{r}
+#| label: fig-tidy-structure
+#| echo: false
+#| fig-cap: | 
+#|   The following three rules make a dataset tidy: variables are columns,
+#|   observations are rows, and values are cells.
+#| fig-alt: | 
+#|   Three panels, each representing a tidy data frame. The first panel
+#|   shows that each variable is a column. The second panel shows that each
+#|   observation is a row. The third panel shows that each value is
+#|   a cell.
+
+knitr::include_graphics("https://www.dropbox.com/scl/fi/rpmts436umhwm2wqvqxsi/tidy-1.png?rlkey=uvf6pcb0xx0j0y52xm0bxvd61&dl=1", dpi = 270)
+```
+
+Often, getting data into tidy format requires reshaping the data. But there maybe reasons to reshape the data from tidy format to another format. The `pivot_longer` and `pivot_wider` functions facilitate these types of reshaping. 
+
 ```{r}
 gapminder %>%
   select(country,year,lifeExp) %>%
