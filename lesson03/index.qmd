@@ -273,6 +273,9 @@ We will spend a lot of time later talking about plots and visualizations. Just t
 
 
 ```{r}
+#| label: fig-grouped
+#| fig-cap: A plot made using data obtained from a grouped summary. 
+
 a_grouped_summary <- gapminder %>%
   group_by(year,continent) %>%
   summarise(continent_count = n(),
@@ -285,7 +288,7 @@ a_grouped_summary %>%
 ```
 
 
-**Exercise:**
+**Exercise:** Modify the code in the last code chunk to make a plot of the average departure delay by airport per each day. That is, the x-axis should be the day, the y-axis should be the average departure delay and the colors should distinguish the different airports. **Hint:** When you compute the mean, you will have to add an extra argument, `na.rm=TRUE` because there are missing values in the data. 
 
 
 ### Reshaping
