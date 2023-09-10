@@ -979,6 +979,638 @@ div.csl-indent {
 
 </div>
 </div>
+<p>The <code>billboard</code> dataset records the billboard rank of songs in the year 2000:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>billboard <span class="sc">%&gt;%</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">artist</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">track</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">date.entered</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">wk1</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">wk2</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">wk3</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">wk4</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">wk5</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">wk6</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">wk7</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">wk8</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">wk9</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">wk10</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">wk11</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">wk12</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">wk13</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">wk14</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">wk15</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">wk16</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">wk17</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">wk18</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">wk19</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">wk20</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">wk21</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">wk22</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">wk23</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">wk24</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">wk25</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">wk26</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">wk27</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">wk28</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">wk29</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">wk30</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">wk31</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">wk32</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">wk33</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">wk34</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">wk35</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">wk36</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">wk37</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">wk38</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">wk39</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">wk40</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">wk41</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">wk42</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">wk43</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">wk44</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">wk45</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">wk46</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">wk47</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">wk48</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">wk49</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">wk50</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">wk51</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">wk52</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">wk53</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">wk54</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">wk55</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">wk56</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">wk57</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">wk58</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">wk59</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">wk60</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">wk61</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">wk62</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">wk63</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">wk64</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">wk65</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">wk66</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">wk67</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">wk68</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">wk69</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">wk70</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">wk71</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">wk72</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">wk73</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">wk74</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">wk75</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">wk76</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">2 Pac</td>
+<td style="text-align: left;">Baby Don't Cry (Keep...</td>
+<td style="text-align: left;">2000-02-26</td>
+<td style="text-align: right;">87</td>
+<td style="text-align: right;">82</td>
+<td style="text-align: right;">72</td>
+<td style="text-align: right;">77</td>
+<td style="text-align: right;">87</td>
+<td style="text-align: right;">94</td>
+<td style="text-align: right;">99</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2Ge+her</td>
+<td style="text-align: left;">The Hardest Part Of ...</td>
+<td style="text-align: left;">2000-09-02</td>
+<td style="text-align: right;">91</td>
+<td style="text-align: right;">87</td>
+<td style="text-align: right;">92</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3 Doors Down</td>
+<td style="text-align: left;">Kryptonite</td>
+<td style="text-align: left;">2000-04-08</td>
+<td style="text-align: right;">81</td>
+<td style="text-align: right;">70</td>
+<td style="text-align: right;">68</td>
+<td style="text-align: right;">67</td>
+<td style="text-align: right;">66</td>
+<td style="text-align: right;">57</td>
+<td style="text-align: right;">54</td>
+<td style="text-align: right;">53</td>
+<td style="text-align: right;">51</td>
+<td style="text-align: right;">51</td>
+<td style="text-align: right;">51</td>
+<td style="text-align: right;">51</td>
+<td style="text-align: right;">47</td>
+<td style="text-align: right;">44</td>
+<td style="text-align: right;">38</td>
+<td style="text-align: right;">28</td>
+<td style="text-align: right;">22</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: right;">21</td>
+<td style="text-align: right;">22</td>
+<td style="text-align: right;">24</td>
+<td style="text-align: right;">28</td>
+<td style="text-align: right;">33</td>
+<td style="text-align: right;">42</td>
+<td style="text-align: right;">42</td>
+<td style="text-align: right;">49</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">3 Doors Down</td>
+<td style="text-align: left;">Loser</td>
+<td style="text-align: left;">2000-10-21</td>
+<td style="text-align: right;">76</td>
+<td style="text-align: right;">76</td>
+<td style="text-align: right;">72</td>
+<td style="text-align: right;">69</td>
+<td style="text-align: right;">67</td>
+<td style="text-align: right;">65</td>
+<td style="text-align: right;">55</td>
+<td style="text-align: right;">59</td>
+<td style="text-align: right;">62</td>
+<td style="text-align: right;">61</td>
+<td style="text-align: right;">61</td>
+<td style="text-align: right;">59</td>
+<td style="text-align: right;">61</td>
+<td style="text-align: right;">66</td>
+<td style="text-align: right;">72</td>
+<td style="text-align: right;">76</td>
+<td style="text-align: right;">75</td>
+<td style="text-align: right;">67</td>
+<td style="text-align: right;">73</td>
+<td style="text-align: right;">70</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">504 Boyz</td>
+<td style="text-align: left;">Wobble Wobble</td>
+<td style="text-align: left;">2000-04-15</td>
+<td style="text-align: right;">57</td>
+<td style="text-align: right;">34</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: right;">31</td>
+<td style="text-align: right;">36</td>
+<td style="text-align: right;">49</td>
+<td style="text-align: right;">53</td>
+<td style="text-align: right;">57</td>
+<td style="text-align: right;">64</td>
+<td style="text-align: right;">70</td>
+<td style="text-align: right;">75</td>
+<td style="text-align: right;">76</td>
+<td style="text-align: right;">78</td>
+<td style="text-align: right;">85</td>
+<td style="text-align: right;">92</td>
+<td style="text-align: right;">96</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">98^0</td>
+<td style="text-align: left;">Give Me Just One Nig...</td>
+<td style="text-align: left;">2000-08-19</td>
+<td style="text-align: right;">51</td>
+<td style="text-align: right;">39</td>
+<td style="text-align: right;">34</td>
+<td style="text-align: right;">26</td>
+<td style="text-align: right;">26</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">22</td>
+<td style="text-align: right;">29</td>
+<td style="text-align: right;">36</td>
+<td style="text-align: right;">47</td>
+<td style="text-align: right;">67</td>
+<td style="text-align: right;">66</td>
+<td style="text-align: right;">84</td>
+<td style="text-align: right;">93</td>
+<td style="text-align: right;">94</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<p>In this dataset, each observation is a song. The first three columns (<code>artist</code>, <code>track</code> and <code>date.entered</code>) are variables that describe the song. Then we have 76 columns (<code>wk1</code>-<code>wk76</code>) that describe the rank of the song in each. Here, the column names are one variable (the <code>week</code>) and the cell values are another (the <code>rank</code>).</p>
+<p>To tidy this data, we’ll use <code>pivot_longer()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>billboard <span class="sc">%&gt;%</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">"wk"</span>), </span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"week"</span>, </span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"rank"</span></span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 24,092 × 5
+   artist track                   date.entered week   rank
+   &lt;chr&gt;  &lt;chr&gt;                   &lt;date&gt;       &lt;chr&gt; &lt;dbl&gt;
+ 1 2 Pac  Baby Don't Cry (Keep... 2000-02-26   wk1      87
+ 2 2 Pac  Baby Don't Cry (Keep... 2000-02-26   wk2      82
+ 3 2 Pac  Baby Don't Cry (Keep... 2000-02-26   wk3      72
+ 4 2 Pac  Baby Don't Cry (Keep... 2000-02-26   wk4      77
+ 5 2 Pac  Baby Don't Cry (Keep... 2000-02-26   wk5      87
+ 6 2 Pac  Baby Don't Cry (Keep... 2000-02-26   wk6      94
+ 7 2 Pac  Baby Don't Cry (Keep... 2000-02-26   wk7      99
+ 8 2 Pac  Baby Don't Cry (Keep... 2000-02-26   wk8      NA
+ 9 2 Pac  Baby Don't Cry (Keep... 2000-02-26   wk9      NA
+10 2 Pac  Baby Don't Cry (Keep... 2000-02-26   wk10     NA
+# ℹ 24,082 more rows</code></pre>
+</div>
+</div>
+<p>To see that <code>pivot_longer</code> and <code>pivot_wider</code> are inverses of one another, examine the following code:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">%&gt;%</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(country,year,lifeExp) <span class="sc">%&gt;%</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> <span class="st">"year"</span>,<span class="at">values_from =</span> lifeExp) <span class="sc">%&gt;%</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols=</span><span class="sc">-</span><span class="fu">c</span>(<span class="st">"country"</span>),<span class="at">names_to =</span> <span class="st">"year"</span>, <span class="at">values_to =</span> <span class="st">"lifeExp"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,704 × 3
+   country     year  lifeExp
+   &lt;fct&gt;       &lt;chr&gt;   &lt;dbl&gt;
+ 1 Afghanistan 1952     28.8
+ 2 Afghanistan 1957     30.3
+ 3 Afghanistan 1962     32.0
+ 4 Afghanistan 1967     34.0
+ 5 Afghanistan 1972     36.1
+ 6 Afghanistan 1977     38.4
+ 7 Afghanistan 1982     39.9
+ 8 Afghanistan 1987     40.8
+ 9 Afghanistan 1992     41.7
+10 Afghanistan 1997     41.8
+# ℹ 1,694 more rows</code></pre>
+</div>
+</div>
 </section>
 </section>
 <section id="preparation-for-the-next-lesson" class="level2">
