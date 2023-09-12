@@ -59,7 +59,7 @@ For this lesson, refer to the following readings, etc.:
 ## Introduction to Data Visualization
 
 
-### The `ggplot2` Package
+### `r icons::icon_style(icons::fontawesome("r-project"),scale=2,fill="steelblue")` The `ggplot2` Package
 
 ```{r, out.width="100%", fig.retina = 2}
 #| label: fig-ggplot2
