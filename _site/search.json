@@ -432,5 +432,54 @@
     "title": "Lesson 3",
     "section": "Footnotes",
     "text": "Footnotes\n\n\nThe song will be included as long as it was in the top 100 at some point in 2000, and is tracked for up to 72 weeks after it appears.↩︎"
+  },
+  {
+    "objectID": "lesson04/index.html",
+    "href": "lesson04/index.html",
+    "title": "Lesson 4",
+    "section": "",
+    "text": "After this lesson, students will be able to:\n\nChoose an appropriate visualization for exploring and summarizing a tabular data set.\nUse methods from the ggplot2 package to create an appropriate visualization for exploring and summarizing a tabular data set.\nApply steps from exploratory data analysis to generate or refine questions about a data set."
+  },
+  {
+    "objectID": "lesson04/index.html#learning-objectives",
+    "href": "lesson04/index.html#learning-objectives",
+    "title": "Lesson 4",
+    "section": "",
+    "text": "After this lesson, students will be able to:\n\nChoose an appropriate visualization for exploring and summarizing a tabular data set.\nUse methods from the ggplot2 package to create an appropriate visualization for exploring and summarizing a tabular data set.\nApply steps from exploratory data analysis to generate or refine questions about a data set."
+  },
+  {
+    "objectID": "lesson04/index.html#readings-etc.",
+    "href": "lesson04/index.html#readings-etc.",
+    "title": "Lesson 4",
+    "section": "Readings, etc.",
+    "text": "Readings, etc.\nFor this lesson, refer to the following readings, etc.:\n\nChapters 2 and 11 from R for Data Science (Wickham, Çetinkaya-Rundel, and Grolemund 2023). View book online.\nChapter 4 from Data Science: A First Introduction (Timbers, Campbell, and Lee 2022). View book online."
+  },
+  {
+    "objectID": "lesson04/index.html#overview",
+    "href": "lesson04/index.html#overview",
+    "title": "Lesson 4",
+    "section": "Overview",
+    "text": "Overview"
+  },
+  {
+    "objectID": "lesson04/index.html#introduction-to-data-visualization",
+    "href": "lesson04/index.html#introduction-to-data-visualization",
+    "title": "Lesson 4",
+    "section": "Introduction to Data Visualization",
+    "text": "Introduction to Data Visualization\n\nThe ggplot2 Package\n\n\n\n\n\nFigure 1: The basic ggplot2 syntax. Figure source (Timbers, Campbell, and Lee 2022)."
+  },
+  {
+    "objectID": "lesson04/index.html#preparation-for-the-next-lesson",
+    "href": "lesson04/index.html#preparation-for-the-next-lesson",
+    "title": "Lesson 4",
+    "section": "Preparation for the next lesson",
+    "text": "Preparation for the next lesson\nTo prepare for the next lesson, please read:\n\nChapter 12 from R for Data Science (Wickham, Çetinkaya-Rundel, and Grolemund 2023). View book online."
+  },
+  {
+    "objectID": "lesson04/index.html#references",
+    "href": "lesson04/index.html#references",
+    "title": "Lesson 4",
+    "section": "References",
+    "text": "References\n\n\nTimbers, Tiffany, Trevor Campbell, and Melissa Lee. 2022. Data Science: A First Introduction. CRC Press.\n\n\nWickham, Hadley, Mine Çetinkaya-Rundel, and Garrett Grolemund. 2023. R for Data Science. \" O’Reilly Media, Inc.\".\n\n\n\n\n\n\n\n\nExpand for Session Info\n\n\n\n\n\n\n\n─ Session info ───────────────────────────────────────────────────────────────\n setting  value\n version  R version 4.3.1 (2023-06-16)\n os       macOS Ventura 13.5.2\n system   aarch64, darwin20\n ui       X11\n language (EN)\n collate  en_US.UTF-8\n ctype    en_US.UTF-8\n tz       America/New_York\n date     2023-09-12\n pandoc   3.1.1 @ /Applications/RStudio.app/Contents/Resources/app/quarto/bin/tools/ (via rmarkdown)\n quarto   1.3.450 @ /usr/local/bin/quarto\n\n─ Packages ───────────────────────────────────────────────────────────────────\n package     * version date (UTC) lib source\n dplyr       * 1.1.3   2023-09-03 [1] CRAN (R 4.3.0)\n forcats     * 1.0.0   2023-01-29 [1] CRAN (R 4.3.0)\n gapminder   * 1.0.0   2023-03-10 [1] CRAN (R 4.3.0)\n ggplot2     * 3.4.3   2023-08-14 [1] CRAN (R 4.3.0)\n kableExtra  * 1.3.4   2021-02-20 [1] CRAN (R 4.3.0)\n lubridate   * 1.9.2   2023-02-10 [1] CRAN (R 4.3.0)\n magick      * 2.7.5   2023-08-07 [1] CRAN (R 4.3.0)\n purrr       * 1.0.2   2023-08-10 [1] CRAN (R 4.3.0)\n readr       * 2.1.4   2023-02-10 [1] CRAN (R 4.3.0)\n readxl      * 1.4.3   2023-07-06 [1] CRAN (R 4.3.0)\n sessioninfo * 1.2.2   2021-12-06 [1] CRAN (R 4.3.0)\n stringr     * 1.5.0   2022-12-02 [1] CRAN (R 4.3.0)\n tibble      * 3.2.1   2023-03-20 [1] CRAN (R 4.3.0)\n tidyr       * 1.3.0   2023-01-24 [1] CRAN (R 4.3.0)\n tidyverse   * 2.0.0   2023-02-22 [1] CRAN (R 4.3.0)\n\n [1] /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library\n\n──────────────────────────────────────────────────────────────────────────────"
   }
 ]

@@ -23,6 +23,7 @@ library(tidyverse)
 library(readxl)
 library(gapminder)
 library(kableExtra)
+library(magick)
 
 theme_set(theme_minimal(base_size=12))
 
@@ -36,20 +37,46 @@ theme_set(theme_minimal(base_size=12))
 
 After this lesson, students will be able to: 
 
+- Choose an appropriate visualization for exploring and summarizing a tabular data set. 
+
+- Use methods from the `ggplot2` package to create  an appropriate visualization for exploring and summarizing a tabular data set. 
+
+- Apply steps from exploratory data analysis to generate or refine questions about a data set. 
+
 
 ## Readings, etc.
 
 For this lesson, refer to the following readings, etc.:
 
+- Chapters 2 and 11 from [R for Data Science](https://r4ds.hadley.nz/) [@wickham2023r]. [View book online](https://r4ds.hadley.nz/).
+
+- Chapter 4 from [Data Science: A First Introduction](https://datasciencebook.ca/preface.html) [@timbers2022data]. [View book online](https://datasciencebook.ca/preface.html).
 
 
+## Overview
 
 
+## Introduction to Data Visualization
+
+
+### The `ggplot2` Package
+
+```{r, out.width="100%", fig.retina = 2}
+#| label: fig-ggplot2
+#| fig-cap:  The basic ggplot2 syntax. Figure source [@timbers2022data].
+#| echo: false
+#| message: false
+#| warning: false
+image_read("https://www.dropbox.com/scl/fi/6i7wc0126kw9vr5mr0iuv/ggplot_function.jpeg?rlkey=t2exo2hodawi3y0kgtco0l2eo&dl=1") |>
+  image_crop("1625x1900")
+```
 
 
 ## Preparation for the next lesson
 
+To prepare for the next lesson, please read:
 
+- Chapter 12 from [R for Data Science](https://r4ds.hadley.nz/) [@wickham2023r]. [View book online](https://r4ds.hadley.nz/).
 
 ## References
 
