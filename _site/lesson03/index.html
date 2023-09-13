@@ -738,35 +738,35 @@ div.csl-indent {
 <p>Here is another example:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">%&gt;%</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(dep_delay <span class="sc">&gt;=</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(dep_delay <span class="sc">&gt;=</span> <span class="dv">60</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(carrier) <span class="sc">%&gt;%</span></span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n_carrier =</span> <span class="fu">n</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 16 × 2
    carrier n_carrier
    &lt;chr&gt;       &lt;int&gt;
- 1 9E           7063
- 2 AA          10162
- 3 AS            226
- 4 B6          21445
- 5 DL          15241
- 6 EV          23139
- 7 F9            341
- 8 FL           1654
- 9 HA             69
-10 MQ           8031
-11 OO              9
-12 UA          27261
-13 US           4775
-14 VX           2225
-15 WN           6558
-16 YV            233</code></pre>
+ 1 9E           1991
+ 2 AA           2034
+ 3 AS             39
+ 4 B6           4655
+ 5 DL           2699
+ 6 EV           6984
+ 7 F9             75
+ 8 FL            323
+ 9 HA             11
+10 MQ           2037
+11 OO              4
+12 UA           3899
+13 US            779
+14 VX            365
+15 WN           1084
+16 YV             80</code></pre>
 </div>
 </div>
 <p>This tells us the number of times each carrier has a departure delay of at least an hour. We can add the <code>arrange</code> function to put these in order:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">%&gt;%</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(dep_delay <span class="sc">&gt;=</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(dep_delay <span class="sc">&gt;=</span> <span class="dv">60</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(carrier) <span class="sc">%&gt;%</span></span>
 <span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n_carrier =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
 <span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(n_carrier)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -774,28 +774,28 @@ div.csl-indent {
 <pre><code># A tibble: 16 × 2
    carrier n_carrier
    &lt;chr&gt;       &lt;int&gt;
- 1 OO              9
- 2 HA             69
- 3 AS            226
- 4 YV            233
- 5 F9            341
- 6 FL           1654
- 7 VX           2225
- 8 US           4775
- 9 WN           6558
-10 9E           7063
-11 MQ           8031
-12 AA          10162
-13 DL          15241
-14 B6          21445
-15 EV          23139
-16 UA          27261</code></pre>
+ 1 OO              4
+ 2 HA             11
+ 3 AS             39
+ 4 F9             75
+ 5 YV             80
+ 6 FL            323
+ 7 VX            365
+ 8 US            779
+ 9 WN           1084
+10 9E           1991
+11 AA           2034
+12 MQ           2037
+13 DL           2699
+14 UA           3899
+15 B6           4655
+16 EV           6984</code></pre>
 </div>
 </div>
 <p>or if we want the opposite order:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">%&gt;%</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(dep_delay <span class="sc">&gt;=</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(dep_delay <span class="sc">&gt;=</span> <span class="dv">60</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(carrier) <span class="sc">%&gt;%</span></span>
 <span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n_carrier =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
 <span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n_carrier))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -803,22 +803,22 @@ div.csl-indent {
 <pre><code># A tibble: 16 × 2
    carrier n_carrier
    &lt;chr&gt;       &lt;int&gt;
- 1 UA          27261
- 2 EV          23139
- 3 B6          21445
- 4 DL          15241
- 5 AA          10162
- 6 MQ           8031
- 7 9E           7063
- 8 WN           6558
- 9 US           4775
-10 VX           2225
-11 FL           1654
-12 F9            341
-13 YV            233
-14 AS            226
-15 HA             69
-16 OO              9</code></pre>
+ 1 EV           6984
+ 2 B6           4655
+ 3 UA           3899
+ 4 DL           2699
+ 5 MQ           2037
+ 6 AA           2034
+ 7 9E           1991
+ 8 WN           1084
+ 9 US            779
+10 VX            365
+11 FL            323
+12 YV             80
+13 F9             75
+14 AS             39
+15 HA             11
+16 OO              4</code></pre>
 </div>
 </div>
 <p><strong>Exercise:</strong> Use <code>group_by</code> and <code>summarise</code> to compute the average departure delay by carrier. Use <code>group_by</code> and <code>summarise</code> to find the number of times each airport has had departure delays of an hour or more, use <code>arrange</code> to place the airports with the most departure delays at the top.</p>
@@ -1760,7 +1760,7 @@ Expand for Session Info
  collate  en_US.UTF-8
  ctype    en_US.UTF-8
  tz       America/New_York
- date     2023-09-11
+ date     2023-09-13
  pandoc   3.1.1 @ /Applications/RStudio.app/Contents/Resources/app/quarto/bin/tools/ (via rmarkdown)
  quarto   1.3.450 @ /usr/local/bin/quarto
 

@@ -222,7 +222,7 @@ Here is another example:
 
 ```{r}
 flights %>%
-  filter(dep_delay >= 1) %>%
+  filter(dep_delay >= 60) %>%
   group_by(carrier) %>%
   summarise(n_carrier = n())
 ```
@@ -231,7 +231,7 @@ This tells us the number of times each carrier has a departure delay of at least
 
 ```{r}
 flights %>%
-  filter(dep_delay >= 1) %>%
+  filter(dep_delay >= 60) %>%
   group_by(carrier) %>%
   summarise(n_carrier = n()) %>%
   arrange(n_carrier)
@@ -241,7 +241,7 @@ or if we want the opposite order:
 
 ```{r}
 flights %>%
-  filter(dep_delay >= 1) %>%
+  filter(dep_delay >= 60) %>%
   group_by(carrier) %>%
   summarise(n_carrier = n()) %>%
   arrange(desc(n_carrier))
