@@ -55,11 +55,47 @@ For this lesson, refer to the following readings, etc.:
 
 ## Overview
 
+An exploratory data analysis (EDA) is any initial investigation of a data set or data sets with the goal to simply see what is in the data and what questions one may ask from the data. 
+
+**Important:** Every statistical or machine learning analysis should start with an EDA. 
+
+Your goal during EDA is to develop an understanding of your data. Two major themes for EDA are:
+
+1. To explore what type of variation occurs within variables.
+
+2. To explore what type of covariation occurs between variables.
+
+The two most important tools for EDA are
+
+1. Numerical data summaries.
+
+2. Visual data summaries.
+
+In this lesson, we will first build our toolkit for EDA with a major focus on gaining tools and skills for data visualization. Then, we will work through some EDA case studies. 
 
 ## Introduction to Data Visualization
 
 
+Most people process visual information quickly and easily. Few people can learn much at all by scrolling through a spreadsheet of  raw data. Thus, it is important for a data scientist to develop excellent skills in data visualization.
+By data visualization, we mean the process of representing data via a visual format. 
+
+In this course, we will utilize the `ggplot2` package (and maybe some packages that extend `ggplot2`) for data visualization [@wickham2016]. There are many excellent resources on data visualization. Two that are highly recommended and available for free online are [Data Visualization a Practical Introduction](https://socviz.co/) and [Fundamentals of Data Visualization](https://clauswilke.com/dataviz/) [@healy2018data; @wilke2019fundamentals]. [View Data Visualization a Practical Introduction](https://socviz.co/). [View Fundamentals of Data Visualization](https://clauswilke.com/dataviz/). Not only are these two books free, they also recent and utilize R and `ggplot2`. 
+
+Data visualizations come with a risk of confusing people. Further, visualizations might not work well for everyone. So, it is very important to choose visualizations that are as clear, accessible, and clean as possible. For example, 
+* Avoid the use of colors that are not easy to distinguish.
+
+* Use appropriate scales. 
+
+* Use alt-text and figure captions. 
+
+There are other practices and techniques for making effective and accessible visualizations that we will discuss later. 
+
+
 ### `r icons::icon_style(icons::fontawesome("r-project"),scale=2,fill="steelblue")` The `ggplot2` Package
+
+The `ggplot2` package implements the **grammar of graphics**, a coherent system for describing and building graphs. With `ggplot2`, you can do more and faster by learning one system and applying it in many places.
+
+@fig-ggplot2 shows the structure of the grammar of graphics as implemented in the `ggplot2` package.
 
 ```{r, out.width="100%", fig.retina = 2}
 #| label: fig-ggplot2
@@ -70,6 +106,11 @@ For this lesson, refer to the following readings, etc.:
 image_read("https://www.dropbox.com/scl/fi/6i7wc0126kw9vr5mr0iuv/ggplot_function.jpeg?rlkey=t2exo2hodawi3y0kgtco0l2eo&dl=1") |>
   image_crop("1625x1900")
 ```
+
+
+
+## EDA Case Studies
+
 
 
 ## Preparation for the next lesson
