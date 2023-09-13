@@ -24,8 +24,14 @@ library(readxl)
 library(gapminder)
 library(kableExtra)
 library(magick)
+library(canlang)
 
 theme_set(theme_minimal(base_size=12))
+
+aboriginal_lang <- filter(can_lang, category == "Aboriginal languages")
+selected_lang <- select(aboriginal_lang, language, mother_tongue)
+arranged_lang <- arrange(selected_lang, by = desc(mother_tongue))
+ten_lang <- slice(arranged_lang, 1:10)
 
 # read in data files
 #happiness_report_csv <- read_csv("https://raw.githubusercontent.com/UBC-DSCI/data-science-a-first-intro-worksheets/main/worksheet_reading/data/happiness_report.csv")
@@ -107,7 +113,17 @@ image_read("https://www.dropbox.com/scl/fi/6i7wc0126kw9vr5mr0iuv/ggplot_function
   image_crop("1625x1900")
 ```
 
+Let's see what happens when we run the commands from @fig-ggplot2.
 
+```{r}
+#| code-fold: false
+#| label: fig-ten-lang
+#| fig-cap: The bar plot resulting from running code explained in  @fig-ggplot2
+#| fig-width: 10
+
+ggplot(ten_lang, aes(x = language, y = mother_tongue)) +
+  geom_bar(stat = "identity")
+```
 
 ## EDA Case Studies
 
