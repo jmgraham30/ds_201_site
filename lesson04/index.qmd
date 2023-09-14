@@ -327,6 +327,16 @@ We will soon learn how to make these types of plots and more with `ggplot2`. Bef
 - Only make the plot area (where the dots, lines, bars are) as big as needed. Simple plots can be made small.
 - Don't adjust the axes to zoom in on small differences. If the difference is small, show that it's small!
 
+
+If you're not sure what plot to make for your data, the [data-to-viz](https://www.data-to-viz.com/) website can be very helpful. [View the data-to-viz site](https://www.data-to-viz.com/). Once you know what type of plot to make, the [R Graph Gallery](https://r-graph-gallery.com/index.html) website is helpful for finding the ride code to make the plot with `ggplot2`. [View the R Graph Gallery ](https://r-graph-gallery.com/index.html)
+
+## `r icons::icon_style(icons::fontawesome("r-project"),scale=2,fill="steelblue")` Using the `ggplot2` Package
+
+In this section, we will go through many use cases for `ggplot2`. 
+
+
+
+
 ## EDA Case Studies
 
 
