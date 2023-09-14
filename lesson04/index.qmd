@@ -25,6 +25,10 @@ library(gapminder)
 library(kableExtra)
 library(magick)
 library(canlang)
+library(forcats)
+library(patchwork)
+library(lubridate)
+library(cowplot)
 
 theme_set(theme_minimal(base_size=12))
 
@@ -87,7 +91,8 @@ By data visualization, we mean the process of representing data via a visual for
 
 In this course, we will utilize the `ggplot2` package (and maybe some packages that extend `ggplot2`) for data visualization [@wickham2016]. There are many excellent resources on data visualization. Two that are highly recommended and available for free online are [Data Visualization a Practical Introduction](https://socviz.co/) and [Fundamentals of Data Visualization](https://clauswilke.com/dataviz/) [@healy2018data; @wilke2019fundamentals]. [View Data Visualization a Practical Introduction](https://socviz.co/). [View Fundamentals of Data Visualization](https://clauswilke.com/dataviz/). Not only are these two books free, they also recent and utilize R and `ggplot2`. 
 
-Data visualizations come with a risk of confusing people. Further, visualizations might not work well for everyone. So, it is very important to choose visualizations that are as clear, accessible, and clean as possible. For example, 
+Data visualizations come with a risk of confusing people. Further, visualizations might not work well for everyone. So, it is very important to choose visualizations that are as clear, accessible, and clean as possible. For example, you should:
+
 * Avoid the use of colors that are not easy to distinguish.
 
 * Use appropriate scales. 
@@ -101,7 +106,7 @@ There are other practices and techniques for making effective and accessible vis
 
 The `ggplot2` package implements the **grammar of graphics**, a coherent system for describing and building graphs. With `ggplot2`, you can do more and faster by learning one system and applying it in many places.
 
-@fig-ggplot2 shows the structure of the grammar of graphics as implemented in the `ggplot2` package.
+@fig-ggplot2 shows the typical structure of the grammar of graphics as implemented in the `ggplot2` package[^1].
 
 ```{r, out.width="100%", fig.retina = 2}
 #| label: fig-ggplot2
@@ -113,6 +118,8 @@ image_read("https://www.dropbox.com/scl/fi/6i7wc0126kw9vr5mr0iuv/ggplot_function
   image_crop("1625x1900")
 ```
 
+[^1]: You can also use the pipe operator `%>%` (or even `|>`) to input a data frame into the first argument for the `ggplot` function. 
+
 Let's see what happens when we run the commands from @fig-ggplot2.
 
 ```{r}
@@ -123,7 +130,202 @@ Let's see what happens when we run the commands from @fig-ggplot2.
 
 ggplot(ten_lang, aes(x = language, y = mother_tongue)) +
   geom_bar(stat = "identity")
+
+# the following code is equivalent
+# ten_lang %>% 
+#   ggplot(aes(x = language, y = mother_tongue)) +
+#   geom_bar(stat = "identity")
+  
 ```
+
+Before we dive further into the details of using `ggplot2` and see more examples, let's think about what kinds of plots or graphs we might want to make. 
+
+### Types of Plots
+
+There are many different types of plots one can make so there isn't necessarily a unique choice to be made when deciding how to visualize data. However, there are a few considerations that will have a strong influence on what type of plot(s) you might create to visualize some data. 
+
+Among the most important considerations is, the type of variable(s) involved in the parts of your data that you want to display visually. @tbl-basic-data-types lists the most common variable types. 
+
+---------------------------------------------------------------------------------------------------------------------
+Type of variable         Examples              Appropriate scale       Description
+------------------------ --------------------- ----------------------- ----------------------------------------------
+quantitative/numerical   1.3, 5.7, 83,         continuous              Arbitrary numerical values. These can be
+continuous               1.5x10^-2^                                    integers, rational numbers, or real numbers.
+ 
+quantitative/numerical   1, 2, 3, 4            discrete                Numbers in discrete units. These are most
+discrete                                                               commonly but not necessarily integers.
+                                                                       For example, the numbers 0.5, 1.0, 1.5 could
+                                                                       also be treated as discrete if intermediate
+                                                                       values cannot exist in the given dataset.
+ 
+qualitative/categorical  dog, cat, fish        discrete                Categories without order. These are discrete
+unordered                                                              and unique categories that have no inherent
+                                                                       order. These variables are
+                                                                       also called *factors*.
+                                                                       
+qualitative/categorical  good, fair, poor      discrete                Categories with order. These are discrete
+ordered                                                                and unique categories with an order. For
+                                                                       example, "fair" always lies between "good"
+                                                                       and "poor". These variables are
+                                                                       also called *ordered factors*.
+
+date or time             Jan. 5 2018, 8:03am   continuous or discrete  Specific days and/or times. Also
+                                                                       generic dates, such as July 4 or Dec. 25
+                                                                       (without year).
+
+text                     The quick brown fox   none, or discrete       Free-form text. Can be treated
+                         jumps over the lazy                           as categorical if needed.
+                         dog.
+---------------------------------------------------------------------------------------------------------------------
+
+: Types of variables encountered in typical data visualization scenarios, table from [@wilke2019fundamentals]. {#tbl-basic-data-types .striped .hover}
+
+The reason why data types such as those listed in @tbl-basic-data-types influence the type of plot(s) used to display data is because the data type of a variable determines what kind of **aesthetics** can be used in a plot.  
+
+By an aesthetic, we mean a visual element that can be used to describe aspects of a given graphic. @fig-common-aesthetics shows some common aesthetics for plots or graphs used in data visualization.  
+
+
+```{r}
+#| label: fig-common-aesthetics
+#| fig-cap: Common aesthetics
+#| echo: false
+#| message: false
+#| warning: false
+
+aes_pos <- ggdraw() + 
+  geom_segment(data = data.frame(x = c(0, 0.5),
+                                 xend = c(1, 0.5),
+                                 y = c(0.5, 0),
+                                 yend = c(0.5, 1)),
+                aes(x = x, y = y, xend = xend, yend = yend),
+                arrow = arrow(length = grid::unit(12, "pt")), linewidth = .75) +
+  draw_text("y", .5, 1, size = 12, vjust = 1, hjust = 2.5) +
+  draw_text("x", 1, .5, size = 12, vjust = 2, hjust = 1) + 
+  coord_cartesian(xlim = c(-.2, 1.2), ylim = c(-.2, 1.2))
+
+aes_color <- ggdraw() +
+  geom_tile(data = data.frame(x = 0.15 + .2333*(0:3)),
+            aes(x, y = .5, fill = factor(x)), width = .2, height = .6) + 
+  scale_fill_viridis_d()
+
+aes_shape <- ggdraw() +
+  geom_point(data = data.frame(x = (.5 + 0:3)/4),
+             aes(x, y = .5, shape = factor(x)), size = 8, fill = "grey80") +
+  scale_shape_manual(values = 21:24)
+
+aes_size <- ggdraw() +
+  geom_point(data = data.frame(x = (.5 + 0:3)/4),
+             aes(x, y = .5, size = factor(x)), shape = 21, fill = "grey80") +
+  scale_size_manual(values = c(2, 5, 8, 11))
+
+aes_lwd <- ggdraw() +
+  geom_segment(data = data.frame(x = rep(0.05, 4),
+                                 xend = rep(0.95, 4),
+                                 y = (1.5 + 0:3)/6,
+                                 yend = (1.5 + 0:3)/6,
+                                 linewidth = 4:1),
+               aes(x = x, y = y, xend = xend, yend = yend, linewidth = linewidth)) +
+  scale_size_identity()
+
+aes_ltp <- ggdraw() +
+  geom_segment(data = data.frame(x = rep(0.05, 4),
+                                 xend = rep(0.95, 4),
+                                 y = (1.5 + 0:3)/6,
+                                 yend = (1.5 + 0:3)/6,
+                                 linetype = 4:1),
+               aes(x = x, y = y, xend = xend, yend = yend, linetype = linetype), linewidth = 1) +
+  scale_linetype_identity()
+
+
+plot_grid(aes_pos, aes_shape, aes_size,
+          aes_color, aes_lwd, aes_ltp,
+          ncol = 3,
+          labels = c("position", "shape", "size", "color", "line width", "line type"),
+          label_x = 0.05, label_y = 0.95, hjust = 0, vjust = 1)
+```
+
+Returning to @fig-ggplot2, we notice that one of the arguments that must be given to `ggplot` is `aes` which is short for aesthetic. 
+
+@fig-plot-sketches show several of the most common types of plots for a single or pair of variables. These plot types are:
+
+- **scatter plots** visualize the relationship between two quantitative variables
+- **line plots** visualize trends with respect to an independent, ordered quantity (e.g., time)
+- **bar plots** visualize comparisons of amounts
+- **histograms** visualize the distribution of one quantitative variable (i.e., all its possible values and how often they occur) \index{distribution}
+
+```{r}
+#| label: fig-plot-sketches
+#| fig-cap: Examples of scatter, line and bar plots, as well as histograms.
+#| fig-width: 4.5
+#| fig-height: 4.65
+#| echo: false
+
+set.seed(1)
+
+scatter_plot <- tibble(x = seq(0.25, 10, by = 0.5) + rnorm(20, 1, 1.5),
+                       y = seq(0.25, 10, by = 0.5) + rnorm(20, 1, 0.5)) |>
+  ggplot(aes(x = x, y = y)) +
+  geom_point() +
+  scale_x_continuous(limits = c(0, 12), breaks = seq(0, 12, by = 3)) +
+  scale_y_continuous(limits = c(0, 12), breaks = seq(0, 12, by = 3)) +
+  ggtitle("Scatter plot") +
+  theme_classic()
+
+line_plot <- tibble(x = seq(0.5, 10, by = 1) + rnorm(10, 1, 0.5),
+                       y = seq(0.5, 10, by = 1) + rnorm(10, 1, 0.1)) |>
+  ggplot(aes(x = x, y = y)) +
+  geom_line() +
+  scale_x_continuous(limits = c(0, 12), breaks = seq(0, 12, by = 3)) +
+  scale_y_continuous(limits = c(0, 12), breaks = seq(0, 12, by = 3)) +
+  ggtitle("Line plot") +
+  theme_classic()
+
+bar_plot <- tibble(count = c(35, 27, 21),
+                   category = as_factor(c("Group 1", "Group 2", "Group 3"))) |>
+  ggplot(aes(y = count, x = category)) +
+  geom_bar(stat = "identity") +
+  ggtitle("Bar plot") +
+  theme_classic()
+
+histogram_plot <- tibble(measurements = rnorm(200, 25, 5)) |>
+  ggplot(aes(x = measurements)) +
+  geom_histogram(binwidth = 3) +
+  ggtitle("Histogram") +
+  theme_classic()
+
+plot_grid(scatter_plot,
+          line_plot,
+          bar_plot,
+          histogram_plot,
+          ncol = 2, 
+          greedy = FALSE)
+```
+
+### Tips for Good Visualizations
+
+We will soon learn how to make these types of plots and more with `ggplot2`. Before that, here is a list of tips for making sure that our visualizations are good:
+
+- Make sure the visualization answers the question you have asked most simply and plainly as possible.
+- Use legends and labels so that your visualization is understandable without reading the surrounding text.
+- Ensure the text, symbols, lines, etc., on your visualization are big enough to be easily read.
+- Ensure the data are clearly visible; don't hide the shape/distribution of the data behind other objects (e.g.,  a bar).
+- Make sure to use color schemes that are understandable by those with
+  colorblindness (a surprisingly large fraction of the overall 
+  population&mdash;from about 1% to 10%, depending on sex and ancestry [@deebblind]).
+  For example, [ColorBrewer](https://colorbrewer2.org) 
+  and [the `RColorBrewer` R package](https://cran.r-project.org/web/packages/RColorBrewer/index.html) [@RColorBrewer] provide the 
+  ability to pick such color schemes, and you can check your visualizations 
+  after you have created them by uploading to online tools
+  such as a [color blindness simulator](https://www.color-blindness.com/coblis-color-blindness-simulator/).
+- Redundancy can be helpful; sometimes conveying the same message in multiple ways reinforces it for the audience.
+- Use colors sparingly. Too many different colors can be distracting, create false patterns, and detract from the message. 
+- Be wary of overplotting. Overplotting is when marks that represent the data
+  overlap, and is problematic as it prevents you from seeing how many data
+  points are represented in areas of the visualization where this occurs. If your
+  plot has too many dots or lines and starts to look like a mess, you need to do
+  something different.
+- Only make the plot area (where the dots, lines, bars are) as big as needed. Simple plots can be made small.
+- Don't adjust the axes to zoom in on small differences. If the difference is small, show that it's small!
 
 ## EDA Case Studies
 
@@ -133,7 +335,7 @@ ggplot(ten_lang, aes(x = language, y = mother_tongue)) +
 
 To prepare for the next lesson, please read:
 
-- Chapter 12 from [R for Data Science](https://r4ds.hadley.nz/) [@wickham2023r]. [View book online](https://r4ds.hadley.nz/).
+- Chapter 26 from [R for Data Science](https://r4ds.hadley.nz/) [@wickham2023r]. [View book online](https://r4ds.hadley.nz/).
 
 ## References
 

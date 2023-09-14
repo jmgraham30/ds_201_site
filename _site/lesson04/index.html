@@ -178,6 +178,8 @@ div.csl-indent {
   <li><a href="#introduction-to-data-visualization" id="toc-introduction-to-data-visualization" class="nav-link" data-scroll-target="#introduction-to-data-visualization">Introduction to Data Visualization</a>
   <ul class="collapse">
   <li><a href="#the-ggplot2-package" id="toc-the-ggplot2-package" class="nav-link" data-scroll-target="#the-ggplot2-package"><svg viewbox="0 0 581 512" style="position:relative;display:inline-block;top:.1em;fill:steelblue;height:2em;" xmlns="http://www.w3.org/2000/svg"> <path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"></path></svg> The <code>ggplot2</code> Package</a></li>
+  <li><a href="#types-of-plots" id="toc-types-of-plots" class="nav-link" data-scroll-target="#types-of-plots">Types of Plots</a></li>
+  <li><a href="#tips-for-good-visualizations" id="toc-tips-for-good-visualizations" class="nav-link" data-scroll-target="#tips-for-good-visualizations">Tips for Good Visualizations</a></li>
   </ul></li>
   <li><a href="#eda-case-studies" id="toc-eda-case-studies" class="nav-link" data-scroll-target="#eda-case-studies">EDA Case Studies</a></li>
   <li><a href="#preparation-for-the-next-lesson" id="toc-preparation-for-the-next-lesson" class="nav-link" data-scroll-target="#preparation-for-the-next-lesson">Preparation for the next lesson</a></li>
@@ -253,8 +255,9 @@ div.csl-indent {
 <h2 class="anchored" data-anchor-id="introduction-to-data-visualization">Introduction to Data Visualization</h2>
 <p>Most people process visual information quickly and easily. Few people can learn much at all by scrolling through a spreadsheet of raw data. Thus, it is important for a data scientist to develop excellent skills in data visualization. By data visualization, we mean the process of representing data via a visual format.</p>
 <p>In this course, we will utilize the <code>ggplot2</code> package (and maybe some packages that extend <code>ggplot2</code>) for data visualization <span class="citation" data-cites="wickham2016">(<a href="#ref-wickham2016" role="doc-biblioref">Wickham 2016</a>)</span>. There are many excellent resources on data visualization. Two that are highly recommended and available for free online are <a href="https://socviz.co/">Data Visualization a Practical Introduction</a> and <a href="https://clauswilke.com/dataviz/">Fundamentals of Data Visualization</a> <span class="citation" data-cites="healy2018data wilke2019fundamentals">(<a href="#ref-healy2018data" role="doc-biblioref">Healy 2018</a>; <a href="#ref-wilke2019fundamentals" role="doc-biblioref">Wilke 2019</a>)</span>. <a href="https://socviz.co/">View Data Visualization a Practical Introduction</a>. <a href="https://clauswilke.com/dataviz/">View Fundamentals of Data Visualization</a>. Not only are these two books free, they also recent and utilize R and <code>ggplot2</code>.</p>
-<p>Data visualizations come with a risk of confusing people. Further, visualizations might not work well for everyone. So, it is very important to choose visualizations that are as clear, accessible, and clean as possible. For example, * Avoid the use of colors that are not easy to distinguish.</p>
+<p>Data visualizations come with a risk of confusing people. Further, visualizations might not work well for everyone. So, it is very important to choose visualizations that are as clear, accessible, and clean as possible. For example, you should:</p>
 <ul>
+<li><p>Avoid the use of colors that are not easy to distinguish.</p></li>
 <li><p>Use appropriate scales.</p></li>
 <li><p>Use alt-text and figure captions.</p></li>
 </ul>
@@ -262,7 +265,7 @@ div.csl-indent {
 <section id="the-ggplot2-package" class="level3">
 <h3 class="anchored" data-anchor-id="the-ggplot2-package"><svg viewbox="0 0 581 512" style="position:relative;display:inline-block;top:.1em;fill:steelblue;height:2em;" xmlns="http://www.w3.org/2000/svg"> <path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"></path></svg> The <code>ggplot2</code> Package</h3>
 <p>The <code>ggplot2</code> package implements the <strong>grammar of graphics</strong>, a coherent system for describing and building graphs. With <code>ggplot2</code>, you can do more and faster by learning one system and applying it in many places.</p>
-<p><a href="#fig-ggplot2">Figure&nbsp;1</a> shows the structure of the grammar of graphics as implemented in the <code>ggplot2</code> package.</p>
+<p><a href="#fig-ggplot2">Figure&nbsp;1</a> shows the typical structure of the grammar of graphics as implemented in the <code>ggplot2</code> package<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-ggplot2" class="quarto-figure quarto-figure-center anchored">
@@ -276,7 +279,12 @@ div.csl-indent {
 <p>Let’s see what happens when we run the commands from <a href="#fig-ggplot2">Figure&nbsp;1</a>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ten_lang, <span class="fu">aes</span>(<span class="at">x =</span> language, <span class="at">y =</span> mother_tongue)) <span class="sc">+</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># the following code is equivalent</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># ten_lang %&gt;% </span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">#   ggplot(aes(x = language, y = mother_tongue)) +</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">#   geom_bar(stat = "identity")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-ten-lang" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
@@ -286,6 +294,115 @@ div.csl-indent {
 </div>
 </div>
 </div>
+<p>Before we dive further into the details of using <code>ggplot2</code> and see more examples, let’s think about what kinds of plots or graphs we might want to make.</p>
+</section>
+<section id="types-of-plots" class="level3">
+<h3 class="anchored" data-anchor-id="types-of-plots">Types of Plots</h3>
+<p>There are many different types of plots one can make so there isn’t necessarily a unique choice to be made when deciding how to visualize data. However, there are a few considerations that will have a strong influence on what type of plot(s) you might create to visualize some data.</p>
+<p>Among the most important considerations is, the type of variable(s) involved in the parts of your data that you want to display visually. <a href="#tbl-basic-data-types">Table&nbsp;1</a> lists the most common variable types.</p>
+<div id="tbl-basic-data-types" class="anchored">
+<table class="table-striped table-hover table">
+<caption>Table&nbsp;1: Types of variables encountered in typical data visualization scenarios, table from <span class="citation" data-cites="wilke2019fundamentals">(<a href="#ref-wilke2019fundamentals" role="doc-biblioref">Wilke 2019</a>)</span>.</caption>
+<colgroup>
+<col style="width: 21%">
+<col style="width: 18%">
+<col style="width: 20%">
+<col style="width: 39%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Type of variable</th>
+<th style="text-align: left;">Examples</th>
+<th style="text-align: left;">Appropriate scale</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">quantitative/numerical continuous</td>
+<td style="text-align: left;">1.3, 5.7, 83, 1.5x10<sup>-2</sup></td>
+<td style="text-align: left;">continuous</td>
+<td style="text-align: left;">Arbitrary numerical values. These can be integers, rational numbers, or real numbers.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">quantitative/numerical discrete</td>
+<td style="text-align: left;">1, 2, 3, 4</td>
+<td style="text-align: left;">discrete</td>
+<td style="text-align: left;">Numbers in discrete units. These are most commonly but not necessarily integers. For example, the numbers 0.5, 1.0, 1.5 could also be treated as discrete if intermediate values cannot exist in the given dataset.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">qualitative/categorical unordered</td>
+<td style="text-align: left;">dog, cat, fish</td>
+<td style="text-align: left;">discrete</td>
+<td style="text-align: left;">Categories without order. These are discrete and unique categories that have no inherent order. These variables are also called <em>factors</em>.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">qualitative/categorical ordered</td>
+<td style="text-align: left;">good, fair, poor</td>
+<td style="text-align: left;">discrete</td>
+<td style="text-align: left;">Categories with order. These are discrete and unique categories with an order. For example, “fair” always lies between “good” and “poor”. These variables are also called <em>ordered factors</em>.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">date or time</td>
+<td style="text-align: left;">Jan.&nbsp;5 2018, 8:03am</td>
+<td style="text-align: left;">continuous or discrete</td>
+<td style="text-align: left;">Specific days and/or times. Also generic dates, such as July 4 or Dec.&nbsp;25 (without year).</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">text</td>
+<td style="text-align: left;">The quick brown fox jumps over the lazy dog.</td>
+<td style="text-align: left;">none, or discrete</td>
+<td style="text-align: left;">Free-form text. Can be treated as categorical if needed.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The reason why data types such as those listed in <a href="#tbl-basic-data-types">Table&nbsp;1</a> influence the type of plot(s) used to display data is because the data type of a variable determines what kind of <strong>aesthetics</strong> can be used in a plot.</p>
+<p>By an aesthetic, we mean a visual element that can be used to describe aspects of a given graphic. <a href="#fig-common-aesthetics">Figure&nbsp;3</a> shows some common aesthetics for plots or graphs used in data visualization.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-common-aesthetics" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/fig-common-aesthetics-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Figure&nbsp;3: Common aesthetics</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Returning to <a href="#fig-ggplot2">Figure&nbsp;1</a>, we notice that one of the arguments that must be given to <code>ggplot</code> is <code>aes</code> which is short for aesthetic.</p>
+<p><a href="#fig-plot-sketches">Figure&nbsp;4</a> show several of the most common types of plots for a single or pair of variables. These plot types are:</p>
+<ul>
+<li><strong>scatter plots</strong> visualize the relationship between two quantitative variables</li>
+<li><strong>line plots</strong> visualize trends with respect to an independent, ordered quantity (e.g., time)</li>
+<li><strong>bar plots</strong> visualize comparisons of amounts</li>
+<li><strong>histograms</strong> visualize the distribution of one quantitative variable (i.e., all its possible values and how often they occur) </li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-plot-sketches" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/fig-plot-sketches-1.png" class="img-fluid figure-img" width="432"></p>
+<figcaption class="figure-caption">Figure&nbsp;4: Examples of scatter, line and bar plots, as well as histograms.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="tips-for-good-visualizations" class="level3">
+<h3 class="anchored" data-anchor-id="tips-for-good-visualizations">Tips for Good Visualizations</h3>
+<p>We will soon learn how to make these types of plots and more with <code>ggplot2</code>. Before that, here is a list of tips for making sure that our visualizations are good:</p>
+<ul>
+<li>Make sure the visualization answers the question you have asked most simply and plainly as possible.</li>
+<li>Use legends and labels so that your visualization is understandable without reading the surrounding text.</li>
+<li>Ensure the text, symbols, lines, etc., on your visualization are big enough to be easily read.</li>
+<li>Ensure the data are clearly visible; don’t hide the shape/distribution of the data behind other objects (e.g., a bar).</li>
+<li>Make sure to use color schemes that are understandable by those with colorblindness (a surprisingly large fraction of the overall population—from about 1% to 10%, depending on sex and ancestry <span class="citation" data-cites="deebblind">(<a href="#ref-deebblind" role="doc-biblioref">Deeb 2005</a>)</span>). For example, <a href="https://colorbrewer2.org">ColorBrewer</a> and <a href="https://cran.r-project.org/web/packages/RColorBrewer/index.html">the <code>RColorBrewer</code> R package</a> <span class="citation" data-cites="RColorBrewer">(<a href="#ref-RColorBrewer" role="doc-biblioref">Neuwirth 2014</a>)</span> provide the ability to pick such color schemes, and you can check your visualizations after you have created them by uploading to online tools such as a <a href="https://www.color-blindness.com/coblis-color-blindness-simulator/">color blindness simulator</a>.</li>
+<li>Redundancy can be helpful; sometimes conveying the same message in multiple ways reinforces it for the audience.</li>
+<li>Use colors sparingly. Too many different colors can be distracting, create false patterns, and detract from the message.</li>
+<li>Be wary of overplotting. Overplotting is when marks that represent the data overlap, and is problematic as it prevents you from seeing how many data points are represented in areas of the visualization where this occurs. If your plot has too many dots or lines and starts to look like a mess, you need to do something different.</li>
+<li>Only make the plot area (where the dots, lines, bars are) as big as needed. Simple plots can be made small.</li>
+<li>Don’t adjust the axes to zoom in on small differences. If the difference is small, show that it’s small!</li>
+</ul>
 </section>
 </section>
 <section id="eda-case-studies" class="level2">
@@ -295,14 +412,20 @@ div.csl-indent {
 <h2 class="anchored" data-anchor-id="preparation-for-the-next-lesson">Preparation for the next lesson</h2>
 <p>To prepare for the next lesson, please read:</p>
 <ul>
-<li>Chapter 12 from <a href="https://r4ds.hadley.nz/">R for Data Science</a> <span class="citation" data-cites="wickham2023r">(<a href="#ref-wickham2023r" role="doc-biblioref">Wickham, Çetinkaya-Rundel, and Grolemund 2023</a>)</span>. <a href="https://r4ds.hadley.nz/">View book online</a>.</li>
+<li>Chapter 26 from <a href="https://r4ds.hadley.nz/">R for Data Science</a> <span class="citation" data-cites="wickham2023r">(<a href="#ref-wickham2023r" role="doc-biblioref">Wickham, Çetinkaya-Rundel, and Grolemund 2023</a>)</span>. <a href="https://r4ds.hadley.nz/">View book online</a>.</li>
 </ul>
 </section>
 <section id="references" class="level2">
 <h2 class="anchored" data-anchor-id="references">References</h2>
 <div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-deebblind" class="csl-entry" role="listitem">
+Deeb, Sameer. 2005. <span>“The Molecular Basis of Variation in Human Color Vision.”</span> <em>Clinical Genetics</em> 67: 369–77.
+</div>
 <div id="ref-healy2018data" class="csl-entry" role="listitem">
 Healy, Kieran. 2018. <em>Data Visualization: A Practical Introduction</em>. Princeton University Press.
+</div>
+<div id="ref-RColorBrewer" class="csl-entry" role="listitem">
+Neuwirth, Erich. 2014. <em><span>RColorBrewer</span>: ColorBrewer Palettes</em>. <a href="https://cran.r-project.org/web/packages/RColorBrewer/index.html">https://cran.r-project.org/web/packages/RColorBrewer/index.html</a>.
 </div>
 <div id="ref-timbers2022data" class="csl-entry" role="listitem">
 Timbers, Tiffany, Trevor Campbell, and Melissa Lee. 2022. <em>Data Science: A First Introduction</em>. CRC Press.
@@ -341,13 +464,14 @@ Expand for Session Info
  collate  en_US.UTF-8
  ctype    en_US.UTF-8
  tz       America/New_York
- date     2023-09-13
+ date     2023-09-14
  pandoc   3.1.1 @ /Applications/RStudio.app/Contents/Resources/app/quarto/bin/tools/ (via rmarkdown)
  quarto   1.3.450 @ /usr/local/bin/quarto
 
 ─ Packages ───────────────────────────────────────────────────────────────────
  package     * version date (UTC) lib source
  canlang     * 0.0.1   2023-09-13 [1] Github (ttimbers/canlang@1a54305)
+ cowplot     * 1.1.1   2020-12-30 [1] CRAN (R 4.3.0)
  dplyr       * 1.1.3   2023-09-03 [1] CRAN (R 4.3.0)
  forcats     * 1.0.0   2023-01-29 [1] CRAN (R 4.3.0)
  gapminder   * 1.0.0   2023-03-10 [1] CRAN (R 4.3.0)
@@ -355,6 +479,7 @@ Expand for Session Info
  kableExtra  * 1.3.4   2021-02-20 [1] CRAN (R 4.3.0)
  lubridate   * 1.9.2   2023-02-10 [1] CRAN (R 4.3.0)
  magick      * 2.7.5   2023-08-07 [1] CRAN (R 4.3.0)
+ patchwork   * 1.1.3   2023-08-14 [1] CRAN (R 4.3.0)
  purrr       * 1.0.2   2023-08-10 [1] CRAN (R 4.3.0)
  readr       * 2.1.4   2023-02-10 [1] CRAN (R 4.3.0)
  readxl      * 1.4.3   2023-07-06 [1] CRAN (R 4.3.0)
@@ -381,7 +506,13 @@ Expand for Session Info
 
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div id="quarto-reuse" class="quarto-appendix-contents"><div>CC BY-NC-SA 4.0</div></div></section></div></main> <!-- /main -->
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>You can also use the pipe operator <code>%&gt;%</code> (or even <code>|&gt;</code>) to input a data frame into the first argument for the <code>ggplot</code> function.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div id="quarto-reuse" class="quarto-appendix-contents"><div>CC BY-NC-SA 4.0</div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
