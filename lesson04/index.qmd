@@ -510,6 +510,20 @@ diamonds %>%
   labs(x = "Cut of diamond",y="Count", fill="Cut of diamond") 
 ```
 
+
+
+
+```{r}
+diamonds %>%
+  mutate(cut = factor(cut,levels=c("Fair","Good","Ideal","Premium","Very Good"))) %>%
+  ggplot(aes(x=cut,fill=cut)) + 
+  geom_bar(color="black") + 
+  scale_fill_brewer(palette="Spectral") + 
+  labs(x = "Cut of diamond",y="Count", fill="Cut of diamond") 
+```
+
+
+
 ## EDA Case Studies
 
 In this section, we will work through a couple of short EDA case studies. If you want to see and EDA live coded by a master data scientist, check out the following video:
