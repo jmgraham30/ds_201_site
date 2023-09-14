@@ -332,9 +332,156 @@ If you're not sure what plot to make for your data, the [data-to-viz](https://ww
 
 ## `r icons::icon_style(icons::fontawesome("r-project"),scale=2,fill="steelblue")` Using the `ggplot2` Package
 
-In this section, we will go through many use cases for `ggplot2`. 
+In this section, we will go through many use cases for `ggplot2`. For the examples and exercises in this section, we will work with three data sets:
+
+- The `mpg` data set in the `ggplot2` package.
+
+- The `diamonds` data set in the `ggplot2` package. 
+
+- The [tornados](https://github.com/rfordatascience/tidytuesday/blob/master/data/2023/2023-05-16/readme.md) data set from the Tidy Tuesday data repository.
+
+To access the `mpg` and `diamonds` data sets, we just need to load the `ggplot2` package. To access the tornados data,  we need to load the `.csv` file which we do with the following code:
+
+```{r}
+#| code-fold: false
+
+tornados <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2023/2023-05-16/tornados.csv')
+
+```
 
 
+Let's look at the first few rows for each of the three data sets:
+
+- `mpg`
+
+```{r}
+#| echo: false
+
+mpg %>%
+  head() %>%
+  kable()
+```
+
+- `diamonds`
+
+```{r}
+#| echo: false
+
+diamonds %>%
+  head() %>%
+  kable()
+```
+
+
+- `tornados`
+
+```{r}
+#| echo: false
+
+tornados %>%
+  head() %>%
+  kable()
+```
+
+**Exercise:** For each variable in each of the three data sets, determine the appropriate data type. 
+
+
+```{r}
+mpg %>%
+  ggplot(aes(x=hwy)) + 
+  geom_histogram()
+```
+
+
+
+```{r}
+mpg %>%
+  ggplot(aes(x=hwy)) + 
+  geom_histogram(fill="black")
+```
+
+
+
+```{r}
+mpg %>%
+  ggplot(aes(x=hwy)) + 
+  geom_histogram(color="white")
+```
+
+
+```{r}
+mpg %>%
+  ggplot(aes(x=hwy)) + 
+  geom_histogram(fill="purple",color="white",bins = 25) + 
+  labs(x="Highway gas milage (mpg)",y="Count")
+```
+
+
+**Exercise:** Create a histogram for the `carat` variable in the `diamonds` data set. 
+
+
+```{r}
+mpg %>%
+  ggplot(aes(y=hwy)) + 
+  geom_boxplot()
+```
+
+
+```{r}
+mpg %>%
+  ggplot(aes(y=hwy,x=rep(1,nrow(mpg)))) + 
+  geom_boxplot(outlier.shape = NA,color="orange") +
+  geom_jitter(width = 0.2,alpha=0.5,color="darkgreen") + 
+  labs(x="",y="Highway gas mileage (mpg)") +
+  theme(axis.text.x = element_blank())
+
+```
+
+
+
+
+```{r}
+mpg %>%
+  ggplot(aes(x=hwy)) + 
+  geom_density()
+```
+
+
+
+
+```{r}
+mpg %>%
+  ggplot(aes(x=hwy)) + 
+  geom_density(linewidth=1)
+```
+
+
+
+
+```{r}
+mpg %>%
+  ggplot(aes(x=hwy)) + 
+  geom_density(linewidth=1) + 
+  geom_rug()
+```
+
+
+
+```{r}
+mpg %>%
+  ggplot(aes(x=hwy)) + 
+  geom_histogram(aes(y = ..density..),fill="purple",color="white",bins = 25) + 
+  geom_density(linewidth=1,color="gold") + 
+  geom_rug()
+```
+
+
+
+```{r}
+diamonds %>%
+  ggplot(aes(cut)) + 
+  geom_bar()
+```
 
 
 ## EDA Case Studies
