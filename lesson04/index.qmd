@@ -339,6 +339,23 @@ In this section, we will go through many use cases for `ggplot2`.
 
 ## EDA Case Studies
 
+In this section, we will work through a couple of short EDA case studies. If you want to see and EDA live coded by a master data scientist, check out the following video:
+
+* Exploratory data analysis worked example video by Hadley Wickham, [watch the video on YouTube](https://youtu.be/go5Au01Jrvs).
+
+```{r}
+#| echo: false
+
+vembedr::embed_youtube(id="go5Au01Jrvs",height=450) %>%
+  vembedr::use_align("center")
+```
+
+
+
+### EDA Case Study 1: 
+
+
+### EDA Case Study 1: 
 
 
 ## Preparation for the next lesson
