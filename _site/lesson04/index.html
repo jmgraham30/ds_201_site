@@ -988,6 +988,16 @@ time  (1): time
 <p><img src="index_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>cut,<span class="at">fill=</span>cut)) <span class="sc">+</span> </span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">color=</span><span class="st">"black"</span>) <span class="sc">+</span> </span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette=</span><span class="st">"Spectral"</span>) <span class="sc">+</span> </span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Cut of diamond"</span>,<span class="at">y=</span><span class="st">"Count"</span>, <span class="at">fill=</span><span class="st">"Cut of diamond"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
 </section>
 <section id="eda-case-studies" class="level2">
 <h2 class="anchored" data-anchor-id="eda-case-studies">EDA Case Studies</h2>
@@ -1072,25 +1082,26 @@ Expand for Session Info
  quarto   1.3.450 @ /usr/local/bin/quarto
 
 ─ Packages ───────────────────────────────────────────────────────────────────
- package     * version date (UTC) lib source
- canlang     * 0.0.1   2023-09-13 [1] Github (ttimbers/canlang@1a54305)
- cowplot     * 1.1.1   2020-12-30 [1] CRAN (R 4.3.0)
- dplyr       * 1.1.3   2023-09-03 [1] CRAN (R 4.3.0)
- forcats     * 1.0.0   2023-01-29 [1] CRAN (R 4.3.0)
- gapminder   * 1.0.0   2023-03-10 [1] CRAN (R 4.3.0)
- ggplot2     * 3.4.3   2023-08-14 [1] CRAN (R 4.3.0)
- kableExtra  * 1.3.4   2021-02-20 [1] CRAN (R 4.3.0)
- lubridate   * 1.9.2   2023-02-10 [1] CRAN (R 4.3.0)
- magick      * 2.7.5   2023-08-07 [1] CRAN (R 4.3.0)
- patchwork   * 1.1.3   2023-08-14 [1] CRAN (R 4.3.0)
- purrr       * 1.0.2   2023-08-10 [1] CRAN (R 4.3.0)
- readr       * 2.1.4   2023-02-10 [1] CRAN (R 4.3.0)
- readxl      * 1.4.3   2023-07-06 [1] CRAN (R 4.3.0)
- sessioninfo * 1.2.2   2021-12-06 [1] CRAN (R 4.3.0)
- stringr     * 1.5.0   2022-12-02 [1] CRAN (R 4.3.0)
- tibble      * 3.2.1   2023-03-20 [1] CRAN (R 4.3.0)
- tidyr       * 1.3.0   2023-01-24 [1] CRAN (R 4.3.0)
- tidyverse   * 2.0.0   2023-02-22 [1] CRAN (R 4.3.0)
+ package      * version date (UTC) lib source
+ canlang      * 0.0.1   2023-09-13 [1] Github (ttimbers/canlang@1a54305)
+ cowplot      * 1.1.1   2020-12-30 [1] CRAN (R 4.3.0)
+ dplyr        * 1.1.3   2023-09-03 [1] CRAN (R 4.3.0)
+ forcats      * 1.0.0   2023-01-29 [1] CRAN (R 4.3.0)
+ gapminder    * 1.0.0   2023-03-10 [1] CRAN (R 4.3.0)
+ ggplot2      * 3.4.3   2023-08-14 [1] CRAN (R 4.3.0)
+ kableExtra   * 1.3.4   2021-02-20 [1] CRAN (R 4.3.0)
+ lubridate    * 1.9.2   2023-02-10 [1] CRAN (R 4.3.0)
+ magick       * 2.7.5   2023-08-07 [1] CRAN (R 4.3.0)
+ patchwork    * 1.1.3   2023-08-14 [1] CRAN (R 4.3.0)
+ purrr        * 1.0.2   2023-08-10 [1] CRAN (R 4.3.0)
+ RColorBrewer * 1.1-3   2022-04-03 [1] CRAN (R 4.3.0)
+ readr        * 2.1.4   2023-02-10 [1] CRAN (R 4.3.0)
+ readxl       * 1.4.3   2023-07-06 [1] CRAN (R 4.3.0)
+ sessioninfo  * 1.2.2   2021-12-06 [1] CRAN (R 4.3.0)
+ stringr      * 1.5.0   2022-12-02 [1] CRAN (R 4.3.0)
+ tibble       * 3.2.1   2023-03-20 [1] CRAN (R 4.3.0)
+ tidyr        * 1.3.0   2023-01-24 [1] CRAN (R 4.3.0)
+ tidyverse    * 2.0.0   2023-02-22 [1] CRAN (R 4.3.0)
 
  [1] /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library
 

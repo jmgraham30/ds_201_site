@@ -502,14 +502,13 @@ diamonds %>%
 
 
 
-
 ```{r}
 diamonds %>%
   ggplot(aes(x=cut,fill=cut)) + 
-  geom_bar()
+  geom_bar(color="black") + 
+  scale_fill_brewer(palette="Spectral") + 
+  labs(x = "Cut of diamond",y="Count", fill="Cut of diamond") 
 ```
-
-
 
 ## EDA Case Studies
 
