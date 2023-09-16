@@ -90,7 +90,7 @@ In this lesson, we will first build our toolkit for EDA with a major focus on ga
 Most people process visual information quickly and easily. Few people can learn much at all by scrolling through a spreadsheet of  raw data. Thus, it is important for a data scientist to develop excellent skills in data visualization.
 By data visualization, we mean the process of representing data via a visual format. 
 
-In this course, we will utilize the `ggplot2` package (and maybe some packages that extend `ggplot2`) for data visualization [@wickham2016]. There are many excellent resources on data visualization. Two that are highly recommended and available for free online are [Data Visualization a Practical Introduction](https://socviz.co/) and [Fundamentals of Data Visualization](https://clauswilke.com/dataviz/) [@healy2018data; @wilke2019fundamentals]. [View Data Visualization a Practical Introduction](https://socviz.co/). [View Fundamentals of Data Visualization](https://clauswilke.com/dataviz/). Not only are these two books free, they also recent and utilize R and `ggplot2`. 
+In this course, we will utilize the `ggplot2` package (and maybe some packages that extend `ggplot2`) for data visualization [@wickham2016]. There are many excellent resources on data visualization. Two that are highly recommended and available for free online are [Data Visualization a Practical Introduction](https://socviz.co/) and [Fundamentals of Data Visualization](https://clauswilke.com/dataviz/) [@healy2018data; @wilke2019fundamentals]. [View Data Visualization a Practical Introduction](https://socviz.co/). [View Fundamentals of Data Visualization](https://clauswilke.com/dataviz/). Not only are these two books free, they are also recent and utilize R and `ggplot2`. 
 
 Data visualizations come with a risk of confusing people. Further, visualizations might not work well for everyone. So, it is very important to choose visualizations that are as clear, accessible, and clean as possible. For example, you should:
 
@@ -247,12 +247,12 @@ plot_grid(aes_pos, aes_shape, aes_size,
 
 Returning to @fig-ggplot2, we notice that one of the arguments that must be given to `ggplot` is `aes` which is short for aesthetic. 
 
-@fig-plot-sketches show several of the most common types of plots for a single or pair of variables. These plot types are:
+@fig-plot-sketches shows several of the most common types of plots for a single or pair of variables. These plot types are:
 
-- **scatter plots** visualize the relationship between two quantitative variables
-- **line plots** visualize trends with respect to an independent, ordered quantity (e.g., time)
-- **bar plots** visualize comparisons of amounts
-- **histograms** visualize the distribution of one quantitative variable (i.e., all its possible values and how often they occur) \index{distribution}
+- **scatter plots** visualize the relationship between two quantitative variables,
+- **line plots** visualize trends with respect to an independent, ordered quantity (e.g., time),
+- **bar plots** visualize comparisons of amounts, and
+- **histograms** visualize the distribution of one quantitative variable (i.e., all its possible values and how often they occur)
 
 ```{r}
 #| label: fig-plot-sketches
@@ -310,7 +310,7 @@ We will soon learn how to make these types of plots and more with `ggplot2`. Bef
 - Use legends and labels so that your visualization is understandable without reading the surrounding text.
 - Ensure the text, symbols, lines, etc., on your visualization are big enough to be easily read.
 - Ensure the data are clearly visible; don't hide the shape/distribution of the data behind other objects (e.g.,  a bar).
-- Make sure to use color schemes that are understandable by those with
+- Make sure to use color schemes that are easily visible by those with
   colorblindness (a surprisingly large fraction of the overall 
   population&mdash;from about 1% to 10%, depending on sex and ancestry [@deebblind]).
   For example, [ColorBrewer](https://colorbrewer2.org) 
@@ -329,22 +329,24 @@ We will soon learn how to make these types of plots and more with `ggplot2`. Bef
 - Don't adjust the axes to zoom in on small differences. If the difference is small, show that it's small!
 
 
-If you're not sure what plot to make for your data, the [data-to-viz](https://www.data-to-viz.com/) website can be very helpful. [View the data-to-viz site](https://www.data-to-viz.com/). Once you know what type of plot to make, the [R Graph Gallery](https://r-graph-gallery.com/index.html) website is helpful for finding the ride code to make the plot with `ggplot2`. [View the R Graph Gallery ](https://r-graph-gallery.com/index.html)
+If you're not sure what plot to make for your data, the [data-to-viz](https://www.data-to-viz.com/) website can be very helpful. [View the data-to-viz site](https://www.data-to-viz.com/). Once you know what type of plot to make, the [R Graph Gallery](https://r-graph-gallery.com/index.html) website is helpful for finding the code to make the plot with `ggplot2`. [View the R Graph Gallery ](https://r-graph-gallery.com/index.html)
 
 ## `r icons::icon_style(icons::fontawesome("r-project"),scale=2,fill="steelblue")` Using the `ggplot2` Package
 
 In this section, we will go through many use cases for `ggplot2`. For the examples and exercises in this section, we will work with three data sets:
 
-- The `mpg` data set in the `ggplot2` package.
+- The `mpg` data set in the `ggplot2` package. The first few rows for `mpg` are shown in @tbl-mpg.
 
-- The `diamonds` data set in the `ggplot2` package. 
+- The `diamonds` data set in the `ggplot2` package. The first few rows for `diamonds` are shown in @tbl-diamonds.
 
-- The [tornados](https://github.com/rfordatascience/tidytuesday/blob/master/data/2023/2023-05-16/readme.md) data set from the Tidy Tuesday data repository.
+- The [tornados](https://github.com/rfordatascience/tidytuesday/blob/master/data/2023/2023-05-16/readme.md) data set from the Tidy Tuesday data repository. The first few rows for this data are shown in @tbl-tornados.
 
 To access the `mpg` and `diamonds` data sets, we just need to load the `ggplot2` package. To access the tornados data,  we need to load the `.csv` file which we do with the following code:
 
 ```{r}
 #| code-fold: false
+#| warning: false
+#| message: false
 
 tornados <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2023/2023-05-16/tornados.csv')
 
@@ -357,6 +359,8 @@ Let's look at the first few rows for each of the three data sets:
 
 ```{r}
 #| echo: false
+#| label: tbl-mpg
+#| tbl-cap: Table showing first few rows of the `mpg` data set. 
 
 mpg %>%
   head() %>%
@@ -367,6 +371,8 @@ mpg %>%
 
 ```{r}
 #| echo: false
+#| label: tbl-diamonds
+#| tbl-cap: Table showing first few rows of the `diamonds` data set. 
 
 diamonds %>%
   head() %>%
@@ -378,13 +384,15 @@ diamonds %>%
 
 ```{r}
 #| echo: false
+#| #| label: tbl-tornados
+#| tbl-cap: Table showing first few rows of the tornados data set.
 
 tornados %>%
   head() %>%
   kable()
 ```
 
-**Exercise:** For each variable in each of the three data sets, determine the appropriate data type. 
+**Exercise:** For each variables in each of the three data sets, determine the appropriate data type. 
 
 
 ```{r}
