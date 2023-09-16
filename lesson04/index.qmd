@@ -394,11 +394,35 @@ tornados %>%
 
 **Exercise:** For each variables in each of the three data sets, determine the appropriate data type. 
 
+### Basic `ggplot2` Usage
+
+Histograms are a common way to visualize a single numerical variable. Here is how to make a basic histogram with `ggplot2`:
 
 ```{r}
 mpg %>%
   ggplot(aes(x=hwy)) + 
   geom_histogram()
+```
+
+
+Notice that we get a message about the number of "bins" for our histogram. 
+
+**Question:** What is meant by the number of bins for a histogram?
+
+We can change either the number of bins or the width of bins for a histogram created with `ggplot2`. For example,
+
+```{r}
+mpg %>%
+  ggplot(aes(x=hwy)) + 
+  geom_histogram(bins=22)
+```
+
+or
+
+```{r}
+mpg %>%
+  ggplot(aes(x=hwy)) + 
+  geom_histogram(binwidth = 5)
 ```
 
 
