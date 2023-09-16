@@ -502,7 +502,7 @@ mpg %>%
 ```
 
 
-Adding a so-called rug let's us see 
+Adding a so-called rug let's us see where the observed values in our data fall: 
 
 ```{r}
 mpg %>%
@@ -511,7 +511,7 @@ mpg %>%
   geom_rug()
 ```
 
-
+By normalizing our data, we can plot a density curve over the data histogram. For example, 
 
 ```{r}
 mpg %>%
@@ -526,13 +526,23 @@ mpg %>%
 
 #### Categorical Data
 
+Perhaps the most common plot type for a single 
+
 ```{r}
 diamonds %>%
   ggplot(aes(cut)) + 
   geom_bar()
 ```
 
+Note that a bar plot is just a visual representation of a frequency table for the variable:
 
+```{r}
+diamonds %>%
+  pull(cut) %>%
+  table()
+```
+
+Similar to what we saw with histograms, the color aesthetic changes the boundary of our bars in bar plots:
 
 ```{r}
 diamonds %>%
@@ -540,7 +550,7 @@ diamonds %>%
   geom_bar()
 ```
 
-
+while the fill aesthetic changes the shading of our bars:
 
 ```{r}
 diamonds %>%
@@ -548,7 +558,7 @@ diamonds %>%
   geom_bar()
 ```
 
-
+The next plot demonstrates how to modify the color palette for a categorical variable: 
 
 ```{r}
 diamonds %>%
@@ -559,7 +569,7 @@ diamonds %>%
 ```
 
 
-
+We can also manually change the ordering of our variables:
 
 ```{r}
 diamonds %>%
