@@ -580,7 +580,7 @@ diamonds %>%
   labs(x = "Cut of diamond",y="Count", fill="Cut of diamond") 
 ```
 
-
+**Exercise:** Create a *nice* bar plot for the `class` variable in the `mpg` data set.
 
 ## EDA Case Studies
 
