@@ -498,7 +498,7 @@ Since density plots involves lines or better curves, we can adjust the line widt
 ```{r}
 mpg %>%
   ggplot(aes(x=hwy)) + 
-  geom_density(linewidth=1)
+  geom_density(linewidth=2)
 ```
 
 
@@ -507,7 +507,7 @@ Adding a so-called rug let's us see where the observed values in our data fall:
 ```{r}
 mpg %>%
   ggplot(aes(x=hwy)) + 
-  geom_density(linewidth=1) + 
+  geom_density(linewidth=2) + 
   geom_rug()
 ```
 
@@ -517,7 +517,7 @@ By normalizing our data, we can plot a density curve over the data histogram. Fo
 mpg %>%
   ggplot(aes(x=hwy)) + 
   geom_histogram(aes(y = ..density..),fill="purple",color="white",bins = 25) + 
-  geom_density(linewidth=1,color="gold") + 
+  geom_density(linewidth=2,color="gold") + 
   geom_rug()
 ```
 
