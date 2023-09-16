@@ -384,7 +384,7 @@ diamonds %>%
 
 ```{r}
 #| echo: false
-#| #| label: tbl-tornados
+#| label: tbl-tornados
 #| tbl-cap: Table showing first few rows of the tornados data set.
 
 tornados %>%
@@ -395,6 +395,9 @@ tornados %>%
 **Exercise:** For each variables in each of the three data sets, determine the appropriate data type. 
 
 ### Basic `ggplot2` Usage
+
+
+#### Numerical Data
 
 Histograms are a common way to visualize a single numerical variable. Here is how to make a basic histogram with `ggplot2`:
 
@@ -425,7 +428,7 @@ mpg %>%
   geom_histogram(binwidth = 5)
 ```
 
-
+The aesthetic value fill determines the shading of a histogram (and also other graphical objects as we will see later).
 
 ```{r}
 mpg %>%
@@ -433,7 +436,7 @@ mpg %>%
   geom_histogram(fill="black")
 ```
 
-
+The aesthetic value color determines the boundary color of a histogram (and also other graphical objects as we will see later).
 
 ```{r}
 mpg %>%
@@ -441,6 +444,7 @@ mpg %>%
   geom_histogram(color="white")
 ```
 
+Here is a nicer version of our histogram where we've included better labels for the axes:
 
 ```{r}
 mpg %>%
@@ -450,8 +454,10 @@ mpg %>%
 ```
 
 
-**Exercise:** Create a histogram for the `carat` variable in the `diamonds` data set. 
+**Exercise:** Create a *nice* histogram for the `carat` variable in the `diamonds` data set. 
 
+
+Box plots are an alternative way to visualize numerical variables. Here is a basic box plot created using using `ggplot2`: 
 
 ```{r}
 mpg %>%
@@ -459,6 +465,7 @@ mpg %>%
   geom_boxplot()
 ```
 
+Here is an nicer version that also adds the data points over the box plot:
 
 ```{r}
 mpg %>%
@@ -470,8 +477,12 @@ mpg %>%
 
 ```
 
+**Exercise:** Compare and contrast histograms and box plots.
+
+**Exercise:** Create a *nice* box plot for the `carat` variable in the `diamonds` data set. 
 
 
+Density plots are yet another way to visualize numerical variables. They are basically smoothed versions of histograms but with the y-axis scaled so that the total area is 1. 
 
 ```{r}
 mpg %>%
@@ -479,7 +490,9 @@ mpg %>%
   geom_density()
 ```
 
+**Exercise:** What are the main aesthetics used in a density plot?
 
+Since density plots involves lines or better curves, we can adjust the line width. For example,   
 
 
 ```{r}
@@ -489,7 +502,7 @@ mpg %>%
 ```
 
 
-
+Adding a so-called rug let's us see 
 
 ```{r}
 mpg %>%
@@ -508,7 +521,10 @@ mpg %>%
   geom_rug()
 ```
 
+**Exercise:** Create a *nice* density plot for the `carat` variable in the `diamonds` data set. 
 
+
+#### Categorical Data
 
 ```{r}
 diamonds %>%

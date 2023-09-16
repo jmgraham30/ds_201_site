@@ -421,7 +421,7 @@ div.csl-indent {
 <ul>
 <li><p>The <code>mpg</code> data set in the <code>ggplot2</code> package. The first few rows for <code>mpg</code> are shown in <a href="#tbl-mpg">Table&nbsp;2</a>.</p></li>
 <li><p>The <code>diamonds</code> data set in the <code>ggplot2</code> package. The first few rows for <code>diamonds</code> are shown in <a href="#tbl-diamonds">Table&nbsp;3</a>.</p></li>
-<li><p>The <a href="https://github.com/rfordatascience/tidytuesday/blob/master/data/2023/2023-05-16/readme.md">tornados</a> data set from the Tidy Tuesday data repository. The first few rows for this data are shown in <strong>?@tbl-tornados</strong>.</p></li>
+<li><p>The <a href="https://github.com/rfordatascience/tidytuesday/blob/master/data/2023/2023-05-16/readme.md">tornados</a> data set from the Tidy Tuesday data repository. The first few rows for this data are shown in <a href="#tbl-tornados">Table&nbsp;4</a>.</p></li>
 </ul>
 <p>To access the <code>mpg</code> and <code>diamonds</code> data sets, we just need to load the <code>ggplot2</code> package. To access the tornados data, we need to load the <code>.csv</code> file which we do with the following code:</p>
 <div class="cell">
@@ -644,8 +644,9 @@ div.csl-indent {
 </ul>
 <div class="cell">
 <div class="cell-output-display">
+<div id="tbl-tornados" class="anchored">
 <table data-quarto-postprocess="true" class="table table-sm table-striped small">
-<caption>Table showing first few rows of the tornados data set. </caption>
+<caption>Table&nbsp;4: Table showing first few rows of the tornados data set.</caption>
 <thead>
 <tr class="header">
 <th style="text-align: right;" data-quarto-table-cell-role="th">om</th>
@@ -854,6 +855,7 @@ div.csl-indent {
 </tr>
 </tbody>
 </table>
+</div>
 
 
 </div>
@@ -861,6 +863,8 @@ div.csl-indent {
 <p><strong>Exercise:</strong> For each variables in each of the three data sets, determine the appropriate data type.</p>
 <section id="basic-ggplot2-usage" class="level3">
 <h3 class="anchored" data-anchor-id="basic-ggplot2-usage">Basic <code>ggplot2</code> Usage</h3>
+<section id="numerical-data" class="level4">
+<h4 class="anchored" data-anchor-id="numerical-data">Numerical Data</h4>
 <p>Histograms are a common way to visualize a single numerical variable. Here is how to make a basic histogram with <code>ggplot2</code>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span></span>
@@ -893,6 +897,7 @@ div.csl-indent {
 <p><img src="index_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>The aesthetic value fill determines the shading of a histogram (and also other graphical objects as we will see later).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>hwy)) <span class="sc">+</span> </span>
@@ -904,6 +909,7 @@ div.csl-indent {
 <p><img src="index_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>The aesthetic value color determines the boundary color of a histogram (and also other graphical objects as we will see later).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>hwy)) <span class="sc">+</span> </span>
@@ -915,6 +921,7 @@ div.csl-indent {
 <p><img src="index_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>Here is a nicer version of our histogram where we’ve included better labels for the axes:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>hwy)) <span class="sc">+</span> </span>
@@ -924,7 +931,8 @@ div.csl-indent {
 <p><img src="index_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p><strong>Exercise:</strong> Create a histogram for the <code>carat</code> variable in the <code>diamonds</code> data set.</p>
+<p><strong>Exercise:</strong> Create a <em>nice</em> histogram for the <code>carat</code> variable in the <code>diamonds</code> data set.</p>
+<p>Box plots are an alternative way to visualize numerical variables. Here is a basic box plot created using using <code>ggplot2</code>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y=</span>hwy)) <span class="sc">+</span> </span>
@@ -933,6 +941,7 @@ div.csl-indent {
 <p><img src="index_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>Here is an nicer version that also adds the data points over the box plot:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y=</span>hwy,<span class="at">x=</span><span class="fu">rep</span>(<span class="dv">1</span>,<span class="fu">nrow</span>(mpg)))) <span class="sc">+</span> </span>
@@ -944,6 +953,9 @@ div.csl-indent {
 <p><img src="index_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p><strong>Exercise:</strong> Compare and contrast histograms and box plots.</p>
+<p><strong>Exercise:</strong> Create a <em>nice</em> box plot for the <code>carat</code> variable in the <code>diamonds</code> data set.</p>
+<p>Density plots are yet another way to visualize numerical variables. They are basically smoothed versions of histograms but with the y-axis scaled so that the total area is 1.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>hwy)) <span class="sc">+</span> </span>
@@ -952,6 +964,8 @@ div.csl-indent {
 <p><img src="index_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p><strong>Exercise:</strong> What are the main aesthetics used in a density plot?</p>
+<p>Since density plots involves lines or better curves, we can adjust the line width. For example,</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>hwy)) <span class="sc">+</span> </span>
@@ -960,6 +974,7 @@ div.csl-indent {
 <p><img src="index_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>Adding a so-called rug let’s us see</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>hwy)) <span class="sc">+</span> </span>
@@ -983,6 +998,10 @@ div.csl-indent {
 <p><img src="index_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p><strong>Exercise:</strong> Create a <em>nice</em> density plot for the <code>carat</code> variable in the <code>diamonds</code> data set.</p>
+</section>
+<section id="categorical-data" class="level4">
+<h4 class="anchored" data-anchor-id="categorical-data">Categorical Data</h4>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(cut)) <span class="sc">+</span> </span>
@@ -1028,6 +1047,7 @@ div.csl-indent {
 <p><img src="index_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+</section>
 </section>
 </section>
 <section id="eda-case-studies" class="level2">
