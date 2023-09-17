@@ -703,7 +703,13 @@ mpg %>%
 
 **Warning:** You should avoid trying to cram too much into a single visualization. Just because you can include many variables does not necessarily mean that doing so will result in a better plot.   
 
-## Figures in Quarto
+### Summary So Far
+
+We have seen some basic techniques for data visualization and learned how to use the functionality of `ggplot2` for creating high quality visualizations. While we have only scratched the surface in terms of what one can do using `ggplot2`, you should have a solid grounding for learning more. As we move through the course, we will continue to develop our tools and skills in data visualization. Further, you are highly encouraged to explore more on your own using some of the recommended resources and as part of your semester project. 
+
+Our next goal is to look at some case studies in exploratory data analysis where visualizations will play an important role. However, before we get into that you should see how you can use some of the features of Quarto to not only create a high quality plot but also how to include it as a figure in a report or presentation document.  
+
+### Figures in Quarto
 
 When we create figures in a Quarto notebook, we can add additional information such as a label, figure caption, alt text, etc. The following is an example of how to do this:
 
@@ -784,9 +790,11 @@ vembedr::embed_youtube(id="go5Au01Jrvs",height=450) %>%
 
 ### EDA Case Study 1: 
 
+Let's work through an EDA together using the data set on tornados that we loaded earlier in this lesson. To get additional practice in using all the tools we have developed so far, let's create a new RStudio project and Quarto notebook and go through the EDA together. 
 
-### EDA Case Study 1: 
+### EDA Case Study 2: 
 
+In one of her blog posts, the data scientist Julia Silge examines the droughts in the United States, [view the blog post](https://juliasilge.com/blog/drought-in-tx/). As a seasoned data scientist, Silge begins all of her analyses with an EDA. Let's reproduce and possibly extend the EDA that Silge conducts as part of her analysis. Again, let's create a new RStudio project and Quarto notebook and go through the EDA together. 
 
 ## Preparation for the next lesson
 
