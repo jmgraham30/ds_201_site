@@ -30,6 +30,7 @@ library(patchwork)
 library(lubridate)
 library(cowplot)
 library(RColorBrewer)
+library(ggthemes)
 
 theme_set(theme_minimal(base_size=12))
 
@@ -399,7 +400,7 @@ tornados %>%
 
 #### Numerical Data
 
-Histograms are a common way to visualize a single numerical variable. Here is how to make a basic histogram with `ggplot2`:
+Histograms are a common way to visualize a single numerical variable. Here is how to make a basic histogram with `ggplot2`[^2]:
 
 ```{r}
 mpg %>%
@@ -407,6 +408,7 @@ mpg %>%
   geom_histogram()
 ```
 
+[^2]: If you copy and paste the plot commands in this notebook into your own R session you may get plots with a slightly difference appearance. The reason for this is that a plot theme has been set for this notebook using the `theme_set(theme_minimal(base_size=12))` command. You can learn more about `ggplot` themes [here](https://ggplot2.tidyverse.org/reference/ggtheme.html).
 
 Notice that we get a message about the number of "bins" for our histogram. 
 
@@ -583,8 +585,185 @@ diamonds %>%
 **Exercise:** Create a *nice* bar plot for the `class` variable in the `mpg` data set.
 
 
+#### Visualizing Relationships
+
+To visualize a relationship we need to have at least two variables mapped to aesthetics of a plot. We will start by looking at examples for visualizing the relationship between exactly two variables. The most common ways to do this include:
+
+* Scatter plots for visualizing the relationship between two numerical variables. 
+
+* Side-by-side box plots for visualizing the relationship between a numerical variable and a categorical variable.
+
+* Stacked bar plots for visualizing the relationship between two categorical variables. 
+
+Here is an example of a scatter plot:
+
+```{r}
+diamonds %>%
+  ggplot(aes(x=carat,y=price)) + 
+  geom_point()
+```
+
+Here is an example of a side-by-side box plot:
+
+```{r}
+diamonds %>%
+  ggplot(aes(x=clarity,y=price)) + 
+  geom_boxplot()
+```
+
+Here is an examplep of a stacked bar plot:
+
+```{r}
+diamonds %>%
+  ggplot(aes(x=cut,fill=color)) + 
+  geom_bar()
+```
+
+**Question:** How would you interpret the information provided by each of the last three plots? 
+
+**Exercise:** Use appropriate variables from the `mpg` data set to make a scatter plot, a side-by-side box plot, and a stacked bar plot. 
+
+In some cases it is helpful to apply some kind of transformation to variables because this can help to illuminate the nature of the relationship between variables. For example, here are the scatter plot and side-by-side bar plot of the data from before but now with a $\log_{10}$ transform applied to the price:
+
+```{r}
+diamonds %>%
+  ggplot(aes(x=carat,y=log10(price))) + 
+  geom_point()
+```
+
+
+```{r}
+diamonds %>%
+  ggplot(aes(x=clarity,y=log10(price))) + 
+  geom_boxplot()
+```
+
+
+Notice that in the last scatter plot for the `diamonds` data, there are many points that overlay one another. A way to address this is using the `alpha` argument like
+
+```{r}
+diamonds %>%
+  ggplot(aes(x=carat,y=log10(price))) + 
+  geom_point(alpha=0.1)
+```
+
+Another way to examine the relationship between two categorical variables is with a relative frequency plot such as
+
+```{r}
+diamonds %>%
+  ggplot(aes(x=cut,fill=color)) + 
+  geom_bar(position = "fill")
+```
+
+**Question:** What is the interpretation of the relative frequency plot?
+
+**Question:** Can you think of some ways in which we can improve any of the last few plots?
+
+**Exercise:** Try to determine if there are any useful transformation you can find for the variables in the plots you made with the `mpg` data.
+
+
+The `ggpairs` function from the `GGAlly` package can sometimes be a good way to view the relationship between many paris of variables together. 
+
+```{r}
+#| message: false
+#| warning: false
+#| fig-width: 12
+#| fig-height: 10
+
+
+diamonds %>%
+  select(-c(x,y,z)) %>%
+  GGally::ggpairs()
+```
+
+Note that `ggpairs` is not very useful for a data set with a lot of variables or a data set that has a categorical variable with a large number of levels.  
+
+
+If we want to move beyond just two variables at a time, we will have to use other aesthetics like color, shape, size, etc. to incorporate the additional variables. Let's see some examples:
+
+```{r}
+mpg %>%
+  ggplot(aes(x=displ,y=cty,color=drv)) + 
+  geom_point()
+  
+```
+
+or
+
+
+```{r}
+mpg %>%
+  ggplot(aes(x=displ,y=cty,color=as.character(cyl),shape=drv)) + 
+  geom_point()
+  
+```
+
+
+**Exercise:** Try some techniques to visualize more than two variables at a time for the `diamonds` data set. 
+
+**Warning:** You should avoid trying to cram too much into a single visualization. Just because you can include many variables does not necessarily mean that doing so will result in a better plot.   
 
 ## Figures in Quarto
+
+When we create figures in a Quarto notebook, we can add additional information such as a label, figure caption, alt text, etc. The following is an example of how to do this:
+
+```
+#| echo: false
+#| warning: false
+#| message: false
+#| label: fig-quarto-figs
+#| fig-cap: Scatter plot of city gas mileage versus the engine size of some sample vehicles. Data is from the `mpg` data set in the `ggplot2` package [@wickham2016].
+#| fig-alt: |
+#|   A scatterplot of city gas mileage vs. engine size of vehicles, with a
+#|   best fit line of the relationship between these two variables 
+#|   overlaid. The plot displays a negative, non-linear, and relatively 
+#|   strong relationship between these two variables.
+
+mpg %>%
+  ggplot(aes(x=displ,y=cty)) + 
+  geom_point(aes(color=as.character(cyl),shape=drv),size=2) + 
+  labs(
+    title = "Engine size",
+    subtitle = "Engine size versus gas mileage for different vehicles",
+    x = "Engine displacement (litres)",
+    y = "City gas mileage (mpg)",
+    color = "Number of Cylinders",
+    shape = "Drive type"
+  ) +
+  scale_color_colorblind()
+```
+
+@fig-quarto-figs is what the last code chunk produces.
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| label: fig-quarto-figs
+#| fig-cap: Scatter plot of city gas mileage versus the engine size of some sample vehicles. Data is from the `mpg` data set in the `ggplot2` package [@wickham2016].
+#| fig-alt: |
+#|   A scatterplot of city gas mileage vs. engine size of vehicles, with a
+#|   best fit line of the relationship between these two variables 
+#|   overlaid. The plot displays a negative, non-linear, and relatively 
+#|   strong relationship between these two variables.
+
+mpg %>%
+  ggplot(aes(x=displ,y=cty)) + 
+  geom_point(aes(color=as.character(cyl),shape=drv),size=2) + 
+  geom_smooth() + 
+  labs(
+    title = "Engine size",
+    subtitle = "Engine size versus gas mileage for different vehicles",
+    x = "Engine displacement (litres)",
+    y = "City gas mileage (mpg)",
+    color = "Number of Cylinders",
+    shape = "Drive type"
+  ) +
+  scale_color_colorblind()
+
+```
+
+
 
 
 

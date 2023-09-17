@@ -117,6 +117,8 @@ div.csl-indent {
 }</script>
 <link href="../site_libs/vembedr-0.1.5/css/vembedr.css" rel="stylesheet">
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -866,7 +868,7 @@ div.csl-indent {
 <h3 class="anchored" data-anchor-id="basic-ggplot2-usage">Basic <code>ggplot2</code> Usage</h3>
 <section id="numerical-data" class="level4">
 <h4 class="anchored" data-anchor-id="numerical-data">Numerical Data</h4>
-<p>Histograms are a common way to visualize a single numerical variable. Here is how to make a basic histogram with <code>ggplot2</code>:</p>
+<p>Histograms are a common way to visualize a single numerical variable. Here is how to make a basic histogram with <code>ggplot2</code><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>hwy)) <span class="sc">+</span> </span>
@@ -1067,10 +1069,151 @@ div.csl-indent {
 </div>
 <p><strong>Exercise:</strong> Create a <em>nice</em> bar plot for the <code>class</code> variable in the <code>mpg</code> data set.</p>
 </section>
+<section id="visualizing-relationships" class="level4">
+<h4 class="anchored" data-anchor-id="visualizing-relationships">Visualizing Relationships</h4>
+<p>To visualize a relationship we need to have at least two variables mapped to aesthetics of a plot. We will start by looking at examples for visualizing the relationship between exactly two variables. The most common ways to do this include:</p>
+<ul>
+<li><p>Scatter plots for visualizing the relationship between two numerical variables.</p></li>
+<li><p>Side-by-side box plots for visualizing the relationship between a numerical variable and a categorical variable.</p></li>
+<li><p>Stacked bar plots for visualizing the relationship between two categorical variables.</p></li>
+</ul>
+<p>Here is an example of a scatter plot:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>carat,<span class="at">y=</span>price)) <span class="sc">+</span> </span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Here is an example of a side-by-side box plot:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>clarity,<span class="at">y=</span>price)) <span class="sc">+</span> </span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Here is an examplep of a stacked bar plot:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>cut,<span class="at">fill=</span>color)) <span class="sc">+</span> </span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><strong>Question:</strong> How would you interpret the information provided by each of the last three plots?</p>
+<p><strong>Exercise:</strong> Use appropriate variables from the <code>mpg</code> data set to make a scatter plot, a side-by-side box plot, and a stacked bar plot.</p>
+<p>In some cases it is helpful to apply some kind of transformation to variables because this can help to illuminate the nature of the relationship between variables. For example, here are the scatter plot and side-by-side bar plot of the data from before but now with a <span class="math inline">\(\log_{10}\)</span> transform applied to the price:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>carat,<span class="at">y=</span><span class="fu">log10</span>(price))) <span class="sc">+</span> </span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>clarity,<span class="at">y=</span><span class="fu">log10</span>(price))) <span class="sc">+</span> </span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Notice that in the last scatter plot for the <code>diamonds</code> data, there are many points that overlay one another. A way to address this is using the <code>alpha</code> argument like</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>carat,<span class="at">y=</span><span class="fu">log10</span>(price))) <span class="sc">+</span> </span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-33-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Another way to examine the relationship between two categorical variables is with a relative frequency plot such as</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>cut,<span class="at">fill=</span>color)) <span class="sc">+</span> </span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"fill"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><strong>Question:</strong> What is the interpretation of the relative frequency plot?</p>
+<p><strong>Question:</strong> Can you think of some ways in which we can improve any of the last few plots?</p>
+<p><strong>Exercise:</strong> Try to determine if there are any useful transformation you can find for the variables in the plots you made with the <code>mpg</code> data.</p>
+<p>The <code>ggpairs</code> function from the <code>GGAlly</code> package can sometimes be a good way to view the relationship between many paris of variables together.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(x,y,z)) <span class="sc">%&gt;%</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  GGally<span class="sc">::</span><span class="fu">ggpairs</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid" width="1152"></p>
+</div>
+</div>
+<p>Note that <code>ggpairs</code> is not very useful for a data set with a lot of variables or a data set that has a categorical variable with a large number of levels.</p>
+<p>If we want to move beyond just two variables at a time, we will have to use other aesthetics like color, shape, size, etc. to incorporate the additional variables. Let’s see some examples:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>displ,<span class="at">y=</span>cty,<span class="at">color=</span>drv)) <span class="sc">+</span> </span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>or</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>displ,<span class="at">y=</span>cty,<span class="at">color=</span><span class="fu">as.character</span>(cyl),<span class="at">shape=</span>drv)) <span class="sc">+</span> </span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-37-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><strong>Exercise:</strong> Try some techniques to visualize more than two variables at a time for the <code>diamonds</code> data set.</p>
+<p><strong>Warning:</strong> You should avoid trying to cram too much into a single visualization. Just because you can include many variables does not necessarily mean that doing so will result in a better plot.</p>
+</section>
 </section>
 </section>
 <section id="figures-in-quarto" class="level2">
 <h2 class="anchored" data-anchor-id="figures-in-quarto">Figures in Quarto</h2>
+<p>When we create figures in a Quarto notebook, we can add additional information such as a label, figure caption, alt text, etc. The following is an example of how to do this:</p>
+<pre><code>#| echo: false
+#| warning: false
+#| message: false
+#| label: fig-quarto-figs
+#| fig-cap: Scatter plot of city gas mileage versus the engine size of some sample vehicles. Data is from the `mpg` data set in the `ggplot2` package [@wickham2016].
+#| fig-alt: |
+#|   A scatterplot of city gas mileage vs. engine size of vehicles, with a
+#|   best fit line of the relationship between these two variables 
+#|   overlaid. The plot displays a negative, non-linear, and relatively 
+#|   strong relationship between these two variables.
+
+mpg %&gt;%
+  ggplot(aes(x=displ,y=cty)) + 
+  geom_point(aes(color=as.character(cyl),shape=drv),size=2) + 
+  labs(
+    title = "Engine size",
+    subtitle = "Engine size versus gas mileage for different vehicles",
+    x = "Engine displacement (litres)",
+    y = "City gas mileage (mpg)",
+    color = "Number of Cylinders",
+    shape = "Drive type"
+  ) +
+  scale_color_colorblind()</code></pre>
+<p><a href="#fig-quarto-figs">Figure&nbsp;5</a> is what the last code chunk produces.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-quarto-figs" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/fig-quarto-figs-1.png" class="img-fluid figure-img" alt="A scatterplot of city gas mileage vs. engine size of vehicles, with a best fit line of the relationship between these two variables overlaid. The plot displays a negative, non-linear, and relatively strong relationship between these two variables." width="672"></p>
+<figcaption class="figure-caption">Figure&nbsp;5: Scatter plot of city gas mileage versus the engine size of some sample vehicles. Data is from the <code>mpg</code> data set in the <code>ggplot2</code> package <span class="citation" data-cites="wickham2016">(<a href="#ref-wickham2016" role="doc-biblioref">Wickham 2016</a>)</span>.</figcaption>
+</figure>
+</div>
+</div>
+</div>
 </section>
 <section id="eda-case-studies" class="level2">
 <h2 class="anchored" data-anchor-id="eda-case-studies">EDA Case Studies</h2>
@@ -1150,7 +1293,7 @@ Expand for Session Info
  collate  en_US.UTF-8
  ctype    en_US.UTF-8
  tz       America/New_York
- date     2023-09-16
+ date     2023-09-17
  pandoc   3.1.1 @ /Applications/RStudio.app/Contents/Resources/app/quarto/bin/tools/ (via rmarkdown)
  quarto   1.3.450 @ /usr/local/bin/quarto
 
@@ -1162,6 +1305,7 @@ Expand for Session Info
  forcats      * 1.0.0   2023-01-29 [1] CRAN (R 4.3.0)
  gapminder    * 1.0.0   2023-03-10 [1] CRAN (R 4.3.0)
  ggplot2      * 3.4.3   2023-08-14 [1] CRAN (R 4.3.0)
+ ggthemes     * 4.2.4   2021-01-20 [1] CRAN (R 4.3.0)
  kableExtra   * 1.3.4   2021-02-20 [1] CRAN (R 4.3.0)
  lubridate    * 1.9.2   2023-02-10 [1] CRAN (R 4.3.0)
  magick       * 2.7.5   2023-08-07 [1] CRAN (R 4.3.0)
@@ -1198,6 +1342,7 @@ Expand for Session Info
 
 <ol>
 <li id="fn1"><p>You can also use the pipe operator <code>%&gt;%</code> (or even <code>|&gt;</code>) to input a data frame into the first argument for the <code>ggplot</code> function.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>If you copy and paste the plot commands in this notebook into your own R session you may get plots with a slightly difference appearance. The reason for this is that a plot theme has been set for this notebook using the <code>theme_set(theme_minimal(base_size=12))</code> command. You can learn more about <code>ggplot</code> themes <a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">here</a>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div id="quarto-reuse" class="quarto-appendix-contents"><div>CC BY-NC-SA 4.0</div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
