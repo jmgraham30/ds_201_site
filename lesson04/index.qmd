@@ -484,7 +484,7 @@ mpg %>%
 **Exercise:** Create a *nice* box plot for the `carat` variable in the `diamonds` data set. 
 
 
-Density plots are yet another way to visualize numerical variables. They are basically smoothed versions of histograms but with the y-axis scaled so that the total area is 1. 
+Density plots are yet another way to visualize numerical variables. They are basically smoothed versions of histograms but with the y-axis scaled so that the total area under the curve is 1. 
 
 ```{r}
 mpg %>%
@@ -494,7 +494,7 @@ mpg %>%
 
 **Exercise:** What are the main aesthetics used in a density plot?
 
-Since density plots involves lines or better curves, we can adjust the line width. For example,   
+Since density plots involve lines or more precisely, curves we can adjust the line width. For example,   
 
 
 ```{r}
@@ -504,7 +504,7 @@ mpg %>%
 ```
 
 
-Adding a so-called rug let's us see where the observed values in our data fall: 
+Adding a so-called rug lets us see where the observed values in our data fall: 
 
 ```{r}
 mpg %>%
@@ -518,7 +518,8 @@ By normalizing our data, we can plot a density curve over the data histogram. Fo
 ```{r}
 mpg %>%
   ggplot(aes(x=hwy)) + 
-  geom_histogram(aes(y = ..density..),fill="purple",color="white",bins = 25) + 
+  geom_histogram(aes(y = after_stat(density)),
+                 fill="purple",color="white",bins = 25) + 
   geom_density(linewidth=2,color="gold") + 
   geom_rug()
 ```
@@ -528,7 +529,7 @@ mpg %>%
 
 #### Categorical Data
 
-Perhaps the most common plot type for a single 
+Perhaps the most common plot type for a single categorical variable is a bar plot. Here is how to create a basic bar plot using `ggplot2`:
 
 ```{r}
 diamonds %>%
@@ -584,6 +585,26 @@ diamonds %>%
 
 **Exercise:** Create a *nice* bar plot for the `class` variable in the `mpg` data set.
 
+Note that the [`ggthemes`](https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/) package contains functions like `scale_color_colorblind` and `scale_fill_colorblind` that make it easy to use colorblind-friendly color palettes. For example,
+
+```{r}
+diamonds %>%
+  ggplot(aes(x=cut,fill=cut)) + 
+  geom_bar(color="black") + 
+  scale_fill_colorblind() + 
+  labs(x = "Cut of diamond",y="Count", fill="Cut of diamond")
+```
+
+The [`scales`](https://scales.r-lib.org/index.html) package makes it easy to use certain common scales or units for the axes. For example, if we wanted scientific notation for the y-axis in the previous plot, we could do as follows:
+
+```{r}
+diamonds %>%
+  ggplot(aes(x=cut,fill=cut)) + 
+  geom_bar(color="black") + 
+  scale_fill_colorblind() + 
+  scale_y_continuous(labels = scales::label_scientific()) + 
+  labs(x = "Cut of diamond",y="Count", fill="Cut of diamond")
+```
 
 #### Visualizing Relationships
 
@@ -629,13 +650,6 @@ In some cases it is helpful to apply some kind of transformation to variables be
 diamonds %>%
   ggplot(aes(x=carat,y=log10(price))) + 
   geom_point()
-```
-
-
-```{r}
-diamonds %>%
-  ggplot(aes(x=clarity,y=log10(price))) + 
-  geom_boxplot()
 ```
 
 
