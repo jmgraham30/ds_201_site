@@ -26,7 +26,11 @@ After this lesson, students will be able to:
 
 For this lesson, refer to the following readings, etc.:
 
--
+- [Chapter 10](https://datasciencebook.ca/inference.html) on statistical inference from [Data Science A First Introduction](https://datasciencebook.ca/preface.html) [@timbers2022data].
+
+## Overview
+
+
 
 
 

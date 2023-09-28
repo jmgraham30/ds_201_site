@@ -19,19 +19,31 @@ license: "CC BY-NC-SA 4.0"
 
 After this lesson, students will be able to: 
 
-- 
+- Write functions in R.
+
+- Use `map` and other such functions from `purrr` for iteration. 
 
 
 ## Readings, etc.
 
 For this lesson, refer to the following readings, etc.:
 
--
+- [Chapter 26](https://r4ds.hadley.nz/functions) from [R for Data Science](https://r4ds.hadley.nz/) [@wickham2023r]. [View Chapter 26](https://r4ds.hadley.nz/functions).
+
+- [Chapter 27](https://r4ds.hadley.nz/iteration) from [R for Data Science](https://r4ds.hadley.nz/) [@wickham2023r]. [View Chapter 27](https://r4ds.hadley.nz/iteration).
+
+
+## Overview
 
 
 
 
+## Functions in R
 
+
+
+
+## Iteration with `purrr`
 
 
 
@@ -39,7 +51,7 @@ For this lesson, refer to the following readings, etc.:
 
 To prepare for the next lesson, please read:
 
-- 
+- [Chapter 10](https://datasciencebook.ca/inference.html) on statistical inference from [Data Science A First Introduction](https://datasciencebook.ca/preface.html) [@timbers2022data].
 
 
 ## References

@@ -509,5 +509,103 @@
     "title": "Lesson 4",
     "section": "Figures in Quarto",
     "text": "Figures in Quarto\nWhen we create figures in a Quarto notebook, we can add additional information such as a label, figure caption, alt text, etc. The following is an example of how to do this:\n#| echo: false\n#| warning: false\n#| message: false\n#| label: fig-quarto-figs\n#| fig-cap: Scatter plot of city gas mileage versus the engine size of some sample vehicles. Data is from the `mpg` data set in the `ggplot2` package [@wickham2016].\n#| fig-alt: |\n#|   A scatterplot of city gas mileage vs. engine size of vehicles, with a\n#|   best fit line of the relationship between these two variables \n#|   overlaid. The plot displays a negative, non-linear, and relatively \n#|   strong relationship between these two variables.\n\nmpg %&gt;%\n  ggplot(aes(x=displ,y=cty)) + \n  geom_point(aes(color=as.character(cyl),shape=drv),size=2) + \n  labs(\n    title = \"Engine size\",\n    subtitle = \"Engine size versus gas mileage for different vehicles\",\n    x = \"Engine displacement (litres)\",\n    y = \"City gas mileage (mpg)\",\n    color = \"Number of Cylinders\",\n    shape = \"Drive type\"\n  ) +\n  scale_color_colorblind()\nFigure 5 is what the last code chunk produces.\n\n\n\n\n\nFigure 5: Scatter plot of city gas mileage versus the engine size of some sample vehicles. Data is from the mpg data set in the ggplot2 package (Wickham 2016)."
+  },
+  {
+    "objectID": "lesson05/index.html",
+    "href": "lesson05/index.html",
+    "title": "Lesson 5",
+    "section": "",
+    "text": "After this lesson, students will be able to:\n\nWrite functions in R.\nUse map and other such functions from purrr for iteration."
+  },
+  {
+    "objectID": "lesson05/index.html#learning-objectives",
+    "href": "lesson05/index.html#learning-objectives",
+    "title": "Lesson 5",
+    "section": "",
+    "text": "After this lesson, students will be able to:\n\nWrite functions in R.\nUse map and other such functions from purrr for iteration."
+  },
+  {
+    "objectID": "lesson05/index.html#readings-etc.",
+    "href": "lesson05/index.html#readings-etc.",
+    "title": "Lesson 5",
+    "section": "Readings, etc.",
+    "text": "Readings, etc.\nFor this lesson, refer to the following readings, etc.:\n\nChapter 26 from R for Data Science (Wickham, Çetinkaya-Rundel, and Grolemund 2023). View Chapter 26.\nChapter 27 from R for Data Science (Wickham, Çetinkaya-Rundel, and Grolemund 2023). View Chapter 27."
+  },
+  {
+    "objectID": "lesson05/index.html#overview",
+    "href": "lesson05/index.html#overview",
+    "title": "Lesson 5",
+    "section": "Overview",
+    "text": "Overview"
+  },
+  {
+    "objectID": "lesson05/index.html#functions-in-r",
+    "href": "lesson05/index.html#functions-in-r",
+    "title": "Lesson 5",
+    "section": "Functions in R",
+    "text": "Functions in R"
+  },
+  {
+    "objectID": "lesson05/index.html#iteration-with-purrr",
+    "href": "lesson05/index.html#iteration-with-purrr",
+    "title": "Lesson 5",
+    "section": "Iteration with purrr",
+    "text": "Iteration with purrr"
+  },
+  {
+    "objectID": "lesson05/index.html#preparation-for-the-next-lesson",
+    "href": "lesson05/index.html#preparation-for-the-next-lesson",
+    "title": "Lesson 5",
+    "section": "Preparation for the next lesson",
+    "text": "Preparation for the next lesson\nTo prepare for the next lesson, please read:\n\nChapter 10 on statistical inference from Data Science A First Introduction (Timbers, Campbell, and Lee 2022)."
+  },
+  {
+    "objectID": "lesson05/index.html#references",
+    "href": "lesson05/index.html#references",
+    "title": "Lesson 5",
+    "section": "References",
+    "text": "References\n\n\nTimbers, Tiffany, Trevor Campbell, and Melissa Lee. 2022. Data Science: A First Introduction. CRC Press.\n\n\nWickham, Hadley, Mine Çetinkaya-Rundel, and Garrett Grolemund. 2023. R for Data Science. \" O’Reilly Media, Inc.\".\n\n\n\n\n\n\n\n\nExpand for Session Info\n\n\n\n\n\n\n\n─ Session info ───────────────────────────────────────────────────────────────\n setting  value\n version  R version 4.3.1 (2023-06-16)\n os       macOS Ventura 13.6\n system   aarch64, darwin20\n ui       X11\n language (EN)\n collate  en_US.UTF-8\n ctype    en_US.UTF-8\n tz       America/New_York\n date     2023-09-28\n pandoc   3.1.1 @ /Applications/RStudio.app/Contents/Resources/app/quarto/bin/tools/ (via rmarkdown)\n quarto   1.3.450 @ /usr/local/bin/quarto\n\n─ Packages ───────────────────────────────────────────────────────────────────\n package     * version date (UTC) lib source\n sessioninfo * 1.2.2   2021-12-06 [1] CRAN (R 4.3.0)\n\n [1] /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library\n\n──────────────────────────────────────────────────────────────────────────────"
+  },
+  {
+    "objectID": "lesson06/index.html",
+    "href": "lesson06/index.html",
+    "title": "Lesson 6",
+    "section": "",
+    "text": "After this lesson, students will be able to:"
+  },
+  {
+    "objectID": "lesson06/index.html#learning-objectives",
+    "href": "lesson06/index.html#learning-objectives",
+    "title": "Lesson 6",
+    "section": "",
+    "text": "After this lesson, students will be able to:"
+  },
+  {
+    "objectID": "lesson06/index.html#readings-etc.",
+    "href": "lesson06/index.html#readings-etc.",
+    "title": "Lesson 6",
+    "section": "Readings, etc.",
+    "text": "Readings, etc.\nFor this lesson, refer to the following readings, etc.:\n\nChapter 10 on statistical inference from Data Science A First Introduction (Timbers, Campbell, and Lee 2022)."
+  },
+  {
+    "objectID": "lesson06/index.html#preparation-for-the-next-lesson",
+    "href": "lesson06/index.html#preparation-for-the-next-lesson",
+    "title": "Lesson 6",
+    "section": "Preparation for the next lesson",
+    "text": "Preparation for the next lesson\nTo prepare for the next lesson, please read:"
+  },
+  {
+    "objectID": "lesson06/index.html#references",
+    "href": "lesson06/index.html#references",
+    "title": "Lesson 6",
+    "section": "References",
+    "text": "References\n\n\nTimbers, Tiffany, Trevor Campbell, and Melissa Lee. 2022. Data Science: A First Introduction. CRC Press.\n\n\n\n\n\n\n\n\nExpand for Session Info\n\n\n\n\n\n\n\n─ Session info ───────────────────────────────────────────────────────────────\n setting  value\n version  R version 4.3.1 (2023-06-16)\n os       macOS Ventura 13.6\n system   aarch64, darwin20\n ui       X11\n language (EN)\n collate  en_US.UTF-8\n ctype    en_US.UTF-8\n tz       America/New_York\n date     2023-09-28\n pandoc   3.1.1 @ /Applications/RStudio.app/Contents/Resources/app/quarto/bin/tools/ (via rmarkdown)\n quarto   1.3.450 @ /usr/local/bin/quarto\n\n─ Packages ───────────────────────────────────────────────────────────────────\n package     * version date (UTC) lib source\n sessioninfo * 1.2.2   2021-12-06 [1] CRAN (R 4.3.0)\n\n [1] /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library\n\n──────────────────────────────────────────────────────────────────────────────"
+  },
+  {
+    "objectID": "lesson06/index.html#overview",
+    "href": "lesson06/index.html#overview",
+    "title": "Lesson 6",
+    "section": "Overview",
+    "text": "Overview"
   }
 ]
