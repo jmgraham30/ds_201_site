@@ -536,7 +536,7 @@
     "href": "lesson05/index.html#overview",
     "title": "Lesson 5",
     "section": "Overview",
-    "text": "Overview"
+    "text": "Overview\nComputer programming is the art and science of instructing computers to perform specific tasks or solve problems. It’s like giving step-by-step directions to a computer to execute. Programmers use programming languages, which are like the computer’s communication tools, to write code. This code is a set of instructions that tells the computer what to do. In the world of data science, programming is an essential skill because it allows you to manipulate, analyze, and visualize data efficiently. Learning to code empowers you to create software, build data models, and automate repetitive tasks, making it a fundamental skill for anyone aspiring to excel in the field of data science.\nTwo of the most important programming concepts are iteration and functions. Both iteration and functions save us time, iterations by allowing us to perform repetitive tasks without repeating command, and functions by allowing us to generalize commands/code. In data science, iteration and functions are critical for tasks like data cleaning, analysis, and visualization. They enable you to process and analyze large datasets efficiently while maintaining clean, organized, and readable code.\nIn this lesson, we will learn how to implement functions and certain types of iteration in R."
   },
   {
     "objectID": "lesson05/index.html#functions-in-r",
