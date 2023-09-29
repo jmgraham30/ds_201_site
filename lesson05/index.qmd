@@ -13,7 +13,12 @@ bibliography: lesson05.bib
 license: "CC BY-NC-SA 4.0"
 ---
 
+```{r}
+#| include: false
+#| message: false
 
+library(tidyverse)
+```
 
 ## Learning Objectives
 
@@ -105,7 +110,7 @@ Let's examine some more examples of writing and working with functions together 
 
 ## `r icons::icon_style(icons::fontawesome("r-project"),scale=2,fill="steelblue")` Iteration with `purrr`
 
-Functional programming, as implemented in R using packages like `purrr`, offers several advantages that make it particularly useful in data science:
+Functional programming, as implemented in R using packages like [`purrr`](https://purrr.tidyverse.org/), offers several advantages that make it particularly useful in data science:
 
 1. Readability and Maintainability: Functional programming encourages writing code that is concise and easier to understand. It emphasizes the use of pure functions, which take inputs and produce outputs without modifying external state. This makes code more predictable and less prone to bugs, making it easier to maintain, especially in data science projects where the logic can become complex.
 
@@ -123,7 +128,28 @@ Functional programming, as implemented in R using packages like `purrr`, offers 
 
 8. Functional Libraries: R has a rich ecosystem of packages like `purrr`, `dplyr`, and `tidyr` that are designed with functional programming principles in mind. These packages provide powerful tools for data manipulation and analysis while promoting clean, readable code.
 
+Let's see a very simple example of using `purrr`. Suppose we have a vector of numbers and we want to square each of them. One way to do this would is as follows:
 
+```{r}
+my_sqr <- function(x){
+  return(x^2)
+}
+
+nums_to_square <- c(-1,4,6)
+
+map(nums_to_square,my_sqr)
+
+```
+
+Note that `map` returns a list. What if we just wanted to return another vector? Since `my_sqr` returns numerical values, we could replace `map` with `map_dbl` like
+
+```{r}
+map_dbl(nums_to_square,my_sqr)
+```
+
+Now the result is a vector. There is a whoe family of different kinds of `map`-like functions. For example, there are `map`-type functions that return data frames and we will find these to be very useful in our later work. 
+
+It's a good idea to examine the documentation for `purrr`, [view the documentation](https://purrr.tidyverse.org/).
 
 
 Let's examine some more examples of using `purrr` methods together in an R session. 
