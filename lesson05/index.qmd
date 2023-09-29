@@ -37,13 +37,16 @@ For this lesson, refer to the following readings, etc.:
 
 Computer programming is the art and science of instructing computers to perform specific tasks or solve problems. It's like giving step-by-step directions to a computer to execute. Programmers use programming languages, which are like the computer's communication tools, to write code. This code is a set of instructions that tells the computer what to do. In the world of data science, programming is an essential skill because it allows you to manipulate, analyze, and visualize data efficiently. Learning to code empowers you to create software, build data models, and automate repetitive tasks, making it a fundamental skill for anyone aspiring to excel in the field of data science.
 
-Two of the most important programming concepts are iteration and functions. Both **iteration** and **functions** save us time, iterations by allowing us to perform repetitive tasks without repeating command, and  **functions** by allowing us to generalize commands/code. In data science, iteration and functions are critical for tasks like data cleaning, analysis, and visualization. They enable you to process and analyze large datasets efficiently while maintaining clean, organized, and readable code.
+Two of the most important programming concepts are iteration and functions. Both **iteration** and **functions** save us time, iterations by allowing us to perform repetitive tasks without repeating a command, and  **functions** by allowing us to generalize commands/code and reuse code. In data science, iteration and functions are critical for tasks like data cleaning, analysis, and visualization. They enable us to process and analyze large datasets efficiently while maintaining clean, organized, and readable code.
 
 In this lesson, we will learn how to implement functions and certain types of iteration in R. 
 
 
 ## `r icons::icon_style(icons::fontawesome("r-project"),scale=2,fill="steelblue")` Functions in R
 
+A **function**[^1] is a self-contained block of code that performs a specific task or set of tasks. Functions are fundamental to programming and are used to encapsulate and modularize code, making it more organized, reusable, and easier to maintain. Some reasons to write functions include:
+
+[^1]: Here we use the word function in the context of computer programming and note in the mathematical sense. While there are important relationships between mathematical and programming functions, there are also some distinctions. Mathematical functions can be implemented as progamming functions but many programming functions aren't functions in the strict mathematical sense. 
 
 1. Reusability: Functions in R allow you to encapsulate logic and reuse it throughout your code. This promotes code modularity, reduces redundancy, and simplifies maintenance.
 
@@ -60,9 +63,45 @@ In this lesson, we will learn how to implement functions and certain types of it
 7. Functional Programming: R supports functional programming paradigms, allowing you to use higher-order functions like `apply`, `lapply`, and `sapply`, which simplify data manipulation and analysis tasks. Further, the packages `purrr` and `furrr` enhance the use of functional programming in R.
 
 
+> A good rule of thumb is to consider writing a function whenever you’ve copied and pasted a block of code more than twice (i.e. you now have three copies of the same code).
+
+Here are the key components and characteristics of functions in R:
+
+* Function Name: Every function in R has a name that uniquely identifies it. Function names can consist of letters, numbers, dots, and underscores but should not start with a number or contain spaces.
+
+* Parameters (Arguments): Functions can accept zero or more parameters, also known as arguments. Parameters are values that you pass to the function, and the function can use these values to perform its tasks. Parameters are enclosed in parentheses following the function name.
+
+* Function Body: The function body contains the actual code that defines what the function does. It consists of a sequence of R expressions and statements that are executed when the function is called. The function body is enclosed in curly braces `{}`.
+
+* Return Value: Functions in R can return a value, which is the result of their computations. You specify the return value using the `return()` keyword. If a function doesn't explicitly use `return()`, it returns the value of the last evaluated expression by default.
+
+Here's a basic example of a function in R that adds two numbers:
+
+```{r}
+add_numbers <- function(a, b) {
+  result <- a + b
+  return(result)
+}
+```
+
+In this example:
+
+* `add_numbers` is the function name.
+
+* `(a, b)` are the function's parameters.
+
+* The function body calculates the sum of `a` and `b` and assigns it to the variable result.
+
+* The `return(result)` statement specifies that the function should return the value stored in result.
+
+You can call this function with specific values for `a` and `b` to get the result:
+
+```{r}
+(result <- add_numbers(3, 5))
+```
 
 
-
+Let's examine some more examples of writing and working with functions together in an R session. 
 
 ## `r icons::icon_style(icons::fontawesome("r-project"),scale=2,fill="steelblue")` Iteration with `purrr`
 
@@ -84,6 +123,10 @@ Functional programming, as implemented in R using packages like `purrr`, offers 
 
 8. Functional Libraries: R has a rich ecosystem of packages like `purrr`, `dplyr`, and `tidyr` that are designed with functional programming principles in mind. These packages provide powerful tools for data manipulation and analysis while promoting clean, readable code.
 
+
+
+
+Let's examine some more examples of using `purrr` methods together in an R session. 
 
 ## Preparation for the next lesson
 

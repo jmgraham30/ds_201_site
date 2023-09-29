@@ -21,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 /* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
@@ -198,11 +232,12 @@ div.csl-indent {
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
 <p>Computer programming is the art and science of instructing computers to perform specific tasks or solve problems. It’s like giving step-by-step directions to a computer to execute. Programmers use programming languages, which are like the computer’s communication tools, to write code. This code is a set of instructions that tells the computer what to do. In the world of data science, programming is an essential skill because it allows you to manipulate, analyze, and visualize data efficiently. Learning to code empowers you to create software, build data models, and automate repetitive tasks, making it a fundamental skill for anyone aspiring to excel in the field of data science.</p>
-<p>Two of the most important programming concepts are iteration and functions. Both <strong>iteration</strong> and <strong>functions</strong> save us time, iterations by allowing us to perform repetitive tasks without repeating command, and <strong>functions</strong> by allowing us to generalize commands/code. In data science, iteration and functions are critical for tasks like data cleaning, analysis, and visualization. They enable you to process and analyze large datasets efficiently while maintaining clean, organized, and readable code.</p>
+<p>Two of the most important programming concepts are iteration and functions. Both <strong>iteration</strong> and <strong>functions</strong> save us time, iterations by allowing us to perform repetitive tasks without repeating a command, and <strong>functions</strong> by allowing us to generalize commands/code and reuse code. In data science, iteration and functions are critical for tasks like data cleaning, analysis, and visualization. They enable us to process and analyze large datasets efficiently while maintaining clean, organized, and readable code.</p>
 <p>In this lesson, we will learn how to implement functions and certain types of iteration in R.</p>
 </section>
 <section id="functions-in-r" class="level2">
 <h2 class="anchored" data-anchor-id="functions-in-r"><svg viewbox="0 0 581 512" style="position:relative;display:inline-block;top:.1em;fill:steelblue;height:2em;" xmlns="http://www.w3.org/2000/svg"> <path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"></path></svg> Functions in R</h2>
+<p>A <strong>function</strong><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> is a self-contained block of code that performs a specific task or set of tasks. Functions are fundamental to programming and are used to encapsulate and modularize code, making it more organized, reusable, and easier to maintain. Some reasons to write functions include:</p>
 <ol type="1">
 <li><p>Reusability: Functions in R allow you to encapsulate logic and reuse it throughout your code. This promotes code modularity, reduces redundancy, and simplifies maintenance.</p></li>
 <li><p>Abstraction: Functions provide a level of abstraction, allowing you to focus on what a piece of code does rather than how it does it. This enhances code readability and comprehension.</p></li>
@@ -212,6 +247,38 @@ div.csl-indent {
 <li><p>Testing: Functions make it easier to write unit tests for your code, ensuring its correctness and reliability in data analysis pipelines.</p></li>
 <li><p>Functional Programming: R supports functional programming paradigms, allowing you to use higher-order functions like <code>apply</code>, <code>lapply</code>, and <code>sapply</code>, which simplify data manipulation and analysis tasks. Further, the packages <code>purrr</code> and <code>furrr</code> enhance the use of functional programming in R.</p></li>
 </ol>
+<blockquote class="blockquote">
+<p>A good rule of thumb is to consider writing a function whenever you’ve copied and pasted a block of code more than twice (i.e.&nbsp;you now have three copies of the same code).</p>
+</blockquote>
+<p>Here are the key components and characteristics of functions in R:</p>
+<ul>
+<li><p>Function Name: Every function in R has a name that uniquely identifies it. Function names can consist of letters, numbers, dots, and underscores but should not start with a number or contain spaces.</p></li>
+<li><p>Parameters (Arguments): Functions can accept zero or more parameters, also known as arguments. Parameters are values that you pass to the function, and the function can use these values to perform its tasks. Parameters are enclosed in parentheses following the function name.</p></li>
+<li><p>Function Body: The function body contains the actual code that defines what the function does. It consists of a sequence of R expressions and statements that are executed when the function is called. The function body is enclosed in curly braces <code>{}</code>.</p></li>
+<li><p>Return Value: Functions in R can return a value, which is the result of their computations. You specify the return value using the <code>return()</code> keyword. If a function doesn’t explicitly use <code>return()</code>, it returns the value of the last evaluated expression by default.</p></li>
+</ul>
+<p>Here’s a basic example of a function in R that adds two numbers:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>add_numbers <span class="ot">&lt;-</span> <span class="cf">function</span>(a, b) {</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> a <span class="sc">+</span> b</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In this example:</p>
+<ul>
+<li><p><code>add_numbers</code> is the function name.</p></li>
+<li><p><code>(a, b)</code> are the function’s parameters.</p></li>
+<li><p>The function body calculates the sum of <code>a</code> and <code>b</code> and assigns it to the variable result.</p></li>
+<li><p>The <code>return(result)</code> statement specifies that the function should return the value stored in result.</p></li>
+</ul>
+<p>You can call this function with specific values for <code>a</code> and <code>b</code> to get the result:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(result <span class="ot">&lt;-</span> <span class="fu">add_numbers</span>(<span class="dv">3</span>, <span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 8</code></pre>
+</div>
+</div>
+<p>Let’s examine some more examples of writing and working with functions together in an R session.</p>
 </section>
 <section id="iteration-with-purrr" class="level2">
 <h2 class="anchored" data-anchor-id="iteration-with-purrr"><svg viewbox="0 0 581 512" style="position:relative;display:inline-block;top:.1em;fill:steelblue;height:2em;" xmlns="http://www.w3.org/2000/svg"> <path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"></path></svg> Iteration with <code>purrr</code></h2>
@@ -226,6 +293,7 @@ div.csl-indent {
 <li><p>Data Transformation: In data science, you often need to perform various transformations on data, such as mapping, filtering, and summarizing. Functional programming’s emphasis on these operations aligns well with the typical tasks in data cleaning and preprocessing.</p></li>
 <li><p>Functional Libraries: R has a rich ecosystem of packages like <code>purrr</code>, <code>dplyr</code>, and <code>tidyr</code> that are designed with functional programming principles in mind. These packages provide powerful tools for data manipulation and analysis while promoting clean, readable code.</p></li>
 </ol>
+<p>Let’s examine some more examples of using <code>purrr</code> methods together in an R session.</p>
 </section>
 <section id="preparation-for-the-next-lesson" class="level2">
 <h2 class="anchored" data-anchor-id="preparation-for-the-next-lesson">Preparation for the next lesson</h2>
@@ -268,7 +336,7 @@ Expand for Session Info
  collate  en_US.UTF-8
  ctype    en_US.UTF-8
  tz       America/New_York
- date     2023-09-28
+ date     2023-09-29
  pandoc   3.1.1 @ /Applications/RStudio.app/Contents/Resources/app/quarto/bin/tools/ (via rmarkdown)
  quarto   1.3.450 @ /usr/local/bin/quarto
 
@@ -293,7 +361,13 @@ Expand for Session Info
 
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div id="quarto-reuse" class="quarto-appendix-contents"><div>CC BY-NC-SA 4.0</div></div></section></div></main> <!-- /main -->
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Here we use the word function in the context of computer programming and note in the mathematical sense. While there are important relationships between mathematical and programming functions, there are also some distinctions. Mathematical functions can be implemented as progamming functions but many programming functions aren’t functions in the strict mathematical sense.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div id="quarto-reuse" class="quarto-appendix-contents"><div>CC BY-NC-SA 4.0</div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
