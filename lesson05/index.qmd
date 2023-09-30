@@ -106,6 +106,8 @@ You can call this function with specific values for `a` and `b` to get the resul
 ```
 
 
+**Exercise:** Write an R function named `mult_numbers` that inputs two numbers and returns their product.
+
 Let's examine some more examples of writing and working with functions together in an R session. 
 
 ## `r icons::icon_style(icons::fontawesome("r-project"),scale=2,fill="steelblue")` Iteration with `purrr`
@@ -150,6 +152,8 @@ map_dbl(nums_to_square,my_sqr)
 Now the result is a vector. There is a whoe family of different kinds of `map`-like functions. For example, there are `map`-type functions that return data frames and we will find these to be very useful in our later work. 
 
 It's a good idea to examine the documentation for `purrr`, [view the documentation](https://purrr.tidyverse.org/).
+
+**Exercise:** Write a function called `times_two` that inputs a number and returns double its value. Use `map_dbl` to multiply all the numbers from 1 to 6 by 2. 
 
 
 Let's examine some more examples of using `purrr` methods together in an R session. 
