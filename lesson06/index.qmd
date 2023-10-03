@@ -1,6 +1,6 @@
 ---
 title: "Lesson 6"
-subtitle: "Intermediate programming for data science"
+subtitle: "Introduction to probability and random variables"
 author: "JMG"
 format:
   html:
@@ -26,15 +26,25 @@ After this lesson, students will be able to:
 
 For this lesson, refer to the following readings, etc.:
 
-- [Chapter 10](https://datasciencebook.ca/inference.html) on statistical inference from [Data Science A First Introduction](https://datasciencebook.ca/preface.html) [@timbers2022data].
+- 
 
 ## Overview
 
+Probability and random variables play a fundamental role in data science and machine learning by providing the theoretical foundation for understanding uncertainty and variability in data.
+
+
+**Probability** is the mathematical framework for quantifying uncertainty. In data science, it allows us to express how likely different outcomes are, providing a way to model the inherent variability in data. Probability is used to formulate hypotheses, make predictions, and assess the likelihood of various events occurring. Understanding probability is crucial when dealing with tasks such as statistical inference, hypothesis testing, machine learning, and Bayesian modeling.
+
+**Random variables** are a key concept that extends the idea of probability. A random variable is a variable whose value is subject to chance or randomness. In data science and machine learning, random variables are used to represent uncertain quantities that we wish to analyze. They can be discrete, like the outcome of a coin toss, or continuous, like the height of individuals in a population. Random variables help us describe and model data, and they serve as the basis for statistical models and machine learning algorithms.
+
+
+
+## Introduction to Probability
 
 
 
 
-
+## Introduction to Random Variables 
 
 
 
@@ -43,7 +53,7 @@ For this lesson, refer to the following readings, etc.:
 
 To prepare for the next lesson, please read:
 
-- 
+- [Chapter 5](https://datasciencebook.ca/classification1.html) on classification and [Chapter 7](https://datasciencebook.ca/regression1.html) on regression from [Data Science A First Introduction](https://datasciencebook.ca/preface.html) [@timbers2022data].
 
 
 ## References
