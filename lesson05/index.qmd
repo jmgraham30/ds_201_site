@@ -112,23 +112,41 @@ Let's examine some more examples of writing and working with functions together 
 
 ## `r icons::icon_style(icons::fontawesome("r-project"),scale=2,fill="steelblue")` Iteration with `purrr`
 
-Functional programming, as implemented in R using packages like [`purrr`](https://purrr.tidyverse.org/), offers several advantages that make it particularly useful in data science:
+[Functional programming](https://en.wikipedia.org/wiki/Functional_programming), as implemented in R using packages like [`purrr`](https://purrr.tidyverse.org/), offers several advantages that make it particularly useful in data science:
 
 1. Readability and Maintainability: Functional programming encourages writing code that is concise and easier to understand. It emphasizes the use of pure functions, which take inputs and produce outputs without modifying external state. This makes code more predictable and less prone to bugs, making it easier to maintain, especially in data science projects where the logic can become complex.
 
 2. Modularity: Functional programming promotes modularity by breaking down complex operations into smaller, reusable functions. In data science, where you often perform similar data manipulations or analyses on different datasets, this modularity can save time and effort by allowing you to reuse code snippets efficiently.
 
-3. Immutability: In functional programming, data is treated as immutable, meaning once created, it cannot be changed. Instead of modifying existing data, you create new data structures. In data science, this can help ensure data integrity and traceability, crucial for reproducible research.
+3. Parallelization: Functional programming encourages the use of pure functions that don't rely on external state or side effects. This property makes it easier to parallelize code, taking advantage of multi-core processors for faster data processing, a significant benefit in data science, where working with large datasets can be time-consuming. The `future` and `furrr` packages implement parallel processing versions of the `map` family of functions. 
 
-4. Parallelization: Functional programming encourages the use of pure functions that don't rely on external state or side effects. This property makes it easier to parallelize code, taking advantage of multi-core processors for faster data processing, a significant benefit in data science, where working with large datasets can be time-consuming. The `future` and `furrr` packages implement parallel processing versions of the `map` family of functions. 
+4. Error Handling: Functional programming encourages a more structured approach to error handling,  leading to more robust and predictable error handling in data analysis pipelines.
 
-5. Error Handling: Functional programming encourages a more structured approach to error handling,  leading to more robust and predictable error handling in data analysis pipelines.
+5. Functional Pipelines: Functional programming promotes the use of pipelines, where data flows through a series of transformations. This aligns well with the typical data preprocessing and analysis steps in data science. Libraries like purrr in R make it easy to build and read such pipelines, enhancing code clarity.
 
-6. Functional Pipelines: Functional programming promotes the use of pipelines, where data flows through a series of transformations. This aligns well with the typical data preprocessing and analysis steps in data science. Libraries like purrr in R make it easy to build and read such pipelines, enhancing code clarity.
-
-7. Data Transformation: In data science, you often need to perform various transformations on data, such as mapping, filtering, and summarizing. Functional programming's emphasis on these operations aligns well with the typical tasks in data cleaning and preprocessing.
+6. Data Transformation: In data science, you often need to perform various transformations on data, such as mapping, filtering, and summarizing. Functional programming's emphasis on these operations aligns well with the typical tasks in data cleaning and preprocessing.
 
 8. Functional Libraries: R has a rich ecosystem of packages like `purrr`, `dplyr`, and `tidyr` that are designed with functional programming principles in mind. These packages provide powerful tools for data manipulation and analysis while promoting clean, readable code.
+
+In this class, we will emphasize the use of the `map` family of functions from the `purrr` package which is part of `tidyverse`. The `map` family of functions have the following structure:
+
+```
+map(.x,.f)
+```
+
+where `.x` is some data object in R and `.f` is an R function. The `map` functions evaluate the function `.f` on each unit of the data in object `.x` and then return some other type of R object. @fig-map-diag illustrates the basic functioning of `map`-type functions. 
+
+```{r}
+#| echo: false
+#| label: fig-map-diag
+#| fig-cap: |
+#|  Visual illustration of how `map` works. Figure taken from [@wickham2019advanced].
+#| fig-width: 40
+#| fig-height: 40
+
+knitr::include_graphics("https://www.dropbox.com/scl/fi/8i7k6jgrp8giil8iw91oo/map.png?rlkey=h0bkzj8wo1bdqzk3xl7z21pwz&raw=1")
+```
+
 
 Let's see a very simple example of using `purrr`. Suppose we have a vector of numbers and we want to square each of them. One way to do this would is as follows:
 

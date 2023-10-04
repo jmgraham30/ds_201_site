@@ -141,6 +141,8 @@ div.csl-indent {
   <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives">Learning Objectives</a></li>
   <li><a href="#readings-etc." id="toc-readings-etc." class="nav-link" data-scroll-target="#readings-etc.">Readings, etc.</a></li>
   <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#introduction-to-probability" id="toc-introduction-to-probability" class="nav-link" data-scroll-target="#introduction-to-probability">Introduction to Probability</a></li>
+  <li><a href="#introduction-to-random-variables" id="toc-introduction-to-random-variables" class="nav-link" data-scroll-target="#introduction-to-random-variables">Introduction to Random Variables</a></li>
   <li><a href="#preparation-for-the-next-lesson" id="toc-preparation-for-the-next-lesson" class="nav-link" data-scroll-target="#preparation-for-the-next-lesson">Preparation for the next lesson</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
@@ -156,7 +158,7 @@ div.csl-indent {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Lesson 6</h1>
-<p class="subtitle lead">Intermediate programming for data science</p>
+<p class="subtitle lead">Introduction to probability and random variables</p>
 </div>
 
 
@@ -181,24 +183,37 @@ div.csl-indent {
 <h2 class="anchored" data-anchor-id="learning-objectives">Learning Objectives</h2>
 <p>After this lesson, students will be able to:</p>
 <ul>
-<li></li>
+<li><p>Define probability.</p></li>
+<li><p>State Bayes’ theorem.</p></li>
+<li><p>Identify and describe common probability distributions.</p></li>
+<li><p>Understand the concepts of probability mass functions (PMFs), probability density functions (PDFs), and cumulative distribution functions (CDFs).</p></li>
+<li><p>Work with various distributions in R.</p></li>
 </ul>
 </section>
 <section id="readings-etc." class="level2">
 <h2 class="anchored" data-anchor-id="readings-etc.">Readings, etc.</h2>
 <p>For this lesson, refer to the following readings, etc.:</p>
 <ul>
-<li><a href="https://datasciencebook.ca/inference.html">Chapter 10</a> on statistical inference from <a href="https://datasciencebook.ca/preface.html">Data Science A First Introduction</a> <span class="citation" data-cites="timbers2022data">(<a href="#ref-timbers2022data" role="doc-biblioref">Timbers, Campbell, and Lee 2022</a>)</span>.</li>
+<li></li>
 </ul>
 </section>
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>Probability and random variables play a fundamental role in data science and machine learning by providing the theoretical foundation for understanding uncertainty and variability in data.</p>
+<p><strong>Probability</strong> is the mathematical framework for quantifying uncertainty. In data science, it allows us to express how likely different outcomes are, providing a way to model the inherent variability in data. Probability is used to formulate hypotheses, make predictions, and assess the likelihood of various events occurring. Understanding probability is crucial when dealing with tasks such as statistical inference, hypothesis testing, machine learning, and Bayesian modeling.</p>
+<p><strong>Random variables</strong> are a key concept that extends the idea of probability. A random variable is a variable whose value is subject to chance or randomness. In data science and machine learning, random variables are used to represent uncertain quantities that we wish to analyze. They can be discrete, like the outcome of a coin toss, or continuous, like the height of individuals in a population. Random variables help us describe and model data, and they serve as the basis for statistical models and machine learning algorithms.</p>
+</section>
+<section id="introduction-to-probability" class="level2">
+<h2 class="anchored" data-anchor-id="introduction-to-probability">Introduction to Probability</h2>
+</section>
+<section id="introduction-to-random-variables" class="level2">
+<h2 class="anchored" data-anchor-id="introduction-to-random-variables">Introduction to Random Variables</h2>
 </section>
 <section id="preparation-for-the-next-lesson" class="level2">
 <h2 class="anchored" data-anchor-id="preparation-for-the-next-lesson">Preparation for the next lesson</h2>
 <p>To prepare for the next lesson, please read:</p>
 <ul>
-<li></li>
+<li><a href="https://datasciencebook.ca/classification1.html">Chapter 5</a> on classification and <a href="https://datasciencebook.ca/regression1.html">Chapter 7</a> on regression from <a href="https://datasciencebook.ca/preface.html">Data Science A First Introduction</a> <span class="citation" data-cites="timbers2022data">(<a href="#ref-timbers2022data" role="doc-biblioref">Timbers, Campbell, and Lee 2022</a>)</span>.</li>
 </ul>
 </section>
 <section id="references" class="level2">
@@ -225,14 +240,14 @@ Expand for Session Info
 <pre><code>─ Session info ───────────────────────────────────────────────────────────────
  setting  value
  version  R version 4.3.1 (2023-06-16)
- os       macOS Ventura 13.6
+ os       macOS Sonoma 14.0
  system   aarch64, darwin20
  ui       X11
  language (EN)
  collate  en_US.UTF-8
  ctype    en_US.UTF-8
  tz       America/New_York
- date     2023-09-28
+ date     2023-10-04
  pandoc   3.1.1 @ /Applications/RStudio.app/Contents/Resources/app/quarto/bin/tools/ (via rmarkdown)
  quarto   1.3.450 @ /usr/local/bin/quarto
 
