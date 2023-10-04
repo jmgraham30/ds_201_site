@@ -143,7 +143,14 @@ div.csl-indent {
   <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives">Learning Objectives</a></li>
   <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a></li>
   <li><a href="#introduction-to-probability" id="toc-introduction-to-probability" class="nav-link" data-scroll-target="#introduction-to-probability">Introduction to Probability</a></li>
-  <li><a href="#introduction-to-random-variables" id="toc-introduction-to-random-variables" class="nav-link" data-scroll-target="#introduction-to-random-variables">Introduction to Random Variables</a></li>
+  <li><a href="#introduction-to-random-variables" id="toc-introduction-to-random-variables" class="nav-link" data-scroll-target="#introduction-to-random-variables">Introduction to Random Variables</a>
+  <ul class="collapse">
+  <li><a href="#binomial-distributions" id="toc-binomial-distributions" class="nav-link" data-scroll-target="#binomial-distributions">Binomial Distributions</a></li>
+  <li><a href="#normal-distributions" id="toc-normal-distributions" class="nav-link" data-scroll-target="#normal-distributions">Normal Distributions</a></li>
+  <li><a href="#expected-value-and-variance" id="toc-expected-value-and-variance" class="nav-link" data-scroll-target="#expected-value-and-variance">Expected Value and Variance</a></li>
+  <li><a href="#some-common-distributions" id="toc-some-common-distributions" class="nav-link" data-scroll-target="#some-common-distributions">Some Common Distributions</a></li>
+  </ul></li>
+  <li><a href="#working-with-distributions-in-r" id="toc-working-with-distributions-in-r" class="nav-link" data-scroll-target="#working-with-distributions-in-r"><svg viewbox="0 0 581 512" style="position:relative;display:inline-block;top:.1em;fill:steelblue;height:2em;" xmlns="http://www.w3.org/2000/svg"> <path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"></path></svg> Working with Distributions in R</a></li>
   <li><a href="#preparation-for-the-next-lesson" id="toc-preparation-for-the-next-lesson" class="nav-link" data-scroll-target="#preparation-for-the-next-lesson">Preparation for the next lesson</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
@@ -302,6 +309,148 @@ P(B|A) = \frac{1 \cdot \frac{1}{2}}{\frac{7}{8}} = \frac{4}{7}
 <li><p><span class="math inline">\(0 \leq p(x) \leq 1\)</span> for all output values <span class="math inline">\(x\)</span> for <span class="math inline">\(X\)</span>, and</p></li>
 <li><p><span class="math inline">\(\sum_{x}p(x) = 1\)</span>, where the sum is taken over all possible output values for <span class="math inline">\(X\)</span>.</p></li>
 </ul>
+<section id="binomial-distributions" class="level3">
+<h3 class="anchored" data-anchor-id="binomial-distributions">Binomial Distributions</h3>
+<p>Suppose that <span class="math inline">\(X\)</span> is a random variable that takes on values <span class="math inline">\(0,1,\ldots n\)</span> and let <span class="math inline">\(\pi\)</span> denote a real number in the interval <span class="math inline">\([0,1]\)</span>. Then we say that <span class="math inline">\(X\)</span> is a <strong>binomial random variable</strong> if it’s PMF is given by</p>
+<p><span class="math display">\[
+p(x) = \frac{n!}{(n-1)! k!}\pi^{x}(1 - \pi)^{n -x}
+\]</span></p>
+<p>For example, if we let <span class="math inline">\(X\)</span> be the random variable that counts the number of heads out <span class="math inline">\(n\)</span> tosses of a coin where the probability of landing heads in a single toss is <span class="math inline">\(\pi\)</span>, then <span class="math inline">\(X\)</span> is modeled by a binomial random variable.</p>
+<p>Later we will see how to work with binomial distributions in R.</p>
+</section>
+<section id="normal-distributions" class="level3">
+<h3 class="anchored" data-anchor-id="normal-distributions">Normal Distributions</h3>
+<p>Continuous random variables are described by a <strong>probability density function</strong> (PDF) <span class="math inline">\(f(x)\)</span> where the total area under the curve <span class="math inline">\(y=f(x)\)</span> and above the <span class="math inline">\(x\)</span>-axis is 1. Probably the most well-known type of continuous random variable is the <strong>normal</strong> family of random variables which have a PDF of the form</p>
+<p><span class="math display">\[
+f(x) = \frac{1}{\sqrt{2\pi \sigma^{2}}}e^{-\frac{(x - \mu)^2}{2\sigma^{2}}}
+\]</span></p>
+<p>where this time <span class="math inline">\(\pi\)</span> is the constant that is the ratio of a circle’s circumference to its diameter.</p>
+<p>Later we will see how to work with normal distributions in R.</p>
+</section>
+<section id="expected-value-and-variance" class="level3">
+<h3 class="anchored" data-anchor-id="expected-value-and-variance">Expected Value and Variance</h3>
+<p>If <span class="math inline">\(X\)</span> is a discrete random variable with PMF <span class="math inline">\(p(x)\)</span>, then the <strong>expected value</strong> of <span class="math inline">\(X\)</span>, denoted by <span class="math inline">\(\text{E}[X]\)</span> is defined by</p>
+<p><span class="math display">\[
+\text{E}[X] = \sum_{x}xp(x)
+\]</span></p>
+<p>where the sum is taken over all possible output values for <span class="math inline">\(X\)</span>. It is also possible to define the expected value for continuous random variables but for now we will be satisfied to simply also use <span class="math inline">\(\text{E}[X]\)</span> to denote the expected value for a continuous random variable.</p>
+<p>We define the <strong>variance</strong> <span class="math inline">\(\text{Var}[X]\)</span> of a random variable <span class="math inline">\(X\)</span> (continuous or discrete) to be the number</p>
+<p><span class="math display">\[
+\text{Var}[X] = \text{E}[(X - \text{E}[X])^2]
+\]</span></p>
+<p>For a <em>discrete</em> random variable <span class="math inline">\(X\)</span> with PMF <span class="math inline">\(p\)</span>, we have that</p>
+<p><span class="math display">\[
+\text{Var}[X] = \sum_{x}(x - \mu)^2p(x)
+\]</span> where the sum is taken over all possible values of <span class="math inline">\(x\)</span> and <span class="math inline">\(\mu = \text{E}[X]\)</span>.</p>
+<p>The <strong>standard deviation</strong> of a random variable is defined to be the positive square root of its variance.</p>
+<blockquote class="blockquote">
+<p>For any random variable <span class="math inline">\(X\)</span>, the probability <span class="math inline">\(P(X \leq x)\)</span> is a function of <span class="math inline">\(x\)</span> that returns the probability that <span class="math inline">\(X\)</span> takes values less or equal to <span class="math inline">\(x\)</span>. Such a function is called the <strong>cumulative distribution function</strong> (CDF) for <span class="math inline">\(X\)</span>.</p>
+</blockquote>
+<p><a href="#tbl-rv-cdf">Table&nbsp;2</a> includes a column with the output values for the CDF for each value of <span class="math inline">\(x\)</span> for the random variable that counts the number of heads out of three tosses of a fair coin.</p>
+<div id="tbl-rv-cdf" class="anchored">
+<table class="table">
+<caption>Table&nbsp;2: PMF and CDF for our example random variable that counts the number of heads out of three tosses of a fair coin.</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Event</th>
+<th style="text-align: center;"><span class="math inline">\(x\)</span></th>
+<th style="text-align: center;">Probability</th>
+<th style="text-align: center;">CDF</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\{TTT\}\)</span></td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;"><span class="math inline">\(\frac{1}{8}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{1}{8}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(\{HTT,THT,TTH\}\)</span></td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;"><span class="math inline">\(\frac{3}{8}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{1}{2}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\{HHT,THH,HTH\}\)</span></td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;"><span class="math inline">\(\frac{3}{8}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{7}{8}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(\{HHH\}\)</span></td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;"><span class="math inline">\(\frac{1}{8}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="some-common-distributions" class="level3">
+<h3 class="anchored" data-anchor-id="some-common-distributions">Some Common Distributions</h3>
+<p><a href="#tbl-dist-type">Table&nbsp;3</a> lists some common distributions together with their type. The name of each distribution is a link to the Wikipedia article on that distribution.</p>
+<div id="tbl-dist-type" class="anchored">
+<table class="table">
+<caption>Table&nbsp;3: Some common single-variable distributions and their type.</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Name</th>
+<th style="text-align: center;">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><a href="https://en.wikipedia.org/wiki/Geometric_distribution">Geometric</a></td>
+<td style="text-align: center;">Discrete</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><a href="https://en.wikipedia.org/wiki/Binomial_distribution">Binomial</a></td>
+<td style="text-align: center;">Discrete</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><a href="https://en.wikipedia.org/wiki/Hypergeometric_distribution">Hypergeometric</a></td>
+<td style="text-align: center;">Discrete</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><a href="https://en.wikipedia.org/wiki/Multinomial_distribution">Multinomial</a></td>
+<td style="text-align: center;">Discrete</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><a href="https://en.wikipedia.org/wiki/Negative_binomial_distribution">Negative binomial</a></td>
+<td style="text-align: center;">Discrete</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><a href="https://en.wikipedia.org/wiki/Poisson_distribution">Poisson</a></td>
+<td style="text-align: center;">Discrete</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><a href="https://en.wikipedia.org/wiki/Beta_distribution">Beta</a></td>
+<td style="text-align: center;">Continuous</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><a href="https://en.wikipedia.org/wiki/Gamma_distribution">Gamma</a></td>
+<td style="text-align: center;">Continuous</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><a href="https://en.wikipedia.org/wiki/Exponential_distribution">Exponential</a></td>
+<td style="text-align: center;">Continuous</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><a href="https://en.wikipedia.org/wiki/Normal_distribution">Normal</a></td>
+<td style="text-align: center;">Continuous</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><a href="https://en.wikipedia.org/wiki/Continuous_uniform_distribution">Uniform</a></td>
+<td style="text-align: center;">Continuous</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="working-with-distributions-in-r" class="level2">
+<h2 class="anchored" data-anchor-id="working-with-distributions-in-r"><svg viewbox="0 0 581 512" style="position:relative;display:inline-block;top:.1em;fill:steelblue;height:2em;" xmlns="http://www.w3.org/2000/svg"> <path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"></path></svg> Working with Distributions in R</h2>
 </section>
 <section id="preparation-for-the-next-lesson" class="level2">
 <h2 class="anchored" data-anchor-id="preparation-for-the-next-lesson">Preparation for the next lesson</h2>

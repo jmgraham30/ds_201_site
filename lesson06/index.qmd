@@ -148,6 +148,92 @@ In general, if $X$ is a discrete random variable then,
 * $\sum_{x}p(x) = 1$, where the sum is taken over all possible output values for $X$.
 
 
+### Binomial Distributions
+
+Suppose that $X$ is a random variable that takes on values $0,1,\ldots n$ and let $\pi$ denote a real number in the interval $[0,1]$. Then we say that $X$ is a **binomial random variable** if it's PMF is given by
+
+$$
+p(x) = \frac{n!}{(n-1)! k!}\pi^{x}(1 - \pi)^{n -x}
+$$
+
+For example, if we let $X$ be the random variable that counts the number of heads out $n$ tosses of a coin where the probability of landing heads in a single toss is $\pi$, then $X$ is modeled by a binomial random variable. 
+
+Later we will see how to work with binomial distributions in R.
+
+### Normal Distributions
+
+Continuous random variables are described by a **probability density function** (PDF) $f(x)$ where the total area under the curve $y=f(x)$ and above the $x$-axis is 1. Probably the most well-known type of continuous random variable is the **normal** family of random variables which have a PDF of the form
+
+$$
+f(x) = \frac{1}{\sqrt{2\pi \sigma^{2}}}e^{-\frac{(x - \mu)^2}{2\sigma^{2}}}
+$$
+
+where this time $\pi$ is the constant that is the ratio of a circle's circumference to its diameter. 
+
+Later we will see how to work with normal distributions in R.
+
+### Expected Value and Variance
+
+If $X$ is a discrete random variable with PMF $p(x)$, then the **expected value** of $X$, denoted by $\text{E}[X]$ is defined by
+
+$$
+\text{E}[X] = \sum_{x}xp(x)
+$$
+
+where the sum is taken over all possible output values for $X$. It is also possible to define the expected value for continuous random variables but for now we will be satisfied to simply also use $\text{E}[X]$ to denote the expected value for a continuous random variable. 
+
+We define the **variance** $\text{Var}[X]$  of a random variable $X$ (continuous or discrete) to be the number
+
+$$
+\text{Var}[X] = \text{E}[(X - \text{E}[X])^2]
+$$
+
+For a *discrete* random variable $X$ with PMF $p$, we have that
+
+$$
+\text{Var}[X] = \sum_{x}(x - \mu)^2p(x)
+$$
+where the sum is taken over all possible values of $x$ and $\mu = \text{E}[X]$.
+
+The **standard deviation** of a random variable is defined to be the positive square root of its variance. 
+
+> For any random variable $X$, the probability $P(X \leq x)$ is a function of $x$ that returns the probability that $X$ takes values less or equal to $x$. Such a function is called the **cumulative distribution function** (CDF) for $X$. 
+
+@tbl-rv-cdf includes a column with the output values for the CDF for each value of $x$ for the random variable that counts the number of heads out of three tosses of a fair coin.
+
+|Event| $x$ | Probability | CDF |
+|:-----|:---:|:-----------:|:-------------:|
+|$\{TTT\}$| 0  |  $\frac{1}{8}$|$\frac{1}{8}$|
+|$\{HTT,THT,TTH\}$| 1  |  $\frac{3}{8}$ |$\frac{1}{2}$|
+|$\{HHT,THH,HTH\}$| 2  |  $\frac{3}{8}$ |$\frac{7}{8}$|
+|$\{HHH\}$| 3  |  $\frac{1}{8}$ |$1$|
+
+: PMF and CDF for our example random variable that counts the number of heads out of three tosses of a fair coin. {#tbl-rv-cdf}
+
+### Some Common Distributions
+
+@tbl-dist-type lists some common distributions together with their type. The name of each distribution is a link to the Wikipedia article on that distribution. 
+
+|    Name    |    Type    |
+|:----------:|:----------:|
+| [Geometric](https://en.wikipedia.org/wiki/Geometric_distribution)  |  Discrete  |
+| [Binomial](https://en.wikipedia.org/wiki/Binomial_distribution)   |  Discrete  |
+| [Hypergeometric](https://en.wikipedia.org/wiki/Hypergeometric_distribution) | Discrete |
+| [Multinomial](https://en.wikipedia.org/wiki/Multinomial_distribution) | Discrete  |
+| [Negative binomial](https://en.wikipedia.org/wiki/Negative_binomial_distribution) | Discrete |
+| [Poisson](https://en.wikipedia.org/wiki/Poisson_distribution)    |  Discrete |
+| [Beta](https://en.wikipedia.org/wiki/Beta_distribution)      | Continuous |
+| [Gamma](https://en.wikipedia.org/wiki/Gamma_distribution)     | Continuous |
+| [Exponential](https://en.wikipedia.org/wiki/Exponential_distribution) | Continuous |
+| [Normal](https://en.wikipedia.org/wiki/Normal_distribution)   | Continuous  |
+| [Uniform](https://en.wikipedia.org/wiki/Continuous_uniform_distribution) | Continuous           |
+
+: Some common single-variable distributions and their type. {#tbl-dist-type}
+
+
+## `r icons::icon_style(icons::fontawesome("r-project"),scale=2,fill="steelblue")` Working with Distributions in R
+
+
 ## Preparation for the next lesson
 
 To prepare for the next lesson, please read:
