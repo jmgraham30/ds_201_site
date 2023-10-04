@@ -212,6 +212,24 @@ div.csl-indent {
 <p>For a random experiment, we define the <strong>sample space</strong>, often denoted by <span class="math inline">\(S\)</span> to he the set of all possible outcomes. So, the sample space for the random experiment of tossing a coin one time would be <span class="math inline">\(S = \{\text{heads},\text{tails}\}\)</span>. An <strong>event</strong> is a subset of a sample space. We usually denote events by upper case latin letters like <span class="math inline">\(A\)</span>. For example, the event of tossing a heads would be <span class="math inline">\(A = \{\text{heads}\}\)</span>.</p>
 <p>While it takes some time and effort to wrap ones head around this, it is a fact that we can build up complicated events through logical operations. For example, we can define an event that is the event of tossing either heads or<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> tails. Also, one can define an event that is the event of tossing heads and tails.</p>
 <p><strong>Question:</strong> Suppose that <span class="math inline">\(A\)</span> is the event of tossing either heads or tails in a single toss of a coin. Why should we say that the probability of this event is 1? Suppose that <span class="math inline">\(B\)</span> is the event of tossing both heads and tails in a single toss of a coin. Why should we say that the probability of this event is 0?</p>
+<p><strong>Notation:</strong> If <span class="math inline">\(A\)</span> is an event, we denote by <span class="math inline">\(P(A)\)</span> the probability that <span class="math inline">\(A\)</span> has occurred. Given two events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, we denote by <span class="math inline">\(A \cup B\)</span> the event that <span class="math inline">\(A\)</span> or <span class="math inline">\(B\)</span> occurred; we denote by <span class="math inline">\(A \cap B\)</span> the event that <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> occurred.</p>
+<p>A notion from probability that is very important in data science is that of <strong>conditional probability</strong>. A probability of an event <span class="math inline">\(A\)</span>, given that an event <span class="math inline">\(B\)</span> occurred, is called a conditional probability and is denoted by <span class="math inline">\(P(A | B)\)</span> and read as “the probability of <span class="math inline">\(A\)</span> given <span class="math inline">\(B\)</span>”. We define conditional probability mathematically by</p>
+<p><span class="math display">\[
+P(A | B) = \frac{P(A \cap B)}{P(B)}
+\]</span></p>
+<p>It is important to realize that in general <span class="math inline">\(P(A|B) \neq P(B|A)\)</span>. For example, suppose that <span class="math inline">\(A\)</span> is the event that I carry an umbrella on any given day and <span class="math inline">\(B\)</span> is the event that it is raining on a given day. Then,</p>
+<p><span class="math display">\[
+P(A|B) = \text{the probability I will carry an umbrella given that it is raining}
+\]</span></p>
+<p>while</p>
+<p><span class="math display">\[
+P(B|A) = \text{the probability it is raining given that I'm carrying an umbrella}
+\]</span></p>
+<p>and there is no reason to believe that these probabilities should be the same.</p>
+<p>However, there is an important connection between <span class="math inline">\(P(A|B)\)</span> and <span class="math inline">\(P(B|A)\)</span> known as <strong>Bayes’ theorem</strong> which we state as</p>
+<p><span class="math display">\[
+P(B|A) = \frac{P(A|B)P(B)}{P(A)} = \frac{P(A|B)P(B)}{P(A|B)P(B) + P(A|B^{C})P(B^{C})}
+\]</span> whenever <span class="math inline">\(A\)</span> is an event such that <span class="math inline">\(P(A) \neq 0\)</span> and where <span class="math inline">\(B^{C}\)</span> denotes the <em>complement</em> of the event <span class="math inline">\(B\)</span>.</p>
 </section>
 <section id="introduction-to-random-variables" class="level2">
 <h2 class="anchored" data-anchor-id="introduction-to-random-variables">Introduction to Random Variables</h2>
