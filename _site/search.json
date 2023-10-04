@@ -641,6 +641,6 @@
     "href": "lesson06/index.html#working-with-distributions-in-r",
     "title": "Lesson 6",
     "section": "  Working with Distributions in R",
-    "text": "Working with Distributions in R"
+    "text": "Working with Distributions in R\nMany probability distributions are implemented in base R and many more can be access via various packages. We will focus on those distributions that are implemented in base R. Suppose that distname is the name associated with a distribution that is implemented in R. Then there are typically four R functions associated with that distribution:\n\nddistname implements the PMF or PDF for the distribution.\npdistname implements the CDF for the distribution.\nqdistname implements the inverse CDF for the distribution.\nrdistname implements sampling from the distribution.\n\nLet’s work through some examples together in an RStudio project."
   }
 ]
