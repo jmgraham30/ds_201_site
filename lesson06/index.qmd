@@ -129,7 +129,16 @@ For example, if $X$ is our random variable that returns the number of heads out 
 |$\{HHT,THH,HTH\}$| 2  |  $\frac{3}{8}$ |
 |$\{HHH\}$| 3  |  $\frac{1}{8}$ |
 
-: Probability for our example random variable that counts teh number of heads out of three tosses of a fair coin. {#tbl-rv-pd}
+: Probability for our example random variable that counts the number of heads out of three tosses of a fair coin. {#tbl-rv-pd}
+
+It is convenient to distinguish between two common types of random variables:
+
+* A **discrete** random variable is one with output values from a discrete, countable set. 
+
+* A **continuous** random variable is one for which the output values form an interval in the set of all real numbers[^2]. That is, continuous random variables have an infinite continuum of possible output values.
+
+[^2]: This is an imprecise and limited definition of continuous random variables but to make the definition precise requires mathematical machinery that is far outside the scope of this course. 
+
 
 
 ## Preparation for the next lesson
