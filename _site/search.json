@@ -571,14 +571,14 @@
     "href": "lesson06/index.html",
     "title": "Lesson 6",
     "section": "",
-    "text": "After this lesson, students will be able to:\n\nDefine probability.\nState Bayes’ theorem.\nIdentify and describe common probability distributions.\nUnderstand the concepts of probability mass functions (PMFs), probability density functions (PDFs), and cumulative distribution functions (CDFs).\nWork with various distributions in R."
+    "text": "After this lesson, students will be able to:\n\nIdentify and describe some common probability distributions.\nState Bayes’ theorem.\nUnderstand the concepts of probability mass functions (PMFs), probability density functions (PDFs), and cumulative distribution functions (CDFs).\nWork with various distributions in R."
   },
   {
     "objectID": "lesson06/index.html#learning-objectives",
     "href": "lesson06/index.html#learning-objectives",
     "title": "Lesson 6",
     "section": "",
-    "text": "After this lesson, students will be able to:\n\nDefine probability.\nState Bayes’ theorem.\nIdentify and describe common probability distributions.\nUnderstand the concepts of probability mass functions (PMFs), probability density functions (PDFs), and cumulative distribution functions (CDFs).\nWork with various distributions in R."
+    "text": "After this lesson, students will be able to:\n\nIdentify and describe some common probability distributions.\nState Bayes’ theorem.\nUnderstand the concepts of probability mass functions (PMFs), probability density functions (PDFs), and cumulative distribution functions (CDFs).\nWork with various distributions in R."
   },
   {
     "objectID": "lesson06/index.html#readings-etc.",
@@ -606,7 +606,7 @@
     "href": "lesson06/index.html#overview",
     "title": "Lesson 6",
     "section": "Overview",
-    "text": "Overview\nProbability and random variables play a fundamental role in data science and machine learning by providing the theoretical foundation for understanding uncertainty and variability in data.\nProbability is the mathematical framework for quantifying uncertainty. In data science, it allows us to express how likely different outcomes are, providing a way to model the inherent variability in data. Probability is used to formulate hypotheses, make predictions, and assess the likelihood of various events occurring. Understanding probability is crucial when dealing with tasks such as statistical inference, hypothesis testing, machine learning, and Bayesian modeling.\nRandom variables are a key concept that extends the idea of probability. A random variable is a variable whose value is subject to chance or randomness. In data science and machine learning, random variables are used to represent uncertain quantities that we wish to analyze. They can be discrete, like the outcome of a coin toss, or continuous, like the height of individuals in a population. Random variables help us describe and model data, and they serve as the basis for statistical models and machine learning algorithms."
+    "text": "Overview\nProbability and random variables play a fundamental role in data science and machine learning by providing the theoretical foundation for understanding uncertainty and variability in data. Later in the course, we will study inference and predictive modeling and it will be helpful to have the basic vocabulary of probability and random variables at our disposal to help describe methods for inference and predictive modeling.\nInformally:\n\nProbability is the mathematical framework for quantifying uncertainty. In data science, it allows us to express how likely different outcomes are, providing a way to model the inherent variability in data. Probability is used to formulate hypotheses, make predictions, and assess the likelihood of various events occurring. Understanding probability is crucial when dealing with tasks such as statistical inference, hypothesis testing, machine learning, and Bayesian modeling.\nRandom variables are a key concept that extends the idea of probability. A random variable is a variable whose value is subject to chance or randomness. In data science and machine learning, random variables are used to represent uncertain quantities that we wish to analyze. They can be discrete, like the outcome of a coin toss, or continuous, like the height of individuals in a population. Random variables help us describe and model data, and they serve as the basis for statistical models and machine learning algorithms.\n\nThere are other data science and mathematics courses in our curriculum that go into more detail on probability and random variables so our treatment in this course will be brief and informal."
   },
   {
     "objectID": "lesson05/index.html#footnotes",
@@ -620,7 +620,7 @@
     "href": "lesson06/index.html#introduction-to-probability",
     "title": "Lesson 6",
     "section": "Introduction to Probability",
-    "text": "Introduction to Probability"
+    "text": "Introduction to Probability\nThe notion of probability starts with the concept of a random experiment, that is, a process with a well-defined but unpredictable outcome. A quintessential example is provided by tossing a coin. We know in advance that the outcome will be either heads or tails but it is difficult to determine with certainty the outcome of any given toss.\nA working definition for probability that is often used is\n\nFor an observation of a random phenomenon, the probability of a particular outcome is the proportion of times that outcome would occur in an indefinitely long sequence of like observations, under the same conditions.\n\nThis definition is why one typically says that the probability of tossing heads for a fair coin is 0.5 (or 50%).\nNote: According to our working definition a probability is always a number between 0 and 1 (inclusive).\nFor a random experiment, we define the sample space, often denoted by \\(S\\) to he the set of all possible outcomes. So, the sample space for the random experiment of tossing a coin one time would be \\(S = \\{\\text{heads},\\text{tails}\\}\\). An event is a subset of a sample space. We usually denote events by upper case latin letters like \\(A\\). For example, the event of tossing a heads would be \\(A = \\{\\text{heads}\\}\\).\nWhile it takes some time and effort to wrap ones head around this, it is a fact that we can build up complicated events through logical operations. For example, we can define an event that is the event of tossing either heads or1 tails. Also, one can define an event that is the event of tossing heads and tails.\nQuestion: Suppose that \\(A\\) is the event of tossing either heads or tails in a single toss of a coin. Why should we say that the probability of this event is 1? Suppose that \\(B\\) is the event of tossing both heads and tails in a single toss of a coin. Why should we say that the probability of this event is 0?"
   },
   {
     "objectID": "lesson06/index.html#introduction-to-random-variables",
@@ -628,5 +628,12 @@
     "title": "Lesson 6",
     "section": "Introduction to Random Variables",
     "text": "Introduction to Random Variables"
+  },
+  {
+    "objectID": "lesson06/index.html#footnotes",
+    "href": "lesson06/index.html#footnotes",
+    "title": "Lesson 6",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nHere, “or” is used in the inclusive sense.↩︎"
   }
 ]
