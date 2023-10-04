@@ -89,6 +89,20 @@ P(B|A) = \frac{P(A|B)P(B)}{P(A)} = \frac{P(A|B)P(B)}{P(A|B)P(B) + P(A|B^{C})P(B^
 $$
 whenever $A$ is an event such that $P(A) \neq 0$ and where $B^{C}$ denotes the *complement* of the event $B$.
 
+Let's examine a simple example. Suppose that we toss a fair coin three times and record the number of heads. Let
+
+* $A = $ the event that the first toss is heads, and 
+
+* $B = $ the event that at least one toss is heads. 
+
+Then,
+
+* $P(A|B) = $ the probability that the first toss is heads given that at least one toss is heads, and 
+
+* $P(B|A) = $ the probability that at least one toss is heads given  that at the first toss is heads. 
+
+
+
 ## Introduction to Random Variables 
 
 
