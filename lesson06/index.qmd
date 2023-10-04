@@ -91,21 +91,45 @@ whenever $A$ is an event such that $P(A) \neq 0$ and where $B^{C}$ denotes the *
 
 Let's examine a simple example. Suppose that we toss a fair coin three times and record the number of heads. Let
 
-* $A = $ the event that the first toss is heads, and 
+* $B =$ the event that the first toss is heads, and 
 
-* $B = $ the event that at least one toss is heads. 
+* $A =$ the event that at least one toss is heads. 
 
 Then,
 
-* $P(A|B) = $ the probability that the first toss is heads given that at least one toss is heads, and 
+* $P(B|A) =$ the probability that the first toss is heads given that at least one toss is heads, and 
 
-* $P(B|A) = $ the probability that at least one toss is heads given  that at the first toss is heads. 
+* $P(A|B) =$ the probability that at least one toss is heads given that the first toss is heads. 
 
+It is probably obvious that $P(A|B) = 1$, and with just a little thought, one can reason out that $P(A) = \frac{7}{8}$ and $P(B) = \frac{1}{2}$. Then, by Bayes' theorem we should have
 
+$$
+P(B|A) = \frac{1 \cdot \frac{1}{2}}{\frac{7}{8}} = \frac{4}{7}
+$$
+It is often more convenient to work with numbers that it is to work with events from general sample spaces. Random variables are a mathematical tool for quantifying events.  
 
 ## Introduction to Random Variables 
 
+Our working definition of a random variable will be:
 
+> For a random phenomenon, a **random variable** is a function that assigns a numerical value to each point in the sample space. 
+
+We generally denote random variables by upper case latin letters near the end of the alphabet such as $X$, $Y$, etc. We use the corresponding lower case latin letters to denote that output values  of a random variable. For example, if $X$ is a radom variable and $A$ is some event, then we could write $X(A) = x$. 
+
+Consider again, our example of tossing a coin three times. We can define a random variable by simply returning the number of heads in a given toss. If we denote this random variable by $X$, then $X(\{HHT\}) = 2$ while $X(\{THT\}) = 1$. 
+
+> A **probability distribution** lists the possible outcomes for a random variable and their probabilities. 
+
+For example, if $X$ is our random variable that returns the number of heads out of three tosses of a fair coin, then the probability distribution for $X$ is provided by @tbl-rv-pd.
+
+|Event| $x$ | Probability |
+|:-----|:---:|:-----------:|
+|$\{TTT\}$| 0  |  $\frac{1}{8}$|
+|$\{HTT,THT,TTH\}$| 1  |  $\frac{3}{8}$ |
+|$\{HHT,THH,HTH\}$| 2  |  $\frac{3}{8}$ |
+|$\{HHH\}$| 3  |  $\frac{1}{8}$ |
+
+: Probability for our example random variable that counts teh number of heads out of three tosses of a fair coin. {#tbl-rv-pd}
 
 
 ## Preparation for the next lesson

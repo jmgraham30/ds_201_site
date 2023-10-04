@@ -232,17 +232,65 @@ P(B|A) = \frac{P(A|B)P(B)}{P(A)} = \frac{P(A|B)P(B)}{P(A|B)P(B) + P(A|B^{C})P(B^
 \]</span> whenever <span class="math inline">\(A\)</span> is an event such that <span class="math inline">\(P(A) \neq 0\)</span> and where <span class="math inline">\(B^{C}\)</span> denotes the <em>complement</em> of the event <span class="math inline">\(B\)</span>.</p>
 <p>Let’s examine a simple example. Suppose that we toss a fair coin three times and record the number of heads. Let</p>
 <ul>
-<li><p>$A = $ the event that the first toss is heads, and</p></li>
-<li><p>$B = $ the event that at least one toss is heads.</p></li>
+<li><p><span class="math inline">\(B =\)</span> the event that the first toss is heads, and</p></li>
+<li><p><span class="math inline">\(A =\)</span> the event that at least one toss is heads.</p></li>
 </ul>
 <p>Then,</p>
 <ul>
-<li><p>$P(A|B) = $ the probability that the first toss is heads given that at least one toss is heads, and</p></li>
-<li><p>$P(B|A) = $ the probability that at least one toss is heads given that at the first toss is heads.</p></li>
+<li><p><span class="math inline">\(P(B|A) =\)</span> the probability that the first toss is heads given that at least one toss is heads, and</p></li>
+<li><p><span class="math inline">\(P(A|B) =\)</span> the probability that at least one toss is heads given that the first toss is heads.</p></li>
 </ul>
+<p>It is probably obvious that <span class="math inline">\(P(A|B) = 1\)</span>, and with just a little thought, one can reason out that <span class="math inline">\(P(A) = \frac{7}{8}\)</span> and <span class="math inline">\(P(B) = \frac{1}{2}\)</span>. Then, by Bayes’ theorem we should have</p>
+<p><span class="math display">\[
+P(B|A) = \frac{1 \cdot \frac{1}{2}}{\frac{7}{8}} = \frac{4}{7}
+\]</span> It is often more convenient to work with numbers that it is to work with events from general sample spaces. Random variables are a mathematical tool for quantifying events.</p>
 </section>
 <section id="introduction-to-random-variables" class="level2">
 <h2 class="anchored" data-anchor-id="introduction-to-random-variables">Introduction to Random Variables</h2>
+<p>Our working definition of a random variable will be:</p>
+<blockquote class="blockquote">
+<p>For a random phenomenon, a <strong>random variable</strong> is a function that assigns a numerical value to each point in the sample space.</p>
+</blockquote>
+<p>We generally denote random variables by upper case latin letters near the end of the alphabet such as <span class="math inline">\(X\)</span>, <span class="math inline">\(Y\)</span>, etc. We use the corresponding lower case latin letters to denote that output values of a random variable. For example, if <span class="math inline">\(X\)</span> is a radom variable and <span class="math inline">\(A\)</span> is some event, then we could write <span class="math inline">\(X(A) = x\)</span>.</p>
+<p>Consider again, our example of tossing a coin three times. We can define a random variable by simply returning the number of heads in a given toss. If we denote this random variable by <span class="math inline">\(X\)</span>, then <span class="math inline">\(X(\{HHT\}) = 2\)</span> while <span class="math inline">\(X(\{THT\}) = 1\)</span>.</p>
+<blockquote class="blockquote">
+<p>A <strong>probability distribution</strong> lists the possible outcomes for a random variable and their probabilities.</p>
+</blockquote>
+<p>For example, if <span class="math inline">\(X\)</span> is our random variable that returns the number of heads out of three tosses of a fair coin, then the probability distribution for <span class="math inline">\(X\)</span> is provided by <a href="#tbl-rv-pd">Table&nbsp;1</a>.</p>
+<div id="tbl-rv-pd" class="anchored">
+<table class="table">
+<caption>Table&nbsp;1: Probability for our example random variable that counts teh number of heads out of three tosses of a fair coin.</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Event</th>
+<th style="text-align: center;"><span class="math inline">\(x\)</span></th>
+<th style="text-align: center;">Probability</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\{TTT\}\)</span></td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;"><span class="math inline">\(\frac{1}{8}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(\{HTT,THT,TTH\}\)</span></td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;"><span class="math inline">\(\frac{3}{8}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\{HHT,THH,HTH\}\)</span></td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;"><span class="math inline">\(\frac{3}{8}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(\{HHH\}\)</span></td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;"><span class="math inline">\(\frac{1}{8}\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
 </section>
 <section id="preparation-for-the-next-lesson" class="level2">
 <h2 class="anchored" data-anchor-id="preparation-for-the-next-lesson">Preparation for the next lesson</h2>
