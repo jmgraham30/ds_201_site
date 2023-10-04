@@ -139,6 +139,13 @@ It is convenient to distinguish between two common types of random variables:
 
 [^2]: This is an imprecise and limited definition of continuous random variables but to make the definition precise requires mathematical machinery that is far outside the scope of this course. 
 
+Out coin tossing random variable provides an example of a discrete random variable. Discrete random variables are essentially described by a **probability mass function** (PMF) $p((x)$ that generate the probabilities for the possible outcomes of a random variable. For example, the last two columns of @tbl-rv-pd give a PMF for  our example random variable that counts the number of heads out of three tosses of a fair coin.
+
+In general, if $X$ is a discrete random variable then,
+
+* $0 \leq p(x) \leq 1$ for all output values $x$ for $X$, and
+
+* $\sum_{x}p(x) = 1$, where the sum is taken over all possible output values for $X$.
 
 
 ## Preparation for the next lesson
