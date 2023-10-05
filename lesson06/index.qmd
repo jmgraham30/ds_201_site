@@ -197,6 +197,16 @@ where the sum is taken over all possible values of $x$ and $\mu = \text{E}[X]$.
 
 The **standard deviation** of a random variable is defined to be the positive square root of its variance. 
 
+#### Properties of Expected Value and Variance
+
+There are some important properties that are hepful to know about expected value and variance. Namely, 
+
+* If $X$ and $Y$ are random variables, then $\text{E}[X + Y] = \text{E}[X] + \text{E}[Y]$,. 
+
+* If $a$ is a number and $X$ is a random variable, then $\text{E}[aX] = a\text{E}[X$.
+
+* If $a$ and $b$ are numbers and $X$ is a random variable, then $\text{Var}[aX + b] = a^2\text{Var}[X]$.
+
 > For any random variable $X$, the probability $P(X \leq x)$ is a function of $x$ that returns the probability that $X$ takes values less or equal to $x$. Such a function is called the **cumulative distribution function** (CDF) for $X$. 
 
 @tbl-rv-cdf includes a column with the output values for the CDF for each value of $x$ for the random variable that counts the number of heads out of three tosses of a fair coin.
