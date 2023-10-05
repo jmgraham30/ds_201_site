@@ -199,7 +199,7 @@ The **standard deviation** of a random variable is defined to be the positive sq
 
 #### Properties of Expected Value and Variance
 
-There are some important properties that are hepful to know about expected value and variance. Namely, 
+There are some important properties that are helpful to know about expected value and variance. Namely, 
 
 * If $X$ and $Y$ are random variables, then $\text{E}[X + Y] = \text{E}[X] + \text{E}[Y]$,. 
 
