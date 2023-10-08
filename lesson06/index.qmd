@@ -201,9 +201,9 @@ The **standard deviation** of a random variable is defined to be the positive sq
 
 There are some important properties that are helpful to know about expected value and variance. Namely, 
 
-* If $X$ and $Y$ are random variables, then $\text{E}[X + Y] = \text{E}[X] + \text{E}[Y]$,. 
+* If $X$ and $Y$ are random variables, then $\text{E}[X + Y] = \text{E}[X] + \text{E}[Y]$. 
 
-* If $a$ is a number and $X$ is a random variable, then $\text{E}[aX] = a\text{E}[X$.
+* If $a$ is a number and $X$ is a random variable, then $\text{E}[aX] = a\text{E}[X]$.
 
 * If $a$ and $b$ are numbers and $X$ is a random variable, then $\text{Var}[aX + b] = a^2\text{Var}[X]$.
 
@@ -219,6 +219,24 @@ There are some important properties that are helpful to know about expected valu
 |$\{HHH\}$| 3  |  $\frac{1}{8}$ |$1$|
 
 : PMF and CDF for our example random variable that counts the number of heads out of three tosses of a fair coin. {#tbl-rv-cdf}
+
+### Expected Value and Variance for Binomial and Normal R.V.s
+
+Suppose that $X$ is a normal random variable with PDF
+
+$$
+f(x) = \frac{1}{\sqrt{2\pi \sigma^{2}}}e^{-\frac{(x - \mu)^2}{2\sigma^{2}}}
+$$
+
+then $\text{E}[X] = \mu$ and $\text{Var}[X] = \sigma^{2}$.
+
+Now, suppose that $X$ is a binomial random variable with PMF
+
+$$
+p(x) = \frac{n!}{(n-1)! k!}\pi^{x}(1 - \pi)^{n -x}
+$$
+
+then $\text{E}[X] = n\pi$ and $\text{Var}[X] = n\pi(1-\pi)$.
 
 ### Some Common Distributions
 
