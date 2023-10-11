@@ -46,7 +46,7 @@ The notion of probability starts with the concept of a **random experiment**, th
 
 A working definition for probability that is often used is
 
-> For an observation of a random phenomenon, the probability of a particular outcome is the proportion of times that outcome would occur in an indefinitely long sequence of like observations, under the same conditions. 
+> For an observation of a random experiment, the probability of a particular outcome is the proportion of times that outcome would occur in an indefinitely long sequence of like observations, under the same conditions. 
 
 This definition is why one typically says that the probability of tossing heads for a fair coin is 0.5 (or 50%).
 
