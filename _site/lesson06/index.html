@@ -318,7 +318,7 @@ P(A \cap B) = P(A)P(B)
 <h3 class="anchored" data-anchor-id="binomial-distributions">Binomial Distributions</h3>
 <p>Suppose that <span class="math inline">\(X\)</span> is a random variable that takes on values <span class="math inline">\(0,1,\ldots n\)</span> and let <span class="math inline">\(\pi\)</span> denote a real number in the interval <span class="math inline">\([0,1]\)</span>. Then we say that <span class="math inline">\(X\)</span> is a <strong>binomial random variable</strong> if it’s PMF is given by</p>
 <p><span class="math display">\[
-p(x) = \frac{n!}{(n-1)! k!}\pi^{x}(1 - \pi)^{n -x}
+p(x) = \frac{n!}{(n-x)! x!}\pi^{x}(1 - \pi)^{n -x}
 \]</span></p>
 <p>For example, if we let <span class="math inline">\(X\)</span> be the random variable that counts the number of heads out <span class="math inline">\(n\)</span> tosses of a coin where the probability of landing heads in a single toss is <span class="math inline">\(\pi\)</span>, then <span class="math inline">\(X\)</span> is modeled by a binomial random variable.</p>
 <p>Later we will see how to work with binomial distributions in R.</p>
@@ -410,7 +410,7 @@ f(x) = \frac{1}{\sqrt{2\pi \sigma^{2}}}e^{-\frac{(x - \mu)^2}{2\sigma^{2}}}
 <p>then <span class="math inline">\(\text{E}[X] = \mu\)</span> and <span class="math inline">\(\text{Var}[X] = \sigma^{2}\)</span>.</p>
 <p>Now, suppose that <span class="math inline">\(X\)</span> is a binomial random variable with PMF</p>
 <p><span class="math display">\[
-p(x) = \frac{n!}{(n-1)! k!}\pi^{x}(1 - \pi)^{n -x}
+p(x) = \frac{n!}{(n-x)! x!}\pi^{x}(1 - \pi)^{n -x}
 \]</span></p>
 <p>then <span class="math inline">\(\text{E}[X] = n\pi\)</span> and <span class="math inline">\(\text{Var}[X] = n\pi(1-\pi)\)</span>.</p>
 </section>

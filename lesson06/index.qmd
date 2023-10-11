@@ -159,7 +159,7 @@ In general, if $X$ is a discrete random variable then,
 Suppose that $X$ is a random variable that takes on values $0,1,\ldots n$ and let $\pi$ denote a real number in the interval $[0,1]$. Then we say that $X$ is a **binomial random variable** if it's PMF is given by
 
 $$
-p(x) = \frac{n!}{(n-1)! k!}\pi^{x}(1 - \pi)^{n -x}
+p(x) = \frac{n!}{(n-x)! x!}\pi^{x}(1 - \pi)^{n -x}
 $$
 
 For example, if we let $X$ be the random variable that counts the number of heads out $n$ tosses of a coin where the probability of landing heads in a single toss is $\pi$, then $X$ is modeled by a binomial random variable. 
@@ -239,7 +239,7 @@ then $\text{E}[X] = \mu$ and $\text{Var}[X] = \sigma^{2}$.
 Now, suppose that $X$ is a binomial random variable with PMF
 
 $$
-p(x) = \frac{n!}{(n-1)! k!}\pi^{x}(1 - \pi)^{n -x}
+p(x) = \frac{n!}{(n-x)! x!}\pi^{x}(1 - \pi)^{n -x}
 $$
 
 then $\text{E}[X] = n\pi$ and $\text{Var}[X] = n\pi(1-\pi)$.
