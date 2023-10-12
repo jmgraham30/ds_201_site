@@ -1,0 +1,305 @@
+---
+title: "Lesson 7"
+subtitle: "Fundamental Concepts for Supervised Machine Learning"
+author: "JMG"
+format:
+  html:
+    code-fold: true
+    code-summary: "Show the code"
+    toc: true
+    toc-location: left
+bibliography: lesson07.bib
+license: "CC BY-NC-SA 4.0"
+---
+
+```{r}
+#| message: false
+#| warning: false
+#| echo: false
+
+# load packages used in document
+library(tidyverse)
+library(tidytuesdayR)
+library(ISLR2)
+
+theme_set(theme_minimal(base_size = 13))
+```
+
+## Learning Objectives
+
+After this lesson, students will be able to:
+
+- Define supervised machine learning in general terms.
+
+- Distinguish between regression and classification problems.
+
+- Understand the concept of error and the significance of test versus training error.
+
+- Appreciate the trade-off between model flexibility and interpretability, and between bias and variance.
+
+- Describe the nearest neighbors algorithm for classification and regression. 
+
+## Readings, etc.
+
+1) Read Chapters 5, 6, & 7 from from [Data Science: A First Introduction](https://datasciencebook.ca/preface.html) [@timbers2022data]. [View book online](https://datasciencebook.ca/preface.html).
+
+2)  Read Chapter 2 of *An Introduction to Statistical Learning* [@tibshirani2017introduction].
+
+3)  The following two video lectures are also recommended:
+
+-   Motivating problems for machine (statistical) learning. [Watch video on YouTube](https://youtu.be/LvySJGj-88U).
+
+```{r}
+#| echo: false
+
+vembedr::embed_youtube(id="LvySJGj-88U",height=450) %>%
+  vembedr::use_align("center")
+```
+
+-   Supervised and unsupervised learning. [Watch video on YouTube](https://youtu.be/B9s8rpdNxU0).
+
+```{r}
+#| echo: false
+
+vembedr::embed_youtube(id="B9s8rpdNxU0",height=450) %>%
+  vembedr::use_align("center")
+```
+
+## Overview
+
+[Machine learning](https://en.wikipedia.org/wiki/Machine_learning), also known as statistical learning uses mathematical models to learn from data. The methods of machine learning are currently very popular in data science for the role they play in predictive modeling. Machine learning is also a currently prominent approach to developing artificial intelligence technologies. @fig-ai-ml illustrates the relationship between AI, machine learning, and deep learning. Of course, what one means by a "useful insight" is highly dependent on the domain of specialization or area of application. Thus, machine learning is an inherently interdisciplinary field that intersects with many disciplines such as computer science, data science, mathematics and statistics and a variety of other fields.
+
+
+
+![Illustration credit: https://vas3k.com/blog/machine_learning/](https://i.vas3k.blog/7vw.jpg){#fig-ai-ml}
+
+
+[**Supervised machine learning**](https://en.wikipedia.org/wiki/Supervised_learning) builds models to predict response values based on corresponding predictor values by using example data that comes as a source and target pair. @fig-supervised illustrates the supervised learning paradigm.
+
+![Supervised machine learning builds models to predict response values based on corresponding predictor values by using example data that comes as a source and target pair. Illustration credit: https://www.javatpoint.com](https://static.javatpoint.com/tutorial/machine-learning/images/supervised-machine-learning.png){#fig-supervised}
+
+In this lesson, we will learn the basic concepts of supervised machine learning. We will use the [nearest neighbors algorithm](https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm) to facilitate our understanding of the basic principles of supervised learning. This algorithm is a simple but useful machine learning algorithm. In our next lesson, we will learn about the [linear regression](https://en.wikipedia.org/wiki/Linear_regression) algorithm which is also a simple but useful machine learning algorithm.
+
+
+## Introduction to Machine (Statistical) Learning
+
+[**Machine learning**](https://en.wikipedia.org/wiki/Machine_learning) or statistical learning generally refers to methods or tools that seek to derive insight or understanding from data by using *models*. Here by model we mean a mathematical or computational representation of some part of the real world. In machine learning, we *fit* or *learn* a model or class of models to data. The goal of fitting models is usually one of the following:
+
+1.  **Prediction** - using what is known to make informed (hopefully accurate) claims about what we want to know.
+
+2.  **Inference** - using a sample to make informed (hopefully accurate) claims about a larger population.
+
+For an example of prediction, suppose that we are advertising experts working with a customer that sales video games. Our customer cannot directly control their sales but they can directly control their marketing by deciding how much to invest in advertising. Say for example that our customer has three ways to advertise: via YouTube, via podcasts, or via Spotify. We can use our past knowledge about how much our customer has spent *i.e.*, their advertising budget and the corresponding sales to make predictions using a model about how sales will be in the future depending on how the company changes its advertising in each of the three media.
+
+For an example of inference, suppose we have data on how a sample of patients respond to a particular drug. We can use this to make claims about how a larger population of patients will respond to this same drug.
+
+There are two prominent broad classes of machine learning models:
+
+1.  **Supervised** - In supervised learning, data comes in pairs $(y_{i},{\bf x}_{i})$ where we view ${\bf x}_{i}$ (which may be a vector) as a predictor and $y_{i}$ as a response. Often, We the predictors are something we can influence directly like the advertising budget from our earlier example while the response is something we don't have direct control over like the sales from our example. Thus, there is an assumed functional relationship between predictors and the response of the form
+
+$$
+y = f({\bf x}) + \epsilon
+$$ where we think of $f({\bf x})$ as the mean value for $y$ viewed as a **random variable** and $\epsilon$ as containing the variance of $y$ so that $E[\epsilon] = 0$.
+
+We note that $y$ may be numerical in which case we have a **regression** problem or it may be categorical in which case we have a **classification** problem.
+
+2.  **Unsupervised** - In unsupervised learning, there is no response variable. Some common unsupervised problems include clustering and density estimation. Both of these essentially seek to discover a pattern in the data.
+
+@fig-mls illustrates the distinction between supervised and unsupervised learning models. 
+
+![Illustration credit: https://vas3k.com/blog/machine_learning/](https://i.vas3k.blog/7w1.jpg){#fig-mls}
+
+In this course, we will focus on supervised learning and save discussions on unsupervised learning for future courses. 
+
+### Fitting Supervised Models
+
+Fitting an unsupervised learning model typically amounts to estimating the function $f$ in the assumed relationship
+
+$$
+y = f({\bf x}) + \epsilon
+$$ between the predictor and response variables. When we estimate $f$ we denote the estimate by $\hat{f}$. Then, we can use $\hat{f}$ to predict the response for each predictor value ${\bf x}$ by computing
+
+$$
+\hat{y} = \hat{f}({\bf x})
+$$
+
+How do we estimate a function $f$? In machine learning, we use the data together with some algorithm to construct $\hat{f}$.
+
+#### Regression
+
+Let's consider an illustrative example where ${\bf x}$ represents the years of education of some individuals and $y$ is the income they earn in their profession. Thus, both variables are numerical so we are dealing with a regression problem. We are assuming that there is a true but unknown functional relationship between the years of education and the income they earn.
+
+The left panel of @fig-sl-reg shows a scatter plot of our education versus income data while the right panel shows the data again but with a curve corresponding to the graph of a function $\hat{f}$ that passes through the data.
+
+![Illustration of supervised learning through a regression problem. Figure from [@tibshirani2017introduction].](https://www.dropbox.com/scl/fi/4zmi7ql5ooxcafkym0csb/2_2.jpg?rlkey=jj0j32tvr43xcn88i2via58jd&dl=1){#fig-sl-reg fig-alt="Figure with two panels. The left shows a scatter plot of data while the right shows the same scatter plot but with curve fitted to the data." width="8in" height="4in"}
+
+How did we come up with the function $\hat{f}$? Basically, minimized the **error** between our predicted and observed response. That is, for each response value ${\bf x}$ we minimized how far $y=f({\bf x})$ can be from $\hat{y}=\hat{f}({\bf x})$. There are three important points that need to be addressed before we can implement regression in a practical situation.
+
+1.  The set of all functions is too large to work with in practice so we must make some choices that allow us to narrow down the class of functions from which $\hat{f}$ will be taken. For example, we could restrict to only linear functions, or only quadratic functions, or only polynomial functions. These classes of functions are easy to describe because these types of functions are uniquely described by a finite number of parameters. However, sometimes data can not be modeled well by, *e.g.*, polynomials so more sophisticated non-parametric ways of describing classes of functions have been developed that allow for more flexible modeling.
+
+2.  We must decide on how we will define and measure error. For regression problems, a typical way to measure error is the **squared-error**. Referring back to the right side of @fig-sl-reg, we define the $i$-th **residual** $r_{i}$ to be the vertical (signed) distance between the observed response value $y_{i}$ and the corresponding predicted value $\hat{y}_{i} = \hat{f}({\bf x}_{i})$. That is,
+
+$$
+r_{i} = y_{i} - \hat{y}_{i}
+$$ Then the squared error (SE) is
+
+$$
+\text{SE} = \sum_{i=1}^{n}r_{i}^{2} = \sum_{i=1}^{n}(y_{i}-\hat{y}_{i})^{2} = \sum_{i=1}^{n}(y_{i} - \hat{f}({\bf{x}_{i}}))^{2}
+$$
+
+In this case, we take $\hat{f}$ to be the function from some specified class of functions such that it minimizes the corresponding SE.
+
+**Important Point:** A main component of many if not most supervised machine learning problems is solving some kind of optimization problem. Usually when one speaks of a machine learning algorithm (or learning algorithm), what they are actually referring to is some algorithm that is used to solve an appropriate optimization problem.
+
+3.  We have to distinguish between *reducible error* and *irreducible error*. No machine learning model will ever be perfect. Suppose that we have an estimate $\hat{f}$ that yields a prediction $\hat{y} = \hat{f}({\bf x})$. Since in reality the response is a random variable
+
+$$
+y = f({\bf x}) + \epsilon
+$$ we have
+
+$$
+\begin{align*}
+\text{E}[(y - \hat{y})^{2}] &= \text{E}[(f({\bf x}) + \epsilon - \hat{f}({\bf x}))^2] \\
+&= \text{E}[((f({\bf x}) - \hat{f}({\bf x})) + \epsilon)^2] \\
+&= \text{E}[(f({\bf x}) - \hat{f}({\bf x}))^2 - 2\epsilon (f({\bf x}) - \hat{f}({\bf x})) + \epsilon^2] \\
+&= \text{E}[(f({\bf x}) - \hat{f}({\bf x}))^2] - 2(f({\bf x}) - \hat{f}({\bf x}))\text{E}[\epsilon] + \text{E}[(\epsilon - 0)^2] \\
+&= \text{E}[(f({\bf x}) - \hat{f}({\bf x}))^2] + \text{Var}[\epsilon]
+\end{align*}
+$$
+
+By choosing a good enough family of functions or a good enough learning algorithm we can reduce $\text{E}[(f({\bf x}) - \hat{f}({\bf x}))^2]$ as much as we want. This corresponds to the **reducible error.** However, we have no control over $\text{Var}[\epsilon]$ and this corresponds to the **irreducible error**.
+
+#### Classification
+
+For classification problems in supervised machine learning, the response variable is **categorical**. @fig-sl-cl illustrates this, showing a scatter plot of data where coloring is used to distinguish the data points as belonging to one of two different classes.
+
+![Illustration of a classification problem in which the response variable is a binary categorical variable. Figure from [@tibshirani2017introduction].](https://www.dropbox.com/scl/fi/qch7u8vzepor8egwgres5/2_15.png?rlkey=uc3vbxxu1tvrb3a92qxo4ssgg&dl=1){#fig-sl-cl fig-alt="Figure showing a scatter plot of data where coloring is used to distinguish the data points as belonging to one of two different classes." width="6in" height="6in"}
+
+For classification problems, our goal is still to estimate a functional relationship of the form $y = f({\bf x}) + \epsilon$. However, we can no longer measure error using the squared error because the response values are not numerical. A common method for measuring error in classification problems is **classification error** (CE) defined by
+
+$$
+\text{CE} = \sum_{i=1}^{n}I(y_{i} \neq \hat{y}_{i})
+$$
+
+where $I$ is the *indicator function* that is equal to 1 whenever $y_{i} \neq \hat{y}_{i}$ and equal to 0 whenever $y_{i} = \hat{y}_{i}$. Essentially, CE counts the number of misclassifications. 
+
+Similar to regression, fitting a classification model involves finding a function $\hat{f}$ from some specified class of functions such that the corresponding CE is  minimized. 
+
+Note that it is possible to convert a regression problem to a classification problem by binning or discretizing the response variable in some way.   
+
+### Complexity Vs. Interpretability
+
+Another issue that needs to be taken into account when fitting models is the tradeoff between how easy it is to interpret a model versus the maximum degree of accuracy for the model. @fig-mod-complex illustrates this through a representation of the tradeoff between model flexibility and the degree of interpretability of the model. The more flexible the model, the easier it will be to reduce the reducible error. However, highly flexible models tend to be difficult to interpret because they involve many more parameters or possess other types of complexity.
+ 
+![A representation of the tradeoff between model flexibility and the degree of interpretability of the model. The more flexible the model, the easier it will be to reduce the reducible error. However, highly flexible models tend to be difficult to interpret because they involve many more parameters or possess other types of complexity. Figure from [@tibshirani2017introduction].](https://www.dropbox.com/scl/fi/507z03ox81b15dbxe1pqk/2_7.png?rlkey=vs3rp0x3h5o0qvik8zhjbngsv&dl=1){#fig-mod-complex fig-alt="" width="6in" height="6in"}
+
+### Training Error Vs. Test Error
+
+When we fit a model to data, say by minimizing the error the resulting estimate function we get depends on the  data used to fit the model. We refer to this data as the **training data** and the corresponding error as the **training error**. By choosing a sufficiently flexible set of functions from which to fit to the data, we can make the training error as small as we want. This might seem like a great thing, but there is a major problem with it. 
+
+Suppose we want to use a model to make predictions about future unseen values of our predictor ${\bf x}$. If a model is fit too well to the training data, then in general it tends not to be very good at making accurate predictions for future values. One says that models that are **overfit** to the training data are poor at **generalization**. 
+
+How do we build models that generalize well and avoid overfitting? A common approach is to separate data into a training set that is used to fit a model and a test set which is used to assess how well the models generalizes to unseen data via the **test error**.  @fig-bv-trade shows sample data are several different model fits of varying complexity. The right panel shows the corresponding training and test error for each of the different models. The dashed horizontal line is the minimum possible test error. We see that the most complex model massively overfits the training data.
+
+![The left panel shows sample data are several different model fits of varying complexity. The right panel shows the corresponding training and test error for each of the different models. The dashed horizontal line is the minimum possible test error. We see that the most complex model massively overfits the training data. Figure from [@tibshirani2017introduction].](https://www.dropbox.com/scl/fi/1arxit27ttbfmi527iare/2_9.png?rlkey=ohyvt8c4ao38hq0ggaul5ykm8&dl=1){#fig-bv-trade width="8in" height="4in"}
+
+While the training/test set approach to fitting accurate models while avoiding overfitting is very good in principle, there are some practical limitations. For example, 
+
+1. How do we know the training data is sufficiently representative? 
+
+2. What if we don't have a sufficiently large data set to split into a training and a test set? 
+
+3. How do we know what the minimum possible test error is? 
+
+We will spend a lot of time later talking more about these issues and ways to deal with them.  
+
+### The Bias-Variance Trade-Off
+
+Referring back to @fig-bv-trade, notice the distinct U-shape in the curve for the test error. This is more than just a curiosity, it is the result of another type of trade-off known as the **bias-variance** trade-off. 
+
+Let's try to get a sense for this starting with some intuition. Suppose we having a regression problem with a single predictor. If we restrict to the class of linear functions, that is functions with graph that is a straight line in the plane, then any such function is uniquely specified by two parameters, the slope and intercept. Intuitively, such as model is highly biased because it's going to make very rigid predictions. However, linear functions have low variance in the sense than models fit to similar data will have very similar slope and intercept values. On the other hand, a cubic polynomial being described uniquely by four parameters is much less biased than a linear function but will have higher variance. 
+
+It is outside the scope of this course, but it can be shown that the expected squared error for an observed value ${\bf x}_{0}$ can be decomposed as follows:
+
+$$
+\text{E}[(y_{0} - \hat{f}({\bf x}))^2] = \text{Var}(\hat{f}({\bf x}_{0})) + [\text{Bias}(\hat{f}({\bf x}_{0}))]^2 + \text{Var}(\epsilon)
+$$
+
+We refer to the first two terms as 
+
+* the variance of $\hat{f}({\bf x}_{0})$
+
+* the squared bias of $\hat{f}({\bf x}_{0})$
+
+@fig-bv illustrates this formula. 
+
+![Squared bias (blue curve), variance (orange curve), Var(ε) (dashed line), and test MSE (red curve). The vertical dotted line indicates the flexibility level corresponding to the smallest test MSE. Figure from [@tibshirani2017introduction].](https://www.dropbox.com/scl/fi/nof2kpjta6p5mlg8nxycd/2_12.png?rlkey=3ubpphur6n0h1ics55k0fm38e&dl=1){#fig-bv width="8in" height="4in"}
+
+**Important:** What you should keep in mind as we proceed through the course is the following:
+
+* Simple models tend to have high bias but much lower variance. 
+
+* Complex models tend to have lower bias but much higher variance.
+
+Anytime you choose a particular modeling approach for a specific application or data set, you should take into account the bias-variance trade-off.
+
+## Nearest Neighbors
+
+The **nearest neighbors** approach to supervised machine learning is a very simple and intuitive approach to modeling. For example, suppose we have a data set consisting of a single predictor ${\bf x}$ and a response $y$. The nearest neighbors approach to regression is to predict the response for a new value of ${\bf x}$ by averaging the responses for the $k$ nearest values of ${\bf x}$ in the training data. Nearest neighbors can also be used for classification problems. In this case, we predict the class of a new value of ${\bf x}$ by taking a majority vote of the classes of the $k$ nearest values of ${\bf x}$ in the training data.
+
+Let's proceed to an online interactive demo for nearest neighbors applied to a classification problem. [View the demo](https://codepen.io/gangtao/pen/PPoqMW).
+
+## Some Data Sources
+
+One thing students often struggle with is finding and picking a good data set for their projects. Appendix B of the online textbook contains a very helpful list of data sources [@alexandertelling]. [View appendix B](https://tellingstorieswithdata.com/21-datasets.html). Two other very interesting and useful sources of data are the [Tidy Tuesday](https://github.com/rfordatascience/tidytuesday) data repositories and [Kaggle](https://www.kaggle.com/). There are also many R packages that either include data or that can be used to download data. The ROpenSci project is a good resource for finding R packages that can be used to obtain data, [view the project](https://ropensci.org/).
+
+## Preparation for the next lesson
+
+For the next lesson:
+
+- Read Chapter 8 from from [Data Science: A First Introduction](https://datasciencebook.ca/preface.html) [@timbers2022data]. [View book online](https://datasciencebook.ca/preface.html).
+
+-   You may also want to read section 3.1 from of *An Introduction to Statistical Learning* [@tibshirani2017introduction]. 
+
+-   Watch the corresponding video lecture on regression. [View on YouTube](https://youtu.be/ox0cKk7h4o0).
+
+```{r}
+#| echo: false
+
+vembedr::embed_youtube(id="ox0cKk7h4o0",height=450) %>%
+  vembedr::use_align("center")
+```
+
+## References
+
+::: {#refs}
+:::
+
+::: {.callout-tip collapse="true"}
+## Expand for Session Info
+
+```{r}
+#| echo: false
+
+
+library(sessioninfo)
+# save the session info as an object
+pkg_sesh <- session_info(pkgs = "attached")
+
+# get the quarto version
+quarto_version <- system("quarto --version", intern = TRUE)
+
+# inject the quarto info
+pkg_sesh$platform$quarto <- paste(
+  system("quarto --version", intern = TRUE), 
+  "@", 
+  quarto::quarto_path()
+  )
+
+# print it out
+pkg_sesh
+```
+:::
+
+[![](http://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png?raw=1){fig-align="left" width="15%"}](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode)
+
