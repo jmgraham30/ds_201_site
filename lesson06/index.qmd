@@ -277,7 +277,7 @@ Many probability distributions are implemented in base R and many more can be ac
 
 4. `rdistname` implements sampling from the distribution. 
 
-Let's work through some examples together in an RStudio project. 
+Let's work through some examples together in an RStudio project. You can access the relevant code on either the course learning management system or via [this GitHub repo](https://github.com/jmgraham30/distributions_in_r).
 
 ## Preparation for the next lesson
 
