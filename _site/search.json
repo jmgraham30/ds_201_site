@@ -648,14 +648,14 @@
     "href": "lesson07/index.html",
     "title": "Lesson 7",
     "section": "",
-    "text": "After this lesson, students will be able to:"
+    "text": "After this lesson, students will be able to:\n\nDescribe real-world examples of questions that can be answered with statistical inference.\nDefine common population parameters (e.g., mean, proportion, standard deviation) that are often estimated using sampled data, and estimate these from a sample.\nDefine the following statistical sampling terms: population, sample, population parameter, point estimate, and sampling distribution.\nDefine bootstrapping.\nUse R to create a bootstrap distribution to approximate a sampling distribution."
   },
   {
     "objectID": "lesson07/index.html#learning-objectives",
     "href": "lesson07/index.html#learning-objectives",
     "title": "Lesson 7",
     "section": "",
-    "text": "After this lesson, students will be able to:"
+    "text": "After this lesson, students will be able to:\n\nDescribe real-world examples of questions that can be answered with statistical inference.\nDefine common population parameters (e.g., mean, proportion, standard deviation) that are often estimated using sampled data, and estimate these from a sample.\nDefine the following statistical sampling terms: population, sample, population parameter, point estimate, and sampling distribution.\nDefine bootstrapping.\nUse R to create a bootstrap distribution to approximate a sampling distribution."
   },
   {
     "objectID": "lesson07/index.html#readings-etc.",
