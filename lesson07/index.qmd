@@ -184,7 +184,13 @@ $$
 \hat{y} = \hat{f}({\bf x})
 $$
 
-How do we estimate a function $f$? In machine learning, we use the data together with some algorithm to construct $\hat{f}$.
+How do we estimate a function $f$? In machine learning, we use the data together with some algorithm to construct $\hat{f}$. The general steps are:
+
+1. Specify a class of functions from which to choose $\hat{f}$.
+
+2. Specify a loss function that measures how well a given $\hat{f}$ fits the data.
+
+3. Find the $\hat{f}$ that minimizes the loss function.
 
 #### Regression
 
@@ -194,7 +200,7 @@ The left panel of @fig-sl-reg shows a scatter plot of our education versus incom
 
 ![Illustration of supervised learning through a regression problem. Figure from [@tibshirani2017introduction].](https://www.dropbox.com/scl/fi/4zmi7ql5ooxcafkym0csb/2_2.jpg?rlkey=jj0j32tvr43xcn88i2via58jd&dl=1){#fig-sl-reg fig-alt="Figure with two panels. The left shows a scatter plot of data while the right shows the same scatter plot but with curve fitted to the data." width="8in" height="4in"}
 
-How did we come up with the function $\hat{f}$? Basically, minimized the **error** between our predicted and observed response. That is, for each response value ${\bf x}$ we minimized how far $y=f({\bf x})$ can be from $\hat{y}=\hat{f}({\bf x})$. There are three important points that need to be addressed before we can implement regression in a practical situation.
+How did we come up with the function $\hat{f}$? Basically, we minimized the **residual error** between our predicted and observed response. That is, for each response value ${\bf x}$ we minimized how far $y=f({\bf x})$ can be from $\hat{y}=\hat{f}({\bf x})$. There are three important points that need to be addressed before we can implement regression in a practical situation.
 
 1.  The set of all functions is too large to work with in practice so we must make some choices that allow us to narrow down the class of functions from which $\hat{f}$ will be taken. For example, we could restrict to only linear functions, or only quadratic functions, or only polynomial functions. These classes of functions are easy to describe because these types of functions are uniquely described by a finite number of parameters. However, sometimes data can not be modeled well by, *e.g.*, polynomials so more sophisticated non-parametric ways of describing classes of functions have been developed that allow for more flexible modeling.
 

@@ -429,7 +429,12 @@ y = f({\bf x}) + \epsilon
 <p><span class="math display">\[
 \hat{y} = \hat{f}({\bf x})
 \]</span></p>
-<p>How do we estimate a function <span class="math inline">\(f\)</span>? In machine learning, we use the data together with some algorithm to construct <span class="math inline">\(\hat{f}\)</span>.</p>
+<p>How do we estimate a function <span class="math inline">\(f\)</span>? In machine learning, we use the data together with some algorithm to construct <span class="math inline">\(\hat{f}\)</span>. The general steps are:</p>
+<ol type="1">
+<li><p>Specify a class of functions from which to choose <span class="math inline">\(\hat{f}\)</span>.</p></li>
+<li><p>Specify a loss function that measures how well a given <span class="math inline">\(\hat{f}\)</span> fits the data.</p></li>
+<li><p>Find the <span class="math inline">\(\hat{f}\)</span> that minimizes the loss function.</p></li>
+</ol>
 <section id="regression" class="level4">
 <h4 class="anchored" data-anchor-id="regression">Regression</h4>
 <p>Let’s consider an illustrative example where <span class="math inline">\({\bf x}\)</span> represents the years of education of some individuals and <span class="math inline">\(y\)</span> is the income they earn in their profession. Thus, both variables are numerical so we are dealing with a regression problem. We are assuming that there is a true but unknown functional relationship between the years of education and the income they earn.</p>
@@ -440,7 +445,7 @@ y = f({\bf x}) + \epsilon
 <figcaption class="figure-caption">Figure&nbsp;6: Illustration of supervised learning through a regression problem. Figure from <span class="citation" data-cites="tibshirani2017introduction">(<a href="#ref-tibshirani2017introduction" role="doc-biblioref">Tibshirani, James, and Trevor 2017</a>)</span>.</figcaption>
 </figure>
 </div>
-<p>How did we come up with the function <span class="math inline">\(\hat{f}\)</span>? Basically, minimized the <strong>error</strong> between our predicted and observed response. That is, for each response value <span class="math inline">\({\bf x}\)</span> we minimized how far <span class="math inline">\(y=f({\bf x})\)</span> can be from <span class="math inline">\(\hat{y}=\hat{f}({\bf x})\)</span>. There are three important points that need to be addressed before we can implement regression in a practical situation.</p>
+<p>How did we come up with the function <span class="math inline">\(\hat{f}\)</span>? Basically, we minimized the <strong>residual error</strong> between our predicted and observed response. That is, for each response value <span class="math inline">\({\bf x}\)</span> we minimized how far <span class="math inline">\(y=f({\bf x})\)</span> can be from <span class="math inline">\(\hat{y}=\hat{f}({\bf x})\)</span>. There are three important points that need to be addressed before we can implement regression in a practical situation.</p>
 <ol type="1">
 <li><p>The set of all functions is too large to work with in practice so we must make some choices that allow us to narrow down the class of functions from which <span class="math inline">\(\hat{f}\)</span> will be taken. For example, we could restrict to only linear functions, or only quadratic functions, or only polynomial functions. These classes of functions are easy to describe because these types of functions are uniquely described by a finite number of parameters. However, sometimes data can not be modeled well by, <em>e.g.</em>, polynomials so more sophisticated non-parametric ways of describing classes of functions have been developed that allow for more flexible modeling.</p></li>
 <li><p>We must decide on how we will define and measure error. For regression problems, a typical way to measure error is the <strong>squared-error</strong>. Referring back to the right side of <a href="#fig-sl-reg">Figure&nbsp;6</a>, we define the <span class="math inline">\(i\)</span>-th <strong>residual</strong> <span class="math inline">\(r_{i}\)</span> to be the vertical (signed) distance between the observed response value <span class="math inline">\(y_{i}\)</span> and the corresponding predicted value <span class="math inline">\(\hat{y}_{i} = \hat{f}({\bf x}_{i})\)</span>. That is,</p></li>
