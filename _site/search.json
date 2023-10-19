@@ -648,28 +648,28 @@
     "href": "lesson07/index.html",
     "title": "Lesson 7",
     "section": "",
-    "text": "After this lesson, students will be able to:\n\nDescribe real-world examples of questions that can be answered with statistical inference.\nDefine common population parameters (e.g., mean, proportion, standard deviation) that are often estimated using sampled data, and estimate these from a sample.\nDefine the following statistical sampling terms: population, sample, population parameter, point estimate, and sampling distribution.\nDefine bootstrapping.\nUse R to create a bootstrap distribution to approximate a sampling distribution."
+    "text": "After this lesson, students will be able to:\n\nDefine supervised machine learning in general terms.\nDistinguish between regression and classification problems.\nUnderstand the concept of error and the significance of test versus training error.\nAppreciate the trade-off between model flexibility and interpretability, and between bias and variance.\nDescribe the nearest neighbors algorithm for classification and regression."
   },
   {
     "objectID": "lesson07/index.html#learning-objectives",
     "href": "lesson07/index.html#learning-objectives",
     "title": "Lesson 7",
     "section": "",
-    "text": "After this lesson, students will be able to:\n\nDescribe real-world examples of questions that can be answered with statistical inference.\nDefine common population parameters (e.g., mean, proportion, standard deviation) that are often estimated using sampled data, and estimate these from a sample.\nDefine the following statistical sampling terms: population, sample, population parameter, point estimate, and sampling distribution.\nDefine bootstrapping.\nUse R to create a bootstrap distribution to approximate a sampling distribution."
+    "text": "After this lesson, students will be able to:\n\nDefine supervised machine learning in general terms.\nDistinguish between regression and classification problems.\nUnderstand the concept of error and the significance of test versus training error.\nAppreciate the trade-off between model flexibility and interpretability, and between bias and variance.\nDescribe the nearest neighbors algorithm for classification and regression."
   },
   {
     "objectID": "lesson07/index.html#readings-etc.",
     "href": "lesson07/index.html#readings-etc.",
     "title": "Lesson 7",
     "section": "Readings, etc.",
-    "text": "Readings, etc.\n\nRead Chapter 10 from from Data Science: A First Introduction (Timbers, Campbell, and Lee 2022). View book online.\nYou might also want to look at chapters 8 & 9 from Statistical Inference via Data Science."
+    "text": "Readings, etc.\n\nRead Chapters 5, 6, & 7 from from Data Science: A First Introduction (Timbers, Campbell, and Lee 2022). View book online.\nRead Chapter 2 of An Introduction to Statistical Learning (Tibshirani, James, and Trevor 2017).\nThe following two video lectures are also recommended:\n\n\nMotivating problems for machine (statistical) learning. Watch video on YouTube.\n\n\n\n\n\n\n\n\n\n\n\nSupervised and unsupervised learning. Watch video on YouTube."
   },
   {
     "objectID": "lesson07/index.html#overview",
     "href": "lesson07/index.html#overview",
     "title": "Lesson 7",
     "section": "Overview",
-    "text": "Overview"
+    "text": "Overview\nMachine learning, also known as statistical learning uses mathematical models to learn from data. The methods of machine learning are currently very popular in data science for the role they play in predictive modeling. Machine learning is also a currently prominent approach to developing artificial intelligence technologies. Figure 1 illustrates the relationship between AI, machine learning, and deep learning. Of course, what one means by a “useful insight” is highly dependent on the domain of specialization or area of application. Thus, machine learning is an inherently interdisciplinary field that intersects with many disciplines such as computer science, data science, mathematics and statistics and a variety of other fields.\n\n\n\nFigure 1: Illustration credit: https://vas3k.com/blog/machine_learning/\n\n\nSupervised machine learning builds models to predict response values based on corresponding predictor values by using example data that comes as a source and target pair. Figure 2 illustrates the supervised learning paradigm.\n\n\n\nFigure 2: Supervised machine learning builds models to predict response values based on corresponding predictor values by using example data that comes as a source and target pair. Illustration credit: https://www.javatpoint.com\n\n\nIn this lesson, we will learn the basic concepts of supervised machine learning. We will use the nearest neighbors algorithm to facilitate our understanding of the basic principles of supervised learning. This algorithm is a simple but useful machine learning algorithm. In our next lesson, we will learn about the linear regression algorithm which is also a simple but useful machine learning algorithm."
   },
   {
     "objectID": "lesson07/index.html#introduction-to-machine-statistical-learning",
@@ -690,14 +690,14 @@
     "href": "lesson07/index.html#preparation-for-the-next-lesson",
     "title": "Lesson 7",
     "section": "Preparation for the next lesson",
-    "text": "Preparation for the next lesson\nFor the next lesson:\n\nRead Chapters 5, 6, & 7 from from Data Science: A First Introduction (Timbers, Campbell, and Lee 2022). View book online.\nRead Chapter 2 of An Introduction to Statistical Learning (Tibshirani, James, and Trevor 2017).\nThe following two video lectures are also recommended:\nMotivating problems for machine (statistical) learning. Watch video on YouTube.\n\n\n\n\n\n\n\n\n\n\n\nSupervised and unsupervised learning. Watch video on YouTube."
+    "text": "Preparation for the next lesson\nFor the next lesson:\n\nRead Chapter 8 from from Data Science: A First Introduction (Timbers, Campbell, and Lee 2022). View book online.\nYou may also want to read section 3.1 from of An Introduction to Statistical Learning (Tibshirani, James, and Trevor 2017).\nWatch the corresponding video lecture on regression. View on YouTube."
   },
   {
     "objectID": "lesson07/index.html#references",
     "href": "lesson07/index.html#references",
     "title": "Lesson 7",
     "section": "References",
-    "text": "References\n\n\nTibshirani, Hastie Robert, Gareth James, and Daniela Witten Trevor. 2017. An Introduction to Statistical Learning. springer publication.\n\n\nTimbers, Tiffany, Trevor Campbell, and Melissa Lee. 2022. Data Science: A First Introduction. CRC Press.\n\n\n\n\n\n\n\n\nExpand for Session Info\n\n\n\n\n\n\n\n─ Session info ───────────────────────────────────────────────────────────────\n setting  value\n version  R version 4.3.1 (2023-06-16)\n os       macOS Sonoma 14.0\n system   aarch64, darwin20\n ui       X11\n language (EN)\n collate  en_US.UTF-8\n ctype    en_US.UTF-8\n tz       America/New_York\n date     2023-10-18\n pandoc   3.1.8 @ /opt/homebrew/bin/ (via rmarkdown)\n quarto   1.3.450 @ /usr/local/bin/quarto\n\n─ Packages ───────────────────────────────────────────────────────────────────\n package      * version date (UTC) lib source\n dplyr        * 1.1.3   2023-09-03 [1] CRAN (R 4.3.0)\n forcats      * 1.0.0   2023-01-29 [1] CRAN (R 4.3.0)\n ggplot2      * 3.4.4   2023-10-12 [1] CRAN (R 4.3.1)\n ISLR2        * 1.3-2   2022-11-20 [1] CRAN (R 4.3.0)\n lubridate    * 1.9.3   2023-09-27 [1] CRAN (R 4.3.1)\n purrr        * 1.0.2   2023-08-10 [1] CRAN (R 4.3.0)\n readr        * 2.1.4   2023-02-10 [1] CRAN (R 4.3.0)\n sessioninfo  * 1.2.2   2021-12-06 [1] CRAN (R 4.3.0)\n stringr      * 1.5.0   2022-12-02 [1] CRAN (R 4.3.0)\n tibble       * 3.2.1   2023-03-20 [1] CRAN (R 4.3.0)\n tidyr        * 1.3.0   2023-01-24 [1] CRAN (R 4.3.0)\n tidytuesdayR * 1.0.2   2022-02-01 [1] CRAN (R 4.3.0)\n tidyverse    * 2.0.0   2023-02-22 [1] CRAN (R 4.3.0)\n\n [1] /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library\n\n──────────────────────────────────────────────────────────────────────────────"
+    "text": "References\n\n\nAlexander, Rohan. n.d. “Telling Stories with Data: With Applications in r.”\n\n\nTibshirani, Hastie Robert, Gareth James, and Daniela Witten Trevor. 2017. An Introduction to Statistical Learning. springer publication.\n\n\nTimbers, Tiffany, Trevor Campbell, and Melissa Lee. 2022. Data Science: A First Introduction. CRC Press.\n\n\n\n\n\n\n\n\nExpand for Session Info\n\n\n\n\n\n\n\n─ Session info ───────────────────────────────────────────────────────────────\n setting  value\n version  R version 4.3.1 (2023-06-16)\n os       macOS Sonoma 14.0\n system   aarch64, darwin20\n ui       X11\n language (EN)\n collate  en_US.UTF-8\n ctype    en_US.UTF-8\n tz       America/New_York\n date     2023-10-19\n pandoc   3.1.8 @ /opt/homebrew/bin/ (via rmarkdown)\n quarto   1.3.450 @ /usr/local/bin/quarto\n\n─ Packages ───────────────────────────────────────────────────────────────────\n package      * version date (UTC) lib source\n dplyr        * 1.1.3   2023-09-03 [1] CRAN (R 4.3.0)\n forcats      * 1.0.0   2023-01-29 [1] CRAN (R 4.3.0)\n ggplot2      * 3.4.4   2023-10-12 [1] CRAN (R 4.3.1)\n ISLR2        * 1.3-2   2022-11-20 [1] CRAN (R 4.3.0)\n lubridate    * 1.9.3   2023-09-27 [1] CRAN (R 4.3.1)\n purrr        * 1.0.2   2023-08-10 [1] CRAN (R 4.3.0)\n readr        * 2.1.4   2023-02-10 [1] CRAN (R 4.3.0)\n sessioninfo  * 1.2.2   2021-12-06 [1] CRAN (R 4.3.0)\n stringr      * 1.5.0   2022-12-02 [1] CRAN (R 4.3.0)\n tibble       * 3.2.1   2023-03-20 [1] CRAN (R 4.3.0)\n tidyr        * 1.3.0   2023-01-24 [1] CRAN (R 4.3.0)\n tidytuesdayR * 1.0.2   2022-02-01 [1] CRAN (R 4.3.0)\n tidyverse    * 2.0.0   2023-02-22 [1] CRAN (R 4.3.0)\n\n [1] /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library\n\n──────────────────────────────────────────────────────────────────────────────"
   },
   {
     "objectID": "lesson07/index.html#nearest-neighbors",
@@ -831,5 +831,47 @@
     "title": "Lesson 8",
     "section": "References",
     "text": "References\n\n\nAlexander, Rohan. n.d. “Telling Stories with Data: With Applications in r.”\n\n\nTibshirani, Hastie Robert, Gareth James, and Daniela Witten Trevor. 2017. An Introduction to Statistical Learning. springer publication.\n\n\nTimbers, Tiffany, Trevor Campbell, and Melissa Lee. 2022. Data Science: A First Introduction. CRC Press.\n\n\n\n\n\n\n\n\nExpand for Session Info\n\n\n\n\n\n\n\n─ Session info ───────────────────────────────────────────────────────────────\n setting  value\n version  R version 4.3.1 (2023-06-16)\n os       macOS Sonoma 14.0\n system   aarch64, darwin20\n ui       X11\n language (EN)\n collate  en_US.UTF-8\n ctype    en_US.UTF-8\n tz       America/New_York\n date     2023-10-18\n pandoc   3.1.8 @ /opt/homebrew/bin/ (via rmarkdown)\n quarto   1.3.450 @ /usr/local/bin/quarto\n\n─ Packages ───────────────────────────────────────────────────────────────────\n package      * version date (UTC) lib source\n dplyr        * 1.1.3   2023-09-03 [1] CRAN (R 4.3.0)\n forcats      * 1.0.0   2023-01-29 [1] CRAN (R 4.3.0)\n ggplot2      * 3.4.4   2023-10-12 [1] CRAN (R 4.3.1)\n ISLR2        * 1.3-2   2022-11-20 [1] CRAN (R 4.3.0)\n lubridate    * 1.9.3   2023-09-27 [1] CRAN (R 4.3.1)\n purrr        * 1.0.2   2023-08-10 [1] CRAN (R 4.3.0)\n readr        * 2.1.4   2023-02-10 [1] CRAN (R 4.3.0)\n sessioninfo  * 1.2.2   2021-12-06 [1] CRAN (R 4.3.0)\n stringr      * 1.5.0   2022-12-02 [1] CRAN (R 4.3.0)\n tibble       * 3.2.1   2023-03-20 [1] CRAN (R 4.3.0)\n tidyr        * 1.3.0   2023-01-24 [1] CRAN (R 4.3.0)\n tidytuesdayR * 1.0.2   2022-02-01 [1] CRAN (R 4.3.0)\n tidyverse    * 2.0.0   2023-02-22 [1] CRAN (R 4.3.0)\n\n [1] /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library\n\n──────────────────────────────────────────────────────────────────────────────"
+  },
+  {
+    "objectID": "stat_infer/index.html",
+    "href": "stat_infer/index.html",
+    "title": "Lesson 7",
+    "section": "",
+    "text": "After this lesson, students will be able to:\n\nDescribe real-world examples of questions that can be answered with statistical inference.\nDefine common population parameters (e.g., mean, proportion, standard deviation) that are often estimated using sampled data, and estimate these from a sample.\nDefine the following statistical sampling terms: population, sample, population parameter, point estimate, and sampling distribution.\nDefine bootstrapping.\nUse R to create a bootstrap distribution to approximate a sampling distribution."
+  },
+  {
+    "objectID": "stat_infer/index.html#learning-objectives",
+    "href": "stat_infer/index.html#learning-objectives",
+    "title": "Lesson 7",
+    "section": "",
+    "text": "After this lesson, students will be able to:\n\nDescribe real-world examples of questions that can be answered with statistical inference.\nDefine common population parameters (e.g., mean, proportion, standard deviation) that are often estimated using sampled data, and estimate these from a sample.\nDefine the following statistical sampling terms: population, sample, population parameter, point estimate, and sampling distribution.\nDefine bootstrapping.\nUse R to create a bootstrap distribution to approximate a sampling distribution."
+  },
+  {
+    "objectID": "stat_infer/index.html#readings-etc.",
+    "href": "stat_infer/index.html#readings-etc.",
+    "title": "Lesson 7",
+    "section": "Readings, etc.",
+    "text": "Readings, etc.\n\nRead Chapter 10 from from Data Science: A First Introduction (Timbers, Campbell, and Lee 2022). View book online.\nYou might also want to look at chapters 8 & 9 from Statistical Inference via Data Science."
+  },
+  {
+    "objectID": "stat_infer/index.html#overview",
+    "href": "stat_infer/index.html#overview",
+    "title": "Lesson 7",
+    "section": "Overview",
+    "text": "Overview"
+  },
+  {
+    "objectID": "stat_infer/index.html#preparation-for-the-next-lesson",
+    "href": "stat_infer/index.html#preparation-for-the-next-lesson",
+    "title": "Lesson 7",
+    "section": "Preparation for the next lesson",
+    "text": "Preparation for the next lesson\nFor the next lesson:\n\nRead Chapters 5, 6, & 7 from from Data Science: A First Introduction (Timbers, Campbell, and Lee 2022). View book online.\nRead Chapter 2 of An Introduction to Statistical Learning (Tibshirani, James, and Trevor 2017).\nThe following two video lectures are also recommended:\nMotivating problems for machine (statistical) learning. Watch video on YouTube.\n\n\n\n\n\n\n\n\n\n\n\nSupervised and unsupervised learning. Watch video on YouTube."
+  },
+  {
+    "objectID": "stat_infer/index.html#references",
+    "href": "stat_infer/index.html#references",
+    "title": "Lesson 7",
+    "section": "References",
+    "text": "References\n\n\nTibshirani, Hastie Robert, Gareth James, and Daniela Witten Trevor. 2017. An Introduction to Statistical Learning. springer publication.\n\n\nTimbers, Tiffany, Trevor Campbell, and Melissa Lee. 2022. Data Science: A First Introduction. CRC Press.\n\n\n\n\n\n\n\n\nExpand for Session Info\n\n\n\n\n\n\n\n─ Session info ───────────────────────────────────────────────────────────────\n setting  value\n version  R version 4.3.1 (2023-06-16)\n os       macOS Sonoma 14.0\n system   aarch64, darwin20\n ui       X11\n language (EN)\n collate  en_US.UTF-8\n ctype    en_US.UTF-8\n tz       America/New_York\n date     2023-10-19\n pandoc   3.1.8 @ /opt/homebrew/bin/ (via rmarkdown)\n quarto   1.3.450 @ /usr/local/bin/quarto\n\n─ Packages ───────────────────────────────────────────────────────────────────\n package      * version date (UTC) lib source\n dplyr        * 1.1.3   2023-09-03 [1] CRAN (R 4.3.0)\n forcats      * 1.0.0   2023-01-29 [1] CRAN (R 4.3.0)\n ggplot2      * 3.4.4   2023-10-12 [1] CRAN (R 4.3.1)\n ISLR2        * 1.3-2   2022-11-20 [1] CRAN (R 4.3.0)\n lubridate    * 1.9.3   2023-09-27 [1] CRAN (R 4.3.1)\n purrr        * 1.0.2   2023-08-10 [1] CRAN (R 4.3.0)\n readr        * 2.1.4   2023-02-10 [1] CRAN (R 4.3.0)\n sessioninfo  * 1.2.2   2021-12-06 [1] CRAN (R 4.3.0)\n stringr      * 1.5.0   2022-12-02 [1] CRAN (R 4.3.0)\n tibble       * 3.2.1   2023-03-20 [1] CRAN (R 4.3.0)\n tidyr        * 1.3.0   2023-01-24 [1] CRAN (R 4.3.0)\n tidytuesdayR * 1.0.2   2022-02-01 [1] CRAN (R 4.3.0)\n tidyverse    * 2.0.0   2023-02-22 [1] CRAN (R 4.3.0)\n\n [1] /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library\n\n──────────────────────────────────────────────────────────────────────────────"
   }
 ]
