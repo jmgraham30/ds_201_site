@@ -1,5 +1,5 @@
 ---
-title: "Lesson 7"
+title: "Lesson "
 subtitle: "Introduction to Statistics for Data Science"
 author: "JMG"
 format:
