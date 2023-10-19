@@ -19,8 +19,11 @@ license: "CC BY-NC-SA 4.0"
 
 # load packages used in document
 library(tidyverse)
+library(tidymodels)
 library(tidytuesdayR)
 library(ISLR2)
+library(kableExtra)
+library(ggthemes)
 
 theme_set(theme_minimal(base_size = 13))
 ```
@@ -67,7 +70,63 @@ vembedr::embed_youtube(id="B9s8rpdNxU0",height=450) %>%
 
 ## Overview
 
-[Machine learning](https://en.wikipedia.org/wiki/Machine_learning), also known as statistical learning uses mathematical models to learn from data. The methods of machine learning are currently very popular in data science for the role they play in predictive modeling. Machine learning is also a currently prominent approach to developing artificial intelligence technologies. @fig-ai-ml illustrates the relationship between AI, machine learning, and deep learning. Of course, what one means by a "useful insight" is highly dependent on the domain of specialization or area of application. Thus, machine learning is an inherently interdisciplinary field that intersects with many disciplines such as computer science, data science, mathematics and statistics and a variety of other fields.
+This lesson is essentially about modeling data. Specifically, we are interested to model data that is paired or labeled, where we view one or more variables as predictors and one variable as a corresponding response or label. Let's consider a motivating example. The `penguins` data set available through either the `modeldata` package or the `palmerpenguins` package records observations on 344 penguins from three species of penguins collected from three islands in the Palmer Archipelago, Antarctica. @tbl-penguins shows the first 10 rows of the data set.
+
+
+
+```{r}
+#| label: tbl-penguins
+#| echo: false
+#| message: false
+#| warning: false
+#| tbl-cap: "The `penguins` data set records observations on 344 penguins from three species of penguins collected from three islands in the Palmer Archipelago, Antarctica."
+
+penguins %>%
+  head(10) %>%
+  kable() %>%
+  kable_styling() %>%
+  scroll_box(width = "100%", height = "200px")
+```
+
+One problem we might be interested in is to model the body mass of a penguin based on the three other body measurements and its sex and species. Here body mass would be our response variable and bill length, bill depth, flipper length, species, and sex would be our predictor variables. In this case, since the response variable is numerical, we say that we have a regression problem. @fig-penguin-regression illustrates this regression problem.
+
+```{r}
+#| label: fig-penguin-regression
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-cap: A regression problem for the `penguins` data set.
+#| fig-width: 10
+
+penguins %>%
+  na.omit() %>%
+  ggplot(aes(y = body_mass_g, x = flipper_length_mm, color = sex)) +
+  geom_point() +
+  scale_color_colorblind() +
+  facet_wrap(~species, scale = "free") +
+  labs(y = "Body Mass (g)", x = "Flipper Length (mm)")
+```
+
+
+Instead, we might be interested to model the sex of a penguin based on its physical measurements and its species. In this case, since the response is categorical, we say that we have a classification problem.  @fig-penguin-classification illustrates this classification problem. 
+
+```{r}
+#| label: fig-penguin-classification
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-cap: A classification problem for the `penguins` data set.
+#| fig-width: 10
+
+penguins %>%
+  na.omit() %>%
+  ggplot(aes(y = bill_length_mm, x = flipper_length_mm, color = sex, shape=species)) +
+  geom_point() +
+  scale_color_colorblind() +
+  labs(y = "Bill Length (mm)", x = "Flipper Length (mm)")
+```
+
+Our approach to modeling data will be via [supervised machine learning](https://en.wikipedia.org/wiki/Supervised_learning), also known as statistical learning that uses data to build mathematical models to model and gain insight from data. The methods of machine learning are currently very popular in data science for the role they play in predictive modeling but are also commonly used for inferential purposes. Machine learning is also a currently prominent approach to developing artificial intelligence technologies. @fig-ai-ml illustrates the relationship between AI, machine learning, and deep learning. Of course, what one means by a "useful insight" is highly dependent on the domain of specialization or area of application. Thus, machine learning is an inherently interdisciplinary field that intersects with many disciplines such as computer science, data science, mathematics and statistics and a variety of other fields.
 
 
 
@@ -78,30 +137,32 @@ vembedr::embed_youtube(id="B9s8rpdNxU0",height=450) %>%
 
 ![Supervised machine learning builds models to predict response values based on corresponding predictor values by using example data that comes as a source and target pair. Illustration credit: https://www.javatpoint.com](https://static.javatpoint.com/tutorial/machine-learning/images/supervised-machine-learning.png){#fig-supervised}
 
-In this lesson, we will learn the basic concepts of supervised machine learning. We will use the [nearest neighbors algorithm](https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm) to facilitate our understanding of the basic principles of supervised learning. This algorithm is a simple but useful machine learning algorithm. In our next lesson, we will learn about the [linear regression](https://en.wikipedia.org/wiki/Linear_regression) algorithm which is also a simple but useful machine learning algorithm.
+In this lesson, we will learn the basic concepts of supervised machine learning. We will use the [nearest neighbors algorithm](https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm) to facilitate our understanding of the basic principles of supervised learning. This algorithm is a simple but useful machine learning algorithm. In future lessons, we will learn about additional commonly used supervised learning methods.
 
 
 ## Introduction to Machine (Statistical) Learning
 
 [**Machine learning**](https://en.wikipedia.org/wiki/Machine_learning) or statistical learning generally refers to methods or tools that seek to derive insight or understanding from data by using *models*. Here by model we mean a mathematical or computational representation of some part of the real world. In machine learning, we *fit* or *learn* a model or class of models to data. The goal of fitting models is usually one of the following:
 
-1.  **Prediction** - using what is known to make informed (hopefully accurate) claims about what we want to know.
+1.  **Prediction** - using what is known or has been observed to make informed (hopefully accurate) claims about what we want to know or has yet to be observed.
 
-2.  **Inference** - using a sample to make informed (hopefully accurate) claims about a larger population.
+2.  **Inference** - using a sample to make informed (hopefully accurate) claims about a larger population. For example, we might want to know which predictors are associated with a response, or what is the relationship between the response and each predictor.
 
 For an example of prediction, suppose that we are advertising experts working with a customer that sales video games. Our customer cannot directly control their sales but they can directly control their marketing by deciding how much to invest in advertising. Say for example that our customer has three ways to advertise: via YouTube, via podcasts, or via Spotify. We can use our past knowledge about how much our customer has spent *i.e.*, their advertising budget and the corresponding sales to make predictions using a model about how sales will be in the future depending on how the company changes its advertising in each of the three media.
 
-For an example of inference, suppose we have data on how a sample of patients respond to a particular drug. We can use this to make claims about how a larger population of patients will respond to this same drug.
+For an example of inference, suppose we want to know if caffeine consumption is associated with exam performance for students at the University of Scranton. We could collect data for a number of students on how much caffeine they've had before and exam and then record the corresponding exam performance. Here we probably aren't interested to predict what grade someone will get based on consuming a certain amount of caffeine but rather we are interested in whether or not there is an association between caffeine consumption and exam performance. We could use a model to make inferences about this association.
 
-There are two prominent broad classes of machine learning models:
+While this course will only look at supervised learning, it's worth taking a moment to point out that there are actually two prominent broad classes of machine learning models:
 
 1.  **Supervised** - In supervised learning, data comes in pairs $(y_{i},{\bf x}_{i})$ where we view ${\bf x}_{i}$ (which may be a vector) as a predictor and $y_{i}$ as a response. Often, We the predictors are something we can influence directly like the advertising budget from our earlier example while the response is something we don't have direct control over like the sales from our example. Thus, there is an assumed functional relationship between predictors and the response of the form
 
 $$
 y = f({\bf x}) + \epsilon
-$$ where we think of $f({\bf x})$ as the mean value for $y$ viewed as a **random variable** and $\epsilon$ as containing the variance of $y$ so that $E[\epsilon] = 0$.
+$$ 
 
-We note that $y$ may be numerical in which case we have a **regression** problem or it may be categorical in which case we have a **classification** problem.
+  where we think of $f({\bf x})$ as the mean value for $y$ viewed as a **random variable** and $\epsilon$ as containing the variance of $y$ so that $E[\epsilon] = 0$.
+
+  We note that $y$ may be numerical in which case we have a **regression** problem or it may be categorical in which case we have a **classification** problem.
 
 2.  **Unsupervised** - In unsupervised learning, there is no response variable. Some common unsupervised problems include clustering and density estimation. Both of these essentially seek to discover a pattern in the data.
 
@@ -113,7 +174,7 @@ In this course, we will focus on supervised learning and save discussions on uns
 
 ### Fitting Supervised Models
 
-Fitting an unsupervised learning model typically amounts to estimating the function $f$ in the assumed relationship
+Fitting a supervised learning model typically amounts to estimating the function $f$ in the assumed relationship
 
 $$
 y = f({\bf x}) + \epsilon
