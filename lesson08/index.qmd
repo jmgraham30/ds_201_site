@@ -1,0 +1,719 @@
+---
+title: "Lesson 8"
+subtitle: "Overview of Tidy Models for Supervised Machine Learning"
+author: "JMG"
+format:
+  html:
+    code-fold: true
+    code-summary: "Show the code"
+    toc: true
+    toc-location: left
+bibliography: lesson08.bib
+license: "CC BY-NC-SA 4.0"
+---
+
+```{r}
+#| message: false
+#| warning: false
+#| echo: false
+
+# load packages used in document
+library(tidyverse)
+library(tidymodels)
+library(vip)
+library(parttree)
+library(ISLR2)
+library(kableExtra)
+library(ggthemes)
+
+tidymodels_prefer()
+
+theme_set(theme_minimal(base_size = 12))
+
+doParallel::registerDoParallel()
+```
+
+## Learning Objectives
+
+
+
+
+## Overview
+
+
+Machine learning (ML) as we have defined it involves estimating a (mathematical) function and we divide problems into two general types: *supervised* and *unsupervised* learning. In supervised learning, we have a set of data that we use to train a model to predict a target variable. In unsupervised learning, we have a set of data that we use to train a model to find patterns in the data. In this chapter, we will focus on supervised learning. Further, we separate supervised learning into two types: *regression* and *classification*. In regression, the target variable is continuous. In classification, the target variable is categorical. We also consider two types of applications for machine learning: *prediction* and *inference*. In prediction, we are interested in predicting the target variable. In inference, we are interested in understanding the relationship between the target variable and the predictors. 
+
+
+### Basic Models
+
+Here we provide lists of the most common supervised machine learning models. Remember that the choice of the machine learning model depends on the specific problem, the nature of the data, and the trade-off between interpretability and predictive performance. It's often a good practice to experiment with multiple models and evaluate their performance to select the most suitable one for a given task.
+
+#### Summary and Characteristics of Common Supervised Machine Learning Models
+
+1. **[Linear Regression](https://en.wikipedia.org/wiki/Linear_regression):**
+   - *Summary*: Linear regression models the relationship between a dependent variable and one or more independent variables by fitting a linear equation to the observed data.
+   - *Characteristics*:
+     - Suitable for regression tasks (predicting continuous numeric values).
+     - Assumes a linear relationship between predictors and the target.
+     - Simple and interpretable.
+
+2. **[Logistic Regression](https://en.wikipedia.org/wiki/Logistic_regression):**
+   - *Summary*: Logistic regression is used for binary classification, modeling the probability that an instance belongs to a particular class.
+   - *Characteristics*:
+     - Suitable for binary classification tasks.
+     - Uses the logistic function to model probabilities.
+     - Provides probabilities and interpretable coefficients.
+
+3. **[Decision Trees](https://en.wikipedia.org/wiki/Decision_tree):**
+   - *Summary*: Decision trees divide the data into subsets based on the most significant attributes, making them suitable for both classification and regression tasks.
+   - *Characteristics*:
+     - Non-linear and can capture complex relationships.
+     - Prone to overfitting but can be regularized.
+     - Easily interpretable.
+
+4. **[Random Forest](https://en.wikipedia.org/wiki/Random_forest):**
+   - *Summary*: Random forests are an ensemble of decision trees that improve predictive accuracy and reduce overfitting.
+   - *Characteristics*:
+     - Combines multiple decision trees for better performance.
+     - Handles feature importance and reduces variance.
+     - Works well for classification and regression.
+
+5. **[Support Vector Machines (SVM)](https://en.wikipedia.org/wiki/Support_vector_machine):**
+   - *Summary*: SVMs aim to find a hyperplane that best separates data points into different classes.
+   - *Characteristics*:
+     - Effective for binary classification and can be extended to multiclass.
+     - Uses kernel functions for non-linear separations.
+     - Good for high-dimensional data.
+
+6. **[K-Nearest Neighbors (K-NN)](https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm):**
+   - *Summary*: K-NN assigns a class to a data point based on the majority class among its k-nearest neighbors in feature space.
+   - *Characteristics*:
+     - Simple and intuitive.
+     - Can handle both classification and regression.
+     - Sensitive to the choice of k.
+
+7. **[Naive Bayes](https://en.wikipedia.org/wiki/Naive_Bayes_classifier):**
+   - *Summary*: Naive Bayes is a probabilistic classifier based on Bayes' theorem, assuming that features are conditionally independent.
+   - *Characteristics*:
+     - Efficient and suitable for text classification.
+     - Assumes feature independence (naive assumption).
+     - Works well for high-dimensional data.
+
+8. **[Gradient Boosting Machines (GBM)](https://en.wikipedia.org/wiki/Gradient_boosting):**
+   - *Summary*: GBMs build an ensemble of weak learners (usually decision trees) to create a strong predictive model.
+   - *Characteristics*:
+     - Combines multiple weak learners for high accuracy.
+     - Handles regression and classification tasks.
+     - Prone to overfitting, but can be regularized.
+
+9. **[Neural Networks (Deep Learning)](https://en.wikipedia.org/wiki/Artificial_neural_network):**
+   - *Summary*: Neural networks, especially deep learning models, are highly flexible and can model complex relationships in data.
+   - *Characteristics*:
+     - Extremely powerful for various tasks.
+     - Requires large amounts of data and computational resources.
+     - Interpretability can be a challenge for deep models.
+
+10. **[Ensemble Methods](https://en.wikipedia.org/wiki/Ensemble_learning):**
+    - *Summary*: Ensemble methods combine multiple base models to improve predictive performance.
+    - *Characteristics*:
+      - Include bagging (e.g., Random Forest), boosting (e.g., AdaBoost), and stacking.
+      - Often more robust and accurate than individual models.
+      - Handle various types of data and tasks.
+
+
+
+### `r icons::icon_style(icons::fontawesome("r-project"),scale=2,fill="steelblue")` `tidymodels`
+
+The `tidymodels` package in R is an integrated ecosystem of packages designed to streamline the process of creating, evaluating, and deploying machine learning models while adhering to tidy data principles. The `tidymodels` framework follows a structured and consistent approach to machine learning, making it easier for data scientists and analysts to work with data and build predictive models. Here's a brief description of the key components of the `tidymodels` package:
+
+
+1. **[`tidyverse` Integration](https://www.tidymodels.org/):**
+   - *Description*: `tidymodels` seamlessly integrates with the popular `tidyverse` suite of packages, allowing for the use of tidy data frames and other tidy tools.
+
+2. **[`parsnip`](https://parsnip.tidymodels.org/):**
+   - *Description*: The `parsnip` package defines a common interface for specifying machine learning models, making it easier to work with different modeling engines.
+
+3. **[`recipes`](https://recipes.tidymodels.org/):**
+   - *Description*: The `recipes` package provides a systematic way to define and preprocess feature engineering steps for your data, creating a "recipe" that includes data preprocessing and variable transformations.
+
+4. **[`tune`](https://tune.tidymodels.org/):**
+   - *Description*: The `tune` package offers tools for hyperparameter tuning, allowing you to optimize model performance by systematically searching for the best hyperparameters.
+
+5. **[`workflows`](https://workflows.tidymodels.org/):**
+   - *Description*: The `workflows` package simplifies the process of building, tuning, and evaluating models by combining models, recipes, and tuning into a unified workflow.
+
+6. **[`yardstick`](https://yardstick.tidymodels.org/):**
+   - *Description*: The `yardstick` package provides a wide range of functions for model evaluation, including metrics for classification, regression, and survival analysis tasks.
+
+7. **[`rsample`](https://rsample.tidymodels.org/):**
+   - *Description*: The `rsample` package is for resampling and creating data splits, essential for tasks such as cross-validation and bootstrapping.
+
+8. **[`broom`](https://broom.tidymodels.org/):**
+   - *Description*: The `broom` package helps tidy up the results of model fits, making it easy to extract coefficients, predictions, and other model-related information in a tidy data format.
+
+9. **Community and Extensibility:**
+   - *Description*: The `tidymodels` ecosystem has a growing community of users and contributors. It supports the creation of custom modeling engines, extending the framework to new algorithms.
+
+10. **Reproducibility and Best Practices:**
+    - *Description*: `tidymodels` promotes best practices in machine learning, emphasizing tidy data principles, clear model specification, and reproducibility.
+
+
+The `parsnip` package in the `tidymodels` family allows one to specify a variety of supervised machine learning models.  Here is a list of some of the `parsnip` models:
+
+1. **[`linear_reg`](https://parsnip.tidymodels.org/reference/linear_reg.html):**
+   - *Description*: Linear Regression Model
+   - *Type*: Regression
+   - *Documentation*: [linear_reg Documentation](https://parsnip.tidymodels.org/reference/linear_reg.html)
+
+2. **[`logistic_reg`](https://parsnip.tidymodels.org/reference/logistic_reg.html):**
+   - *Description*: Logistic Regression Model
+   - *Type*: Classification
+   - *Documentation*: [logistic_reg Documentation](https://parsnip.tidymodels.org/reference/logistic_reg.html)
+
+3. **[`decision_tree`](https://parsnip.tidymodels.org/reference/decision_tree.html):**
+   - *Description*: Decision Tree Model
+   - *Type*: Both (Regression and Classification)
+   - *Documentation*: [decision_tree Documentation](https://parsnip.tidymodels.org/reference/decision_tree.html)
+
+4. **[`rand_forest`](https://parsnip.tidymodels.org/reference/rand_forest.html):**
+   - *Description*: Random Forest Model
+   - *Type*: Both (Regression and Classification)
+   - *Documentation*: [rand_forest Documentation](https://parsnip.tidymodels.org/reference/rand_forest.html)
+
+5. **[`svm_rbf`](https://parsnip.tidymodels.org/reference/svm_rbf.html):**
+   - *Description*: Support Vector Machine with Radial Basis Function Kernel Model
+   - *Type*: Both (Regression and Classification)
+   - *Documentation*: [svm_rbf Documentation](https://parsnip.tidymodels.org/reference/svm_rbf.html)
+
+6. **[`svm_linear`](https://parsnip.tidymodels.org/reference/svm_linear.html):**
+   - *Description*: Support Vector Machine with Linear Kernel Model
+   - *Type*: Both (Regression and Classification)
+   - *Documentation*: [svm_linear Documentation](https://parsnip.tidymodels.org/reference/svm_linear.html)
+
+7. **[`nearest_neighbor`](https://parsnip.tidymodels.org/reference/nearest_neighbor.html):**
+   - *Description*: k-Nearest Neighbors Model
+   - *Type*: Both (Regression and Classification)
+   - *Documentation*: [nearest_neighbor Documentation](https://parsnip.tidymodels.org/reference/nearest_neighbor.html)
+
+8. **[`naive_Bayes`](https://parsnip.tidymodels.org/reference/naive_Bayes.html):**
+   - *Description*: Naive Bayes Model
+   - *Type*: Classification
+   - *Documentation*: [naive_Bayes Documentation](https://parsnip.tidymodels.org/reference/naive_Bayes.html)
+
+9. **[`boost_tree`](https://parsnip.tidymodels.org/reference/boost_tree.html):**
+   - *Description*: Gradient Boosting Model
+   - *Type*: Both (Regression and Classification)
+   - *Documentation*: [boost_tree Documentation](https://parsnip.tidymodels.org/reference/boost_tree.html)
+
+10. **[`mlp`](https://parsnip.tidymodels.org/reference/mlp.html):**
+    - *Description*: Multilayer Perceptron (Neural Network) Model
+    - *Type*: Both (Regression and Classification)
+    - *Documentation*: [mlp Documentation](https://parsnip.tidymodels.org/reference/mlp.html)
+
+
+## `r icons::icon_style(icons::fontawesome("r-project"),scale=2,fill="steelblue")` `tidymodels` Machine Learning Workflow
+
+The  `tidymodels` framework provides a consistent set of steps for training and evaluating machine learning models.  The following is a list of the steps in the `tidymodels` workflow:
+
+1. **Data Preparation:**
+   - Load and prepare your dataset following tidy data principles.
+
+2. **Data Splitting:**
+   - Use the `rsample` package to create data splits for training and testing.
+
+3. **Preprocessing and Feature Engineering:**
+   - Define a data preprocessing plan using the `recipes` package.
+   - Create a "recipe" for data cleaning, transformation, and feature engineering.
+
+4. **Model Specification:**
+   - Specify machine learning models with the `parsnip` package.
+   - Choose from a variety of models for regression, classification, etc.
+
+5. **Hyperparameter Tuning:**
+   - Utilize the `tune` package for hyperparameter tuning.
+   - Define a grid of hyperparameters and use resampling methods for evaluation.
+
+6. **Model Training:**
+   - Train models with the specified data splits, preprocessing plan, and hyperparameters.
+   - Use the `fit` function to train on the training data.
+
+7. **Model Evaluation:**
+   - Assess model performance using the `yardstick` package.
+   - Calculate relevant evaluation metrics (e.g., accuracy, RMSE).
+
+8. **Model Selection:**
+   - Compare model performance and hyperparameter settings.
+   - Select the best-performing model or create ensembles (e.g., stacking, bagging).
+
+9. **Model Interpretation and Visualization:**
+   - Use the `broom` package to extract and tidy model results.
+   - Visualize model outputs and interpret results.
+
+10. **Deployment and Prediction:**
+    - Deploy the final model for predictions on new data.
+    - Use the trained model in production environments.
+
+11. **Documentation and Reproducibility:**
+    - Document the entire workflow, including preprocessing, model specifications, tuning, and results.
+    - Ensure reproducibility and transparency.
+
+12. **Sharing and Collaboration:**
+    - Share code and findings with collaborators for reproducibility and collaboration.
+
+13. **Ongoing Monitoring and Maintenance:**
+    - In production, monitor model performance and update models as needed.
+
+
+The best references for `tidymodels` are the [tidymodels.org](https://www.tidymodels.org/) website and the [Tidy Modeling with R](https://www.tmwr.org/) book.  The [Tidy Modeling with R](https://www.tmwr.org/) book is available for free online and is a great resource for learning the `tidymodels` framework [@kuhn2022tidy]. The blog posts by [Julia Silge](https://juliasilge.com/) are also a great resource for learning `tidymodels`. [View Silge's blog](https://juliasilge.com/).
+
+## Some Examples
+
+### Example 1: `tidymodels` Workflow for Linear Regression for Predictive Modeling
+
+The following is an example of the `tidymodels` workflow for linear regression for predictive modeling.  The example uses the `mtcars` dataset and the `parsnip` and `recipes` packages.  The example is adapted from the [Tidy Modeling with R](https://www.tmwr.org/) book [@kuhn2022tidy].
+
+
+```{r}
+#| echo: true 
+#| label: fig-tidy-models-workflow-lm
+#| fig-align: center
+#| fig-cap: "Tidy Models Workflow for Regression"
+#| fig-height: 4
+#| fig-width: 6
+#| message: false
+#| warning: false
+#| code-fold: true
+
+# set seed for reproducibility
+set.seed(123)
+
+# load the mtcars dataset
+data(mtcars)
+
+# create a training and testing split
+mtcars_split <- initial_split(mtcars, prop = 0.75)
+
+# create a training and testing dataset
+mtcars_train <- training(mtcars_split)
+mtcars_test <- testing(mtcars_split)
+
+# create a recipe for preprocessing
+mtcars_recipe <- recipe(mpg ~ ., data = mtcars_train) %>%
+  step_center(all_predictors()) %>%
+  step_scale(all_predictors())
+
+# create a linear regression model
+lm_spec <- linear_reg() %>%
+  set_engine("lm")
+
+# fit the model
+lm_fit <- workflow() %>%
+  add_recipe(mtcars_recipe) %>%
+  add_model(lm_spec) %>%
+  fit(data = mtcars_train)
+
+# make predictions
+lm_pred <- predict(lm_fit, mtcars_test) %>%
+  bind_cols(mtcars_test)
+
+# evaluate the model
+lm_eval <- lm_pred %>%
+  metrics(truth = mpg, estimate = .pred) %>%
+  bind_rows(
+    lm_pred %>%
+      rsq(truth = mpg, estimate = .pred) %>%
+      mutate(metric = "rsq")
+  )
+
+# tidy the model results
+lm_tidy <- tidy(lm_fit)
+
+# visualize the model results
+lm_tidy %>%
+  ggplot(aes(x = term, y = estimate)) +
+  geom_point() +
+  geom_errorbar(aes(ymin = estimate - std.error, ymax = estimate + std.error)) +
+  coord_flip() +
+  labs(
+    title = "Linear Regression Model Results",
+    subtitle = "Model: mpg ~ .",
+    x = "Term",
+    y = "Estimate"
+  )
+
+```
+
+
+```{r}
+#| label: tbl-lm-results
+#| tbl-cap: "Linear Regression Model Results"
+#| echo: false
+
+# print the model results
+lm_tidy %>%
+  kable() %>%
+  kable_styling() %>%
+  scroll_box(width = "100%", height = "200px")
+
+```
+
+
+
+```{r}
+#| label: tbl-lm-eval
+#| tbl-cap: "Linear Regression Model Evaluation"
+#| echo: false
+
+# print the model evaluation
+lm_eval %>%
+  select(-metric) %>%
+  kable() %>%
+  kable_styling() %>%
+  scroll_box(width = "100%", height = "200px")
+```
+
+
+### Example 2: `tidymodels` Workflow for Linear Regression for Inferential Modeling
+
+The following is an example of the `tidymodels` workflow for linear regression for inferential modeling.  The example uses the `mtcars` dataset and the `parsnip` and `recipes` packages.
+
+```{r}
+#| echo: true
+#| label: fig-tidy-models-workflow-lm-inferential
+#| fig-align: center
+#| fig-cap: "Tidy Models Workflow for Regression"
+#| fig-height: 4
+#| fig-width: 6
+#| message: false
+#| warning: false
+#| code-fold: true
+
+# set seed for reproducibility
+set.seed(123)
+
+# load the mtcars dataset
+data(mtcars)
+
+# create bootstrap samples
+mtcars_boot <- reg_intervals(mpg ~ disp + cyl + wt + am, 
+                             data = mtcars,
+                             model_fn = "lm",
+                             type = "percentile",
+                             keep_reps = TRUE)
+
+
+mtcars_boot %>% 
+  select(term, .replicates) %>% 
+  unnest(cols = .replicates) %>% 
+  ggplot(aes(x = estimate)) + 
+  geom_histogram(bins = 30,color="white",fill="lightblue") + 
+  facet_wrap(~ term, scales = "free_x") + 
+  geom_vline(data = mtcars_boot, aes(xintercept = .lower), col = "purple") + 
+  geom_vline(data = mtcars_boot, aes(xintercept = .upper), col = "purple") + 
+  geom_vline(xintercept = 0, col = "black",linetype="dashed")
+```
+
+### Example 3: `tidymodels` Workflow for Tuning Random Forest for Regression
+
+The following is an example of the `tidymodels` workflow for tuning random forest for regression.  The example uses the `mtcars` dataset and the `parsnip` and `recipes` packages.
+
+```{r}
+#| echo: true
+#| label: fig-tidy-models-workflow-rf
+#| fig-align: center
+#| fig-cap: "Tidy Models Workflow for Random Forest"
+#| fig-height: 4
+#| fig-width: 6
+#| message: false
+#| warning: false
+#| code-fold: true
+
+# set seed for reproducibility
+set.seed(123)
+
+# load the mtcars dataset
+data(mtcars)
+
+# create a training and testing split
+mtcars_split <- initial_split(mtcars, prop = 0.75)
+
+# create a training and testing dataset
+mtcars_train <- training(mtcars_split)
+mtcars_test <- testing(mtcars_split)
+
+# create a cross-validation set
+mtcars_cv <- vfold_cv(mtcars_train, v = 5)
+
+# create a recipe for preprocessing
+mtcars_recipe <- recipe(mpg ~ ., data = mtcars_train)
+
+# create a random forest model
+rf_spec <- rand_forest(
+  mtry = tune(),
+  trees = 1000,
+  min_n = tune()
+) %>%
+  set_mode("regression") %>%
+  set_engine("ranger")
+
+# create a workflow
+tune_wf <- workflow() %>%
+  add_recipe(mtcars_recipe) %>%
+  add_model(rf_spec)
+
+# create tuning grid
+rf_grid <- grid_regular(
+  mtry(range = c(3, 11)),
+  min_n(),
+  levels = 15
+)
+
+# tune the model
+tune_res <- tune_grid(
+  tune_wf,
+  resamples = mtcars_cv,
+  grid = rf_grid
+)
+
+# visualize the tuning results
+tune_res %>%
+  collect_metrics() %>%
+  filter(.metric == "rmse") %>%
+  mutate(min_n = factor(min_n)) %>%
+  ggplot(aes(mtry, mean, color = min_n)) +
+  geom_line(alpha = 0.5, size = 1.5) +
+  geom_point() +
+  labs(y = "RMSE")
+
+```
+
+Now we will select a final model based on the tuning results.
+
+```{r}
+#| echo: true
+#| code-fold: true
+
+best_rmse <- select_best(tune_res, "rmse")
+
+final_rf <- finalize_model(
+  rf_spec,
+  best_rmse
+)
+
+final_wf <- workflow() %>%
+  add_recipe(mtcars_recipe) %>%
+  add_model(final_rf)
+
+final_res <- final_wf %>%
+  last_fit(mtcars_split)
+
+final_res %>%
+  collect_metrics() %>%
+  kable() %>%
+  kable_styling() %>%
+  scroll_box(width = "100%", height = "200px")
+```
+
+Let's see how the model predictions compare with the observed data for the test set observations. 
+
+```{r}
+#| echo: true
+#| code-fold: true
+#| label: fig-tidy-models-workflow-rf-pred
+#| fig-align: center
+#| fig-cap: "Results on Test Set for Tuned Random Forest for Regression"
+
+final_res %>%
+  collect_predictions() %>%
+  ggplot(aes(mpg, .pred)) +
+  geom_abline(color = "purple") +
+  geom_point() +
+  labs(x = "Observed", y = "Predicted")
+
+  
+```
+
+
+### Example 4: `tidymodels` Workflow for Classification with Multinomial Logistic Regression
+
+The following is an example of the `tidymodels` workflow for multinomial logistic regression.  The example uses the `penguins` dataset and the `parsnip` and `recipes` packages.
+
+```{r}
+#| echo: true
+#| label: fig-tidy-models-workflow-logit
+#| fig-align: center
+#| fig-cap: "Tidy Models Workflow for Multinomial Logistic Regression"
+#| fig-height: 4
+#| fig-width: 6
+#| message: false
+#| warning: false
+#| code-fold: true
+
+# set seed for reproducibility
+set.seed(123)
+
+# load the penguins dataset
+data(penguins)
+
+# remove missing values from the dataset
+penguins <- penguins %>% drop_na()
+
+# create a training and testing split
+penguins_split <- initial_split(penguins, prop = 0.75)
+
+# create a training and testing dataset
+penguins_train <- training(penguins_split)
+penguins_test <- testing(penguins_split)
+
+# create a cross-validation set
+penguins_cv <- vfold_cv(penguins_train, v = 5)
+
+# create a recipe for preprocessing
+penguins_recipe <- recipe(island ~ bill_length_mm + bill_depth_mm + flipper_length_mm + body_mass_g, data = penguins_train)
+
+# create a multinomial logistic regression model
+logit_spec <- multinom_reg(penalty = tune(), mixture = tune()) %>%
+  set_engine("glmnet") %>%
+  set_mode("classification")
+
+# create a workflow
+nber_wf <- workflow(penguins_recipe, logit_spec)
+
+# create grid for tuning
+nber_grid <- grid_regular(penalty(range = c(-5, 0)), 
+                          mixture(range = c(0, 1)),
+                          levels = 20)
+
+# tune the model
+nber_rs <-
+  tune_grid(
+    nber_wf,
+    penguins_cv,
+    grid = nber_grid
+  )
+
+autoplot(nber_rs)
+```
+
+Show best models.
+
+```{r}
+#| echo: true
+#| code-fold: true
+#| warning: false
+#| message: false
+
+show_best(nber_rs) %>%
+  kable() %>%
+  kable_styling() %>%
+  scroll_box(width = "100%", height = "200px")
+```
+
+Select the best model.
+
+```{r}
+#| echo: true
+#| code-fold: true
+#| warning: false
+#| message: false
+
+
+final_penalty <-
+  nber_rs %>%
+  select_by_one_std_err(metric = "roc_auc", desc(penalty))
+```
+
+Fit the final model. 
+
+```{r}
+#| echo: true
+#| code-fold: true
+#| warning: false
+#| message: false
+
+final_rs <-
+  nber_wf %>%
+  finalize_workflow(final_penalty) %>%
+  last_fit(penguins_split)
+```
+
+The confusion matrix for the final model prdictions on the test set. 
+
+```{r}
+#| echo: true
+#| code-fold: true
+#| label: fig-tidy-models-workflow-logit-confusion
+#| fig-align: center
+#| fig-cap: "Confusion Matrix for Final Model Predictions on Test Set"
+#| fig-height: 4
+#| fig-width: 6
+
+
+
+collect_predictions(final_rs) %>%
+  conf_mat(island, .pred_class) %>%
+  autoplot()
+```
+
+The ROC curve. 
+
+```{r}
+#| echo: true
+#| code-fold: true
+#| label: fig-tidy-models-workflow-logit-roc
+#| fig-align: center
+#| fig-cap: "ROC Curve for Final Model Predictions on Test Set"
+#| fig-height: 4
+#| fig-width: 6
+
+
+collect_predictions(final_rs) %>%
+  roc_curve(truth = island, .pred_Biscoe:.pred_Torgersen) %>%
+  ggplot(aes(1 - specificity, sensitivity, color = .level)) +
+  geom_abline(slope = 1, color = "gray50", lty = 2, alpha = 0.8) +
+  geom_path(size = 1.5, alpha = 0.7) +
+  labs(color = NULL) +
+  coord_fixed()
+```
+
+
+
+## Comparing Multiple Modeling Approaches
+
+In her blog post [Evaluate multiple modeling approaches for spam email](https://juliasilge.com/blog/spam-email/), Julia Silge uses workflow sets to evaluate multiple possible models. Let's work through that post together. [View the post](https://juliasilge.com/blog/spam-email/).
+
+## References
+
+::: {#refs}
+:::
+
+
+:::{.callout-tip collapse="true"}
+## Expand for Session Info
+```{r}
+#| echo: false
+
+
+library(sessioninfo)
+# save the session info as an object
+pkg_sesh <- session_info(pkgs = "attached")
+
+# get the quarto version
+quarto_version <- system("quarto --version", intern = TRUE)
+
+# inject the quarto info
+pkg_sesh$platform$quarto <- paste(
+  system("quarto --version", intern = TRUE), 
+  "@", 
+  quarto::quarto_path()
+  )
+
+# print it out
+pkg_sesh
+```
+
+:::
+
+
+[![](http://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png?raw=1){fig-align="left" width=15%}](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode)
+
