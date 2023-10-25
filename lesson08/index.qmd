@@ -35,7 +35,9 @@ doParallel::registerDoParallel()
 
 ## Learning Objectives
 
+After this lesson, students will be able to 
 
+- understand and utilize the `tidymodels` framework for supervised machine learning.
 
 
 ## Overview

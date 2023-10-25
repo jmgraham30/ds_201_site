@@ -319,6 +319,8 @@ The **nearest neighbors** approach to supervised machine learning is a very simp
 Let's proceed to an online interactive demo for nearest neighbors applied to a classification problem. [View the demo](https://codepen.io/gangtao/pen/PPoqMW).
 
 
+[This GitHub repository](https://github.com/jmgraham30/knn_tidy_examples) contains code in R that implements nearest neighbors for both regression and classification problems. Let's go through this together. 
+
 ### Linear Regression
 
 Recall that in a supervised learning problem, we assume that there is a relationship between the predictor and response variables of the form:
