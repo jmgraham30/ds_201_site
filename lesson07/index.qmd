@@ -188,9 +188,9 @@ How do we estimate a function $f$? In machine learning, we use the data together
 
 1. Specify a class of functions from which to choose $\hat{f}$.
 
-2. Specify a loss function that measures how well a given $\hat{f}$ fits the data.
+2. Specify a **loss** function that measures how well a given $\hat{f}$ fits the data. That is, the loss functions is a quantitative comparison between the observed response values and predicted response values. The loss function is often denoted by $L(y,\hat{y}) = L(y,\hat{f}({\bf x}))$.
 
-3. Find the $\hat{f}$ that minimizes the loss function.
+3. Find the $\hat{f}$ that minimizes the loss function. Note that this involves solving an optimization problem.  
 
 #### Regression
 
@@ -204,7 +204,7 @@ How did we come up with the function $\hat{f}$? Basically, we minimized the **re
 
 1.  The set of all functions is too large to work with in practice so we must make some choices that allow us to narrow down the class of functions from which $\hat{f}$ will be taken. For example, we could restrict to only linear functions, or only quadratic functions, or only polynomial functions. These classes of functions are easy to describe because these types of functions are uniquely described by a finite number of parameters. However, sometimes data can not be modeled well by, *e.g.*, polynomials so more sophisticated non-parametric ways of describing classes of functions have been developed that allow for more flexible modeling.
 
-2.  We must decide on how we will define and measure error. For regression problems, a typical way to measure error is the **squared-error**. Referring back to the right side of @fig-sl-reg, we define the $i$-th **residual** $r_{i}$ to be the vertical (signed) distance between the observed response value $y_{i}$ and the corresponding predicted value $\hat{y}_{i} = \hat{f}({\bf x}_{i})$. That is,
+2.  We must decide on how we will define and measure error. That is, we must specify an appropriate loss function. For regression problems, a typical way to measure error is the **squared-error**. Referring back to the right side of @fig-sl-reg, we define the $i$-th **residual** $r_{i}$ to be the vertical (signed) distance between the observed response value $y_{i}$ and the corresponding predicted value $\hat{y}_{i} = \hat{f}({\bf x}_{i})$. That is,
 
 $$
 r_{i} = y_{i} - \hat{y}_{i}
@@ -310,32 +310,103 @@ We refer to the first two terms as
 
 Anytime you choose a particular modeling approach for a specific application or data set, you should take into account the bias-variance trade-off.
 
-## Nearest Neighbors
+## Examples of Supervised Learning
 
-The **nearest neighbors** approach to supervised machine learning is a very simple and intuitive approach to modeling. For example, suppose we have a data set consisting of a single predictor ${\bf x}$ and a response $y$. The nearest neighbors approach to regression is to predict the response for a new value of ${\bf x}$ by averaging the responses for the $k$ nearest values of ${\bf x}$ in the training data. Nearest neighbors can also be used for classification problems. In this case, we predict the class of a new value of ${\bf x}$ by taking a majority vote of the classes of the $k$ nearest values of ${\bf x}$ in the training data.
+### Nearest Neighbors
+
+The **nearest neighbors** approach to supervised machine learning is a very simple and intuitive approach to modeling. For example, suppose we have a data set consisting of a single predictor ${\bf x}$ and a response $y$. The nearest neighbors approach to regression is to predict the response for a new value of ${\bf x}$ by averaging the responses for the $k$ nearest values of ${\bf x}$ in the training data. Nearest neighbors can also be used for classification problems. In this case, we predict the class of a new value of ${\bf x}$ by taking a majority vote of the classes of the $k$ nearest values of ${\bf x}$ in the training data. 
 
 Let's proceed to an online interactive demo for nearest neighbors applied to a classification problem. [View the demo](https://codepen.io/gangtao/pen/PPoqMW).
 
-## Some Data Sources
 
-One thing students often struggle with is finding and picking a good data set for their projects. Appendix B of the online textbook contains a very helpful list of data sources [@alexandertelling]. [View appendix B](https://tellingstorieswithdata.com/21-datasets.html). Two other very interesting and useful sources of data are the [Tidy Tuesday](https://github.com/rfordatascience/tidytuesday) data repositories and [Kaggle](https://www.kaggle.com/). There are also many R packages that either include data or that can be used to download data. The ROpenSci project is a good resource for finding R packages that can be used to obtain data, [view the project](https://ropensci.org/).
+### Linear Regression
 
-## Preparation for the next lesson
+Recall that in a supervised learning problem, we assume that there is a relationship between the predictor and response variables of the form:
 
-For the next lesson:
+$$
+y = f({\bf x}) + \epsilon
+$$
 
-- Read Chapter 8 from from [Data Science: A First Introduction](https://datasciencebook.ca/preface.html) [@timbers2022data]. [View book online](https://datasciencebook.ca/preface.html).
+and then we seek to find a function $\hat{f}$ from some specified class of functions that does a good job in approximating $f$. Let's study this problem in more detail but in a very simple setting. Specifically, we will assume that ${\bf x}$ and $y$ are both single numerical variables and that $f$ is linear. Then writing everything out in detail, we assume that there are (true but unknown) numbers $\beta_{0}$ and $\beta_{1}$ such that
 
--   You may also want to read section 3.1 from of *An Introduction to Statistical Learning* [@tibshirani2017introduction]. 
+$$
+y = \beta_{0} + \beta_{1} x + \epsilon
+$$
+for all values of $x$ and $y$. Recall that we are assuming that $\text{E}[\epsilon] = 0$ so $\epsilon$ is a random variable with expected value (or mean) equal to zero.
 
--   Watch the corresponding video lecture on regression. [View on YouTube](https://youtu.be/ox0cKk7h4o0).
+If we restrict ourselves to the class of single-variable linear functions, then finding an approximation to $f(x) = \beta_{0} + \beta_{1} x$ is equivalent to finding values $\hat{\beta}_0$ and $\hat{\beta}_{1}$ so that
+
+$$
+\hat{f}(x) = \hat{\beta}_{0} + \hat{\beta}_{1} x \approx f(x) = \beta_{0} + \beta_{1} x
+$$
+
+Thus, this would be a **parametric** model since any candidate approximating function is uniquely specified by specifying the values for the parameters $\hat{\beta}_0$ and $\hat{\beta}_{1}$. Note that this is in contrast to nearest neighbors which is **nonparametric**. 
+
+@fig-slr shows the plot of data that has been generated by a relationship of the form $y = \beta_{0} + \beta_{1} x + \epsilon$. You should examine the code used to create or simulate the data in this example and see how it relates to the expression $y = \beta_{0} + \beta_{1} x + \epsilon$.
 
 ```{r}
-#| echo: false
+#| label: fig-slr
+#| fig-cap: A data set with two numerical variables $x$ and $y$ generated by an underlying linear function so that $y = \beta_{0} + \beta_{1}x + \epsilon$.
 
-vembedr::embed_youtube(id="ox0cKk7h4o0",height=450) %>%
-  vembedr::use_align("center")
+set.seed(1287)
+N <- 25
+x <- rnorm(N,mean=72,sd=12)
+y <- 1.2 + 0.75 * x + rnorm(N,sd=2)
+xy_data <- tibble(x=x,y=y)
+
+xy_data %>%
+  ggplot(aes(x=x,y=y)) + 
+  geom_point()
 ```
+
+
+
+From a (supervised) machine learning perspective, fitting a line to such data means "learning" the values of $\hat{\beta}_0$ and $\hat{\beta}_{1}$ from the data. How do we learn $\hat{\beta}_0$ and $\hat{\beta}_{1}$? One way to do this is to minimize an appropriate **loss** function which is a function that provides a measure of error between the observed response values and the response values predicted by the model.
+
+@fig-resids shows the same data as in @fig-slr but where we have added a best fit line as well as all the residual values.  One way to learn the values for $\hat{\beta}_0$ and $\hat{\beta}_{1}$ is to minimize the squared error for the residuals. 
+
+```{r}
+#| code-fold: true
+#| message: false
+#| label: fig-resids
+#| fig-cap: The same data as shown in @fig-slr but with a best fit line as well as all residuals also shown.
+
+fitted_linear_model <- lm(y ~ x, data=xy_data) %>%
+  augment()
+
+fitted_linear_model %>%
+  ggplot(aes(x=x,y=y)) + 
+  geom_point() + 
+  geom_smooth(method="lm",se = FALSE) +
+  geom_segment(aes(x = x, y = y, xend = x, yend = .fitted), 
+               color="red",lwd=1)
+```
+
+
+Notice that we can write the squared error for the residuals as a function of two variables $L(\beta_{0},\beta_{1})$ defined by
+
+$$
+L(\beta_{0},\beta_{1}) = \sum_{i=1}^{n}(y_{i} - \beta_{0} - \beta_{1}x_{i})^2
+$$
+
+
+### Neural Networks
+
+Neural networks are a class of machine learning models that are inspired by the structure of the brain. They are composed of a series of layers of neurons that are connected to each other. Each artificial neuron is a simple computational unit that takes in a set of inputs, performs a computation, and produces an output. The output of one neuron is then used as the input to the next neuron. The first layer of artificial neurons is called the input layer and the last layer of neurons is called the output layer. The layers in between the input and output layers are called hidden layers. The number of hidden layers in a neural network is called the depth of the network. The number of neurons in each layer is called the width of the network. @fig-slnn shows a neural network with one hidden layer consisting of 4 neurons or nodes. Later we will develop notation to describe neural networks mathematically. From here on out we will ignore the biological analogy that is the historical origin of neural networks and focus on the mathematical model.
+
+![A neural network with a single hidden layer consisting of four neurons or nodes.](https://www.dropbox.com/scl/fi/t16o0um8wenwr0kq0t6i4/10_1.png?rlkey=epw6xbd5x8qpu9xqtsdmryqaq&raw=1){#fig-slnn}
+
+
+Neural networks are conceptually simple but the mathematical details can be confusing. The general idea is that a neural network takes an input of $p$ predictor variables $X = (X_{1},X_{2},\ldots , X_{p})$ and builds a *nonlinear* function $f(X)$ to predict the response $Y$. What distinguishes neural networks for other nonlinear methods is the particular structure of the model function $f$.
+ 
+ 
+#### Exploring a Neural Network Interactively
+ 
+ In order to develop some intuition, we will start by exploring an interactive visualization of a neural network via the [Neural Network Playground](https://playground.tensorflow.org/#activation=tanh&batchSize=10&dataset=circle&regDataset=reg-plane&learningRate=0.03&regularizationRate=0&noise=0&networkShape=4,2&seed=0.92779&showTestData=false&discretize=false&percTrainData=50&x=true&y=true&xTimesY=false&xSquared=false&ySquared=false&cosX=false&sinX=false&cosY=false&sinY=false&collectStats=false&problem=classification&initZero=false&hideText=false) website. [Visit the Neural Network Playground](https://playground.tensorflow.org/#activation=tanh&batchSize=10&dataset=circle&regDataset=reg-plane&learningRate=0.03&regularizationRate=0&noise=0&networkShape=4,2&seed=0.92779&showTestData=false&discretize=false&percTrainData=50&x=true&y=true&xTimesY=false&xSquared=false&ySquared=false&cosX=false&sinX=false&cosY=false&sinY=false&collectStats=false&problem=classification&initZero=false&hideText=false). 
+
+The visualization allows you to create a neural network and then train it on a data set. The data set can be a classification problem or a regression problem. The visualization allows you to change the defining components of a neural network such as activation function, the number of hidden layers, the number of neurons in each layer. 
+
+
 
 ## References
 
