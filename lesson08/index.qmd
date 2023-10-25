@@ -270,6 +270,8 @@ The best references for `tidymodels` are the [tidymodels.org](https://www.tidymo
 
 ## Some Examples
 
+We've already seen examples of utilizing the `tidymodels` framework for nearest neighbors, let's examine some further examples. 
+
 ### Example 1: `tidymodels` Workflow for Linear Regression for Predictive Modeling
 
 The following is an example of the `tidymodels` workflow for linear regression for predictive modeling.  The example uses the `mtcars` dataset and the `parsnip` and `recipes` packages.  The example is adapted from the [Tidy Modeling with R](https://www.tmwr.org/) book [@kuhn2022tidy].
