@@ -656,21 +656,33 @@ y = \beta_{0} + \beta_{1} x + \epsilon
 </div>
 </div>
 </div>
-<p>Notice that we can write the squared error for the residuals as a function of two variables <span class="math inline">\(L(\beta_{0},\beta_{1})\)</span> defined by</p>
+<p>Notice that we can write our loss function, that is, the squared error for the residuals as a function of two variables <span class="math inline">\(L(\beta_{0},\beta_{1})\)</span> defined by</p>
 <p><span class="math display">\[
 L(\beta_{0},\beta_{1}) = \sum_{i=1}^{n}(y_{i} - \beta_{0} - \beta_{1}x_{i})^2
 \]</span></p>
+<p>where <span class="math inline">\(n\)</span> is the number of observations in the data set. To fit our model, we need to find the values of <span class="math inline">\(\hat{\beta}_0\)</span> and <span class="math inline">\(\hat{\beta}_{1}\)</span> that minimize <span class="math inline">\(L(\beta_{0},\beta_{1})\)</span>.</p>
+<section id="multiple-linear-regression" class="level4">
+<h4 class="anchored" data-anchor-id="multiple-linear-regression">Multiple Linear Regression</h4>
+<p>Suppose that we have data of the form <span class="math inline">\((y_{i},{\bf x}_{i}) = (y_{i},x_{i1},x_{i2},\ldots , x_{ip})\)</span> so that there are <span class="math inline">\(p\)</span> predictor variables. A multiple linear regression model takes the form</p>
+<p><span class="math display">\[
+y = \beta_{0} + \beta_{1}{\bf x}_{1} + \beta_{2}{\bf x}_{2} + \cdots + \beta_{p}{\bf x}_{p} + \epsilon
+\]</span> Multiple linear regression is a significant generalization of simple linear regression because it not only allows us to account for multiple predictor variables, but also allows us to account for certain types of nonlinearity and also predictor variables that are categorical. This is because:</p>
+<ol type="1">
+<li><p>The “linear” part of linear regression refers to linearity with respect to the coefficients <span class="math inline">\({\bf \beta}\)</span>.</p></li>
+<li><p>We can use dummy variables to represent categorical predictor variables.</p></li>
+</ol>
+</section>
 </section>
 <section id="neural-networks" class="level3">
 <h3 class="anchored" data-anchor-id="neural-networks">Neural Networks</h3>
-<p>Neural networks are a class of machine learning models that are inspired by the structure of the brain. They are composed of a series of layers of neurons that are connected to each other. Each artificial neuron is a simple computational unit that takes in a set of inputs, performs a computation, and produces an output. The output of one neuron is then used as the input to the next neuron. The first layer of artificial neurons is called the input layer and the last layer of neurons is called the output layer. The layers in between the input and output layers are called hidden layers. The number of hidden layers in a neural network is called the depth of the network. The number of neurons in each layer is called the width of the network. <a href="#fig-slnn">Figure&nbsp;13</a> shows a neural network with one hidden layer consisting of 4 neurons or nodes. Later we will develop notation to describe neural networks mathematically. From here on out we will ignore the biological analogy that is the historical origin of neural networks and focus on the mathematical model.</p>
+<p>Neural networks are a class of machine learning models that are inspired by the structure of the brain. They are composed of a series of layers of nodes or “neurons” that are connected to each other. Each artificial neuron is a simple computational unit that takes in a set of inputs, performs a computation, and produces an output. The output of one neuron is then used as the input to the next neuron. The first layer of artificial neurons is called the input layer and the last layer of neurons is called the output layer. The layers in between the input and output layers are called <strong>hidden layers</strong>. The number of hidden layers in a neural network is called the depth of the network. The number of neurons in each layer is called the width of the network. <a href="#fig-slnn">Figure&nbsp;13</a> shows a neural network with one hidden layer consisting of 5 neurons or nodes.</p>
 <div id="fig-slnn" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="https://www.dropbox.com/scl/fi/t16o0um8wenwr0kq0t6i4/10_1.png?rlkey=epw6xbd5x8qpu9xqtsdmryqaq&amp;raw=1" class="img-fluid figure-img"></p>
 <figcaption class="figure-caption">Figure&nbsp;13: A neural network with a single hidden layer consisting of four neurons or nodes.</figcaption>
 </figure>
 </div>
-<p>Neural networks are conceptually simple but the mathematical details can be confusing. The general idea is that a neural network takes an input of <span class="math inline">\(p\)</span> predictor variables <span class="math inline">\(X = (X_{1},X_{2},\ldots , X_{p})\)</span> and builds a <em>nonlinear</em> function <span class="math inline">\(f(X)\)</span> to predict the response <span class="math inline">\(Y\)</span>. What distinguishes neural networks for other nonlinear methods is the particular structure of the model function <span class="math inline">\(f\)</span>.</p>
+<p>Neural networks are conceptually simple but the mathematical details can be confusing. The general idea is that a neural network takes an input of <span class="math inline">\(p\)</span> predictor variables <span class="math inline">\(X = (X_{1},X_{2},\ldots , X_{p})\)</span> and builds a <em>nonlinear</em> function <span class="math inline">\(f(X)\)</span> to predict the response <span class="math inline">\(Y\)</span>. What distinguishes neural networks from other nonlinear methods is the particular structure of the model function <span class="math inline">\(f\)</span>.</p>
 <section id="exploring-a-neural-network-interactively" class="level4">
 <h4 class="anchored" data-anchor-id="exploring-a-neural-network-interactively">Exploring a Neural Network Interactively</h4>
 <p>In order to develop some intuition, we will start by exploring an interactive visualization of a neural network via the <a href="https://playground.tensorflow.org/#activation=tanh&amp;batchSize=10&amp;dataset=circle&amp;regDataset=reg-plane&amp;learningRate=0.03&amp;regularizationRate=0&amp;noise=0&amp;networkShape=4,2&amp;seed=0.92779&amp;showTestData=false&amp;discretize=false&amp;percTrainData=50&amp;x=true&amp;y=true&amp;xTimesY=false&amp;xSquared=false&amp;ySquared=false&amp;cosX=false&amp;sinX=false&amp;cosY=false&amp;sinY=false&amp;collectStats=false&amp;problem=classification&amp;initZero=false&amp;hideText=false">Neural Network Playground</a> website. <a href="https://playground.tensorflow.org/#activation=tanh&amp;batchSize=10&amp;dataset=circle&amp;regDataset=reg-plane&amp;learningRate=0.03&amp;regularizationRate=0&amp;noise=0&amp;networkShape=4,2&amp;seed=0.92779&amp;showTestData=false&amp;discretize=false&amp;percTrainData=50&amp;x=true&amp;y=true&amp;xTimesY=false&amp;xSquared=false&amp;ySquared=false&amp;cosX=false&amp;sinX=false&amp;cosY=false&amp;sinY=false&amp;collectStats=false&amp;problem=classification&amp;initZero=false&amp;hideText=false">Visit the Neural Network Playground</a>.</p>

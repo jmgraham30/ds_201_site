@@ -383,21 +383,36 @@ fitted_linear_model %>%
 ```
 
 
-Notice that we can write the squared error for the residuals as a function of two variables $L(\beta_{0},\beta_{1})$ defined by
+Notice that we can write our loss function, that is,  the squared error for the residuals as a function of two variables $L(\beta_{0},\beta_{1})$ defined by
 
 $$
 L(\beta_{0},\beta_{1}) = \sum_{i=1}^{n}(y_{i} - \beta_{0} - \beta_{1}x_{i})^2
 $$
 
+where $n$ is the number of observations in the data set. To fit our model, we need to find the values of $\hat{\beta}_0$ and $\hat{\beta}_{1}$ that minimize $L(\beta_{0},\beta_{1})$. 
+
+#### Multiple Linear Regression
+
+Suppose that we have data of the form $(y_{i},{\bf x}_{i}) = (y_{i},x_{i1},x_{i2},\ldots , x_{ip})$ so that there are $p$ predictor variables. A multiple linear regression model takes the form
+
+$$
+y = \beta_{0} + \beta_{1}{\bf x}_{1} + \beta_{2}{\bf x}_{2} + \cdots + \beta_{p}{\bf x}_{p} + \epsilon
+$$
+Multiple linear regression is a significant generalization of simple linear regression because it not only allows us to account for multiple predictor variables, but also allows us to account for certain types of nonlinearity and also predictor variables that are categorical. This is because:
+
+1. The "linear" part of linear regression refers to linearity with respect to the coefficients ${\bf \beta}$.
+
+2. We can use dummy variables to represent categorical predictor variables. 
+
 
 ### Neural Networks
 
-Neural networks are a class of machine learning models that are inspired by the structure of the brain. They are composed of a series of layers of neurons that are connected to each other. Each artificial neuron is a simple computational unit that takes in a set of inputs, performs a computation, and produces an output. The output of one neuron is then used as the input to the next neuron. The first layer of artificial neurons is called the input layer and the last layer of neurons is called the output layer. The layers in between the input and output layers are called hidden layers. The number of hidden layers in a neural network is called the depth of the network. The number of neurons in each layer is called the width of the network. @fig-slnn shows a neural network with one hidden layer consisting of 4 neurons or nodes. Later we will develop notation to describe neural networks mathematically. From here on out we will ignore the biological analogy that is the historical origin of neural networks and focus on the mathematical model.
+Neural networks are a class of machine learning models that are inspired by the structure of the brain. They are composed of a series of layers of nodes or "neurons" that are connected to each other. Each artificial neuron is a simple computational unit that takes in a set of inputs, performs a computation, and produces an output. The output of one neuron is then used as the input to the next neuron. The first layer of artificial neurons is called the input layer and the last layer of neurons is called the output layer. The layers in between the input and output layers are called **hidden layers**. The number of hidden layers in a neural network is called the depth of the network. The number of neurons in each layer is called the width of the network. @fig-slnn shows a neural network with one hidden layer consisting of 5 neurons or nodes. 
 
 ![A neural network with a single hidden layer consisting of four neurons or nodes.](https://www.dropbox.com/scl/fi/t16o0um8wenwr0kq0t6i4/10_1.png?rlkey=epw6xbd5x8qpu9xqtsdmryqaq&raw=1){#fig-slnn}
 
 
-Neural networks are conceptually simple but the mathematical details can be confusing. The general idea is that a neural network takes an input of $p$ predictor variables $X = (X_{1},X_{2},\ldots , X_{p})$ and builds a *nonlinear* function $f(X)$ to predict the response $Y$. What distinguishes neural networks for other nonlinear methods is the particular structure of the model function $f$.
+Neural networks are conceptually simple but the mathematical details can be confusing. The general idea is that a neural network takes an input of $p$ predictor variables $X = (X_{1},X_{2},\ldots , X_{p})$ and builds a *nonlinear* function $f(X)$ to predict the response $Y$. What distinguishes neural networks from other nonlinear methods is the particular structure of the model function $f$.
  
  
 #### Exploring a Neural Network Interactively
