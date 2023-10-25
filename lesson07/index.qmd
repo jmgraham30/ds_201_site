@@ -1,6 +1,6 @@
 ---
 title: "Lesson 7"
-subtitle: "Fundamental Concepts for Supervised Machine Learning"
+subtitle: "Fundamental Concepts of Supervised Machine Learning"
 author: "JMG"
 format:
   html:
