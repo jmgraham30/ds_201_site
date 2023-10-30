@@ -194,6 +194,7 @@ div.csl-indent {
   <li><a href="#linear-regression" id="toc-linear-regression" class="nav-link" data-scroll-target="#linear-regression">Linear Regression</a></li>
   <li><a href="#neural-networks" id="toc-neural-networks" class="nav-link" data-scroll-target="#neural-networks">Neural Networks</a></li>
   </ul></li>
+  <li><a href="#cross-validation" id="toc-cross-validation" class="nav-link" data-scroll-target="#cross-validation">Cross-Validation</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </nav>
@@ -691,6 +692,21 @@ y = \beta_{0} + \beta_{1}{\bf x}_{1} + \beta_{2}{\bf x}_{2} + \cdots + \beta_{p}
 </section>
 </section>
 </section>
+<section id="cross-validation" class="level2">
+<h2 class="anchored" data-anchor-id="cross-validation">Cross-Validation</h2>
+<p>Thinking back to nearest neighbors, there is a hyperparameter, namely <span class="math inline">\(k\)</span> that we must set in order to train a model. Ideally, <span class="math inline">\(k\)</span> should be chosen so that the resulting model has the best possible performance with regard to test error. In order to do this, we need to be able to estimate test error. <a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)">Cross-validation</a> (CV) is a computational technique that involves holding out pieces of the data in order to assess the predictive accuracy of a model or to select hyperparameter values.</p>
+<p>There are difference approaches to cross-validation but the most common method is <strong><span class="math inline">\(V\)</span>-fold cross-validation</strong><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. This method involves randomly dividing the training set into <span class="math inline">\(V\)</span> groups called <em>folds</em> of approximately equal size. The first fold is treated as a validation set and the model is fit on the remaining <span class="math inline">\(V-1\)</span> folds. Then, the error <span class="math inline">\(E_{1}\)</span> is computed for the held out set. This procedure is repeated <span class="math inline">\(V\)</span> times and the <span class="math inline">\(V\)</span>-fold CV estimate for the test error is</p>
+<p><span class="math display">\[
+\text{CV}_{V} = \frac{1}{V}\sum_{i=1}^{k}E_{i}
+\]</span> <a href="#fig-cv-illustration">Figure&nbsp;14</a> illustrates <span class="math inline">\(V\)</span>-fold cross-validation for <span class="math inline">\(V=5\)</span>.</p>
+<div id="fig-cv-illustration" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="https://miro.medium.com/v2/resize:fit:640/format:webp/1*PdwlCactbJf8F8C7sP-3gw.png" style="width:8in;height:4in" class="figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;14: An illustration of the. idea of V-fold cross-validation.</figcaption>
+</figure>
+</div>
+<p>Whenever <span class="math inline">\(V=1\)</span>, we have what is known as <em>leave one out cross-validation</em> (LOOCV). The most common values for <span class="math inline">\(V\)</span> are five and ten. In the next lesson, we will see how to efficiently create the folds for cross-validation using the <code>rsample</code> package which is part of the <code>tidymodels</code> family of packages. Then later, we will look at several detailed applications of cross-validation to some machine learning models.</p>
+</section>
 <section id="references" class="level2">
 <h2 class="anchored" data-anchor-id="references">References</h2>
 <div id="refs" class="references csl-bib-body hanging-indent" role="list">
@@ -718,15 +734,15 @@ Expand for Session Info
 <pre><code>─ Session info ───────────────────────────────────────────────────────────────
  setting  value
  version  R version 4.3.1 (2023-06-16)
- os       macOS Sonoma 14.0
+ os       macOS Sonoma 14.1
  system   aarch64, darwin20
  ui       X11
  language (EN)
  collate  en_US.UTF-8
  ctype    en_US.UTF-8
  tz       America/New_York
- date     2023-10-25
- pandoc   3.1.8 @ /opt/homebrew/bin/ (via rmarkdown)
+ date     2023-10-30
+ pandoc   3.1.9 @ /opt/homebrew/bin/ (via rmarkdown)
  quarto   1.3.450 @ /usr/local/bin/quarto
 
 ─ Packages ───────────────────────────────────────────────────────────────────
@@ -777,7 +793,13 @@ Expand for Session Info
 
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div id="quarto-reuse" class="quarto-appendix-contents"><div>CC BY-NC-SA 4.0</div></div></section></div></main> <!-- /main -->
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p><span class="math inline">\(V\)</span>-fold cross-validation is also commonly referred to as <span class="math inline">\(k\)</span>-fold cross-validation but we avoid the <span class="math inline">\(k\)</span> notation because <span class="math inline">\(k\)</span> will appear as a hyperparameter for several of the machine learning algorithms we will discuss.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div id="quarto-reuse" class="quarto-appendix-contents"><div>CC BY-NC-SA 4.0</div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
