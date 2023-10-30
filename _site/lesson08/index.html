@@ -189,6 +189,7 @@ div.csl-indent {
   <li><a href="#example-3-tidymodels-workflow-for-tuning-random-forest-for-regression" id="toc-example-3-tidymodels-workflow-for-tuning-random-forest-for-regression" class="nav-link" data-scroll-target="#example-3-tidymodels-workflow-for-tuning-random-forest-for-regression">Example 3: <code>tidymodels</code> Workflow for Tuning Random Forest for Regression</a></li>
   <li><a href="#example-4-tidymodels-workflow-for-classification-with-multinomial-logistic-regression" id="toc-example-4-tidymodels-workflow-for-classification-with-multinomial-logistic-regression" class="nav-link" data-scroll-target="#example-4-tidymodels-workflow-for-classification-with-multinomial-logistic-regression">Example 4: <code>tidymodels</code> Workflow for Classification with Multinomial Logistic Regression</a></li>
   </ul></li>
+  <li><a href="#case-studies" id="toc-case-studies" class="nav-link" data-scroll-target="#case-studies">Case Studies</a></li>
   <li><a href="#comparing-multiple-modeling-approaches" id="toc-comparing-multiple-modeling-approaches" class="nav-link" data-scroll-target="#comparing-multiple-modeling-approaches">Comparing Multiple Modeling Approaches</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
@@ -1126,9 +1127,35 @@ div.csl-indent {
 </div>
 </section>
 </section>
+<section id="case-studies" class="level2">
+<h2 class="anchored" data-anchor-id="case-studies">Case Studies</h2>
+<p>Let’s see how the <code>tidymodels</code> workflow can be used in a case study. View one or more of the following blog posts by the data scientist <a href="https://juliasilge.com/">Julia Silge</a>.</p>
+<ul>
+<li><p><a href="https://juliasilge.com/blog/palmer-penguins/">Get started with <code>tidymodels</code> Palmer penguins</a></p></li>
+<li><p><a href="https://juliasilge.com/blog/bird-baths/">Fit and predict with tidymodels for bird baths in Australia</a></p></li>
+<li><p><a href="https://juliasilge.com/blog/wind-turbine/">Tune and interpret decision trees for wind turbines</a></p></li>
+<li><p><a href="https://juliasilge.com/blog/scooby-doo/">Predict which Scooby Doo monsters are REAL with a tuned decision tree model</a></p></li>
+<li><p><a href="https://juliasilge.com/blog/ncaa-tuning/">Modeling NCAA women’s basketball tournament seeds</a></p></li>
+<li><p><a href="https://juliasilge.com/blog/tate-collection/">Explore art media over time in the Tate collection dataset</a></p></li>
+<li><p><a href="https://juliasilge.com/blog/chicago-traffic-model/">Predicting injuries for Chicago traffic crashes</a></p></li>
+<li><p><a href="https://juliasilge.com/blog/ikea-prices/">Tune random forests for IKEA prices</a></p></li>
+<li><p><a href="https://juliasilge.com/blog/nber-papers/">Multiclass predictive modeling for NBER papers</a></p></li>
+</ul>
+<p>-<a href="https://juliasilge.com/blog/superbowl-conf-int/">Bootstrap confidence intervals for Super Bowl commercials</a></p>
+<ul>
+<li><p><a href="https://juliasilge.com/blog/art-history/">Resampling to understand gender in art history data</a></p></li>
+<li><p><a href="https://juliasilge.com/blog/water-sources/">Predict availability in water sources with random forest models</a></p></li>
+<li><p><a href="https://juliasilge.com/blog/ceo-departures/">Estimate change in CEO departures with bootstrap resampling</a></p></li>
+<li><p><a href="https://juliasilge.com/blog/astronaut-missions-bagging/">Bagging with tidymodels and astronaut missions</a></p></li>
+<li><p><a href="https://juliasilge.com/blog/austin-housing/">Predict housing prices in Austin TX with <code>tidymodels</code> and <code>xgboost</code></a></p></li>
+<li><p><a href="https://juliasilge.com/blog/datasaurus-multiclass/">Predicting class membership for the Datasaurus Dozen</a></p></li>
+<li><p><a href="https://juliasilge.com/blog/haunted-places/">Where are haunted cemeteries compared to haunted schools?</a></p></li>
+</ul>
+</section>
 <section id="comparing-multiple-modeling-approaches" class="level2">
 <h2 class="anchored" data-anchor-id="comparing-multiple-modeling-approaches">Comparing Multiple Modeling Approaches</h2>
 <p>In her blog post <a href="https://juliasilge.com/blog/spam-email/">Evaluate multiple modeling approaches for spam email</a>, Julia Silge uses workflow sets to evaluate multiple possible models. Let’s work through that post together. <a href="https://juliasilge.com/blog/spam-email/">View the post</a>.</p>
+<p>Some other posts that give examples of comparing many different models are <a href="https://juliasilge.com/blog/crop-yields/">Train and analyze many models for crop yields</a> and <a href="https://juliasilge.com/blog/giant-pumpkins/">Predict giant pumpkin weights with workflowsets</a>.</p>
 </section>
 <section id="references" class="level2">
 <h2 class="anchored" data-anchor-id="references">References</h2>
@@ -1154,15 +1181,15 @@ Expand for Session Info
 <pre><code>─ Session info ───────────────────────────────────────────────────────────────
  setting  value
  version  R version 4.3.1 (2023-06-16)
- os       macOS Sonoma 14.0
+ os       macOS Sonoma 14.1
  system   aarch64, darwin20
  ui       X11
  language (EN)
  collate  en_US.UTF-8
  ctype    en_US.UTF-8
  tz       America/New_York
- date     2023-10-25
- pandoc   3.1.8 @ /opt/homebrew/bin/ (via rmarkdown)
+ date     2023-10-30
+ pandoc   3.1.9 @ /opt/homebrew/bin/ (via rmarkdown)
  quarto   1.3.450 @ /usr/local/bin/quarto
 
 ─ Packages ───────────────────────────────────────────────────────────────────

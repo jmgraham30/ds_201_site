@@ -681,10 +681,50 @@ collect_predictions(final_rs) %>%
 ```
 
 
+## Case Studies
+
+Let's see how the `tidymodels` workflow can be used in a case study. View one or more of the following blog posts by the data scientist [Julia Silge](https://juliasilge.com/).
+
+- [Get started with `tidymodels` Palmer penguins](https://juliasilge.com/blog/palmer-penguins/)
+
+- [Fit and predict with tidymodels for bird baths in Australia](https://juliasilge.com/blog/bird-baths/)
+
+- [Tune and interpret decision trees for wind turbines](https://juliasilge.com/blog/wind-turbine/)
+
+- [Predict which Scooby Doo monsters are REAL with a tuned decision tree model](https://juliasilge.com/blog/scooby-doo/)
+
+- [Modeling NCAA women's basketball tournament seeds](https://juliasilge.com/blog/ncaa-tuning/)
+
+- [Explore art media over time in the Tate collection dataset](https://juliasilge.com/blog/tate-collection/)
+
+- [Predicting injuries for Chicago traffic crashes](https://juliasilge.com/blog/chicago-traffic-model/)
+
+- [Tune random forests for IKEA prices](https://juliasilge.com/blog/ikea-prices/)
+
+- [Multiclass predictive modeling for NBER papers](https://juliasilge.com/blog/nber-papers/)
+
+-[Bootstrap confidence intervals for Super Bowl commercials](https://juliasilge.com/blog/superbowl-conf-int/)
+
+- [Resampling to understand gender in art history data](https://juliasilge.com/blog/art-history/)
+
+- [Predict availability in water sources with random forest models](https://juliasilge.com/blog/water-sources/)
+
+- [Estimate change in CEO departures with bootstrap resampling](https://juliasilge.com/blog/ceo-departures/)
+
+- [Bagging with tidymodels and astronaut missions](https://juliasilge.com/blog/astronaut-missions-bagging/)
+
+- [Predict housing prices in Austin TX with `tidymodels` and `xgboost`](https://juliasilge.com/blog/austin-housing/)
+
+- [Predicting class membership for the Datasaurus Dozen](https://juliasilge.com/blog/datasaurus-multiclass/)
+
+
+- [Where are haunted cemeteries compared to haunted schools?](https://juliasilge.com/blog/haunted-places/)
 
 ## Comparing Multiple Modeling Approaches
 
 In her blog post [Evaluate multiple modeling approaches for spam email](https://juliasilge.com/blog/spam-email/), Julia Silge uses workflow sets to evaluate multiple possible models. Let's work through that post together. [View the post](https://juliasilge.com/blog/spam-email/).
+
+Some other posts that give examples of comparing many different models are [Train and analyze many models for crop yields](https://juliasilge.com/blog/crop-yields/) and [Predict giant pumpkin weights with workflowsets](https://juliasilge.com/blog/giant-pumpkins/).
 
 ## References
 
