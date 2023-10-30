@@ -124,7 +124,7 @@ Here we provide lists of the most common supervised machine learning models. Rem
 
 
 
-### `r icons::icon_style(icons::fontawesome("r-project"),scale=2,fill="steelblue")` `tidymodels`
+###  `tidymodels` Family of Packages
 
 The `tidymodels` package in R is an integrated ecosystem of packages designed to streamline the process of creating, evaluating, and deploying machine learning models while adhering to tidy data principles. The `tidymodels` framework follows a structured and consistent approach to machine learning, making it easier for data scientists and analysts to work with data and build predictive models. Here's a brief description of the key components of the `tidymodels` package:
 
@@ -213,7 +213,7 @@ The `parsnip` package in the `tidymodels` family allows one to specify a variety
     - *Documentation*: [mlp Documentation](https://parsnip.tidymodels.org/reference/mlp.html)
 
 
-## `r icons::icon_style(icons::fontawesome("r-project"),scale=2,fill="steelblue")` `tidymodels` Machine Learning Workflow
+##  The `tidymodels` Machine Learning Workflow
 
 The  `tidymodels` framework provides a consistent set of steps for training and evaluating machine learning models.  The following is a list of the steps in the `tidymodels` workflow:
 
@@ -268,7 +268,7 @@ The  `tidymodels` framework provides a consistent set of steps for training and 
 
 The best references for `tidymodels` are the [tidymodels.org](https://www.tidymodels.org/) website and the [Tidy Modeling with R](https://www.tmwr.org/) book.  The [Tidy Modeling with R](https://www.tmwr.org/) book is available for free online and is a great resource for learning the `tidymodels` framework [@kuhn2022tidy]. The blog posts by [Julia Silge](https://juliasilge.com/) are also a great resource for learning `tidymodels`. [View Silge's blog](https://juliasilge.com/).
 
-## Some Examples
+## `r icons::icon_style(icons::fontawesome("r-project"),scale=2,fill="steelblue")` Some Examples
 
 We've already seen examples of utilizing the `tidymodels` framework for nearest neighbors, let's examine some further examples. 
 
