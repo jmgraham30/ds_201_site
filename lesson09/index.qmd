@@ -1,0 +1,119 @@
+---
+title: "Lesson 9"
+subtitle: "Introduction to Statistics for Data Science"
+author: "JMG"
+format:
+  html:
+    code-fold: true
+    code-summary: "Show the code"
+    toc: true
+    toc-location: left
+bibliography: lesson09.bib
+license: "CC BY-NC-SA 4.0"
+---
+
+```{r}
+#| message: false
+#| warning: false
+#| echo: false
+
+# load packages used in document
+library(tidyverse)
+library(tidytuesdayR)
+library(ISLR2)
+
+theme_set(theme_minimal(base_size = 13))
+```
+
+## Learning Objectives
+
+After this lesson, students will be able to:
+
+- Describe real-world examples of questions that can be answered with statistical inference.
+
+- Define common population parameters (e.g., mean, proportion, standard deviation) that are often estimated using sampled data, and estimate these from a sample.
+
+- Define the following statistical sampling terms: population, sample, population parameter, point estimate, and sampling distribution.
+
+- Define bootstrapping.
+
+- Use R to create a bootstrap distribution to approximate a sampling distribution.
+
+## Readings, etc.
+
+1) Read Chapter 10 from from [Data Science: A First Introduction](https://datasciencebook.ca/preface.html) [@timbers2022data]. [View book online](https://datasciencebook.ca/preface.html).
+
+2) You might also want to look at chapters 8 & 9 from [Statistical Inference via Data Science](https://moderndive.com/).
+
+
+
+## Overview
+
+Statistical inference is the process of using data analysis to infer properties of an underlying probability distribution. Inferential statistical analysis infers properties of a population, for example by testing hypotheses and deriving estimates. It is assumed that the observed data set is sampled from a larger population. Inferential statistics can be contrasted with descriptive statistics. Descriptive statistics is solely concerned with properties of the observed data, and it does not rest on the assumption that the data come from a larger population. In machine learning, the term inference is sometimes used instead to mean "make a prediction, by evaluating an already trained model on a data point not previously seen".
+
+In this lesson, we will get a feel for the inferential method. There are many details of statistics that we will leave for a later course. Further, our approach will be computational, utilizing the bootstrap resampling method.
+
+
+## Motivation
+
+Random variables and their distributions model processes that produce data. For example, a binomial random variable with probability of success $\pi = 0.5$ can be used to model the process of tossing a coin and observing the number of heads. This is an illustration of the domain of probability. Statistical inference is concerned with the inverse problem: given data, what can we say about the process that produced it? For example, given a sample of coin tosses, what can we say about the probability of heads? This is an illustration of the domain of statistics.
+
+**Question:** Given a coin, how can you determine if it is fair or not? Think about how you could approach answering this question. 
+
+Obviously, to address the previous question we should collect data. That is, we should toss the coin some number (probably many) times and record the number of heads. Then, we can use the data to estimate the probability of heads.
+
+**Question:** Suppose that we toss a coin 10 times and observe 7 heads. What is your best guess for the probability of heads? Suppose that we toss a coin 100 times and observe 70 heads. What is your best guess for the probability of heads?
+
+At this point, there are a few things to take note of:
+
+1. When we do statistical inference, we are often trying to estimate a parameter(s) of a distribution. The parameter(s) should be viewed as fixed but with unknown values. In this case, we call the parameter or parameters a **population parameter**. In the coin example, the population parameter is the probability of heads, $\pi$.  
+
+2. We have some process to estimate the population parameter. This process inputs observed data and returns an estimated value for the parameter(s). In this case, we call the estimate a **point estimate**. In the coin example, the point estimate is the number of heads divided by the number of tosses.
+
+3. The point estimate is a random variable. That is, if we were to repeat the experiment, we would get a different point estimate. This is because the observed data is random. In this case, we call the point estimate a **statistic**. In the coin example, the statistic is the number of heads divided by the number of tosses.
+
+4. Since the point estimate is a random variable, it has a distribution. In this case, we call the distribution a **sampling distribution**. In the coin example, the sampling distribution is the distribution of the number of heads divided by the number of tosses.
+
+5. A key problem in statistical inference is to determine or describe the sampling distribution of a statistic. For example, we might be interested to know what is the mean and variance of the sampling distribution. The standard deviation of the sampling distribution of a statistic is called the **standard error**. We call the process of determining the sampling distribution **statistical inference**. In the coin example, we want to determine the sampling distribution of the number of heads divided by the number of tosses.
+
+6. One can use the sampling distribution of a statistic to make statements about the uncertainty of point estimates. 
+
+
+In mathematical statistics, there is a heavy focus on deriving closed form or asymptotically exact expressions for the sampling distribution of a statistic. This is amazing and beautiful and well worth learning. For this, we highly recommend [@wasserman2004all]. However, this approach is beyond the scope of this course. Further, the precise formulas of mathematical statistics apply in a much too limited range of application for the purposes of modern data science.   
+
+As an alternative to mathematical statistics, one can take a computational approach. That is, use the computer to simulate the sampling distribution of a statistic. This approach is called **bootstrapping**. The bootstrap is a powerful tool that can be used to approximate the sampling distribution of a statistic. It is also a useful tool for hypothesis testing and obtaining confidence intervals. Even our coverage of the bootstrap will be only introductory. To learn more beyond what we cover, we recommend [@efron2022computer].
+
+## References
+
+::: {#refs}
+:::
+
+::: {.callout-tip collapse="true"}
+## Expand for Session Info
+
+```{r}
+#| echo: false
+
+
+library(sessioninfo)
+# save the session info as an object
+pkg_sesh <- session_info(pkgs = "attached")
+
+# get the quarto version
+quarto_version <- system("quarto --version", intern = TRUE)
+
+# inject the quarto info
+pkg_sesh$platform$quarto <- paste(
+  system("quarto --version", intern = TRUE), 
+  "@", 
+  quarto::quarto_path()
+  )
+
+# print it out
+pkg_sesh
+```
+:::
+
+[![](http://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png?raw=1){fig-align="left" width="15%"}](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode)
+
+
