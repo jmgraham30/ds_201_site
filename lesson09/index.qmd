@@ -19,10 +19,12 @@ license: "CC BY-NC-SA 4.0"
 
 # load packages used in document
 library(tidyverse)
-library(tidytuesdayR)
-library(ISLR2)
+library(tidymodels)
+library(kableExtra)
 
 theme_set(theme_minimal(base_size = 13))
+
+tidymodels_prefer()
 ```
 
 ## Learning Objectives
@@ -82,6 +84,79 @@ At this point, there are a few things to take note of:
 In mathematical statistics, there is a heavy focus on deriving closed form or asymptotically exact expressions for the sampling distribution of a statistic. This is amazing and beautiful and well worth learning. For this, we highly recommend [@wasserman2004all]. However, this approach is beyond the scope of this course. Further, the precise formulas of mathematical statistics apply in a much too limited range of application for the purposes of modern data science.   
 
 As an alternative to mathematical statistics, one can take a computational approach. That is, use the computer to simulate the sampling distribution of a statistic. This approach is called **bootstrapping**. The bootstrap is a powerful tool that can be used to approximate the sampling distribution of a statistic. It is also a useful tool for hypothesis testing and obtaining confidence intervals. Even our coverage of the bootstrap will be only introductory. To learn more beyond what we cover, we recommend [@efron2022computer].
+
+## Resampling
+
+Let's start with a simulation. Here's what we will do: Simulate 100 tosses of a fair coin, that is, with $\pi = 0.5$, count the number of heads, then estimate $\pi$ by dividing the number of heads by 100. Then, we will repeat this for 500 times. The code in below does this and displays the results in a table. 
+
+```{r}
+set.seed(1234)
+coin_df <- tibble(num_heads = rbinom(500,size=100,prob=0.5))
+
+coin_df <- coin_df %>%
+  mutate(p_hat = num_heads/100)
+
+coin_df %>%
+  kable() %>%
+  kable_styling() %>%
+  scroll_box(width = "100%", height = "200px")
+
+```
+
+
+@fig-coin-plot plots the 500 different estimates for $\pi$.
+
+```{r}
+#| label: fig-coin-plot 
+#| fig-cap: 500 estimates of $\pi$ from simulated data.
+coin_df %>%
+  ggplot(aes(x = p_hat)) +
+  geom_histogram(bins = 12,color="white") + 
+  labs(x = "Estimate",y = "Count") 
+```
+
+
+**Question:** What are your takeaways from our simulation experiment and plot in @fig-coin-plot? What, if anything, do you think we can say about the sampling distribution of $\pi$?
+
+Now, let's try a slightly different simulation. We will do a single round of tossing a fair coin 100 times. Then, we will resample from the 100 tosses with replacement 500 times. For each resample, we will count the number of heads and again estimate $\pi$ by dividing the number of heads by 100. The code in below does this and displays the results in a table. 
+
+```{r}    
+set.seed(1234)
+coin_sample <- rbinom(100,size=1,prob=0.5)
+
+coin_resample_df <- tibble(num_heads = replicate(500,sum(sample(coin_sample,100,replace=TRUE)))) %>%
+  mutate(p_hat_b = num_heads/100)
+
+
+coin_resample_df %>%
+  kable() %>%
+  kable_styling() %>%
+  scroll_box(width = "100%", height = "200px")
+```
+
+
+Note the the number of heads in the original sample is `r sum(coin_sample)`. 
+
+@fig-coin-resample-plot plots the 500 different estimates for $\pi$ based on the *resampled* data.
+
+```{r}
+#| label: fig-coin-resample-plot
+#| fig-cap: 500 estimates of $\pi$ from resampled data.
+
+coin_resample_df %>%
+  ggplot(aes(x = p_hat_b)) +
+  geom_histogram(bins = 12,color="white") + 
+  labs(x = "Estimate",y = "Count") 
+
+```
+
+
+**Question:** What are your takeaways from our simulation experiment and plot in @fig-coin-resample-plot? How do the results compare and contrast with those of the previous simulation and plot in @fig-coin-plot? 
+
+## Bootstrap
+
+
+
 
 ## References
 
