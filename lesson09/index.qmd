@@ -56,7 +56,7 @@ Statistical inference is the process of using data analysis to infer properties 
 In this lesson, we will get a feel for the inferential method. There are many details of statistics that we will leave for a later course. Further, our approach will be computational, utilizing the bootstrap resampling method.
 
 
-## Motivation
+## Motivating Example
 
 Random variables and their distributions model processes that produce data. For example, a binomial random variable with probability of success $\pi = 0.5$ can be used to model the process of tossing a coin and observing the number of heads. This is an illustration of the domain of probability. Statistical inference is concerned with the inverse problem: given data, what can we say about the process that produced it? For example, given a sample of coin tosses, what can we say about the probability of heads? This is an illustration of the domain of statistics.
 
@@ -85,7 +85,7 @@ In mathematical statistics, there is a heavy focus on deriving closed form or as
 
 As an alternative to mathematical statistics, one can take a computational approach. That is, use the computer to simulate the sampling distribution of a statistic. This approach is called **bootstrapping**. The bootstrap is a powerful tool that can be used to approximate the sampling distribution of a statistic. It is also a useful tool for hypothesis testing and obtaining confidence intervals. Even our coverage of the bootstrap will be only introductory. To learn more beyond what we cover, we recommend [@efron2022computer].
 
-## Resampling
+## Resampling Experiment
 
 Let's start with a simulation. Here's what we will do: Simulate 100 tosses of a fair coin, that is, with $\pi = 0.5$, count the number of heads, then estimate $\pi$ by dividing the number of heads by 100. Then, we will repeat this for 500 times. The code in below does this and displays the results in a table. 
 
@@ -155,7 +155,11 @@ coin_resample_df %>%
 
 ## Bootstrap
 
+Our resampling simulation in the last section is an example of the **bootstrap**. Notice what we did, we took a sample from the population, then resampled from the sample. This is called **resampling**. The bootstrap is a special case of resampling where the resampling is done with replacement. What we did was generate a bootstrap distribution for our statistic. The idea is, 
 
+> if the sample is representative of the population, then the bootstrap distribution of our statistics obtained by resampling with replacement from the sample should approximate the sampling distribution for our statistic.
+
+While the mean of the bootstrap will be the mean of the sample and not necessarily th mean of the population, the standard deviation of the bootstrap will be a good estimate for the standard error of the statistic. Thus, the bootstrap distribution allows us to assess the uncertainty of an estimate. The power of the bootstrap technique is that it works for any statistic. For example, we can use the bootstrap to estimate the sampling distribution for parameters in models such as the coefficients in a linear regression model. We can even use the bootstrap to estimate the uncertainty in model predictions, even if the model is non-parametric.  
 
 
 ## References

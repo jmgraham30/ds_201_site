@@ -180,8 +180,9 @@ div.csl-indent {
   <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives">Learning Objectives</a></li>
   <li><a href="#readings-etc." id="toc-readings-etc." class="nav-link" data-scroll-target="#readings-etc.">Readings, etc.</a></li>
   <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#motivation" id="toc-motivation" class="nav-link" data-scroll-target="#motivation">Motivation</a></li>
-  <li><a href="#resampling" id="toc-resampling" class="nav-link" data-scroll-target="#resampling">Resampling</a></li>
+  <li><a href="#motivating-example" id="toc-motivating-example" class="nav-link" data-scroll-target="#motivating-example">Motivating Example</a></li>
+  <li><a href="#resampling-experiment" id="toc-resampling-experiment" class="nav-link" data-scroll-target="#resampling-experiment">Resampling Experiment</a></li>
+  <li><a href="#bootstrap" id="toc-bootstrap" class="nav-link" data-scroll-target="#bootstrap">Bootstrap</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </nav>
@@ -240,8 +241,8 @@ div.csl-indent {
 <p>Statistical inference is the process of using data analysis to infer properties of an underlying probability distribution. Inferential statistical analysis infers properties of a population, for example by testing hypotheses and deriving estimates. It is assumed that the observed data set is sampled from a larger population. Inferential statistics can be contrasted with descriptive statistics. Descriptive statistics is solely concerned with properties of the observed data, and it does not rest on the assumption that the data come from a larger population. In machine learning, the term inference is sometimes used instead to mean “make a prediction, by evaluating an already trained model on a data point not previously seen”.</p>
 <p>In this lesson, we will get a feel for the inferential method. There are many details of statistics that we will leave for a later course. Further, our approach will be computational, utilizing the bootstrap resampling method.</p>
 </section>
-<section id="motivation" class="level2">
-<h2 class="anchored" data-anchor-id="motivation">Motivation</h2>
+<section id="motivating-example" class="level2">
+<h2 class="anchored" data-anchor-id="motivating-example">Motivating Example</h2>
 <p>Random variables and their distributions model processes that produce data. For example, a binomial random variable with probability of success <span class="math inline">\(\pi = 0.5\)</span> can be used to model the process of tossing a coin and observing the number of heads. This is an illustration of the domain of probability. Statistical inference is concerned with the inverse problem: given data, what can we say about the process that produced it? For example, given a sample of coin tosses, what can we say about the probability of heads? This is an illustration of the domain of statistics.</p>
 <p><strong>Question:</strong> Given a coin, how can you determine if it is fair or not? Think about how you could approach answering this question.</p>
 <p>Obviously, to address the previous question we should collect data. That is, we should toss the coin some number (probably many) times and record the number of heads. Then, we can use the data to estimate the probability of heads.</p>
@@ -258,8 +259,8 @@ div.csl-indent {
 <p>In mathematical statistics, there is a heavy focus on deriving closed form or asymptotically exact expressions for the sampling distribution of a statistic. This is amazing and beautiful and well worth learning. For this, we highly recommend <span class="citation" data-cites="wasserman2004all">(<a href="#ref-wasserman2004all" role="doc-biblioref">Wasserman 2004</a>)</span>. However, this approach is beyond the scope of this course. Further, the precise formulas of mathematical statistics apply in a much too limited range of application for the purposes of modern data science.</p>
 <p>As an alternative to mathematical statistics, one can take a computational approach. That is, use the computer to simulate the sampling distribution of a statistic. This approach is called <strong>bootstrapping</strong>. The bootstrap is a powerful tool that can be used to approximate the sampling distribution of a statistic. It is also a useful tool for hypothesis testing and obtaining confidence intervals. Even our coverage of the bootstrap will be only introductory. To learn more beyond what we cover, we recommend <span class="citation" data-cites="efron2022computer">(<a href="#ref-efron2022computer" role="doc-biblioref">Efron and Hastie 2022</a>)</span>.</p>
 </section>
-<section id="resampling" class="level2">
-<h2 class="anchored" data-anchor-id="resampling">Resampling</h2>
+<section id="resampling-experiment" class="level2">
+<h2 class="anchored" data-anchor-id="resampling-experiment">Resampling Experiment</h2>
 <p>Let’s start with a simulation. Here’s what we will do: Simulate 100 tosses of a fair coin, that is, with <span class="math inline">\(\pi = 0.5\)</span>, count the number of heads, then estimate <span class="math inline">\(\pi\)</span> by dividing the number of heads by 100. Then, we will repeat this for 500 times. The code in below does this and displays the results in a table.</p>
 <div class="cell">
 <details>
@@ -4362,6 +4363,14 @@ div.csl-indent {
 </div>
 </div>
 <p><strong>Question:</strong> What are your takeaways from our simulation experiment and plot in <a href="#fig-coin-resample-plot">Figure&nbsp;2</a>? How do the results compare and contrast with those of the previous simulation and plot in <a href="#fig-coin-plot">Figure&nbsp;1</a>?</p>
+</section>
+<section id="bootstrap" class="level2">
+<h2 class="anchored" data-anchor-id="bootstrap">Bootstrap</h2>
+<p>Our resampling simulation in the last section is an example of the <strong>bootstrap</strong>. Notice what we did, we took a sample from the population, then resampled from the sample. This is called <strong>resampling</strong>. The bootstrap is a special case of resampling where the resampling is done with replacement. What we did was generate a bootstrap distribution for our statistic. The idea is,</p>
+<blockquote class="blockquote">
+<p>if the sample is representative of the population, then the bootstrap distribution of our statistics obtained by resampling with replacement from the sample should approximate the sampling distribution for our statistic.</p>
+</blockquote>
+<p>While the mean of the bootstrap will be the mean of the sample and not necessarily th mean of the population, the standard deviation of the bootstrap will be a good estimate for the standard error of the statistic. Thus, the bootstrap distribution allows us to assess the uncertainty of an estimate. The power of the bootstrap technique is that it works for any statistic. For example, we can use the bootstrap to estimate the sampling distribution for parameters in models such as the coefficients in a linear regression model. We can even use the bootstrap to estimate the uncertainty in model predictions, even if the model is non-parametric.</p>
 </section>
 <section id="references" class="level2">
 <h2 class="anchored" data-anchor-id="references">References</h2>
