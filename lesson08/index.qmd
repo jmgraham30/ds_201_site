@@ -46,6 +46,99 @@ After this lesson, students will be able to
 Machine learning (ML) as we have defined it involves estimating a (mathematical) function and we divide problems into two general types: *supervised* and *unsupervised* learning. In supervised learning, we have a set of data that we use to train a model to predict a target variable. In unsupervised learning, we have a set of data that we use to train a model to find patterns in the data. In this chapter, we will focus on supervised learning. Further, we separate supervised learning into two types: *regression* and *classification*. In regression, the target variable is continuous. In classification, the target variable is categorical. We also consider two types of applications for machine learning: *prediction* and *inference*. In prediction, we are interested in predicting the target variable. In inference, we are interested in understanding the relationship between the target variable and the predictors. 
 
 
+##  The `tidymodels` Machine Learning Workflow
+
+The  `tidymodels` framework provides a consistent set of steps for training and evaluating machine learning models.  The following is a list of the steps in the `tidymodels` workflow:
+
+1. **Data Preparation:**
+   - Load and prepare your data set following tidy data principles. 
+
+2. **Data Splitting:**
+   - Use the `rsample` package to create data splits for training and testing.
+
+3. **Preprocessing and Feature Engineering:**
+   - Define a data preprocessing plan using the `recipes` package.
+   - Create a "recipe" for data cleaning, transformation, and feature engineering.
+
+4. **Model Specification:**
+   - Specify machine learning models with the `parsnip` package.
+   - Choose from a variety of models for regression, classification, etc.
+
+5. **Hyperparameter Tuning:**
+   - Utilize the `tune` package for hyperparameter tuning.
+   - Define a grid of hyperparameters and use resampling methods for evaluation.
+
+6. **Model Training:**
+   - Train models with the specified data splits, preprocessing plan, and hyperparameters.
+   - Use the `fit` function to train on the training data.
+
+7. **Model Evaluation:**
+   - Assess model performance using the `yardstick` package.
+   - Calculate relevant evaluation metrics (e.g., accuracy, RMSE).
+
+8. **Model Selection:**
+   - Compare model performance and hyperparameter settings.
+   - Select the best-performing model or create ensembles (e.g., stacking, bagging).
+
+9. **Model Interpretation and Visualization:**
+   - Use the `broom` package to extract and tidy model results.
+   - Visualize model outputs and interpret results.
+
+10. **Deployment and Prediction:**
+    - Deploy the final model for predictions on new data.
+    - Use the trained model in production environments.
+
+11. **Documentation and Reproducibility:**
+    - Document the entire workflow, including preprocessing, model specifications, tuning, and results.
+    - Ensure reproducibility and transparency.
+
+12. **Sharing and Collaboration:**
+    - Share code and findings with collaborators for reproducibility and collaboration.
+
+13. **Ongoing Monitoring and Maintenance:**
+    - In production, monitor model performance and update models as needed.
+
+
+The best references for `tidymodels` are the [tidymodels.org](https://www.tidymodels.org/) website and the [Tidy Modeling with R](https://www.tmwr.org/) book.  The [Tidy Modeling with R](https://www.tmwr.org/) book is available for free online and is a great resource for learning the `tidymodels` framework [@kuhn2022tidy]. The blog posts by [Julia Silge](https://juliasilge.com/) are also a great resource for learning `tidymodels`. [View Silge's blog](https://juliasilge.com/).
+
+###  `tidymodels` Family of Packages
+
+The `tidymodels` package in R is an integrated ecosystem of packages designed to streamline the process of creating, evaluating, and deploying machine learning models while adhering to tidy data principles. The `tidymodels` framework follows a structured and consistent approach to machine learning, making it easier for data scientists and analysts to work with data and build predictive models. Here's a brief description of the key components of the `tidymodels` package:
+
+
+1. **[`tidyverse` Integration](https://www.tidymodels.org/):**
+   - *Description*: `tidymodels` seamlessly integrates with the popular `tidyverse` suite of packages, allowing for the use of tidy data frames and other tidy tools.
+   
+2. **[`rsample`](https://rsample.tidymodels.org/):**
+   - *Description*: The `rsample` package is for resampling and creating data splits, essential for tasks such as cross-validation and bootstrapping.
+   
+3. **[`recipes`](https://recipes.tidymodels.org/):**
+   - *Description*: The `recipes` package provides a systematic way to define and preprocess feature engineering steps for your data, creating a "recipe" that includes data preprocessing and variable transformations.
+
+4. **[`parsnip`](https://parsnip.tidymodels.org/):**
+   - *Description*: The `parsnip` package defines a common interface for specifying machine learning models, making it easier to work with different modeling engines.
+   
+5. **[`workflows`](https://workflows.tidymodels.org/):**
+   - *Description*: The `workflows` package simplifies the process of building, tuning, and evaluating models by combining models, recipes, and tuning into a unified workflow.
+
+
+6. **[`tune`](https://tune.tidymodels.org/):**
+   - *Description*: The `tune` package offers tools for hyperparameter tuning, allowing you to optimize model performance by systematically searching for the best hyperparameters.
+
+
+7. **[`yardstick`](https://yardstick.tidymodels.org/):**
+   - *Description*: The `yardstick` package provides a wide range of functions for model evaluation, including metrics for classification, regression, and survival analysis tasks.
+
+
+8. **[`broom`](https://broom.tidymodels.org/):**
+   - *Description*: The `broom` package helps tidy up the results of model fits, making it easy to extract coefficients, predictions, and other model-related information in a tidy data format.
+
+9. **Community and Extensibility:**
+   - *Description*: The `tidymodels` ecosystem has a growing community of users and contributors. It supports the creation of custom modeling engines, extending the framework to new algorithms.
+
+10. **Reproducibility and Best Practices:**
+    - *Description*: `tidymodels` promotes best practices in machine learning, emphasizing tidy data principles, clear model specification, and reproducibility.
+    
 ### Basic Models
 
 Here we provide lists of the most common supervised machine learning models. Remember that the choice of the machine learning model depends on the specific problem, the nature of the data, and the trade-off between interpretability and predictive performance. It's often a good practice to experiment with multiple models and evaluate their performance to select the most suitable one for a given task.
@@ -122,43 +215,7 @@ Here we provide lists of the most common supervised machine learning models. Rem
       - Often more robust and accurate than individual models.
       - Handle various types of data and tasks.
 
-
-
-###  `tidymodels` Family of Packages
-
-The `tidymodels` package in R is an integrated ecosystem of packages designed to streamline the process of creating, evaluating, and deploying machine learning models while adhering to tidy data principles. The `tidymodels` framework follows a structured and consistent approach to machine learning, making it easier for data scientists and analysts to work with data and build predictive models. Here's a brief description of the key components of the `tidymodels` package:
-
-
-1. **[`tidyverse` Integration](https://www.tidymodels.org/):**
-   - *Description*: `tidymodels` seamlessly integrates with the popular `tidyverse` suite of packages, allowing for the use of tidy data frames and other tidy tools.
-
-2. **[`parsnip`](https://parsnip.tidymodels.org/):**
-   - *Description*: The `parsnip` package defines a common interface for specifying machine learning models, making it easier to work with different modeling engines.
-
-3. **[`recipes`](https://recipes.tidymodels.org/):**
-   - *Description*: The `recipes` package provides a systematic way to define and preprocess feature engineering steps for your data, creating a "recipe" that includes data preprocessing and variable transformations.
-
-4. **[`tune`](https://tune.tidymodels.org/):**
-   - *Description*: The `tune` package offers tools for hyperparameter tuning, allowing you to optimize model performance by systematically searching for the best hyperparameters.
-
-5. **[`workflows`](https://workflows.tidymodels.org/):**
-   - *Description*: The `workflows` package simplifies the process of building, tuning, and evaluating models by combining models, recipes, and tuning into a unified workflow.
-
-6. **[`yardstick`](https://yardstick.tidymodels.org/):**
-   - *Description*: The `yardstick` package provides a wide range of functions for model evaluation, including metrics for classification, regression, and survival analysis tasks.
-
-7. **[`rsample`](https://rsample.tidymodels.org/):**
-   - *Description*: The `rsample` package is for resampling and creating data splits, essential for tasks such as cross-validation and bootstrapping.
-
-8. **[`broom`](https://broom.tidymodels.org/):**
-   - *Description*: The `broom` package helps tidy up the results of model fits, making it easy to extract coefficients, predictions, and other model-related information in a tidy data format.
-
-9. **Community and Extensibility:**
-   - *Description*: The `tidymodels` ecosystem has a growing community of users and contributors. It supports the creation of custom modeling engines, extending the framework to new algorithms.
-
-10. **Reproducibility and Best Practices:**
-    - *Description*: `tidymodels` promotes best practices in machine learning, emphasizing tidy data principles, clear model specification, and reproducibility.
-
+#### Model Specifications using `parsnip`
 
 The `parsnip` package in the `tidymodels` family allows one to specify a variety of supervised machine learning models.  Here is a list of some of the `parsnip` models:
 
@@ -211,62 +268,14 @@ The `parsnip` package in the `tidymodels` family allows one to specify a variety
     - *Description*: Multilayer Perceptron (Neural Network) Model
     - *Type*: Both (Regression and Classification)
     - *Documentation*: [mlp Documentation](https://parsnip.tidymodels.org/reference/mlp.html)
+    
+11. **[`brulee`](https://brulee.tidymodels.org/):**
+    - *Description*: The R brulee package contains several basic modeling functions that use the torch package infrastructure, such as: linear regression, logistic regression, and neural networks.
+    - *Type*: Both (Regression and Classification)
+    - *Documentation*: [brulee Documentation](https://brulee.tidymodels.org/)
 
+**Note:** Some of the model specifications in `parsnip` are wrappers for other packages and you will need to have those packages installed for everything to work. Make sure to refer to the the [`parsnip` documentation](https://parsnip.tidymodels.org/). before fitting models.
 
-##  The `tidymodels` Machine Learning Workflow
-
-The  `tidymodels` framework provides a consistent set of steps for training and evaluating machine learning models.  The following is a list of the steps in the `tidymodels` workflow:
-
-1. **Data Preparation:**
-   - Load and prepare your dataset following tidy data principles.
-
-2. **Data Splitting:**
-   - Use the `rsample` package to create data splits for training and testing.
-
-3. **Preprocessing and Feature Engineering:**
-   - Define a data preprocessing plan using the `recipes` package.
-   - Create a "recipe" for data cleaning, transformation, and feature engineering.
-
-4. **Model Specification:**
-   - Specify machine learning models with the `parsnip` package.
-   - Choose from a variety of models for regression, classification, etc.
-
-5. **Hyperparameter Tuning:**
-   - Utilize the `tune` package for hyperparameter tuning.
-   - Define a grid of hyperparameters and use resampling methods for evaluation.
-
-6. **Model Training:**
-   - Train models with the specified data splits, preprocessing plan, and hyperparameters.
-   - Use the `fit` function to train on the training data.
-
-7. **Model Evaluation:**
-   - Assess model performance using the `yardstick` package.
-   - Calculate relevant evaluation metrics (e.g., accuracy, RMSE).
-
-8. **Model Selection:**
-   - Compare model performance and hyperparameter settings.
-   - Select the best-performing model or create ensembles (e.g., stacking, bagging).
-
-9. **Model Interpretation and Visualization:**
-   - Use the `broom` package to extract and tidy model results.
-   - Visualize model outputs and interpret results.
-
-10. **Deployment and Prediction:**
-    - Deploy the final model for predictions on new data.
-    - Use the trained model in production environments.
-
-11. **Documentation and Reproducibility:**
-    - Document the entire workflow, including preprocessing, model specifications, tuning, and results.
-    - Ensure reproducibility and transparency.
-
-12. **Sharing and Collaboration:**
-    - Share code and findings with collaborators for reproducibility and collaboration.
-
-13. **Ongoing Monitoring and Maintenance:**
-    - In production, monitor model performance and update models as needed.
-
-
-The best references for `tidymodels` are the [tidymodels.org](https://www.tidymodels.org/) website and the [Tidy Modeling with R](https://www.tmwr.org/) book.  The [Tidy Modeling with R](https://www.tmwr.org/) book is available for free online and is a great resource for learning the `tidymodels` framework [@kuhn2022tidy]. The blog posts by [Julia Silge](https://juliasilge.com/) are also a great resource for learning `tidymodels`. [View Silge's blog](https://juliasilge.com/).
 
 ## `r icons::icon_style(icons::fontawesome("r-project"),scale=2,fill="steelblue")` Some Examples
 
@@ -703,7 +712,7 @@ Let's see how the `tidymodels` workflow can be used in a case study. View one or
 
 - [Multiclass predictive modeling for NBER papers](https://juliasilge.com/blog/nber-papers/)
 
--[Bootstrap confidence intervals for Super Bowl commercials](https://juliasilge.com/blog/superbowl-conf-int/)
+- [Bootstrap confidence intervals for Super Bowl commercials](https://juliasilge.com/blog/superbowl-conf-int/)
 
 - [Resampling to understand gender in art history data](https://juliasilge.com/blog/art-history/)
 
