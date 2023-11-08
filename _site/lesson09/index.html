@@ -185,6 +185,7 @@ div.csl-indent {
   <li><a href="#bootstrap" id="toc-bootstrap" class="nav-link" data-scroll-target="#bootstrap">Bootstrap</a>
   <ul class="collapse">
   <li><a href="#example-bootstrap-mean" id="toc-example-bootstrap-mean" class="nav-link" data-scroll-target="#example-bootstrap-mean">Example: Bootstrap Mean</a></li>
+  <li><a href="#example-linear-regression" id="toc-example-linear-regression" class="nav-link" data-scroll-target="#example-linear-regression">Example: Linear Regression</a></li>
   </ul></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
@@ -4470,7 +4471,204 @@ attr(,"conf.level")
 1     9.83     10.6</code></pre>
 </div>
 </div>
-<p><strong>Exercise:</strong> Redo what we have done in boootstraping the mean of a sample from a normal distribution but instead boostrap the median and estimate the standard error and a 95% CI for the statistic. You can use the fact that the function <code>median</code> computes the sample median. How do the results compare and contrast with those of the mean?</p>
+<p><strong>Exercise:</strong> Redo what we have done in bootstrapping the mean of a sample from a normal distribution but instead bootstrap the median and estimate the standard error and a 95% CI for the statistic. You can use the fact that the function <code>median</code> computes the sample median. How do the results compare and contrast with those of the mean?</p>
+</section>
+<section id="example-linear-regression" class="level3">
+<h3 class="anchored" data-anchor-id="example-linear-regression">Example: Linear Regression</h3>
+<p>Let’s suppose that we have samples from a normal distribution but where the mean varies as a linear function of a variable <span class="math inline">\(x\)</span>. That is, we have samples from a distribution <span class="math inline">\(\text{Norm}(\beta_{0} + \beta_{1}x, \sigma)\)</span>, where <span class="math inline">\(x\)</span> ranges over some values. This is equivalent to assuming that we have a random variable <span class="math inline">\(Y\)</span> that satisfies</p>
+<p><span class="math display">\[
+Y = \beta_{0} + \beta_{1}x + \epsilon
+\]</span> and <span class="math inline">\(\epsilon \sim \text{Norm}(0,\sigma)\)</span>.</p>
+<p>We can use the bootstrap to estimate the uncertainty in estimates for the parameters <span class="math inline">\(\beta_{0}\)</span> and <span class="math inline">\(\beta_{1}\)</span> in a manner similar to how we estimated the uncertainty in the sample mean in the last subsection. However, in this case, the mean is estimated by a linear regression model. That is, we have estimators <span class="math inline">\(\hat{\beta}_{0}\)</span> and <span class="math inline">\(\hat{\beta}_{1}\)</span>, values of which are obtained by fitting a linear model to the data. Bootstrapping allows us to approximate the sampling distributions for these estimators.</p>
+<p>First, we will simulate some data. The simulated data is shown in <a href="#fig-lm-sim">Figure&nbsp;3</a>. Notice that the true mean is given by <span class="math inline">\(y = 0.5 x + 2\)</span> which appears as the red dashed line in the figure.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sample size</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">25</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># true intercept and slope parameters</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>beta_0 <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>beta_1 <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="co"># x-values</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">3</span>, <span class="at">length.out =</span> N)</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="co"># data simulation</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>lm_samp <span class="ot">&lt;-</span> <span class="cf">function</span>(x,<span class="at">samp_n=</span><span class="dv">10</span>,<span class="at">sd_val=</span><span class="dv">1</span>){</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># sample from a normal distribution with mean = beta_0 + beta_1*x</span></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(samp_n, <span class="at">mean=</span>beta_0 <span class="sc">+</span> beta_1<span class="sc">*</span>x, <span class="at">sd=</span>sd_val)</span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(<span class="at">x=</span>x,<span class="at">y=</span><span class="fu">list</span>(y))</span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a><span class="co"># obtain simulated data</span></span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>lm_samp_df <span class="ot">&lt;-</span> <span class="fu">map_dfr</span>(x,lm_samp)</span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>lm_samp_df_l <span class="ot">&lt;-</span> lm_samp_df <span class="sc">%&gt;%</span></span>
+<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(y)</span>
+<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a><span class="co"># plot simulated data</span></span>
+<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a>lm_samp_df_l <span class="sc">%&gt;%</span></span>
+<span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>x,<span class="at">y=</span>y)) <span class="sc">+</span></span>
+<span id="cb21-30"><a href="#cb21-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb21-31"><a href="#cb21-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept=</span>beta_0,<span class="at">slope=</span>beta_1,<span class="at">color=</span><span class="st">"red"</span>,</span>
+<span id="cb21-32"><a href="#cb21-32" aria-hidden="true" tabindex="-1"></a>              <span class="at">linewidth=</span><span class="dv">1</span>,<span class="at">linetype=</span><span class="st">"dashed"</span>) <span class="sc">+</span> </span>
+<span id="cb21-33"><a href="#cb21-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">"lm"</span>,<span class="at">color=</span><span class="st">"orange"</span>,<span class="at">fill=</span><span class="st">"lightblue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-lm-sim" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/fig-lm-sim-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Figure&nbsp;3: Simulated data for simple linear regression. The true mean is given by <span class="math inline">\(y = 0.5 x + 2\)</span></figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The orange line in <a href="#fig-lm-sim">Figure&nbsp;3</a> is the fitted linear model and the light blue shaded region shows the corresponding standard error computed by traditional methods.</p>
+<p>In R, the function <code>lm</code> is used to fit a linear model. The code below fits a linear model to the simulated data and prints the estimated intercept and slope parameters, that is, the point estimates for <span class="math inline">\(\hat{\beta}_{0}\)</span> and <span class="math inline">\(\hat{\beta}_{1}\)</span> in <a href="#tbl-lm-coeffs">Table&nbsp;1</a>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>linear_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data=</span>lm_samp_df_l)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(linear_mod) <span class="sc">%&gt;%</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(estimate) <span class="sc">%&gt;%</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">coeff=</span><span class="fu">c</span>(<span class="st">"beta_0"</span>,<span class="st">"beta_1"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="tbl-lm-coeffs" class="anchored">
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<caption>Table&nbsp;1: Estimated intercept and slope parameters for the linear model fit to the simulated data.</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;" data-quarto-table-cell-role="th">estimate</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">coeff</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1.7423412</td>
+<td style="text-align: left;">beta_0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">0.5963686</td>
+<td style="text-align: left;">beta_1</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+</div>
+</div>
+<p>We would like to assess the uncertainty in our point estimates. Bootstrapping is one way to do this and the following code implements the bootstrap for our example. <a href="#fig-lm-boot-coeffs-1">Figure&nbsp;4</a> shows the bootstrap distribution for the intercept and slope parameters.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>lm_fit_resamp <span class="ot">&lt;-</span> <span class="cf">function</span>(int_val,<span class="at">df=</span>lm_samp_df_l){</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data=</span><span class="fu">slice_sample</span>(df,<span class="at">prop=</span><span class="dv">1</span>,<span class="at">replace=</span><span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tidy</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(estimate) <span class="sc">%&gt;%</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">coeff=</span><span class="fu">c</span>(<span class="st">"beta_0"</span>,<span class="st">"beta_1"</span>))</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>lm_fit_boot <span class="ot">&lt;-</span> <span class="fu">map_dfr</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">500</span>,lm_fit_resamp)</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>lm_fit_boot <span class="sc">%&gt;%</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>estimate)) <span class="sc">+</span></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">color=</span><span class="st">"white"</span>,<span class="at">fill=</span><span class="st">"lightblue"</span>) <span class="sc">+</span></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>coeff,<span class="at">scales=</span><span class="st">"free_x"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-lm-boot-coeffs-1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/fig-lm-boot-coeffs-1-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Figure&nbsp;4: Bootstrap distributions for the intercept and slope parameters.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>In the last line of code, we manually resampled the data and fit a linear model to each resample. The code below does the same thing but uses the function <code>reg_intervals</code> from the `rsample`` package to do the resampling and fitting. The results shown in <a href="#fig-lm-boot-coeffs-2">Figure&nbsp;5</a> are similar to those we saw in <a href="#fig-lm-boot-coeffs-1">Figure&nbsp;4</a>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">reg_intervals</span>(y <span class="sc">~</span> x, <span class="at">data=</span>lm_samp_df_l,</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">type=</span><span class="st">"percentile"</span>,<span class="at">filter=</span><span class="cn">NULL</span>,</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">keep_reps =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(.replicates) <span class="sc">%&gt;%</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>estimate)) <span class="sc">+</span> </span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">color=</span><span class="st">"white"</span>,<span class="at">fill=</span><span class="st">"lightblue"</span>) <span class="sc">+</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>term,<span class="at">scales=</span><span class="st">"free_x"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-lm-boot-coeffs-2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/fig-lm-boot-coeffs-2-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Figure&nbsp;5: Bootstrap distributions for the intercept and slope parameters. This time, the function <code>reg_intervals</code> is used to do the resampling and fitting.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>We can also use <code>reg_intervals</code> to obtain the confidence intervals for each parameter estimate. The results are shown in</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">reg_intervals</span>(y <span class="sc">~</span> x, <span class="at">data=</span>lm_samp_df_l,</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">type=</span><span class="st">"percentile"</span>,<span class="at">filter=</span><span class="cn">NULL</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="tbl-lm-ci" class="anchored">
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<caption>Table&nbsp;2: Confidence intervals for the intercept and slope parameters obtained using the <code>reg_intervals</code> function.</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">term</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">.lower</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">.estimate</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">.upper</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">.alpha</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">.method</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: right;">1.5134585</td>
+<td style="text-align: right;">1.7368193</td>
+<td style="text-align: right;">1.9720297</td>
+<td style="text-align: right;">0.05</td>
+<td style="text-align: left;">percentile</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">x</td>
+<td style="text-align: right;">0.4696498</td>
+<td style="text-align: right;">0.5978922</td>
+<td style="text-align: right;">0.7210832</td>
+<td style="text-align: right;">0.05</td>
+<td style="text-align: left;">percentile</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+</div>
+</div>
+<p>Finally, we can use our bootstrapped estimates to plot the bootstrap distribution of the regression line. The results are shown in <a href="#fig-lm-boot">Figure&nbsp;6</a>. The orange line is the fitted linear model, the yellow shaded region shows the corresponding standard error computed by traditional methods, and the light blue lines are regression lines fitted to the resampled data. The light blue lines are the bootstrap distribution of the regression line.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>tpl <span class="ot">&lt;-</span> lm_fit_boot <span class="sc">%&gt;%</span> <span class="fu">pivot_wider</span>(<span class="at">names_from=</span>coeff,<span class="at">values_from=</span>estimate) <span class="sc">%&gt;%</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(<span class="at">cols =</span> <span class="fu">c</span>(beta_0, beta_1))</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>lm_samp_df_l <span class="sc">%&gt;%</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>x,<span class="at">y=</span>y)) <span class="sc">+</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">data=</span>tpl,</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>              <span class="fu">aes</span>(<span class="at">intercept=</span>beta_0,<span class="at">slope=</span>beta_1),</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>              <span class="at">color=</span><span class="st">"lightblue"</span>) <span class="sc">+</span></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">"lm"</span>,<span class="at">color=</span><span class="st">"orange"</span>,<span class="at">fill=</span><span class="st">"yellow"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-lm-boot" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/fig-lm-boot-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Figure&nbsp;6: Bootstrap distribution of the regression line for the simulated data. The true value is given by <span class="math inline">\(y = 0.5 x + 2\)</span></figcaption>
+</figure>
+</div>
+</div>
+</div>
 <p>Now that you have a background in the general idea of statistical inference and the approach we will take to inference using the bootstrap, let’s work together in an RStudio project to apply our knowledge to actual data science problems.</p>
 </section>
 </section>
