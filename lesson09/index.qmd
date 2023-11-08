@@ -163,6 +163,122 @@ Our resampling simulation in the last section is an example of the **bootstrap**
 
 While the mean of the bootstrap will be the mean of the sample and not necessarily the mean of the population, the standard deviation of the bootstrap will be a good estimate for the standard error of the statistic. Thus, the bootstrap distribution allows us to assess the uncertainty of an estimate. The power of the bootstrap technique is that it works for any statistic. For example, we can use the bootstrap to estimate the sampling distribution for the mean for a normal random variable, or parameters in models such as the coefficients in a linear regression model. We can even use the bootstrap to estimate the uncertainty in model predictions, even if the model is non-parametric.  
 
+### Example: Bootstrap Mean
+
+Let's take $n = 50$ samples $X_{1},X_{2},\ldots, X_{n}$ from a normal distribution with $\mu = 10$ and $\sigma = 1.75$, that is, with $X_{i} \sim \text{Norm}(\mu = 10, \sigma = 1.75 )$:
+
+```{r}
+#| code-fold: false
+
+set.seed(4321)
+n <- 50
+mu <- 10
+sigma <- 1.75
+x <- rnorm(n,mu,sigma)
+```
+
+A point estimate for the mean $\mu$ is the sample mean $\hat{\mu}$ defined by
+
+$$
+\hat{\mu} = \frac{X_{1} + X_{2} + \cdots + X_{n}}{n}
+$$
+Let's compute the sample mean for our sample:
+
+```{r}
+#| code-fold: false
+
+
+(x_bar <- mean(x))
+```
+
+Now, let's build the bootstrap distribution for the sample mean. We will do this by resampling with replacement from the sample 500 times. For each resample, we will compute the sample mean. The code below does this and displays the results. 
+
+```{r}
+#| code-fold: false
+
+
+mean_resample_df <- tibble(x_bar_b = replicate(500,mean(sample(x,n,replace=TRUE)))) 
+
+mean_resample_df %>%
+  ggplot(aes(x = x_bar_b)) +
+  geom_histogram(bins = 12,color="white") + 
+  labs(x = "Sample mean",y = "Count") 
+```
+
+Now, statistical theory tell us that the standard error of the sample mean is given by
+
+$$
+\text{SE}(\hat{\mu}) = \frac{\sigma}{\sqrt{n}}
+$$
+where $\sigma$ is the standard deviation of the population. Let's compute the standard error of the sample mean for our sample:
+
+```{r}
+#| code-fold: false
+
+
+(se <- sigma/sqrt(n))
+```
+
+Let's compare this with the standard deviation of our bootstrap distribution:
+
+```{r}
+#| code-fold: false
+
+
+sd(mean_resample_df$x_bar_b)
+```
+
+We use confidence intervals (CIs) to quantify the uncertainty in our estimates. Classically, a 95% CI for the mean is computed in R using:
+
+```{r}
+#| code-fold: false
+
+
+t.test(x)$conf.int
+```
+
+or using a function from the `infer` package:
+
+```{r}
+#| code-fold: false
+
+
+sampling_dist <- tibble(x=x) %>%
+  specify(response = x) %>%
+  assume("t")
+
+sample_mean <- tibble(x=x) %>%
+  specify(response = x) %>%
+  calculate(stat = "mean")
+
+get_confidence_interval(sampling_dist,point_estimate = sample_mean,level=0.95,type="se")
+```
+
+We can estimate this CI using the bootstrap. The code below computes an estimated 95% CI for the mean using the bootstrap:
+
+```{r}
+#| code-fold: false
+
+
+quantile(mean_resample_df$x_bar_b,probs = c(0.025,0.975))
+
+```
+
+or using the `infer` package:
+
+```{r}
+#| code-fold: false
+
+
+mean_resample_df %>%
+  get_confidence_interval(level=0.95)
+  
+
+```
+
+**Exercise:** Redo what we have done in boootstraping the mean of a sample from a normal random variable but instead boostrap the median. You can use the fact that teh function `median` computes the sample median. How do the results compare and contrast with those of the mean?
+
+
 Now that you have a background in the general idea of statistical inference and the approach we will take to inference using the bootstrap, let's work together in an RStudio project to apply our knowledge to actual data science problems.
 
 ## References

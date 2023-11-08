@@ -182,7 +182,10 @@ div.csl-indent {
   <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a></li>
   <li><a href="#motivating-example" id="toc-motivating-example" class="nav-link" data-scroll-target="#motivating-example">Motivating Example</a></li>
   <li><a href="#resampling-experiment" id="toc-resampling-experiment" class="nav-link" data-scroll-target="#resampling-experiment">Resampling Experiment</a></li>
-  <li><a href="#bootstrap" id="toc-bootstrap" class="nav-link" data-scroll-target="#bootstrap">Bootstrap</a></li>
+  <li><a href="#bootstrap" id="toc-bootstrap" class="nav-link" data-scroll-target="#bootstrap">Bootstrap</a>
+  <ul class="collapse">
+  <li><a href="#example-bootstrap-mean" id="toc-example-bootstrap-mean" class="nav-link" data-scroll-target="#example-bootstrap-mean">Example: Bootstrap Mean</a></li>
+  </ul></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </nav>
@@ -4372,7 +4375,104 @@ div.csl-indent {
 <p>if the sample is representative of the population, then the bootstrap distribution of our statistics obtained by resampling with replacement from the sample should approximate the sampling distribution for our statistic.</p>
 </blockquote>
 <p>While the mean of the bootstrap will be the mean of the sample and not necessarily the mean of the population, the standard deviation of the bootstrap will be a good estimate for the standard error of the statistic. Thus, the bootstrap distribution allows us to assess the uncertainty of an estimate. The power of the bootstrap technique is that it works for any statistic. For example, we can use the bootstrap to estimate the sampling distribution for the mean for a normal random variable, or parameters in models such as the coefficients in a linear regression model. We can even use the bootstrap to estimate the uncertainty in model predictions, even if the model is non-parametric.</p>
+<section id="example-bootstrap-mean" class="level3">
+<h3 class="anchored" data-anchor-id="example-bootstrap-mean">Example: Bootstrap Mean</h3>
+<p>Let’s take <span class="math inline">\(n = 50\)</span> samples <span class="math inline">\(X_{1},X_{2},\ldots, X_{n}\)</span> from a normal distribution with <span class="math inline">\(\mu = 10\)</span> and <span class="math inline">\(\sigma = 1.75\)</span>, that is, with <span class="math inline">\(X_{i} \sim \text{Norm}(\mu = 10, \sigma = 1.75 )\)</span>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">4321</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>sigma <span class="ot">&lt;-</span> <span class="fl">1.75</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n,mu,sigma)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A point estimate for the mean <span class="math inline">\(\mu\)</span> is the sample mean <span class="math inline">\(\hat{\mu}\)</span> defined by</p>
+<p><span class="math display">\[
+\hat{\mu} = \frac{X_{1} + X_{2} + \cdots + X_{n}}{n}
+\]</span> Let’s compute the sample mean for our sample:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(x_bar <span class="ot">&lt;-</span> <span class="fu">mean</span>(x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10.20559</code></pre>
+</div>
+</div>
+<p>Now, let’s build the bootstrap distribution for the sample mean. We will do this by resampling with replacement from the sample 500 times. For each resample, we will compute the sample mean. The code below does this and displays the results.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>mean_resample_df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x_bar_b =</span> <span class="fu">replicate</span>(<span class="dv">500</span>,<span class="fu">mean</span>(<span class="fu">sample</span>(x,n,<span class="at">replace=</span><span class="cn">TRUE</span>)))) </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>mean_resample_df <span class="sc">%&gt;%</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x_bar_b)) <span class="sc">+</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">12</span>,<span class="at">color=</span><span class="st">"white"</span>) <span class="sc">+</span> </span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Sample mean"</span>,<span class="at">y =</span> <span class="st">"Count"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Now, statistical theory tell us that the standard error of the sample mean is given by</p>
+<p><span class="math display">\[
+\text{SE}(\hat{\mu}) = \frac{\sigma}{\sqrt{n}}
+\]</span> where <span class="math inline">\(\sigma\)</span> is the standard deviation of the population. Let’s compute the standard error of the sample mean for our sample:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(se <span class="ot">&lt;-</span> sigma<span class="sc">/</span><span class="fu">sqrt</span>(n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.2474874</code></pre>
+</div>
+</div>
+<p>Let’s compare this with the standard deviation of our bootstrap distribution:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(mean_resample_df<span class="sc">$</span>x_bar_b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1938924</code></pre>
+</div>
+</div>
+<p>We use confidence intervals (CIs) to quantify the uncertainty in our estimates. Classically, a 95% CI for the mean is computed in R using:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(x)<span class="sc">$</span>conf.int</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  9.81419 10.59699
+attr(,"conf.level")
+[1] 0.95</code></pre>
+</div>
+</div>
+<p>or using a function from the <code>infer</code> package:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>sampling_dist <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x=</span>x) <span class="sc">%&gt;%</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(<span class="at">response =</span> x) <span class="sc">%&gt;%</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">assume</span>(<span class="st">"t"</span>)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>sample_mean <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x=</span>x) <span class="sc">%&gt;%</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(<span class="at">response =</span> x) <span class="sc">%&gt;%</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"mean"</span>)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="fu">get_confidence_interval</span>(sampling_dist,<span class="at">point_estimate =</span> sample_mean,<span class="at">level=</span><span class="fl">0.95</span>,<span class="at">type=</span><span class="st">"se"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 2
+  lower_ci upper_ci
+     &lt;dbl&gt;    &lt;dbl&gt;
+1     9.81     10.6</code></pre>
+</div>
+</div>
+<p>We can estimate this CI using the bootstrap. The code below computes an estimated 95% CI for the mean using the bootstrap:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(mean_resample_df<span class="sc">$</span>x_bar_b,<span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.025</span>,<span class="fl">0.975</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     2.5%     97.5% 
+ 9.831469 10.597012 </code></pre>
+</div>
+</div>
+<p>or using the <code>infer</code> package:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>mean_resample_df <span class="sc">%&gt;%</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_confidence_interval</span>(<span class="at">level=</span><span class="fl">0.95</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 2
+  lower_ci upper_ci
+     &lt;dbl&gt;    &lt;dbl&gt;
+1     9.83     10.6</code></pre>
+</div>
+</div>
+<p><strong>Exercise:</strong> Redo what we have done in boootstraping the mean of a sample from a normal random variable but instead boostrap the median. You can use the fact that teh function <code>median</code> computes the sample median. How do the results compare and contrast with those of the mean?</p>
 <p>Now that you have a background in the general idea of statistical inference and the approach we will take to inference using the bootstrap, let’s work together in an RStudio project to apply our knowledge to actual data science problems.</p>
+</section>
 </section>
 <section id="references" class="level2">
 <h2 class="anchored" data-anchor-id="references">References</h2>
