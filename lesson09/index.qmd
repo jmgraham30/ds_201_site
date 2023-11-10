@@ -674,13 +674,13 @@ null_dist %>%
   get_p_value(obs_stat = p_hat, direction = "two-sided")
 ```
 
-While we do not obtain the same exact p-value, our conclusion remains the same. We fail to reject the null hypothesis. We can visualize this result using the functions `visualize` and `shade_p_value`. The resulting visualization is shown in @fig-coin-toss-p-value. 
+While we do not obtain the same exact p-value, our conclusion remains the same. We fail to reject the null hypothesis. We can visualize this result using the functions `visualize` and `shade_p_value`. The resulting visualization is shown in @fig-coin-toss-p-value. The p-value is the area under the curve that is shaded in red. The p-value is the probability of observing a point estimate that is as or more extreme than the one we obtained from the data, assuming that the null hypothesis is true; and this area is shaded in red in the plot.
 
 ```{r}
 #| message: false
 #| warning: false
 #| label: fig-coin-toss-p-value
-#| fig-cap: Visualization of the p-value for the coin toss example.
+#| fig-cap: Visualization of the p-value for the coin toss example. The p-value is the area that is shaded in red.
 
 visualize(null_dist) +
   shade_p_value(obs_stat = p_hat, direction = "two-sided")
