@@ -187,6 +187,7 @@ div.csl-indent {
   <li><a href="#example-bootstrap-mean" id="toc-example-bootstrap-mean" class="nav-link" data-scroll-target="#example-bootstrap-mean">Example: Bootstrap Mean</a></li>
   <li><a href="#example-linear-regression" id="toc-example-linear-regression" class="nav-link" data-scroll-target="#example-linear-regression">Example: Linear Regression</a></li>
   </ul></li>
+  <li><a href="#statistical-hypothesis-testing" id="toc-statistical-hypothesis-testing" class="nav-link" data-scroll-target="#statistical-hypothesis-testing">Statistical Hypothesis Testing</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </nav>
@@ -4669,8 +4670,279 @@ Y = \beta_{0} + \beta_{1}x + \epsilon
 </div>
 </div>
 </div>
-<p>Now that you have a background in the general idea of statistical inference and the approach we will take to inference using the bootstrap, let’s work together in an RStudio project to apply our knowledge to actual data science problems.</p>
 </section>
+</section>
+<section id="statistical-hypothesis-testing" class="level2">
+<h2 class="anchored" data-anchor-id="statistical-hypothesis-testing">Statistical Hypothesis Testing</h2>
+<p>Consider the question, “is a given coin fair”? One approach to addressing this question is by using point estimation and confidence intervals. For example, we could flip the coin 100 times and observe 60 heads. We could then estimate the probability of heads as <span class="math inline">\(\hat{\pi} = 0.6\)</span> and construct a 95% confidence interval for <span class="math inline">\(\pi\)</span>. If the confidence interval contains 0.5, then we have little reason to doubt that the coin is fair. If the confidence interval does not contain 0.5, then we have evidence to doubt that the coin is fair.</p>
+<p><strong>Exercise:</strong> Explain the reasoning behind the previous paragraph.</p>
+<p>Another approach to addressing the question of whether a coin is fair is by using statistical hypothesis testing. That is, we rephrase our problem as follows:</p>
+<ul>
+<li><p><strong>Null Hypothesis:</strong> The coin is fair, that is, <span class="math inline">\(\pi = 0.5\)</span>.</p></li>
+<li><p><strong>Alternative Hypothesis:</strong> The coin is not fair, that is, <span class="math inline">\(\pi \neq 0.5\)</span>.</p></li>
+</ul>
+<p>We then collect data, <em>i.e.</em>, toss our coin many times to try to refute the null hypothesis. Then, we assess whether the evidence sufficiently strong to reject the null hypothesis or not. The way we do this is by computing a test statistic. The test statistic is a function of the data that we use to decide whether to reject the null hypothesis. For example, we could flip the coin 100 times and observe 60 heads. We could then compute the test statistic <span class="math inline">\(T = \frac{60}{100} = 0.6\)</span>. If the null hypothesis is true and coin is fair, then <span class="math inline">\(T\)</span> should be close to 0.5. If the coin is not fair, then <span class="math inline">\(T\)</span> should be far from 0.5. One thing we need to address is, “how far is far?” That is, how far from 0.5 does <span class="math inline">\(T\)</span> need to be for us to reject the null hypothesis? This is where the concept of a <a href="https://en.wikipedia.org/wiki/P-value"><strong>p-value</strong></a> comes in.</p>
+<blockquote class="blockquote">
+<p>The p-value is the probability of observing a test statistic as extreme or more extreme than the one we observed if the null hypothesis is true.</p>
+</blockquote>
+<p>Let’s work through a computational example to get a better sense of how statistical hypothesis testing works. We begin by simulating 100 tosses of a fair coin.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">4312</span>)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>N_tosses <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>coin_toss_df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">coin_toss =</span> <span class="fu">rbinom</span>(N_tosses,<span class="dv">1</span>,<span class="fl">0.5</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">heads_tails =</span> <span class="fu">ifelse</span>(coin_toss <span class="sc">==</span> <span class="dv">1</span>, <span class="st">"heads"</span>, <span class="st">"tails"</span>))</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(coin_toss_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 100
+Columns: 2
+$ coin_toss   &lt;int&gt; 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0…
+$ heads_tails &lt;chr&gt; "heads", "tails", "heads", "tails", "tails", "tails", "hea…</code></pre>
+</div>
+</div>
+<p><a href="#tbl-coin-toss-results">Table&nbsp;3</a> shows the results of the 100 tosses of the fair coin.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>toss_results <span class="ot">&lt;-</span> <span class="fu">table</span>(coin_toss_df<span class="sc">$</span>heads_tails)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>toss_results <span class="sc">%&gt;%</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="tbl-coin-toss-results" class="anchored">
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<caption>Table&nbsp;3: Results of 100 tosses of a fair coin. The coin toss results are stored in a variable named <code>toss_results</code>.</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Var1</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Freq</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">heads</td>
+<td style="text-align: right;">52</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">tails</td>
+<td style="text-align: right;">48</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+</div>
+</div>
+<p>We can also visualize the results using a bar chart as shown in <a href="#fig-coin-toss-results">Figure&nbsp;7</a>.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>coin_toss_df <span class="sc">%&gt;%</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> heads_tails)) <span class="sc">+</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">fill=</span><span class="st">"lightblue"</span>) <span class="sc">+</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Coin Toss"</span>, <span class="at">y =</span> <span class="st">"Count"</span>, <span class="at">title =</span> <span class="st">"Coin Toss Results"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-coin-toss-results" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/fig-coin-toss-results-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Figure&nbsp;7: Bar chart showing the results of 100 tosses of a fair coin. The coin toss results are stored in a variable named <code>toss_results</code>.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Our question is, could this be the result of a fair coin? Let’s proceed to address this question first by computing our point estimate for the probability of heads.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>p_hat <span class="ot">&lt;-</span> coin_toss_df <span class="sc">%&gt;%</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(<span class="at">response =</span> heads_tails, <span class="at">success =</span> <span class="st">"heads"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"prop"</span>)</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>p_hat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Response: heads_tails (factor)
+# A tibble: 1 × 1
+   stat
+  &lt;dbl&gt;
+1  0.52</code></pre>
+</div>
+</div>
+<p>Thus, our point estimate is 0.52. Note that this value was obtained using functions from the <code>infer</code> package.</p>
+<p>We can use bootstrapping to estimate the uncertainty in our point estimate. In order to do this, we will create bootstrap resamples using the function <code>bootstraps</code> from the <code>rsample</code> package.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>coin_boots <span class="ot">&lt;-</span> <span class="fu">bootstraps</span>(coin_toss_df, <span class="at">times =</span> <span class="dv">1000</span>)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>coin_boots</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># Bootstrap sampling 
+# A tibble: 1,000 × 2
+   splits           id           
+   &lt;list&gt;           &lt;chr&gt;        
+ 1 &lt;split [100/37]&gt; Bootstrap0001
+ 2 &lt;split [100/37]&gt; Bootstrap0002
+ 3 &lt;split [100/37]&gt; Bootstrap0003
+ 4 &lt;split [100/37]&gt; Bootstrap0004
+ 5 &lt;split [100/33]&gt; Bootstrap0005
+ 6 &lt;split [100/37]&gt; Bootstrap0006
+ 7 &lt;split [100/33]&gt; Bootstrap0007
+ 8 &lt;split [100/37]&gt; Bootstrap0008
+ 9 &lt;split [100/36]&gt; Bootstrap0009
+10 &lt;split [100/38]&gt; Bootstrap0010
+# ℹ 990 more rows</code></pre>
+</div>
+</div>
+<p>Note that this results in a data frame that stores the bootstrap resamples in a list column named <code>splits</code>. In order to extract the data from a split object, we use the function <code>analysis</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>coin_boots<span class="sc">$</span>splits[[<span class="dv">1</span>]] <span class="sc">%&gt;%</span> </span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">analysis</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 100 × 2
+   coin_toss heads_tails
+       &lt;int&gt; &lt;chr&gt;      
+ 1         1 heads      
+ 2         0 tails      
+ 3         1 heads      
+ 4         1 heads      
+ 5         1 heads      
+ 6         1 heads      
+ 7         0 tails      
+ 8         0 tails      
+ 9         0 tails      
+10         1 heads      
+# ℹ 90 more rows</code></pre>
+</div>
+</div>
+<p>Now, we need to compute the point estimate for each of the resampled data sets. We can do this using the function <code>map_dbl</code> from the <code>purrr</code> package. First, we need a function that will compute our point estimate from any given split object. We create such a function and call it <code>resample_prop</code>. Then, we use <code>map_dbl</code> to apply this function to each of the splits in our data frame and add the results to the data frame that contains out bootstrap resamples.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>resample_prop <span class="ot">&lt;-</span> <span class="cf">function</span>(split){</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a> num_heads <span class="ot">&lt;-</span>  split <span class="sc">%&gt;%</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">analysis</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>    .<span class="sc">$</span>coin_toss <span class="sc">%&gt;%</span></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sum</span>()</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a> <span class="fu">return</span>(num_heads<span class="sc">/</span>N_tosses)</span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a>coin_boots <span class="ot">&lt;-</span> coin_boots <span class="sc">%&gt;%</span></span>
+<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop_heads =</span> <span class="fu">map_dbl</span>(splits, resample_prop))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><a href="#fig-coin-toss-resamp-results">Figure&nbsp;8</a> shows a histogram of the bootstrap distribution for <span class="math inline">\(\hat{\pi}\)</span>.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>coin_boots <span class="sc">%&gt;%</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> prop_heads)) <span class="sc">+</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">20</span>,<span class="at">fill=</span><span class="st">"lightblue"</span>) <span class="sc">+</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> p_hat<span class="sc">$</span>stat[<span class="dv">1</span>], <span class="at">color =</span> <span class="st">"darkgreen"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>, <span class="at">linetype=</span><span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Proportion of Heads"</span>, <span class="at">y =</span> <span class="st">"Count"</span>, <span class="at">title =</span> <span class="st">"Bootstrapped Proportions of Heads"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-coin-toss-resamp-results" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/fig-coin-toss-resamp-results-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Figure&nbsp;8: Histogram of the bootstrap distribution for <span class="math inline">\(\hat{\pi}\)</span>.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Then, our estimated confidence interval is obtained using the following command:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(coin_boots<span class="sc">$</span>prop_heads, <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> 2.5% 97.5% 
+ 0.42  0.61 </code></pre>
+</div>
+</div>
+<p>We see that 0.5 is contained in the 95% bootstrap confidence interval. One can also compute a 95% confidence interval using the function <code>prop.test</code> from the <code>stats</code> package. This function does not use bootstrapping but instead uses classical formulas for the confidence interval.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.test</span>(toss_results[<span class="dv">1</span>],N_tosses,<span class="at">correct =</span> <span class="cn">FALSE</span>)<span class="sc">$</span>conf.int</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.4231658 0.6153545
+attr(,"conf.level")
+[1] 0.95</code></pre>
+</div>
+</div>
+<p>We obtain nearly the same results. Let’s call <code>prop.test</code> again but this time print out more than just the CI:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.test</span>(toss_results[<span class="dv">1</span>],N_tosses,<span class="at">correct =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    1-sample proportions test without continuity correction
+
+data:  toss_results[1] out of N_tosses, null probability 0.5
+X-squared = 0.16, df = 1, p-value = 0.6892
+alternative hypothesis: true p is not equal to 0.5
+95 percent confidence interval:
+ 0.4231658 0.6153545
+sample estimates:
+   p 
+0.52 </code></pre>
+</div>
+</div>
+<p>In addition to the CI and other information, this function reports a p-value. Again, the p-value is the probability of observing a point estimate that is as or more extreme that the one we initially computed from the data, assuming that the null hypothesis is true. Here the p-value is computed using classical formulas and not bootstrapping. The function <code>prop_test</code> from <code>infer</code> gives a tidied version of the output from <code>prop.test</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop_test</span>(coin_toss_df,heads_tails <span class="sc">~</span> <span class="cn">NULL</span>, </span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">succes =</span> <span class="st">"heads"</span>, </span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">p =</span> <span class="fl">0.5</span>, <span class="at">z =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">conf_int =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">conf_level =</span> <span class="fl">0.95</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 3
+  statistic p_value alternative
+      &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;      
+1     0.400   0.689 two.sided  </code></pre>
+</div>
+</div>
+<p>Whichever of the functions <code>prop.test</code> or <code>prop_test</code> we use to compute it, the p-value is about 0.69. We interpret this value as follows: Assuming the null hypothesis to be true, there is about a 69% chance of observing a point estimate that is as or more extreme than the one we obtained from the data. Thus, the results of our coin toss are not at all rare so we should probably not consider our data as providing strong evidence against the null hypothesis. One would typically say, “we decide to fail to reject the null hypothesis.”</p>
+<p>The <code>infer</code> package contains functions that use resampling-based methods to obtain a p-value. Specifically, we use simulations to we generate a null distribution using the function <code>generate</code>. the function <code>get_p_value</code> can be used to obtain a p-value for any statistic that is computed using the <code>calculate</code> function. In order to use this function, we need to first specify the null hypothesis. We do this using the function <code>hypothesize</code>. Then, we generate a null distribution using the function <code>generate</code>. Finally, we use the function <code>get_p_value</code> to obtain the p-value.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>null_dist <span class="ot">&lt;-</span> coin_toss_df <span class="sc">%&gt;%</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(<span class="at">response =</span> heads_tails, <span class="at">success =</span> <span class="st">"heads"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hypothesize</span>(<span class="at">null =</span> <span class="st">"point"</span>, <span class="at">p =</span> .<span class="dv">5</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">1000</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"prop"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Once we have generated a null distribution, we can use the function <code>get_p_value</code> to obtain a p-value for any statistic that is computed using the <code>calculate</code> function. In this case, we want to obtain a p-value for the statistic <span class="math inline">\(\hat{\pi}\)</span>. We do this using the following command:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>null_dist <span class="sc">%&gt;%</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_p_value</span>(<span class="at">obs_stat =</span> p_hat, <span class="at">direction =</span> <span class="st">"two-sided"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+  p_value
+    &lt;dbl&gt;
+1   0.742</code></pre>
+</div>
+</div>
+<p>While we do not obtain the same exact p-value, our conclusion remains the same. We fail to reject the null hypothesis. We can visualize this result using the functions <code>visualize</code> and <code>shade_p_value</code>. The resulting visualization is shown in <a href="#fig-coin-toss-p-value">Figure&nbsp;9</a>.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">visualize</span>(null_dist) <span class="sc">+</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shade_p_value</span>(<span class="at">obs_stat =</span> p_hat, <span class="at">direction =</span> <span class="st">"two-sided"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-coin-toss-p-value" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/fig-coin-toss-p-value-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Figure&nbsp;9: Visualization of the p-value for the coin toss example.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Exercise:</strong> Modify the code we have used to simulate data from a coin toss where the probability of heads is 0.4 instead of 0.5. If we test a hypothesis that the coin is fair, that is, that <span class="math inline">\(\pi = 0.5\)</span>, do you think we should likely reject or fail to reject the null hypothesis? Use the techniques we have developed to test the hypothesis that the coin is fair, that is, that <span class="math inline">\(\pi = 0.5\)</span>.</p>
+<p>Generally, if we have a parameter, then we can test a statistical hypothesis about that parameter. For example, we can test a statistical hypothesis about a value for the mean <span class="math inline">\(\mu\)</span> associated with a normal distribution. Generalizing that, we can test a statistical hypothesis about a value for a slope in a linear regression model. In practically any such problem, what we can do is generate a null distribution via simulation and then see how likely the a value as or more extreme than the observed value of the statistic is under the null distribution. This is the basic idea behind resampling-based inference.</p>
+<p>Now that you have a background in the general idea of statistical inference and the approach we will take to inference using the bootstrap, let’s work together in an RStudio project to apply our knowledge to actual data science problems.</p>
 </section>
 <section id="references" class="level2">
 <h2 class="anchored" data-anchor-id="references">References</h2>
@@ -4702,14 +4974,14 @@ Expand for Session Info
 <pre><code>─ Session info ───────────────────────────────────────────────────────────────
  setting  value
  version  R version 4.3.2 (2023-10-31)
- os       macOS Sonoma 14.1
+ os       macOS Sonoma 14.1.1
  system   aarch64, darwin20
  ui       X11
  language (EN)
  collate  en_US.UTF-8
  ctype    en_US.UTF-8
  tz       America/New_York
- date     2023-11-08
+ date     2023-11-10
  pandoc   3.1.9 @ /opt/homebrew/bin/ (via rmarkdown)
  quarto   1.3.450 @ /usr/local/bin/quarto
 
