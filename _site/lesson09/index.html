@@ -4681,9 +4681,9 @@ Y = \beta_{0} + \beta_{1}x + \epsilon
 <li><p><strong>Null Hypothesis:</strong> The coin is fair, that is, <span class="math inline">\(\pi = 0.5\)</span>.</p></li>
 <li><p><strong>Alternative Hypothesis:</strong> The coin is not fair, that is, <span class="math inline">\(\pi \neq 0.5\)</span>.</p></li>
 </ul>
-<p>We then collect data, <em>i.e.</em>, toss our coin many times to try to refute the null hypothesis. Then, we assess whether the evidence sufficiently strong to reject the null hypothesis or not. The way we do this is by computing a test statistic. The test statistic is a function of the data that we use to decide whether to reject the null hypothesis. For example, we could flip the coin 100 times and observe 60 heads. We could then compute the test statistic <span class="math inline">\(T = \frac{60}{100} = 0.6\)</span>. If the null hypothesis is true and coin is fair, then <span class="math inline">\(T\)</span> should be close to 0.5. If the coin is not fair, then <span class="math inline">\(T\)</span> should be far from 0.5. One thing we need to address is, “how far is far?” That is, how far from 0.5 does <span class="math inline">\(T\)</span> need to be for us to reject the null hypothesis? This is where the concept of a <a href="https://en.wikipedia.org/wiki/P-value"><strong>p-value</strong></a> comes in.</p>
+<p>We then collect data, <em>i.e.</em>, toss our coin many times to try to refute the null hypothesis. Then, we assess whether the evidence is sufficiently strong to reject the null hypothesis or not. The way we do this is by computing a test statistic. The test statistic is a function of the data that we use to decide whether to reject the null hypothesis. For example, we could flip the coin 100 times and observe 60 heads. We could then compute the test statistic <span class="math inline">\(T = \frac{60}{100} = 0.6\)</span>. If the null hypothesis is true and coin is fair, then <span class="math inline">\(T\)</span> should be close to 0.5. If the coin is not fair, then <span class="math inline">\(T\)</span> should be far from 0.5. One thing we need to address is, “how far is far?” That is, how far from 0.5 does <span class="math inline">\(T\)</span> need to be for us to reject the null hypothesis? This is where the concept of a <a href="https://en.wikipedia.org/wiki/P-value"><strong>p-value</strong></a> comes in.</p>
 <blockquote class="blockquote">
-<p>The p-value is the probability of observing a test statistic as extreme or more extreme than the one we observed if the null hypothesis is true.</p>
+<p>The p-value is the probability of observing a test statistic as or more extreme than the one we observed if the null hypothesis is true.</p>
 </blockquote>
 <p>Let’s work through a computational example to get a better sense of how statistical hypothesis testing works. We begin by simulating 100 tosses of a fair coin.</p>
 <div class="cell">
@@ -4821,7 +4821,7 @@ $ heads_tails &lt;chr&gt; "heads", "tails", "heads", "tails", "tails", "tails", 
 # ℹ 90 more rows</code></pre>
 </div>
 </div>
-<p>Now, we need to compute the point estimate for each of the resampled data sets. We can do this using the function <code>map_dbl</code> from the <code>purrr</code> package. First, we need a function that will compute our point estimate from any given split object. We create such a function and call it <code>resample_prop</code>. Then, we use <code>map_dbl</code> to apply this function to each of the splits in our data frame and add the results to the data frame that contains out bootstrap resamples.</p>
+<p>Now, we need to compute the point estimate for each of the resampled data sets. We can do this using the function <code>map_dbl</code> from the <code>purrr</code> package. First, we need a function that will compute our point estimate from any given split object. We create such a function and call it <code>resample_prop</code>. Then, we use <code>map_dbl</code> to apply this function to each of the splits in our data frame and add the results to the data frame that contains our bootstrap resamples.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>resample_prop <span class="ot">&lt;-</span> <span class="cf">function</span>(split){</span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  </span>
@@ -4904,8 +4904,11 @@ sample estimates:
 1     0.400   0.689 two.sided  </code></pre>
 </div>
 </div>
-<p>Whichever of the functions <code>prop.test</code> or <code>prop_test</code> we use to compute it, the p-value is about 0.69. We interpret this value as follows: Assuming the null hypothesis to be true, there is about a 69% chance of observing a point estimate that is as or more extreme than the one we obtained from the data. Thus, the results of our coin toss are not at all rare so we should probably not consider our data as providing strong evidence against the null hypothesis. One would typically say, “we decide to fail to reject the null hypothesis.”</p>
-<p>The <code>infer</code> package contains functions that use resampling-based methods to obtain a p-value. Specifically, we use simulations to we generate a null distribution using the function <code>generate</code>. the function <code>get_p_value</code> can be used to obtain a p-value for any statistic that is computed using the <code>calculate</code> function. In order to use this function, we need to first specify the null hypothesis. We do this using the function <code>hypothesize</code>. Then, we generate a null distribution using the function <code>generate</code>. Finally, we use the function <code>get_p_value</code> to obtain the p-value.</p>
+<p>Whichever of the functions <code>prop.test</code> or <code>prop_test</code> we use to compute it, the p-value is about 0.69. We interpret this value as follows:</p>
+<blockquote class="blockquote">
+<p>Assuming the null hypothesis to be true, there is about a 69% chance of observing a point estimate that is as or more extreme than the one we obtained from the data. Thus, the results of our coin toss are not at all rare so we should probably not consider our data as providing strong evidence against the null hypothesis. One would typically say, “we decide to fail to reject the null hypothesis.”</p>
+</blockquote>
+<p>The <code>infer</code> package contains functions that use resampling-based methods to obtain a p-value. Specifically, we use simulations to generate a null distribution using the function <code>generate</code>. The function <code>get_p_value</code> can be used to obtain a p-value for any statistic that is computed using the <code>calculate</code> function. In order to use this function, we need to first specify the null hypothesis. We do this using the function <code>hypothesize</code>. Then, we generate a null distribution using the function <code>generate</code>. Finally, we use the function <code>get_p_value</code> to obtain the p-value.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>null_dist <span class="ot">&lt;-</span> coin_toss_df <span class="sc">%&gt;%</span></span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(<span class="at">response =</span> heads_tails, <span class="at">success =</span> <span class="st">"heads"</span>) <span class="sc">%&gt;%</span></span>
@@ -4981,7 +4984,7 @@ Expand for Session Info
  collate  en_US.UTF-8
  ctype    en_US.UTF-8
  tz       America/New_York
- date     2023-11-10
+ date     2023-11-20
  pandoc   3.1.9 @ /opt/homebrew/bin/ (via rmarkdown)
  quarto   1.3.450 @ /usr/local/bin/quarto
 
@@ -4989,7 +4992,7 @@ Expand for Session Info
  package      * version date (UTC) lib source
  broom        * 1.0.5   2023-06-09 [1] CRAN (R 4.3.0)
  dials        * 1.2.0   2023-04-03 [1] CRAN (R 4.3.0)
- dplyr        * 1.1.3   2023-09-03 [1] CRAN (R 4.3.0)
+ dplyr        * 1.1.4   2023-11-17 [1] CRAN (R 4.3.1)
  forcats      * 1.0.0   2023-01-29 [1] CRAN (R 4.3.0)
  ggplot2      * 3.4.4   2023-10-12 [1] CRAN (R 4.3.1)
  infer        * 1.0.5   2023-09-06 [1] CRAN (R 4.3.0)
@@ -5003,7 +5006,7 @@ Expand for Session Info
  rsample      * 1.2.0   2023-08-23 [1] CRAN (R 4.3.0)
  scales       * 1.2.1   2022-08-20 [1] CRAN (R 4.3.0)
  sessioninfo  * 1.2.2   2021-12-06 [1] CRAN (R 4.3.0)
- stringr      * 1.5.0   2022-12-02 [1] CRAN (R 4.3.0)
+ stringr      * 1.5.1   2023-11-14 [1] CRAN (R 4.3.1)
  tibble       * 3.2.1   2023-03-20 [1] CRAN (R 4.3.0)
  tidymodels   * 1.1.1   2023-08-24 [1] CRAN (R 4.3.0)
  tidyr        * 1.3.0   2023-01-24 [1] CRAN (R 4.3.0)
