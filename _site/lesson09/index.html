@@ -4678,8 +4678,8 @@ Y = \beta_{0} + \beta_{1}x + \epsilon
 <p><strong>Exercise:</strong> Explain the reasoning behind the previous paragraph.</p>
 <p>Another approach to addressing the question of whether a coin is fair is by using statistical hypothesis testing. That is, we rephrase our problem as follows:</p>
 <ul>
-<li><p><strong>Null Hypothesis:</strong> The coin is fair, that is, <span class="math inline">\(\pi = 0.5\)</span>.</p></li>
-<li><p><strong>Alternative Hypothesis:</strong> The coin is not fair, that is, <span class="math inline">\(\pi \neq 0.5\)</span>.</p></li>
+<li><p><strong>Null Hypothesis:</strong> The coin is fair, that is, <span class="math inline">\(\pi_{0} = 0.5\)</span>.</p></li>
+<li><p><strong>Alternative Hypothesis:</strong> The coin is not fair, that is, <span class="math inline">\(\pi_{0} \neq 0.5\)</span>.</p></li>
 </ul>
 <p>We then collect data, <em>i.e.</em>, toss our coin many times to try to refute the null hypothesis. Then, we assess whether the evidence is sufficiently strong to reject the null hypothesis or not. The way we do this is by computing a test statistic. The test statistic is a function of the data that we use to decide whether to reject the null hypothesis. For example, we could flip the coin 100 times and observe 60 heads. We could then compute the test statistic <span class="math inline">\(T = \frac{60}{100} = 0.6\)</span>. If the null hypothesis is true and coin is fair, then <span class="math inline">\(T\)</span> should be close to 0.5. If the coin is not fair, then <span class="math inline">\(T\)</span> should be far from 0.5. One thing we need to address is, “how far is far?” That is, how far from 0.5 does <span class="math inline">\(T\)</span> need to be for us to reject the null hypothesis? This is where the concept of a <a href="https://en.wikipedia.org/wiki/P-value"><strong>p-value</strong></a> comes in.</p>
 <blockquote class="blockquote">
@@ -4704,11 +4704,14 @@ $ heads_tails &lt;chr&gt; "heads", "tails", "heads", "tails", "tails", "tails", 
 </div>
 <p><a href="#tbl-coin-toss-results">Table&nbsp;3</a> shows the results of the 100 tosses of the fair coin.</p>
 <div class="cell">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>toss_results <span class="ot">&lt;-</span> <span class="fu">table</span>(coin_toss_df<span class="sc">$</span>heads_tails)</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>toss_results <span class="sc">%&gt;%</span></span>
 <span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>() <span class="sc">%&gt;%</span></span>
 <span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div id="tbl-coin-toss-results" class="anchored">
 <table class="table table-sm table-striped small" data-quarto-postprocess="true">
@@ -4890,36 +4893,22 @@ sample estimates:
 0.52 </code></pre>
 </div>
 </div>
-<p>In addition to the CI and other information, this function reports a p-value. Again, the p-value is the probability of observing a point estimate that is as or more extreme that the one we initially computed from the data, assuming that the null hypothesis is true. Here the p-value is computed using classical formulas and not bootstrapping. The function <code>prop_test</code> from <code>infer</code> gives a tidied version of the output from <code>prop.test</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop_test</span>(coin_toss_df,heads_tails <span class="sc">~</span> <span class="cn">NULL</span>, </span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">succes =</span> <span class="st">"heads"</span>, </span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">p =</span> <span class="fl">0.5</span>, <span class="at">z =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">conf_int =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">conf_level =</span> <span class="fl">0.95</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 3
-  statistic p_value alternative
-      &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;      
-1     0.400   0.689 two.sided  </code></pre>
-</div>
-</div>
-<p>Whichever of the functions <code>prop.test</code> or <code>prop_test</code> we use to compute it, the p-value is about 0.69. We interpret this value as follows:</p>
+<p>In addition to the CI and other information, this function reports a p-value. Again, the p-value is the probability of observing a point estimate that is as or more extreme that the one we initially computed from the data, assuming that the null hypothesis is true. Here the p-value is computed using classical formulas and not bootstrapping. In this example, the function <code>prop.test</code> returns a p-value of about 0.69. We interpret this value as follows:</p>
 <blockquote class="blockquote">
-<p>Assuming the null hypothesis to be true, there is about a 69% chance of observing a point estimate that is as or more extreme than the one we obtained from the data. Thus, the results of our coin toss are not at all rare so we should probably not consider our data as providing strong evidence against the null hypothesis. One would typically say, “we decide to fail to reject the null hypothesis.”</p>
+<p>Assuming the null hypothesis to be true (<em>i.e.</em>, the coin is fair), there is about a 69% chance of observing a point estimate that is as or more extreme than the one we obtained from the data. Thus, the results of our coin toss are not at all rare so we should probably not consider our data as providing strong evidence against the null hypothesis. One would typically say, “we decide to fail to reject the null hypothesis.”</p>
 </blockquote>
 <p>The <code>infer</code> package contains functions that use resampling-based methods to obtain a p-value. Specifically, we use simulations to generate a null distribution using the function <code>generate</code>. The function <code>get_p_value</code> can be used to obtain a p-value for any statistic that is computed using the <code>calculate</code> function. In order to use this function, we need to first specify the null hypothesis. We do this using the function <code>hypothesize</code>. Then, we generate a null distribution using the function <code>generate</code>. Finally, we use the function <code>get_p_value</code> to obtain the p-value.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>null_dist <span class="ot">&lt;-</span> coin_toss_df <span class="sc">%&gt;%</span></span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(<span class="at">response =</span> heads_tails, <span class="at">success =</span> <span class="st">"heads"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hypothesize</span>(<span class="at">null =</span> <span class="st">"point"</span>, <span class="at">p =</span> .<span class="dv">5</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">1000</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"prop"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>null_dist <span class="ot">&lt;-</span> coin_toss_df <span class="sc">%&gt;%</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(<span class="at">response =</span> heads_tails, <span class="at">success =</span> <span class="st">"heads"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hypothesize</span>(<span class="at">null =</span> <span class="st">"point"</span>, <span class="at">p =</span> .<span class="dv">5</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">1000</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"prop"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Once we have generated a null distribution, we can use the function <code>get_p_value</code> to obtain a p-value for any statistic that is computed using the <code>calculate</code> function. In this case, we want to obtain a p-value for the statistic <span class="math inline">\(\hat{\pi}\)</span>. We do this using the following command:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>null_dist <span class="sc">%&gt;%</span></span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_p_value</span>(<span class="at">obs_stat =</span> p_hat, <span class="at">direction =</span> <span class="st">"two-sided"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>null_dist <span class="sc">%&gt;%</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_p_value</span>(<span class="at">obs_stat =</span> p_hat, <span class="at">direction =</span> <span class="st">"two-sided"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 1
   p_value
@@ -4931,8 +4920,8 @@ sample estimates:
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">visualize</span>(null_dist) <span class="sc">+</span></span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shade_p_value</span>(<span class="at">obs_stat =</span> p_hat, <span class="at">direction =</span> <span class="st">"two-sided"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">visualize</span>(null_dist) <span class="sc">+</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shade_p_value</span>(<span class="at">obs_stat =</span> p_hat, <span class="at">direction =</span> <span class="st">"two-sided"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div id="fig-coin-toss-p-value" class="quarto-figure quarto-figure-center anchored">
@@ -4984,7 +4973,7 @@ Expand for Session Info
  collate  en_US.UTF-8
  ctype    en_US.UTF-8
  tz       America/New_York
- date     2023-11-20
+ date     2023-11-29
  pandoc   3.1.9 @ /opt/homebrew/bin/ (via rmarkdown)
  quarto   1.3.450 @ /usr/local/bin/quarto
 
@@ -5004,7 +4993,7 @@ Expand for Session Info
  readr        * 2.1.4   2023-02-10 [1] CRAN (R 4.3.0)
  recipes      * 1.0.8   2023-08-25 [1] CRAN (R 4.3.0)
  rsample      * 1.2.0   2023-08-23 [1] CRAN (R 4.3.0)
- scales       * 1.2.1   2022-08-20 [1] CRAN (R 4.3.0)
+ scales       * 1.3.0   2023-11-28 [1] CRAN (R 4.3.1)
  sessioninfo  * 1.2.2   2021-12-06 [1] CRAN (R 4.3.0)
  stringr      * 1.5.1   2023-11-14 [1] CRAN (R 4.3.1)
  tibble       * 3.2.1   2023-03-20 [1] CRAN (R 4.3.0)

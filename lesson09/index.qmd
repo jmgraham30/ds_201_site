@@ -445,9 +445,9 @@ Consider the question, "is a given coin fair"? One approach to addressing this q
 
 Another approach to addressing the question of whether a coin is fair is by using statistical hypothesis testing. That is, we rephrase our problem as follows:
 
-- **Null Hypothesis:** The coin is fair, that is, $\pi = 0.5$.
+- **Null Hypothesis:** The coin is fair, that is, $\pi_{0} = 0.5$.
 
-- **Alternative Hypothesis:** The coin is not fair, that is, $\pi \neq 0.5$.
+- **Alternative Hypothesis:** The coin is not fair, that is, $\pi_{0} \neq 0.5$.
 
 We then collect data, *i.e.*, toss our coin many times to try to refute the null hypothesis. Then, we assess whether the evidence is sufficiently strong to reject the null hypothesis or not. The way we do this is by computing a test statistic. The test statistic is a function of the data that we use to decide whether to reject the null hypothesis. For example, we could flip the coin 100 times and observe 60 heads. We could then compute the test statistic $T = \frac{60}{100} = 0.6$. If the null hypothesis is true and coin is fair, then $T$ should be close to 0.5. If the coin is not fair, then $T$ should be far from 0.5. One thing we need to address is, "how far is far?" That is, how far from 0.5 does $T$ need to be for us to reject the null hypothesis? This is where the concept of a [**p-value**](https://en.wikipedia.org/wiki/P-value) comes in. 
 
@@ -474,7 +474,7 @@ glimpse(coin_toss_df)
 @tbl-coin-toss-results shows the results of the 100 tosses of the fair coin. 
 
 ```{r}
-#| code-fold: false
+#| code-fold: true
 #| message: false
 #| warning: false
 #| label: tbl-coin-toss-results
@@ -627,25 +627,9 @@ prop.test(toss_results[1],N_tosses,correct = FALSE)
 ```
 
 
-In addition to the CI and other information, this function reports a p-value. Again, the p-value is the probability of observing a point estimate that is as or more extreme that the one we initially computed from the data, assuming that the null hypothesis is true.  Here  the p-value is computed using classical formulas and not bootstrapping. The function `prop_test` from `infer` gives a tidied version of the output from `prop.test`.
+In addition to the CI and other information, this function reports a p-value. Again, the p-value is the probability of observing a point estimate that is as or more extreme that the one we initially computed from the data, assuming that the null hypothesis is true.  Here  the p-value is computed using classical formulas and not bootstrapping. In this example, the function `prop.test` returns a p-value of about 0.69. We interpret this value as follows: 
 
-
-```{r}
-#| code-fold: false
-#| message: false
-#| warning: false
-
-
-prop_test(coin_toss_df,heads_tails ~ NULL, 
-          succes = "heads", 
-          p = 0.5, z = TRUE,
-          conf_int = TRUE,
-          conf_level = 0.95) 
-```
-
-Whichever of the functions `prop.test` or `prop_test` we use to compute it, the p-value is about 0.69. We interpret this value as follows: 
-
-> Assuming the null hypothesis to be true, there is about a 69% chance of observing a point estimate that is as or more extreme than the one we obtained from the data. Thus, the results of our coin toss are not at all rare so we should probably not consider our data as providing strong evidence against the null hypothesis. One would typically say, "we decide to fail to reject the null hypothesis." 
+> Assuming the null hypothesis to be true (*i.e.*, the coin is fair), there is about a 69% chance of observing a point estimate that is as or more extreme than the one we obtained from the data. Thus, the results of our coin toss are not at all rare so we should probably not consider our data as providing strong evidence against the null hypothesis. One would typically say, "we decide to fail to reject the null hypothesis." 
 
 
 The `infer` package contains functions that use resampling-based methods to obtain a p-value. Specifically, we use simulations to generate a null distribution using the function `generate`. The function `get_p_value` can be used to obtain a p-value for any statistic that is computed using the `calculate` function. In order to use this function, we need to first specify the null hypothesis. We do this using the function `hypothesize`. Then, we generate a null distribution using the function `generate`. Finally, we use the function `get_p_value` to obtain the p-value.
