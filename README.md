@@ -26,6 +26,8 @@ Here are the links to the rendered versions of the course materials:
 
 - [Lesson 9](https://intro-ds.netlify.app/lesson09/) - Introduction to Statistics for Data Science
 
+- [Lesson 10](https://intro-ds.netlify.app/lesson10/) - Ethical Considerations in Data Science
+
 
 Assignments for the course are available at [this repository](https://github.com/jmgraham30/ds_201_assignments).
 
