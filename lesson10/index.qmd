@@ -35,13 +35,23 @@ vembedr::embed_youtube(id="s8qjmImu1LQ?si=Ywl7Ebpx1mc9ZVuO",height=450) %>%
   vembedr::use_align("center")
 ```
 
-In this lesson, you will learn about some of the ethical considerations of data science. You will explore the potential risks of algorithmic bias and the importance of data transparency and accountability. You will also examine the ethical implications of using data for targeted advertising, political influence, and other manipulative purposes. Finally, you will investigate the ethical considerations surrounding the use of artificial intelligence in healthcare.
+In this lesson, we will learn about some of the ethical considerations of data science. We will explore the potential risks of algorithmic bias and the importance of data transparency and accountability. We will also examine the ethical implications of using data for targeted advertising, political influence, and other manipulative purposes. Finally, we will investigate the ethical considerations surrounding the use of artificial intelligence in healthcare.
 
 We begin with an interactive activity. Take a moment to think about the following questions:
 
 - What are some of the ethical considerations relevant to data science?
 
 Think of some one or two word answers to this question. Then, add your answers to the word cloud activity displayed momentarily.  
+
+
+[Watch *Algorithmic Bias and Fairness* video on YouTube](https://youtu.be/gV0_raKR2UQ?si=oCyVg8a7bmlLiN8-).
+
+```{r}
+#| echo: false
+
+vembedr::embed_youtube(id="gV0_raKR2UQ?si=oCyVg8a7bmlLiN8-",height=450) %>%
+  vembedr::use_align("center")
+```
 
 ## Ethical Considerations in Data Science
 
