@@ -25,7 +25,7 @@ library(kableExtra)
 
 # read in data files
 happiness_report_csv <- read_csv("https://raw.githubusercontent.com/UBC-DSCI/data-science-a-first-intro-worksheets/main/worksheet_reading/data/happiness_report.csv")
-happiness_report_xl <- read_xlsx("/Users/jasongraham/Library/CloudStorage/Dropbox/WorkDocuments/Teaching/Falls/Fall2023/DS 201/happiness_report.xlsx")
+happiness_report_xl <- read_xlsx("/Users/r01235571/Library/CloudStorage/Dropbox/WorkDocuments/Teaching/Falls/Fall2023/DS 201/happiness_report.xlsx")
 ```
 
 

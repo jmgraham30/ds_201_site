@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.8.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="JMG">
 
-<title>DS 201 - Lesson 9</title>
+<title>Lesson 9 – DS 201</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,6 +22,7 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 /* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -59,6 +60,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -84,24 +86,34 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-1ac49dc45d461ba7e3f4755605d38e4c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-482c505b42a27fe86bbc845866694eac.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-1ac49dc45d461ba7e3f4755605d38e4c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -110,69 +122,258 @@ div.csl-indent {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
 }</script>
-
 <script src="../site_libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="floating nav-fixed">
+<body class="floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">DS 201</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html" rel="" target="">
- <span class="menu-text">Home</span></a>
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../syllabus.html" rel="" target="">
- <span class="menu-text">Syllabus</span></a>
+    <a class="nav-link" href="../syllabus.html"> 
+<span class="menu-text">Syllabus</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../links.html" rel="" target="">
- <span class="menu-text">Links</span></a>
+    <a class="nav-link" href="../links.html"> 
+<span class="menu-text">Links</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/jmgraham30/ds_201_site" rel="" target=""><i class="bi bi-github" role="img" aria-label="GitHub">
+    <a class="nav-link" href="https://github.com/jmgraham30/ds_201_site"> <i class="bi bi-github" role="img" aria-label="GitHub">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
 </ul>
+          </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
-          </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
@@ -192,12 +393,13 @@ div.csl-indent {
   </ul>
 </nav>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
+
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -221,7 +423,9 @@ div.csl-indent {
   </div>
   
 
+
 </header>
+
 
 <section id="learning-objectives" class="level2">
 <h2 class="anchored" data-anchor-id="learning-objectives">Learning Objectives</h2>
@@ -269,9 +473,9 @@ div.csl-indent {
 <h2 class="anchored" data-anchor-id="resampling-experiment">Resampling Experiment</h2>
 <p>Let’s start with a simulation. Here’s what we will do: Simulate 100 tosses of a fair coin, that is, sample from a binomial random variable with <span class="math inline">\(\pi = 0.5\)</span>, count the number of heads, then estimate <span class="math inline">\(\pi\)</span> by dividing the number of heads by 100. Then, we will repeat this for 500 times. The code below does this and displays the results in a table.</p>
 <div class="cell">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>coin_df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">num_heads =</span> <span class="fu">rbinom</span>(<span class="dv">500</span>,<span class="at">size=</span><span class="dv">100</span>,<span class="at">prob=</span><span class="fl">0.5</span>))</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>coin_df <span class="ot">&lt;-</span> coin_df <span class="sc">%&gt;%</span></span>
@@ -280,11 +484,11 @@ div.csl-indent {
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>coin_df <span class="sc">%&gt;%</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>() <span class="sc">%&gt;%</span></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scroll_box</span>(<span class="at">width =</span> <span class="st">"100%"</span>, <span class="at">height =</span> <span class="st">"200px"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scroll_box</span>(<span class="at">width =</span> <span class="st">"100%"</span>, <span class="at">height =</span> <span class="st">"200px"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:200px; overflow-x: scroll; width:100%; ">
-<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="table caption-top table-sm table-striped small">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">num_heads</th>
@@ -2295,33 +2499,36 @@ div.csl-indent {
 </tbody>
 </table>
 </div>
-
 </div>
 </div>
-<p><a href="#fig-coin-plot">Figure&nbsp;1</a> plots the 500 different estimates for <span class="math inline">\(\pi\)</span>.</p>
+<p><a href="#fig-coin-plot" class="quarto-xref">Figure&nbsp;1</a> plots the 500 different estimates for <span class="math inline">\(\pi\)</span>.</p>
 <div class="cell">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>coin_df <span class="sc">%&gt;%</span></span>
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>coin_df <span class="sc">%&gt;%</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> p_hat)) <span class="sc">+</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">12</span>,<span class="at">color=</span><span class="st">"white"</span>) <span class="sc">+</span> </span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Estimate"</span>,<span class="at">y =</span> <span class="st">"Count"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Estimate"</span>,<span class="at">y =</span> <span class="st">"Count"</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<div id="fig-coin-plot" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="index_files/figure-html/fig-coin-plot-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;1: 500 estimates of the probability of success, <span class="math inline">\(\pi\)</span> from simulated data.</figcaption>
+<div id="fig-coin-plot" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-coin-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-coin-plot-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-coin-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: 500 estimates of the probability of success, <span class="math inline">\(\pi\)</span> from simulated data.
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p><strong>Question:</strong> What are your takeaways from our simulation experiment and plot in <a href="#fig-coin-plot">Figure&nbsp;1</a>? What, if anything, do you think we can say about the sampling distribution of <span class="math inline">\(\pi\)</span>?</p>
+<p><strong>Question:</strong> What are your takeaways from our simulation experiment and plot in <a href="#fig-coin-plot" class="quarto-xref">Figure&nbsp;1</a>? What, if anything, do you think we can say about the sampling distribution of <span class="math inline">\(\pi\)</span>?</p>
 <p>Now, let’s try a slightly different simulation. We will do a single round of tossing a fair coin 100 times. Then, we will resample from the 100 tosses <em>with replacement</em> 500 times. For each resample, we will count the number of heads and again estimate <span class="math inline">\(\pi\)</span> by dividing the number of heads by 100. The code in below does this and displays the results in a table.</p>
 <div class="cell">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>coin_sample <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">100</span>,<span class="at">size=</span><span class="dv">1</span>,<span class="at">prob=</span><span class="fl">0.5</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>coin_resample_df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">num_heads =</span> <span class="fu">replicate</span>(<span class="dv">500</span>,<span class="fu">sum</span>(<span class="fu">sample</span>(coin_sample,<span class="dv">100</span>,<span class="at">replace=</span><span class="cn">TRUE</span>)))) <span class="sc">%&gt;%</span></span>
@@ -2331,11 +2538,11 @@ div.csl-indent {
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>coin_resample_df <span class="sc">%&gt;%</span></span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>() <span class="sc">%&gt;%</span></span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scroll_box</span>(<span class="at">width =</span> <span class="st">"100%"</span>, <span class="at">height =</span> <span class="st">"200px"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scroll_box</span>(<span class="at">width =</span> <span class="st">"100%"</span>, <span class="at">height =</span> <span class="st">"200px"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:200px; overflow-x: scroll; width:100%; ">
-<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="table caption-top table-sm table-striped small">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">num_heads</th>
@@ -4346,29 +4553,32 @@ div.csl-indent {
 </tbody>
 </table>
 </div>
-
 </div>
 </div>
 <p>Note the the number of heads in the original sample is 45.</p>
-<p><a href="#fig-coin-resample-plot">Figure&nbsp;2</a> plots the 500 different estimates for <span class="math inline">\(\pi\)</span> based on the <em>resampled</em> data.</p>
+<p><a href="#fig-coin-resample-plot" class="quarto-xref">Figure&nbsp;2</a> plots the 500 different estimates for <span class="math inline">\(\pi\)</span> based on the <em>resampled</em> data.</p>
 <div class="cell">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>coin_resample_df <span class="sc">%&gt;%</span></span>
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>coin_resample_df <span class="sc">%&gt;%</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> p_hat_b)) <span class="sc">+</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">12</span>,<span class="at">color=</span><span class="st">"white"</span>) <span class="sc">+</span> </span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Estimate"</span>,<span class="at">y =</span> <span class="st">"Count"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Estimate"</span>,<span class="at">y =</span> <span class="st">"Count"</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<div id="fig-coin-resample-plot" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="index_files/figure-html/fig-coin-resample-plot-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;2: 500 estimates of the probability of success, <span class="math inline">\(\pi\)</span> from resampled data.</figcaption>
+<div id="fig-coin-resample-plot" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-coin-resample-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-coin-resample-plot-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-coin-resample-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: 500 estimates of the probability of success, <span class="math inline">\(\pi\)</span> from resampled data.
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p><strong>Question:</strong> What are your takeaways from our simulation experiment and plot in <a href="#fig-coin-resample-plot">Figure&nbsp;2</a>? How do the results compare and contrast with those of the previous simulation and plot in <a href="#fig-coin-plot">Figure&nbsp;1</a>?</p>
+<p><strong>Question:</strong> What are your takeaways from our simulation experiment and plot in <a href="#fig-coin-resample-plot" class="quarto-xref">Figure&nbsp;2</a>? How do the results compare and contrast with those of the previous simulation and plot in <a href="#fig-coin-plot" class="quarto-xref">Figure&nbsp;1</a>?</p>
 </section>
 <section id="bootstrap" class="level2">
 <h2 class="anchored" data-anchor-id="bootstrap">Bootstrap</h2>
@@ -4381,32 +4591,36 @@ div.csl-indent {
 <h3 class="anchored" data-anchor-id="example-bootstrap-mean">Example: Bootstrap Mean</h3>
 <p>Let’s take <span class="math inline">\(n = 50\)</span> samples <span class="math inline">\(X_{1},X_{2},\ldots, X_{n}\)</span> from a normal distribution with <span class="math inline">\(\mu = 10\)</span> and <span class="math inline">\(\sigma = 1.75\)</span>, that is, with <span class="math inline">\(X_{i} \sim \text{Norm}(\mu = 10, \sigma = 1.75 )\)</span>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">4321</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">4321</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">50</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="dv">10</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>sigma <span class="ot">&lt;-</span> <span class="fl">1.75</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n,mu,sigma)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n,mu,sigma)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>A point estimate for the mean <span class="math inline">\(\mu\)</span> is the sample mean <span class="math inline">\(\hat{\mu}\)</span> defined by</p>
 <p><span class="math display">\[
 \hat{\mu} = \frac{X_{1} + X_{2} + \cdots + X_{n}}{n}
 \]</span> Let’s compute the sample mean for our sample:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(x_bar <span class="ot">&lt;-</span> <span class="fu">mean</span>(x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(x_bar <span class="ot">&lt;-</span> <span class="fu">mean</span>(x))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 10.20559</code></pre>
 </div>
 </div>
 <p>Now, let’s build the bootstrap distribution for the sample mean. We will do this by resampling with replacement from the sample 500 times. For each resample, we will compute the sample mean. The code below does this and displays the results.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>mean_resample_df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x_bar_b =</span> <span class="fu">replicate</span>(<span class="dv">500</span>,<span class="fu">mean</span>(<span class="fu">sample</span>(x,n,<span class="at">replace=</span><span class="cn">TRUE</span>)))) </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>mean_resample_df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x_bar_b =</span> <span class="fu">replicate</span>(<span class="dv">500</span>,<span class="fu">mean</span>(<span class="fu">sample</span>(x,n,<span class="at">replace=</span><span class="cn">TRUE</span>)))) </span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>mean_resample_df <span class="sc">%&gt;%</span></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x_bar_b)) <span class="sc">+</span></span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">12</span>,<span class="at">color=</span><span class="st">"white"</span>) <span class="sc">+</span> </span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Sample mean"</span>,<span class="at">y =</span> <span class="st">"Count"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Sample mean"</span>,<span class="at">y =</span> <span class="st">"Count"</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Now, statistical theory tell us that the standard error of the sample mean is given by</p>
@@ -4414,21 +4628,21 @@ div.csl-indent {
 \text{SE}(\hat{\mu}) = \frac{\sigma}{\sqrt{n}}
 \]</span> where <span class="math inline">\(\sigma\)</span> is the standard deviation of the population. Let’s compute the standard error of the sample mean for our sample:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(se <span class="ot">&lt;-</span> sigma<span class="sc">/</span><span class="fu">sqrt</span>(n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(se <span class="ot">&lt;-</span> sigma<span class="sc">/</span><span class="fu">sqrt</span>(n))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.2474874</code></pre>
 </div>
 </div>
 <p>Let’s compare this with the standard deviation of our bootstrap distribution:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(mean_resample_df<span class="sc">$</span>x_bar_b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(mean_resample_df<span class="sc">$</span>x_bar_b)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.1938924</code></pre>
 </div>
 </div>
 <p>We use confidence intervals (CIs) to quantify the uncertainty in our estimates. Classically, a 95% CI for the mean is computed in R using:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(x)<span class="sc">$</span>conf.int</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(x)<span class="sc">$</span>conf.int</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1]  9.81419 10.59699
 attr(,"conf.level")
@@ -4437,7 +4651,7 @@ attr(,"conf.level")
 </div>
 <p>or using a function from the <code>infer</code> package:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>sampling_dist <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x=</span>x) <span class="sc">%&gt;%</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>sampling_dist <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x=</span>x) <span class="sc">%&gt;%</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(<span class="at">response =</span> x) <span class="sc">%&gt;%</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">assume</span>(<span class="st">"t"</span>)</span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -4445,7 +4659,7 @@ attr(,"conf.level")
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(<span class="at">response =</span> x) <span class="sc">%&gt;%</span></span>
 <span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"mean"</span>)</span>
 <span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="fu">get_confidence_interval</span>(sampling_dist,<span class="at">point_estimate =</span> sample_mean,<span class="at">level=</span><span class="fl">0.95</span>,<span class="at">type=</span><span class="st">"se"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="fu">get_confidence_interval</span>(sampling_dist,<span class="at">point_estimate =</span> sample_mean,<span class="at">level=</span><span class="fl">0.95</span>,<span class="at">type=</span><span class="st">"se"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 2
   lower_ci upper_ci
@@ -4455,7 +4669,7 @@ attr(,"conf.level")
 </div>
 <p>We can estimate this CI using the bootstrap. The code below computes an estimated 95% CI for the mean using the bootstrap:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(mean_resample_df<span class="sc">$</span>x_bar_b,<span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.025</span>,<span class="fl">0.975</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(mean_resample_df<span class="sc">$</span>x_bar_b,<span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.025</span>,<span class="fl">0.975</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     2.5%     97.5% 
  9.831469 10.597012 </code></pre>
@@ -4463,8 +4677,8 @@ attr(,"conf.level")
 </div>
 <p>or using the <code>infer</code> package:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>mean_resample_df <span class="sc">%&gt;%</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_confidence_interval</span>(<span class="at">level=</span><span class="fl">0.95</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>mean_resample_df <span class="sc">%&gt;%</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_confidence_interval</span>(<span class="at">level=</span><span class="fl">0.95</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 2
   lower_ci upper_ci
@@ -4481,9 +4695,9 @@ attr(,"conf.level")
 Y = \beta_{0} + \beta_{1}x + \epsilon
 \]</span> and <span class="math inline">\(\epsilon \sim \text{Norm}(0,\sigma)\)</span>.</p>
 <p>We can use the bootstrap to estimate the uncertainty in estimates for the parameters <span class="math inline">\(\beta_{0}\)</span> and <span class="math inline">\(\beta_{1}\)</span> in a manner similar to how we estimated the uncertainty in the sample mean in the last subsection. However, in this case, the mean is estimated by a linear regression model. That is, we have estimators <span class="math inline">\(\hat{\beta}_{0}\)</span> and <span class="math inline">\(\hat{\beta}_{1}\)</span>, values of which are obtained by fitting a linear model to the data. Bootstrapping allows us to approximate the sampling distributions for these estimators.</p>
-<p>First, we will simulate some data. The simulated data is shown in <a href="#fig-lm-sim">Figure&nbsp;3</a>. Notice that the true mean is given by <span class="math inline">\(y = 0.5 x + 2\)</span> which appears as the red dashed line in the figure.</p>
+<p>First, we will simulate some data. The simulated data is shown in <a href="#fig-lm-sim" class="quarto-xref">Figure&nbsp;3</a>. Notice that the true mean is given by <span class="math inline">\(y = 0.5 x + 2\)</span> which appears as the red dashed line in the figure.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sample size</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sample size</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">25</span></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># true intercept and slope parameters</span></span>
@@ -4515,30 +4729,38 @@ Y = \beta_{0} + \beta_{1}x + \epsilon
 <span id="cb21-30"><a href="#cb21-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.6</span>) <span class="sc">+</span></span>
 <span id="cb21-31"><a href="#cb21-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept=</span>beta_0,<span class="at">slope=</span>beta_1,<span class="at">color=</span><span class="st">"red"</span>,</span>
 <span id="cb21-32"><a href="#cb21-32" aria-hidden="true" tabindex="-1"></a>              <span class="at">linewidth=</span><span class="dv">1</span>,<span class="at">linetype=</span><span class="st">"dashed"</span>) <span class="sc">+</span> </span>
-<span id="cb21-33"><a href="#cb21-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">"lm"</span>,<span class="at">color=</span><span class="st">"orange"</span>,<span class="at">fill=</span><span class="st">"lightblue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-33"><a href="#cb21-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">"lm"</span>,<span class="at">color=</span><span class="st">"orange"</span>,<span class="at">fill=</span><span class="st">"lightblue"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div id="fig-lm-sim" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="index_files/figure-html/fig-lm-sim-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;3: Simulated data for simple linear regression. The true mean is given by <span class="math inline">\(y = 0.5 x + 2\)</span></figcaption>
+<div id="fig-lm-sim" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-lm-sim-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-lm-sim-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lm-sim-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Simulated data for simple linear regression. The true mean is given by <span class="math inline">\(y = 0.5 x + 2\)</span>
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>The orange line in <a href="#fig-lm-sim">Figure&nbsp;3</a> is the fitted linear model and the light blue shaded region shows the corresponding standard error computed by traditional methods.</p>
-<p>In R, the function <code>lm</code> is used to fit a linear model. The code below fits a linear model to the simulated data and prints the estimated intercept and slope parameters, that is, the point estimates for <span class="math inline">\(\hat{\beta}_{0}\)</span> and <span class="math inline">\(\hat{\beta}_{1}\)</span> in <a href="#tbl-lm-coeffs">Table&nbsp;1</a>.</p>
+<p>The orange line in <a href="#fig-lm-sim" class="quarto-xref">Figure&nbsp;3</a> is the fitted linear model and the light blue shaded region shows the corresponding standard error computed by traditional methods.</p>
+<p>In R, the function <code>lm</code> is used to fit a linear model. The code below fits a linear model to the simulated data and prints the estimated intercept and slope parameters, that is, the point estimates for <span class="math inline">\(\hat{\beta}_{0}\)</span> and <span class="math inline">\(\hat{\beta}_{1}\)</span> in <a href="#tbl-lm-coeffs" class="quarto-xref">Table&nbsp;1</a>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>linear_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data=</span>lm_samp_df_l)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>linear_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data=</span>lm_samp_df_l)</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(linear_mod) <span class="sc">%&gt;%</span></span>
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(estimate) <span class="sc">%&gt;%</span></span>
 <span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">coeff=</span><span class="fu">c</span>(<span class="st">"beta_0"</span>,<span class="st">"beta_1"</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="tbl-lm-coeffs" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-lm-coeffs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Estimated intercept and slope parameters for the linear model fit to the simulated data.
+</figcaption>
+<div aria-describedby="tbl-lm-coeffs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="tbl-lm-coeffs" class="anchored">
-<table class="table table-sm table-striped small" data-quarto-postprocess="true">
-<caption>Table&nbsp;1: Estimated intercept and slope parameters for the linear model fit to the simulated data.</caption>
+<table class="table do-not-create-environment cell caption-top table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: right;" data-quarto-table-cell-role="th">estimate</th>
@@ -4557,13 +4779,13 @@ Y = \beta_{0} + \beta_{1}x + \epsilon
 </tbody>
 </table>
 </div>
-
-
+</div>
+</figure>
 </div>
 </div>
-<p>We would like to assess the uncertainty in our point estimates. Bootstrapping is one way to do this and the following code implements the bootstrap for our example. <a href="#fig-lm-boot-coeffs-1">Figure&nbsp;4</a> shows the bootstrap distribution for the intercept and slope parameters.</p>
+<p>We would like to assess the uncertainty in our point estimates. Bootstrapping is one way to do this and the following code implements the bootstrap for our example. <a href="#fig-lm-boot-coeffs-1" class="quarto-xref">Figure&nbsp;4</a> shows the bootstrap distribution for the intercept and slope parameters.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>lm_fit_resamp <span class="ot">&lt;-</span> <span class="cf">function</span>(int_val,<span class="at">df=</span>lm_samp_df_l){</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>lm_fit_resamp <span class="ot">&lt;-</span> <span class="cf">function</span>(int_val,<span class="at">df=</span>lm_samp_df_l){</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data=</span><span class="fu">slice_sample</span>(df,<span class="at">prop=</span><span class="dv">1</span>,<span class="at">replace=</span><span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tidy</span>() <span class="sc">%&gt;%</span></span>
 <span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(estimate) <span class="sc">%&gt;%</span></span>
@@ -4576,44 +4798,56 @@ Y = \beta_{0} + \beta_{1}x + \epsilon
 <span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>lm_fit_boot <span class="sc">%&gt;%</span></span>
 <span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>estimate)) <span class="sc">+</span></span>
 <span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">color=</span><span class="st">"white"</span>,<span class="at">fill=</span><span class="st">"lightblue"</span>) <span class="sc">+</span></span>
-<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>coeff,<span class="at">scales=</span><span class="st">"free_x"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>coeff,<span class="at">scales=</span><span class="st">"free_x"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div id="fig-lm-boot-coeffs-1" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="index_files/figure-html/fig-lm-boot-coeffs-1-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;4: Bootstrap distributions for the intercept and slope parameters.</figcaption>
+<div id="fig-lm-boot-coeffs-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-lm-boot-coeffs-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-lm-boot-coeffs-1-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lm-boot-coeffs-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Bootstrap distributions for the intercept and slope parameters.
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>In the last line of code, we manually resampled the data and fit a linear model to each resample. The code below does the same thing but uses the function <code>reg_intervals</code> from the `rsample`` package to do the resampling and fitting. The results shown in <a href="#fig-lm-boot-coeffs-2">Figure&nbsp;5</a> are similar to those we saw in <a href="#fig-lm-boot-coeffs-1">Figure&nbsp;4</a>.</p>
+<p>In the last line of code, we manually resampled the data and fit a linear model to each resample. The code below does the same thing but uses the function <code>reg_intervals</code> from the `rsample`` package to do the resampling and fitting. The results shown in <a href="#fig-lm-boot-coeffs-2" class="quarto-xref">Figure&nbsp;5</a> are similar to those we saw in <a href="#fig-lm-boot-coeffs-1" class="quarto-xref">Figure&nbsp;4</a>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">reg_intervals</span>(y <span class="sc">~</span> x, <span class="at">data=</span>lm_samp_df_l,</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">reg_intervals</span>(y <span class="sc">~</span> x, <span class="at">data=</span>lm_samp_df_l,</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">type=</span><span class="st">"percentile"</span>,<span class="at">filter=</span><span class="cn">NULL</span>,</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">keep_reps =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(.replicates) <span class="sc">%&gt;%</span></span>
 <span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>estimate)) <span class="sc">+</span> </span>
 <span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">color=</span><span class="st">"white"</span>,<span class="at">fill=</span><span class="st">"lightblue"</span>) <span class="sc">+</span></span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>term,<span class="at">scales=</span><span class="st">"free_x"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>term,<span class="at">scales=</span><span class="st">"free_x"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div id="fig-lm-boot-coeffs-2" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="index_files/figure-html/fig-lm-boot-coeffs-2-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;5: Bootstrap distributions for the intercept and slope parameters. This time, the function <code>reg_intervals</code> is used to do the resampling and fitting.</figcaption>
+<div id="fig-lm-boot-coeffs-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-lm-boot-coeffs-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-lm-boot-coeffs-2-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lm-boot-coeffs-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Bootstrap distributions for the intercept and slope parameters. This time, the function <code>reg_intervals</code> is used to do the resampling and fitting.
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <p>We can also use <code>reg_intervals</code> to obtain the confidence intervals for each parameter estimate. The results are shown in</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">reg_intervals</span>(y <span class="sc">~</span> x, <span class="at">data=</span>lm_samp_df_l,</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">reg_intervals</span>(y <span class="sc">~</span> x, <span class="at">data=</span>lm_samp_df_l,</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">type=</span><span class="st">"percentile"</span>,<span class="at">filter=</span><span class="cn">NULL</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="tbl-lm-ci" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-lm-ci-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2: Confidence intervals for the intercept and slope parameters obtained using the <code>reg_intervals</code> function.
+</figcaption>
+<div aria-describedby="tbl-lm-ci-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="tbl-lm-ci" class="anchored">
-<table class="table table-sm table-striped small" data-quarto-postprocess="true">
-<caption>Table&nbsp;2: Confidence intervals for the intercept and slope parameters obtained using the <code>reg_intervals</code> function.</caption>
+<table class="table do-not-create-environment cell caption-top table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">term</th>
@@ -4644,13 +4878,13 @@ Y = \beta_{0} + \beta_{1}x + \epsilon
 </tbody>
 </table>
 </div>
-
-
+</div>
+</figure>
 </div>
 </div>
-<p>Finally, we can use our bootstrapped estimates to plot the bootstrap distribution of the regression line. The results are shown in <a href="#fig-lm-boot">Figure&nbsp;6</a>. The orange line is the fitted linear model, the yellow shaded region shows the corresponding standard error computed by traditional methods, and the light blue lines are regression lines fitted to the resampled data. The light blue lines are the bootstrap distribution of the regression line.</p>
+<p>Finally, we can use our bootstrapped estimates to plot the bootstrap distribution of the regression line. The results are shown in <a href="#fig-lm-boot" class="quarto-xref">Figure&nbsp;6</a>. The orange line is the fitted linear model, the yellow shaded region shows the corresponding standard error computed by traditional methods, and the light blue lines are regression lines fitted to the resampled data. The light blue lines are the bootstrap distribution of the regression line.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>tpl <span class="ot">&lt;-</span> lm_fit_boot <span class="sc">%&gt;%</span> <span class="fu">pivot_wider</span>(<span class="at">names_from=</span>coeff,<span class="at">values_from=</span>estimate) <span class="sc">%&gt;%</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>tpl <span class="ot">&lt;-</span> lm_fit_boot <span class="sc">%&gt;%</span> <span class="fu">pivot_wider</span>(<span class="at">names_from=</span>coeff,<span class="at">values_from=</span>estimate) <span class="sc">%&gt;%</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(<span class="at">cols =</span> <span class="fu">c</span>(beta_0, beta_1))</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -4660,12 +4894,16 @@ Y = \beta_{0} + \beta_{1}x + \epsilon
 <span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">data=</span>tpl,</span>
 <span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>              <span class="fu">aes</span>(<span class="at">intercept=</span>beta_0,<span class="at">slope=</span>beta_1),</span>
 <span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>              <span class="at">color=</span><span class="st">"lightblue"</span>) <span class="sc">+</span></span>
-<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">"lm"</span>,<span class="at">color=</span><span class="st">"orange"</span>,<span class="at">fill=</span><span class="st">"yellow"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">"lm"</span>,<span class="at">color=</span><span class="st">"orange"</span>,<span class="at">fill=</span><span class="st">"yellow"</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div id="fig-lm-boot" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="index_files/figure-html/fig-lm-boot-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;6: Bootstrap distribution of the regression line for the simulated data. The true value is given by <span class="math inline">\(y = 0.5 x + 2\)</span></figcaption>
+<div id="fig-lm-boot" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-lm-boot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-lm-boot-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lm-boot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: Bootstrap distribution of the regression line for the simulated data. The true value is given by <span class="math inline">\(y = 0.5 x + 2\)</span>
+</figcaption>
 </figure>
 </div>
 </div>
@@ -4687,14 +4925,14 @@ Y = \beta_{0} + \beta_{1}x + \epsilon
 </blockquote>
 <p>Let’s work through a computational example to get a better sense of how statistical hypothesis testing works. We begin by simulating 100 tosses of a fair coin.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">4312</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">4312</span>)</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>N_tosses <span class="ot">&lt;-</span> <span class="dv">100</span></span>
 <span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>coin_toss_df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">coin_toss =</span> <span class="fu">rbinom</span>(N_tosses,<span class="dv">1</span>,<span class="fl">0.5</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">heads_tails =</span> <span class="fu">ifelse</span>(coin_toss <span class="sc">==</span> <span class="dv">1</span>, <span class="st">"heads"</span>, <span class="st">"tails"</span>))</span>
 <span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(coin_toss_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(coin_toss_df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 100
 Columns: 2
@@ -4702,20 +4940,24 @@ $ coin_toss   &lt;int&gt; 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 1, 1, 
 $ heads_tails &lt;chr&gt; "heads", "tails", "heads", "tails", "tails", "tails", "hea…</code></pre>
 </div>
 </div>
-<p><a href="#tbl-coin-toss-results">Table&nbsp;3</a> shows the results of the 100 tosses of the fair coin.</p>
+<p><a href="#tbl-coin-toss-results" class="quarto-xref">Table&nbsp;3</a> shows the results of the 100 tosses of the fair coin.</p>
 <div class="cell">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>toss_results <span class="ot">&lt;-</span> <span class="fu">table</span>(coin_toss_df<span class="sc">$</span>heads_tails)</span>
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>toss_results <span class="ot">&lt;-</span> <span class="fu">table</span>(coin_toss_df<span class="sc">$</span>heads_tails)</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>toss_results <span class="sc">%&gt;%</span></span>
 <span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
+<div id="tbl-coin-toss-results" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-coin-toss-results-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3: Results of 100 tosses of a fair coin. The coin toss results are stored in a variable named <code>toss_results</code>.
+</figcaption>
+<div aria-describedby="tbl-coin-toss-results-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="tbl-coin-toss-results" class="anchored">
-<table class="table table-sm table-striped small" data-quarto-postprocess="true">
-<caption>Table&nbsp;3: Results of 100 tosses of a fair coin. The coin toss results are stored in a variable named <code>toss_results</code>.</caption>
+<table class="table do-not-create-environment cell caption-top table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Var1</th>
@@ -4734,33 +4976,37 @@ $ heads_tails &lt;chr&gt; "heads", "tails", "heads", "tails", "tails", "tails", 
 </tbody>
 </table>
 </div>
-
-
+</div>
+</figure>
 </div>
 </div>
-<p>We can also visualize the results using a bar chart as shown in <a href="#fig-coin-toss-results">Figure&nbsp;7</a>.</p>
+<p>We can also visualize the results using a bar chart as shown in <a href="#fig-coin-toss-results" class="quarto-xref">Figure&nbsp;7</a>.</p>
 <div class="cell">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>coin_toss_df <span class="sc">%&gt;%</span></span>
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>coin_toss_df <span class="sc">%&gt;%</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> heads_tails)) <span class="sc">+</span></span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">fill=</span><span class="st">"lightblue"</span>) <span class="sc">+</span></span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Coin Toss"</span>, <span class="at">y =</span> <span class="st">"Count"</span>, <span class="at">title =</span> <span class="st">"Coin Toss Results"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Coin Toss"</span>, <span class="at">y =</span> <span class="st">"Count"</span>, <span class="at">title =</span> <span class="st">"Coin Toss Results"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<div id="fig-coin-toss-results" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="index_files/figure-html/fig-coin-toss-results-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;7: Bar chart showing the results of 100 tosses of a fair coin. The coin toss results are stored in a variable named <code>toss_results</code>.</figcaption>
+<div id="fig-coin-toss-results" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-coin-toss-results-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-coin-toss-results-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-coin-toss-results-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7: Bar chart showing the results of 100 tosses of a fair coin. The coin toss results are stored in a variable named <code>toss_results</code>.
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <p>Our question is, could this be the result of a fair coin? Let’s proceed to address this question first by computing our point estimate for the probability of heads.</p>
 <div class="cell">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
 <span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -4769,7 +5015,7 @@ $ heads_tails &lt;chr&gt; "heads", "tails", "heads", "tails", "tails", "tails", 
 <span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(<span class="at">response =</span> heads_tails, <span class="at">success =</span> <span class="st">"heads"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"prop"</span>)</span>
 <span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>p_hat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>p_hat</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Response: heads_tails (factor)
@@ -4782,9 +5028,9 @@ $ heads_tails &lt;chr&gt; "heads", "tails", "heads", "tails", "tails", "tails", 
 <p>Thus, our point estimate is 0.52. Note that this value was obtained using functions from the <code>infer</code> package.</p>
 <p>We can use bootstrapping to estimate the uncertainty in our point estimate. In order to do this, we will create bootstrap resamples using the function <code>bootstraps</code> from the <code>rsample</code> package.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>coin_boots <span class="ot">&lt;-</span> <span class="fu">bootstraps</span>(coin_toss_df, <span class="at">times =</span> <span class="dv">1000</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>coin_boots <span class="ot">&lt;-</span> <span class="fu">bootstraps</span>(coin_toss_df, <span class="at">times =</span> <span class="dv">1000</span>)</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>coin_boots</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>coin_boots</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># Bootstrap sampling 
 # A tibble: 1,000 × 2
@@ -4805,8 +5051,8 @@ $ heads_tails &lt;chr&gt; "heads", "tails", "heads", "tails", "tails", "tails", 
 </div>
 <p>Note that this results in a data frame that stores the bootstrap resamples in a list column named <code>splits</code>. In order to extract the data from a split object, we use the function <code>analysis</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>coin_boots<span class="sc">$</span>splits[[<span class="dv">1</span>]] <span class="sc">%&gt;%</span> </span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">analysis</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>coin_boots<span class="sc">$</span>splits[[<span class="dv">1</span>]] <span class="sc">%&gt;%</span> </span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">analysis</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 100 × 2
    coin_toss heads_tails
@@ -4826,7 +5072,7 @@ $ heads_tails &lt;chr&gt; "heads", "tails", "heads", "tails", "tails", "tails", 
 </div>
 <p>Now, we need to compute the point estimate for each of the resampled data sets. We can do this using the function <code>map_dbl</code> from the <code>purrr</code> package. First, we need a function that will compute our point estimate from any given split object. We create such a function and call it <code>resample_prop</code>. Then, we use <code>map_dbl</code> to apply this function to each of the splits in our data frame and add the results to the data frame that contains our bootstrap resamples.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>resample_prop <span class="ot">&lt;-</span> <span class="cf">function</span>(split){</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>resample_prop <span class="ot">&lt;-</span> <span class="cf">function</span>(split){</span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a> num_heads <span class="ot">&lt;-</span>  split <span class="sc">%&gt;%</span></span>
 <span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">analysis</span>() <span class="sc">%&gt;%</span></span>
@@ -4838,30 +5084,34 @@ $ heads_tails &lt;chr&gt; "heads", "tails", "heads", "tails", "tails", "tails", 
 <span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a>coin_boots <span class="ot">&lt;-</span> coin_boots <span class="sc">%&gt;%</span></span>
-<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop_heads =</span> <span class="fu">map_dbl</span>(splits, resample_prop))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop_heads =</span> <span class="fu">map_dbl</span>(splits, resample_prop))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p><a href="#fig-coin-toss-resamp-results">Figure&nbsp;8</a> shows a histogram of the bootstrap distribution for <span class="math inline">\(\hat{\pi}\)</span>.</p>
+<p><a href="#fig-coin-toss-resamp-results" class="quarto-xref">Figure&nbsp;8</a> shows a histogram of the bootstrap distribution for <span class="math inline">\(\hat{\pi}\)</span>.</p>
 <div class="cell">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>coin_boots <span class="sc">%&gt;%</span></span>
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>coin_boots <span class="sc">%&gt;%</span></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> prop_heads)) <span class="sc">+</span></span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">20</span>,<span class="at">fill=</span><span class="st">"lightblue"</span>) <span class="sc">+</span></span>
 <span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> p_hat<span class="sc">$</span>stat[<span class="dv">1</span>], <span class="at">color =</span> <span class="st">"darkgreen"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>, <span class="at">linetype=</span><span class="st">"dashed"</span>) <span class="sc">+</span></span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Proportion of Heads"</span>, <span class="at">y =</span> <span class="st">"Count"</span>, <span class="at">title =</span> <span class="st">"Bootstrapped Proportions of Heads"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Proportion of Heads"</span>, <span class="at">y =</span> <span class="st">"Count"</span>, <span class="at">title =</span> <span class="st">"Bootstrapped Proportions of Heads"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<div id="fig-coin-toss-resamp-results" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="index_files/figure-html/fig-coin-toss-resamp-results-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;8: Histogram of the bootstrap distribution for <span class="math inline">\(\hat{\pi}\)</span>.</figcaption>
+<div id="fig-coin-toss-resamp-results" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-coin-toss-resamp-results-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-coin-toss-resamp-results-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-coin-toss-resamp-results-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8: Histogram of the bootstrap distribution for <span class="math inline">\(\hat{\pi}\)</span>.
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <p>Then, our estimated confidence interval is obtained using the following command:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(coin_boots<span class="sc">$</span>prop_heads, <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(coin_boots<span class="sc">$</span>prop_heads, <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> 2.5% 97.5% 
  0.42  0.61 </code></pre>
@@ -4869,7 +5119,7 @@ $ heads_tails &lt;chr&gt; "heads", "tails", "heads", "tails", "tails", "tails", 
 </div>
 <p>We see that 0.5 is contained in the 95% bootstrap confidence interval. One can also compute a 95% confidence interval using the function <code>prop.test</code> from the <code>stats</code> package. This function does not use bootstrapping but instead uses classical formulas for the confidence interval.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.test</span>(toss_results[<span class="dv">1</span>],N_tosses,<span class="at">correct =</span> <span class="cn">FALSE</span>)<span class="sc">$</span>conf.int</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.test</span>(toss_results[<span class="dv">1</span>],N_tosses,<span class="at">correct =</span> <span class="cn">FALSE</span>)<span class="sc">$</span>conf.int</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.4231658 0.6153545
 attr(,"conf.level")
@@ -4878,7 +5128,7 @@ attr(,"conf.level")
 </div>
 <p>We obtain nearly the same results. Let’s call <code>prop.test</code> again but this time print out more than just the CI:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.test</span>(toss_results[<span class="dv">1</span>],N_tosses,<span class="at">correct =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.test</span>(toss_results[<span class="dv">1</span>],N_tosses,<span class="at">correct =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     1-sample proportions test without continuity correction
@@ -4899,16 +5149,16 @@ sample estimates:
 </blockquote>
 <p>The <code>infer</code> package contains functions that use resampling-based methods to obtain a p-value. Specifically, we use simulations to generate a null distribution using the function <code>generate</code>. The function <code>get_p_value</code> can be used to obtain a p-value for any statistic that is computed using the <code>calculate</code> function. In order to use this function, we need to first specify the null hypothesis. We do this using the function <code>hypothesize</code>. Then, we generate a null distribution using the function <code>generate</code>. Finally, we use the function <code>get_p_value</code> to obtain the p-value.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>null_dist <span class="ot">&lt;-</span> coin_toss_df <span class="sc">%&gt;%</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>null_dist <span class="ot">&lt;-</span> coin_toss_df <span class="sc">%&gt;%</span></span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(<span class="at">response =</span> heads_tails, <span class="at">success =</span> <span class="st">"heads"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hypothesize</span>(<span class="at">null =</span> <span class="st">"point"</span>, <span class="at">p =</span> .<span class="dv">5</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">1000</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"prop"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"prop"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Once we have generated a null distribution, we can use the function <code>get_p_value</code> to obtain a p-value for any statistic that is computed using the <code>calculate</code> function. In this case, we want to obtain a p-value for the statistic <span class="math inline">\(\hat{\pi}\)</span>. We do this using the following command:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>null_dist <span class="sc">%&gt;%</span></span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_p_value</span>(<span class="at">obs_stat =</span> p_hat, <span class="at">direction =</span> <span class="st">"two-sided"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>null_dist <span class="sc">%&gt;%</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_p_value</span>(<span class="at">obs_stat =</span> p_hat, <span class="at">direction =</span> <span class="st">"two-sided"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 1
   p_value
@@ -4916,18 +5166,22 @@ sample estimates:
 1   0.742</code></pre>
 </div>
 </div>
-<p>While we do not obtain the same exact p-value, our conclusion remains the same. We fail to reject the null hypothesis. We can visualize this result using the functions <code>visualize</code> and <code>shade_p_value</code>. The resulting visualization is shown in <a href="#fig-coin-toss-p-value">Figure&nbsp;9</a>. The p-value is the area under the curve that is shaded in red. The p-value is the probability of observing a point estimate that is as or more extreme than the one we obtained from the data, assuming that the null hypothesis is true; and this area is shaded in red in the plot.</p>
+<p>While we do not obtain the same exact p-value, our conclusion remains the same. We fail to reject the null hypothesis. We can visualize this result using the functions <code>visualize</code> and <code>shade_p_value</code>. The resulting visualization is shown in <a href="#fig-coin-toss-p-value" class="quarto-xref">Figure&nbsp;9</a>. The p-value is the area under the curve that is shaded in red. The p-value is the probability of observing a point estimate that is as or more extreme than the one we obtained from the data, assuming that the null hypothesis is true; and this area is shaded in red in the plot.</p>
 <div class="cell">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">visualize</span>(null_dist) <span class="sc">+</span></span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shade_p_value</span>(<span class="at">obs_stat =</span> p_hat, <span class="at">direction =</span> <span class="st">"two-sided"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">visualize</span>(null_dist) <span class="sc">+</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shade_p_value</span>(<span class="at">obs_stat =</span> p_hat, <span class="at">direction =</span> <span class="st">"two-sided"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<div id="fig-coin-toss-p-value" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="index_files/figure-html/fig-coin-toss-p-value-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;9: Visualization of the p-value for the coin toss example. The p-value is the area that is shaded in red.</figcaption>
+<div id="fig-coin-toss-p-value" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-coin-toss-p-value-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-coin-toss-p-value-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-coin-toss-p-value-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9: Visualization of the p-value for the coin toss example. The p-value is the area that is shaded in red.
+</figcaption>
 </figure>
 </div>
 </div>
@@ -4938,7 +5192,7 @@ sample estimates:
 </section>
 <section id="references" class="level2">
 <h2 class="anchored" data-anchor-id="references">References</h2>
-<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-efron2022computer" class="csl-entry" role="listitem">
 Efron, Bradley, and Trevor Hastie. 2022. <span>“Computer Age Statistical Inference.”</span>
 </div>
@@ -4950,12 +5204,12 @@ Wasserman, Larry. 2004. <em>All of Statistics: A Concise Course in Statistical I
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Expand for Session Info
+<span class="screen-reader-only">Tip</span>Expand for Session Info
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -4965,47 +5219,50 @@ Expand for Session Info
 <div class="cell-output cell-output-stdout">
 <pre><code>─ Session info ───────────────────────────────────────────────────────────────
  setting  value
- version  R version 4.3.2 (2023-10-31)
- os       macOS Sonoma 14.1.1
+ version  R version 4.5.2 (2025-10-31)
+ os       macOS Tahoe 26.1
  system   aarch64, darwin20
  ui       X11
  language (EN)
  collate  en_US.UTF-8
  ctype    en_US.UTF-8
  tz       America/New_York
- date     2023-11-29
- pandoc   3.1.9 @ /opt/homebrew/bin/ (via rmarkdown)
- quarto   1.3.450 @ /usr/local/bin/quarto
+ date     2025-11-28
+ pandoc   3.6.3 @ /Applications/RStudio.app/Contents/Resources/app/quarto/bin/tools/aarch64/ (via rmarkdown)
+ quarto   1.8.26 @ /Applications/quarto/bin/quarto
 
 ─ Packages ───────────────────────────────────────────────────────────────────
  package      * version date (UTC) lib source
- broom        * 1.0.5   2023-06-09 [1] CRAN (R 4.3.0)
- dials        * 1.2.0   2023-04-03 [1] CRAN (R 4.3.0)
- dplyr        * 1.1.4   2023-11-17 [1] CRAN (R 4.3.1)
- forcats      * 1.0.0   2023-01-29 [1] CRAN (R 4.3.0)
- ggplot2      * 3.4.4   2023-10-12 [1] CRAN (R 4.3.1)
- infer        * 1.0.5   2023-09-06 [1] CRAN (R 4.3.0)
- kableExtra   * 1.3.4   2021-02-20 [1] CRAN (R 4.3.0)
- lubridate    * 1.9.3   2023-09-27 [1] CRAN (R 4.3.1)
- modeldata    * 1.2.0   2023-08-09 [1] CRAN (R 4.3.0)
- parsnip      * 1.1.1   2023-08-17 [1] CRAN (R 4.3.0)
- purrr        * 1.0.2   2023-08-10 [1] CRAN (R 4.3.0)
- readr        * 2.1.4   2023-02-10 [1] CRAN (R 4.3.0)
- recipes      * 1.0.8   2023-08-25 [1] CRAN (R 4.3.0)
- rsample      * 1.2.0   2023-08-23 [1] CRAN (R 4.3.0)
- scales       * 1.3.0   2023-11-28 [1] CRAN (R 4.3.1)
- sessioninfo  * 1.2.2   2021-12-06 [1] CRAN (R 4.3.0)
- stringr      * 1.5.1   2023-11-14 [1] CRAN (R 4.3.1)
- tibble       * 3.2.1   2023-03-20 [1] CRAN (R 4.3.0)
- tidymodels   * 1.1.1   2023-08-24 [1] CRAN (R 4.3.0)
- tidyr        * 1.3.0   2023-01-24 [1] CRAN (R 4.3.0)
- tidyverse    * 2.0.0   2023-02-22 [1] CRAN (R 4.3.0)
- tune         * 1.1.2   2023-08-23 [1] CRAN (R 4.3.0)
- workflows    * 1.1.3   2023-02-22 [1] CRAN (R 4.3.0)
- workflowsets * 1.0.1   2023-04-06 [1] CRAN (R 4.3.0)
- yardstick    * 1.2.0   2023-04-21 [1] CRAN (R 4.3.0)
+ broom        * 1.0.10  2025-09-13 [1] CRAN (R 4.5.0)
+ dials        * 1.4.2   2025-09-04 [1] CRAN (R 4.5.0)
+ dplyr        * 1.1.4   2023-11-17 [1] CRAN (R 4.5.0)
+ forcats      * 1.0.1   2025-09-25 [1] CRAN (R 4.5.0)
+ ggplot2      * 4.0.1   2025-11-14 [1] CRAN (R 4.5.2)
+ infer        * 1.0.9   2025-06-26 [1] CRAN (R 4.5.0)
+ kableExtra   * 1.4.0   2024-01-24 [1] CRAN (R 4.5.0)
+ lubridate    * 1.9.4   2024-12-08 [1] CRAN (R 4.5.0)
+ modeldata    * 1.5.1   2025-08-22 [1] CRAN (R 4.5.0)
+ parsnip      * 1.3.3   2025-08-31 [1] CRAN (R 4.5.0)
+ purrr        * 1.2.0   2025-11-04 [1] CRAN (R 4.5.0)
+ readr        * 2.1.6   2025-11-14 [1] CRAN (R 4.5.2)
+ recipes      * 1.3.1   2025-05-21 [1] CRAN (R 4.5.0)
+ rsample      * 1.3.1   2025-07-29 [1] CRAN (R 4.5.0)
+ scales       * 1.4.0   2025-04-24 [1] CRAN (R 4.5.0)
+ sessioninfo  * 1.2.3   2025-02-05 [1] CRAN (R 4.5.0)
+ stringr      * 1.6.0   2025-11-04 [1] CRAN (R 4.5.0)
+ tailor       * 0.1.0   2025-08-25 [1] CRAN (R 4.5.0)
+ tibble       * 3.3.0   2025-06-08 [1] CRAN (R 4.5.0)
+ tidymodels   * 1.4.1   2025-09-08 [1] CRAN (R 4.5.0)
+ tidyr        * 1.3.1   2024-01-24 [1] CRAN (R 4.5.0)
+ tidyverse    * 2.0.0   2023-02-22 [1] CRAN (R 4.5.0)
+ tune         * 2.0.1   2025-10-17 [1] CRAN (R 4.5.0)
+ workflows    * 1.3.0   2025-08-27 [1] CRAN (R 4.5.0)
+ workflowsets * 1.1.1   2025-05-27 [1] CRAN (R 4.5.0)
+ yardstick    * 1.3.2   2025-01-22 [1] CRAN (R 4.5.0)
 
- [1] /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library
+ [1] /Users/r01235571/Library/R/arm64/4.5/library
+ [2] /Library/Frameworks/R.framework/Versions/4.5-arm64/Resources/library
+ * ── Packages attached to the search path.
 
 ──────────────────────────────────────────────────────────────────────────────</code></pre>
 </div>
@@ -5015,167 +5272,80 @@ Expand for Session Info
 </div>
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
-<p><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode"><img src="http://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png?raw=1" class="img-fluid figure-img" style="width:15.0%"></a></p>
+<p><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode"><img src="http://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png?raw=1" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:15.0%"></a></p>
 </figure>
 </div>
 
 
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div id="quarto-reuse" class="quarto-appendix-contents"><div>CC BY-NC-SA 4.0</div></div></section></div></main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
     }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const disableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'prefetch';
-    }
-  }
-  const enableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'stylesheet';
-    }
-  }
-  const manageTransitions = (selector, allowTransitions) => {
-    const els = window.document.querySelectorAll(selector);
-    for (let i=0; i < els.length; i++) {
-      const el = els[i];
-      if (allowTransitions) {
-        el.classList.remove('notransition');
-      } else {
-        el.classList.add('notransition');
-      }
-    }
-  }
-  const toggleColorMode = (alternate) => {
-    // Switch the stylesheets
-    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-    manageTransitions('#quarto-margin-sidebar .nav-link', false);
-    if (alternate) {
-      enableStylesheet(alternateStylesheets);
-      for (const sheetNode of alternateStylesheets) {
-        if (sheetNode.id === "quarto-bootstrap") {
-          toggleBodyColorMode(sheetNode);
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
         }
       }
-    } else {
-      disableStylesheet(alternateStylesheets);
-      toggleBodyColorPrimary();
-    }
-    manageTransitions('#quarto-margin-sidebar .nav-link', true);
-    // Switch the toggles
-    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-    for (let i=0; i < toggles.length; i++) {
-      const toggle = toggles[i];
-      if (toggle) {
-        if (alternate) {
-          toggle.classList.add("alternate");     
-        } else {
-          toggle.classList.remove("alternate");
-        }
-      }
-    }
-    // Hack to workaround the fact that safari doesn't
-    // properly recolor the scrollbar when toggling (#1455)
-    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-      manageTransitions("body", false);
-      window.scrollTo(0, 1);
-      setTimeout(() => {
-        window.scrollTo(0, 0);
-        manageTransitions("body", true);
-      }, 40);  
-    }
-  }
-  const isFileUrl = () => { 
-    return window.location.protocol === 'file:';
-  }
-  const hasAlternateSentinel = () => {  
-    let styleSentinel = getColorSchemeSentinel();
-    if (styleSentinel !== null) {
-      return styleSentinel === "alternate";
-    } else {
       return false;
     }
-  }
-  const setStyleSentinel = (alternate) => {
-    const value = alternate ? "alternate" : "default";
-    if (!isFileUrl()) {
-      window.localStorage.setItem("quarto-color-scheme", value);
-    } else {
-      localAlternateSentinel = value;
-    }
-  }
-  const getColorSchemeSentinel = () => {
-    if (!isFileUrl()) {
-      const storageValue = window.localStorage.getItem("quarto-color-scheme");
-      return storageValue != null ? storageValue : localAlternateSentinel;
-    } else {
-      return localAlternateSentinel;
-    }
-  }
-  let localAlternateSentinel = 'default';
-  // Dark / light mode switch
-  window.quartoToggleColorScheme = () => {
-    // Read the current dark / light value 
-    let toAlternate = !hasAlternateSentinel();
-    toggleColorMode(toAlternate);
-    setStyleSentinel(toAlternate);
-  };
-  // Ensure there is a toggle, if there isn't float one in the top right
-  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-    const a = window.document.createElement('a');
-    a.classList.add('top-right');
-    a.classList.add('quarto-color-scheme-toggle');
-    a.href = "";
-    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-    const i = window.document.createElement("i");
-    i.classList.add('bi');
-    a.appendChild(i);
-    window.document.body.appendChild(a);
-  }
-  // Switch to dark mode if need be
-  if (hasAlternateSentinel()) {
-    toggleColorMode(true);
-  } else {
-    toggleColorMode(false);
-  }
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
       }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
     }
-    return false;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
       for (const childEl of codeEl.children) {
         if (isCodeAnnotation(childEl)) {
           childEl.remove();
@@ -5183,195 +5353,348 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
       return codeEl.innerText;
     }
-  });
-  clipboard.on('success', function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  });
-  function tippyHover(el, contentFn) {
-    const config = {
-      allowHTML: true,
-      content: contentFn,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start'
-    };
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      return note.innerHTML;
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
     });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
     }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
           }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
       });
     }
-  }
-});
-</script>
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
 </div> <!-- /content -->
+
 
 
 

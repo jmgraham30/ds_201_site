@@ -8,3 +8,4 @@
 .DS_Store
 main_data
 main_R
+**/*.quarto_ipynb

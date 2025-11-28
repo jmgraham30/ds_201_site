@@ -69,7 +69,7 @@ library(kableExtra)
 
 > Math Placement PT score of 14 or higher, or ALEKS score of 76 or higher, or MATH 114, or permission of instructor
 
-## Student Learning Objectives and Assessment:
+## Student Learning Outcomes and Assessment:
 
 ```{r}
 #| include: false
@@ -84,7 +84,7 @@ slos_assess <- tibble::tibble("Course SLO"=course_slo,"Assessment"=assessment)
 
 ```{r}
 #| label: tbl-objectives
-#| tbl-cap: Course objectives and assessment.
+#| tbl-cap: Course outcomes and assessment.
 #| echo: false
 
 
